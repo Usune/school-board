@@ -1,0 +1,15 @@
+Texto: La entrada de texto permite al usuario escribir texto libre en un campo de formulario. Puedes utilizar el elemento <input> con el atributo type="text".
+
+Contraseña: La entrada de contraseña enmascara los caracteres que el usuario escribe. Puedes utilizar el elemento <input> con el atributo type="password".
+
+Número: La entrada de número permite al usuario ingresar un número. Puedes utilizar el elemento <input> con el atributo type="number".
+
+Correo electrónico: La entrada de correo electrónico permite al usuario ingresar una dirección de correo electrónico válida. Puedes utilizar el elemento <input> con el atributo type="email".
+
+Selección: La entrada de selección permite al usuario elegir una opción de una lista desplegable. Puedes utilizar el elemento <select> con los elementos <option> dentro.
+
+Fecha: La entrada de fecha permite al usuario seleccionar una fecha a través de un calendario emergente. Puedes utilizar el elemento <input> con el atributo type="date".
+
+Archivo: La entrada de archivo permite al usuario seleccionar un archivo de su dispositivo. Puedes utilizar el elemento <input> con el atributo type="file".
+
+even.preventDefault(); Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento, es decir, puede ser llamado de nuevo.

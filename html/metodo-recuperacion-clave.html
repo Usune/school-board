@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación clave</title>
+    <link rel="shortcut icon" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/estilos-olvido-clave.css">
+    <link rel="stylesheet" type="text/css" href="../css/estilos-base.css">
+    <script src="../js/control-general.js"></script>
+    <script src="../js/control-metodo-recuperacion-clave.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="logo">
+            <img src="../img/logo.png" alt="logo" title="inicio sesión">
+            <h1>Recuperar clave</h1>
+        </div>
+        <p>Metodo de verificación</p>
+        <div class="formulario">
+            <form id="formulario">
+                
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="met">Correo electronico</legend>
+                    </fieldset>
+                    <div class="bt-metodo">
+                        <button id="btn-metodo" class="desplegar" enlace="#btn-opcion" type="button"><img id="img-metodo" enlace="#btn-opcion" src="../img/mail-gris.svg" alt="mail"><img src="../img/flecha-abajo.svg" enlace="#btn-opcion" alt=""></button>
+                    </div>
+                    <input id="metodo" type="text" placeholder="Correo electronico" name="metodo" required legend="#met" autocomplete="current-password">
+                    <div class="bt-opcion">
+                        <button id="btn-opcion" type="button"><img id="img-opcion" src="../img/phone-gris.svg" alt="mail"></button>
+                    </div>
+                </div>
+
+                <p class="recordatorio">Recuerde que debe ingresar el correo o teléfono registrado en la plataforma, de
+                    lo contrario no le llegará ningún código.</p>
+                <div class="submit">
+                    <a href="olvido-clave.html"><img src="../img/volver.svg" alt="volver">Volver</a>
+                    <button type="submit">Enviar código</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

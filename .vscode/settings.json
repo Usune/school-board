@@ -1,0 +1,5 @@
+{
+    "liveServer.settings.port": 5501,
+    "terminal.integrated.tabs.defaultColor": "terminal.ansiMagenta",
+    "terminal.integrated.windowsEnableConpty": true
+}

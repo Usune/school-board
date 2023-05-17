@@ -1,0 +1,66 @@
+.main {
+    display: flex;
+    height: 100vh;
+    width: 400px;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 300px;
+}
+
+.fieldset input {
+    width: 95%;
+    height: 70%;
+    margin-left: -300px;
+    border-radius: 20px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    background-color: transparent;
+    padding-left: 15px;
+    border: var(--gris) 2px solid;
+}
+
+.fieldset input:focus {
+    border: none;
+    outline: none;
+    margin-top: 8px;
+}
+
+.fieldset input:focus::placeholder{
+    color: transparent;
+}
+
+.fieldset fieldset {
+    border-radius: 20px;
+    height: 70%;
+    width: 100%;
+    border: var(--gris) 2px solid;
+    background-color: transparent;
+}
+
+.fieldset legend {
+    text-align: start;
+    margin-left: 15px;
+    padding: 0px 4px 0px 4px;
+    color: var(--azulOscuro);
+    display: none;
+    font-size: 14px;
+}
+
+.fieldset fieldset:has( ~ input:focus) {
+    border: var(--azulOscuro) 2px solid;
+    height: 90%;
+}
+
+.show {
+    display: block !important;
+}

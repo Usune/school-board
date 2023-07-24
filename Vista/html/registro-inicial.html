@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="shortcut icon" href="../img/logo.png">
+    <link rel="stylesheet" type="text/css" href="../css/estilos-inicio-sesion.css">
+    <link rel="stylesheet" type="text/css" href="../css/estilos-base.css">
+    <script src="../js/control-general.js"></script>
+</head>
+<body>
+    <main>
+        <div class="logo">
+            <img src="../img/logo.png" alt="logo" title="inicio sesión">
+            <h1>Registro obligatorio</h1>
+        </div>
+        <div class="formulario">
+            <form method="get" id="formulario">
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="docu">Documento</legend>
+                    </fieldset>                    
+                    <input type="text" placeholder="Documento" readonly legend="#docu" value="1030701124" name="documento">
+                </div>
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="nom">Nombres</legend>
+                    </fieldset>                    
+                    <input type="text" placeholder="Nombres" required legend="#nom" autocomplete="current-password" name="nombres">
+                </div>
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="ape">Apellidos</legend>
+                    </fieldset>
+                    <input type="text" placeholder="Apellidos" legend="#ape" required autocomplete="current-password" name="apellidos"> 
+                </div>
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="cel">Celular</legend>
+                    </fieldset>
+                    <input type="text" placeholder="Celular" legend="#cel" required autocomplete="current-password" name="celular"> 
+                </div>
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="dire">Dirrección</legend>
+                    </fieldset>
+                    <input type="text" placeholder="Dirrección" legend="#dire" required autocomplete="current-password" name="direccion"> 
+                </div>
+                
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="per">Correo personal</legend>
+                    </fieldset>
+                    <input type="text" placeholder="Correo personal" legend="#per" required autocomplete="current-password" name="correoPersonal"> 
+                </div>
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="acu">Correo acudiente</legend>
+                    </fieldset>
+                    <input type="text" legend="#acu" required autocomplete="current-password" placeholder="Correo acudiente" name="correoAcudiente"> 
+                </div>
+                
+                <p id="texto">Poner otro mensaje</p>
+                <button type="submit" class="enviar">Iniciar sesión</button>
+            </form>
+        </div>
+    </main>  
+</body>
+</html>

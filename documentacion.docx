@@ -13,3 +13,40 @@ Fecha: La entrada de fecha permite al usuario seleccionar una fecha a través de
 Archivo: La entrada de archivo permite al usuario seleccionar un archivo de su dispositivo. Puedes utilizar el elemento <input> con el atributo type="file".
 
 even.preventDefault(); Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento, es decir, puede ser llamado de nuevo.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        alert(`Busqueda iframe script en <head> ${!!document.querySelector('iframe') ? '✅' : '❌'}`)
+    </script>
+</head>
+<body>
+    <iframe></iframe>
+    <script>
+        alert(`Busqueda iframe script en <body> ${!!document.querySelector('iframe') ? '✅' : '❌'}`)
+    </script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded',() => {
+            alert(`Busqueda iframe event::DOMContentLoaded ${!!document.querySelector('iframe') ? '✅' : '❌'}`)
+        })
+
+        window.addEventListener('load',() => {
+            alert(`Busqueda iframe event::load ${!!document.querySelector('iframe') ? '✅' : '❌'}`)
+        })
+
+        window.addEventListener('unload',() => {
+            alert(`Busqueda iframe event::unload ${!!document.querySelector('iframe') ? '✅' : '❌'}`)
+        })
+
+        window.addEventListener('readystatechange',() => {
+            alert(`Busqueda iframe event::readystatechange ${!!document.querySelector('iframe') ? '✅' : '❌'}`)
+        })
+    </script>
+</body>
+</html>

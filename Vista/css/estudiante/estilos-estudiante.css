@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+/* visibility: hidden; */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --beige: #FFFAF4;
+    --azulClaro: #7dcfff;
+    --azulOscuro: #0185B8;
+    --naranja: #FFA269;
+    --verde: #5fda9f;
+    --blanco: #fff;
+    --negro: #000000;
+    --rojo: #ff2222;
+    --gris: #eaeaea;
+    --grisOscuro: #cbcbcb;
+}
+
+.user button:hover {
+    background-color: var(--naranja);
+    cursor: pointer;
+}
+
+#op1 ul li:hover {
+    background-color: var(--naranja);
+}
+
+aside ul li a:hover {
+    background-color: var(--naranja);
+}
+
+aside ul li button {
+    display: flex;
+    width: 180px;
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 20px;
+    border: none;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: var(--gris);
+}
+
+aside ul li button img{
+    width: 30px;
+    padding-right: 5px;
+}
+
+aside ul li button:hover {
+    background-color: var(--naranja);
+}
+
+#asignaturas {
+    display: none;
+    border-left: var(--naranja) 4px solid;
+    margin: 0px 0px 5px 10px;
+}
+
+#asignaturas ul li{
+    margin-top: 5px;
+}
+
+#asignaturas ul li a{
+    width: 150px;
+}

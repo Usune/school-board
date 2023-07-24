@@ -8,21 +8,21 @@ const validarInicioSesion = (even) => {
 
     // Validación para ingresar como profesor
     if (clave === 'profesor' && usuario === 'profesor') {
-        form.setAttribute('action', 'html/profesor/cursos-profesor.html');
+        form.setAttribute('action', 'Vista/html/profesor/cursos-profesor.html');
         form.submit();
         return;
     }
 
     // Validación para ingresar como estudiante
     if (clave === 'estudiante' && usuario === 'estudiante') {
-        form.setAttribute('action', 'html/estudiante/index-estudiante.html');
+        form.setAttribute('action', 'Vista/html/estudiante/index-estudiante.html');
         form.submit();
         return;
     }
 
     // Validación para ingresar como administrador
     if (clave === 'administrador' && usuario === 'administrador') {
-        form.setAttribute('action', 'html/administrador/index-administrador.html');
+        form.setAttribute('action', 'Vista/html/administrador/index-administrador.html');
         form.submit();
         return;
     }

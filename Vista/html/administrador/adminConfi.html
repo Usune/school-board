@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Admin</title>
     <link rel="shortcut icon" href="../../img/logo.svg">
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Consultar usuario</title>
 </head>
-<body>
 
+<body>
+    
     <!-- Barra de navegación principal -->
     <nav class="nav-pri">
         <div class="fila">
             <div class="menu">
                 <button type="button" class="desplegar" enlace="#menu">
-                    <img src="../../img/ojo.svg" alt="menu" enlace="#menu">
+                    <img src="../../img/menu.svg" alt="menu" enlace="#menu">
                 </button>
             </div>
             <div class="logo">
@@ -53,44 +55,23 @@
                 <li><a href="homeAdmin.html"><img src="../../img/curso.svg" alt="logo">Cursos</a></li>
                 <li><a href="homeAdmin.html"><img src="../../img/asignaturas.svg" alt="logo">Asignaturas</a></li>
                 <li><a href="homeAdmin.html"><img src="../../img/asignaturas.svg" alt="logo">Clases</a></li>
-                <li><a href="homeAdmin.html"><img src="../../img/asignaturas.svg" alt="logo">Comunicados</a></li>
+                <li><a href="homeAdmin.html"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
             </ul>
         </aside>
 
         <main>
-            
-            <!-- breadcrumb -->  
+
+            <!-- breadcrumb -->    
             <nav class="nav-main">
                 <a href="homeAdmin.html">Home</a>
-                <a href="adminUsu.html"> / Usuarios</a>
-                <a href="adminUsuConsu.html"> / Consultar</a>
+                <a href="adminConfi.html"> / Configuración</a>
             </nav>
-        
+
             <section>
-                <h2>Administración de usuarios</h2>
-
-                <div class="formulario">
-
-                    <h3>Consultar usuario</h3>
-
-                    <p class="recordatorio">Digite el documento del usuario que desea consultar.</p>
-            
-                    <form action="administrador-usuario-consulta1.html" method="get">
-                        <div class="fieldset">
-                            <fieldset>
-                                <legend id="usu">Documento</legend>
-                            </fieldset>
-                            <input type="number" placeholder="Documento" required legend="#usu" name="usuario">
-                        </div>
-                        
-                        <p id="texto">No hay nungún usuario registrado con el documento ingresado, verifique el documento. </p>
-                        <button type="submit" class="enviar">Buscar</button>
-                    </form>
-                </div>
+                <h2>Configuración Perfil</h2>
+                
             </section>
-            
         </main>
-
     </div>
 
     <hr>
@@ -103,5 +84,8 @@
         </div>
     </footer>
 
+    
+
 </body>
+
 </html>

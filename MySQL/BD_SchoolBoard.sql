@@ -8,21 +8,24 @@ CREATE TABLE usuario (
     usuario VARCHAR(15),
     clave VARCHAR(100),
     rol ENUM('1','2','3'), --1:Administrador, 2:Profesor, 3:Estudiante
-    fechaCreacion DATETIME NOW(),
-    fechaModificacion DATETIME NOW(),
+    estado ENUM('activo', 'pendiente', 'inactivo'),
+    fechaCreacion DATETIME DEFAULT NOW(),
+    fechaModificacion DATETIME DEFAULT NOW(),
     PRIMARY KEY (idUsuario)
 );
 
 CREATE TABLE perfilUsuario (
 	idPerfilUsuario INT, --Será el mismo id de usuario(idUsuario)
     idUsuario INT,
+    tipoDoc ENUM('CC', 'TI', 'pasaporte'), 
     documento VARCHAR(15),
     nombres VARCHAR(100),
     apellidos VARCHAR(100),
     telefono VARCHAR(15),
     direccion VARCHAR(100),
     correo VARCHAR(100),
-    PRIMARY KEY (idPerfilUsuerio),
+    foto VARCHAR(200),
+    PRIMARY KEY (idPerfilUsuario),
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
 
@@ -39,7 +42,7 @@ CREATE TABLE acudiente (
 CREATE TABLE curso (
     idCurso INT AUTO_INCREMENT,
     jornada ENUM('única', 'mañana', 'tarde'),
-    nonbre varchar(15),
+    nonbre VARCHAR(15),
     PRIMARY KEY (idCurso)
 );
 
@@ -56,8 +59,9 @@ CREATE TABLE estudianteCurso (
     idestudianteCurso INT AUTO_INCREMENT,
     idCurso INT,
     idUsuario INT,
-    PRIMARY KEY (idCurso),
-    FOREIGN KEY (idUsuario) REFERENCES (idUsuario)
+    PRIMARY KEY (idestudianteCurso),
+    FOREIGN KEY (idCurso) REFERENCES usuario(idCurso)
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE asignatura (

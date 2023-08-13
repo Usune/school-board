@@ -1,0 +1,618 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --blanco: #fff;
+    --beige: #FFFAF4;
+    --grisClaro: #eaeaea;
+    --gris: #cbcbcb;
+    --grisOscuro: #8a8a8a;
+    --azulClaro: #7dcfff;
+    --azul: #0185B8;
+    --azulOscuro: #2F5494;
+    --rojo: #ff2222;
+    --negro: #000000;
+}
+
+body {
+    background-color: var(--beige);
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+    margin-bottom: 30px;
+}
+
+.formulario h3 {
+    margin: 20px;
+    font-size: 25px;
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fila-cont .fieldset {
+    margin: 10px;
+}
+
+.fila-cont .fieldset_view {
+    margin: 10px;
+}
+
+.fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 300px;
+}
+
+.fieldset input {
+    width: 95%;
+    height: 70%;
+    margin-left: -300px;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    background-color: transparent;
+    padding-left: 15px;
+}
+
+.fieldset input:focus {
+    border: none;
+    outline: none;
+    margin-top: 8px;
+}
+
+.fieldset input:focus::placeholder{
+    color: transparent;
+}
+
+.fieldset fieldset {
+    border-radius: 20px;
+    height: 70%;
+    width: 100%;
+    border: var(--grisOscuro) 2px solid;
+    background-color: transparent;
+}
+
+.fieldset legend {
+    text-align: start;
+    margin-left: 15px;
+    padding: 0px 4px 0px 4px;
+    color: var(--principal);
+    display: none;
+    font-size: 14px;
+}
+
+.fieldset fieldset:has( ~ input:focus) {
+    border: var(--principal) 2px solid;
+    height: 90%;
+}
+
+/* Clase fieldset_view para los select*/
+.fieldset_view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 75px;
+    width: 300px;
+}
+
+.fieldset_view label {
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: var(--grisOscuro);
+}
+
+.fieldset_view select {
+    width: 100%;
+    height: 70%;
+    border-radius: 20px;
+    border: var(--grisOscuro) 2px solid;
+    font-size: 15px;
+    background-color: transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+}
+
+.fieldset_view select:focus {
+    border: var(--principal) 2px solid;
+    outline: none;
+}
+
+.fieldset_view label:has( ~ select:focus) {
+    color: var(--principal);
+}
+
+.formulario a {
+    margin: 20px;
+    text-decoration: none;
+    color: var(--grisOscuro);
+}
+
+.formulario a:hover {
+    color: var(--principal);
+}
+
+/* Clase del button submit */
+.enviar{
+    width: 300px;
+    height: 42px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--principal);
+    color: var(--negro);
+    border: var(--principal) 2px solid;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.enviar:hover {
+    filter: brightness(1.1);
+}
+
+/* Id para el texto que se muestra al verse un error */
+#texto{
+    text-align: center;
+    visibility: hidden;
+    color: var(--rojo);
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+/* Texto que acompaña el formulario como un "tip" */
+.recordatorio {
+    color: var(--negro);
+    font-size: 16px;
+    margin: 0px 0px 20px 0px;
+    width: 75%;
+    text-align: justify;
+}
+/* Fin estilo general para formularios */
+
+/* Estilo general de tablas */
+.tabla{
+    width: 90vw;
+    background-color: var(--beige);
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla table {
+    width: 100%;
+    border-right: 2px solid var(--negro)
+}
+
+.tabla td {
+    padding: 10px;
+    border-left: 2px solid var(--negro);
+    border-bottom: 2px solid var(--negro);
+}
+
+.tabla table th{
+    padding: 10px;
+    border-left: 2px solid var(--negro);
+    border-bottom: 2px solid var(--negro);
+    background-color: var(--grisOscuro);
+}
+/*Fin estilo general de tablas */
+
+/* Estilos barra de navegación principal (.nav-pri)*/
+.nav-pri {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+.nav-pri .menu {
+    display: none;
+}
+
+.nav-pri .menu button {
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: var(--grisClaro);
+    border: var(--grisClaro) solid 2px;
+    cursor: pointer;
+}
+
+.nav-pri .menu button:hover {
+    background-color: var(--principal);
+}
+
+.nav-pri .logo {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.nav-pri .logo img {
+    width: 50px;
+}
+
+.nav-pri .logo h1 {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.nav-pri .buscar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-pri .buscar form {
+    display: flex;
+    align-items: center;
+}
+
+.nav-pri .buscar input {
+    width: 50vw;
+    height: 30px;
+    border-radius: 50px;
+    border: var(--negro) 2px solid;
+    padding-left: 15px;
+    background-color: transparent;
+}
+
+.nav-pri .buscar button {
+    border-radius: 40px;
+    margin-left: -35px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+}
+
+.nav-pri .buscar button:hover{
+    cursor: pointer;
+    background-color: var(--grisClaro);
+}
+
+.nav-pri .user {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 10px;
+}
+
+.nav-pri .user button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: var(--grisClaro);
+    border: var(--grisClaro) solid 2px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.nav-pri .user button:hover {
+    background-color: var(--principal);
+}
+
+.nav-pri .user button h2 {
+    font-size: 16px;
+}
+
+.nav-pri .user button img {
+    margin-left: 10px;
+}
+
+.nav-pri #op1 {
+    display: none;
+    position: absolute;
+    top: 70px;
+    background-color: var(--beige);
+    border-radius: 20px;
+}
+
+.nav-pri #op1 ul {
+    list-style: none;
+}
+
+.nav-pri #op1 ul li {
+    display: flex;
+    width: 160px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.nav-pri #op1 ul li:hover {
+    background-color: var(--principal);
+}
+
+.nav-pri #op1 ul li a {
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 15px;
+}
+/*Fin estilos barra de navegación principal (.nav-pri)*/
+
+/* Estilos del aside / main / nav-main  */
+.aside-main {
+    display: flex;
+}
+
+aside {
+    display: flex;
+    width: 250px;
+    height: 80vh;
+    min-height: 700px;
+    padding-left: 10px;
+    background-color: var(--grisClaro);
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+aside ul {
+    width: 90%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+aside ul li {
+    margin-top: 15px;
+    width: 90%;
+    height: 30px;
+}
+
+aside ul li a {
+    display: flex;
+    text-decoration: none;
+    color: var(--negro);
+    padding-left: 10px;
+    font-size: 15px;
+    width: 90%;
+    height: 30px;
+    align-items: center;
+    border-radius: 20px;
+}
+
+aside ul li a:hover {
+    background-color: var(--principal);
+}
+
+aside ul li a img {
+    padding-right: 10px;
+    width: 30px;
+}
+
+aside ul li button {
+    display: flex;
+    width: 180px;
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 20px;
+    border: none;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    cursor: pointer;background-color: transparent;
+}
+
+aside ul li button img{
+    width: 30px;
+    padding-right: 5px;
+}
+
+aside .cont-desplegar {
+    display: none;
+    border-left: var(--principal) 4px solid;
+    margin: 0px 0px 5px 10px;
+}
+
+aside .cont-desplegar ul li{
+    margin-top: 5px;
+}
+
+aside .cont-desplegar ul li a{
+    width: 150px;
+}
+
+aside ul li button:hover {
+    background-color: var(--principal);
+}
+
+main {
+    width: calc(100% - 300px);
+    height: 80vh;
+    min-height: 700px;
+    border-radius: 20px;
+    margin: 0px 15px 15px 15px;
+    background-color: var(--grisClaro);
+    overflow-y: scroll;
+}
+
+.nav-main {
+    padding: 20px;
+}
+
+.nav-main a{
+    text-decoration: none;
+    color: var(--negro);
+}
+
+.nav-main a:hover{
+    font-weight: bold;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+section h2 {
+    text-align: center;
+    margin: 20px 0px 10px 0px;
+    font-size: 40px;
+}
+
+footer {
+    height: 100px;
+    padding-left: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-footer {
+    text-align: center;
+}
+
+/* Fin estilos del aside / main / nav-main */
+
+/* Estilos para pantalla pequeña de aside / main / nav-main */
+@media (max-width: 1250px){
+
+    aside {
+        display: none;
+        position: absolute;
+        background-color: var(--gris);
+    }
+    
+    main {
+        width: 100%;
+        height: 80vh;
+        border-radius: 20px;
+        margin: 0px 15px 0px 15px;
+    }
+
+    footer {
+        padding-left: 0;
+    }
+
+    .nav-pri .menu {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+
+    .nav-pri .menu button {
+        display: flex;
+    }
+
+    .nav-pri .logo {
+        width: 60px;
+    }
+
+    .nav-pri .logo h2 {
+        display: none;
+    }
+
+    .nav-pri .user button h2 {
+        display: none;
+    }
+
+    .nav-pri .user button {
+        width: 50px;
+    }
+
+    .nav-pri .user button img{
+        margin: 0;
+    }
+
+    .nav-pri .buscar {
+        display: none;
+    }
+}
+/* Fin Estilos para pantalla pequeña de aside / main / nav-main */
+
+/* Estilos para tarjetas */
+.contenedor {
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor a {
+    text-decoration: none;
+    color: var(--negro);
+    width: 150px;   
+    padding: 30px;
+    margin: 20px;
+    border: var(--principal) 5px solid;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.contenedor a img {
+    padding-bottom: 20px;
+    width: 35px;
+}
+
+.contenedor a p {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.contenedor a:hover {
+    background-color: var(--principal);
+}
+
+.fila-cont {
+    display: flex;
+}
+
+@media (max-width: 1250px){
+    .fila-cont {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-pri .logo h1 {
+        display: none;
+    }
+
+    .formulario {
+        width: 400px;
+    }
+}
+/* Fin estilos para tarjetas */
+
+/* Clase para cambiar el display con ayuda de js */
+.show {
+    display: block !important;
+}
+
+/* Clase para acomodar los elementos en fila */
+.fila {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

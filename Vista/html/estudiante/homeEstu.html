@@ -7,16 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudiante</title>
     <link rel="shortcut icon" href="../../img/logo.png">
-    <link rel="stylesheet" type="text/css" href="../../css/estilos-index.css">
-    <link rel="stylesheet" type="text/css" href="../../css/estudiante/estilos-estudiante.css">
-    <script src="../../js/control-general.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/estudiante/estilosEstu.css">
+    <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
+    <script src="../../js/controlGeneral.js"></script>
 </head>
 
 <body>
-    <nav>
-        <div class="logo">
-            <img src="../../img/logo.png" alt="logo">
-            <h1>School Board</h1>
+
+    <!-- Barra de navegación principal -->
+    <nav class="nav-pri">
+        <div class="fila">
+            <div class="menu">
+                <button type="button" class="desplegar" enlace="#menu">
+                    <img src="../../img/menu.svg" alt="menu" enlace="#menu">
+                </button>
+            </div>
+            <div class="logo">
+                <img src="../../img/logo.svg" alt="logo">
+                <h1>School Board</h1>
+            </div>
         </div>
         <div class="buscar">
             <form action="#">
@@ -25,20 +34,22 @@
             </form>
         </div>
         <div class="user">
-            <button type="button" enlace="#op1" class="desplegar">
-                <h1 enlace="#op1">Estefani Arenas</h1>
+            <button type="button" enlace="#op1" class="desplegar" id="butdesplegar">
+                <h2 enlace="#op1" id="nombre">Nombre Usuario</h2>
                 <img src="../../img/user.svg" alt="imagen" enlace="#op1">
             </button>
             <div id="op1">
                 <ul>
-                    <li><a href="configuracion-profesor.html" target="area-principal">Configuración</a></li>
-                    <li><a href="../../inicio-sesion.html">Cerrar sesión</a></li>
+                    <li><a href="estuConfi.html">Configuración</a></li>
+                    <li><a href="../Extras/inicioSesion.html">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <div class="aside-main">
-        <aside>
+
+        <aside id="menu">
             <ul>
                 <li>
                     <button type='button' id="buttonAsignaturas" enlace="#asignaturas" class="desplegar"> 
@@ -47,7 +58,7 @@
                         <img src="../../img/flecha-abajo.svg" enlace="#asignaturas">
                     </button> 
                 </li>
-                <div id="asignaturas">
+                <div id="asignaturas" class="cont-desplegar">
                     <ul>
                         <li><a href="principal-estudiante.html" target="area-principal">Matemáticas</a></li>
                         <li><a href="principal-estudiante.html" target="area-principal">Español</a></li>
@@ -66,8 +77,18 @@
                         target="area-principal"><img src="../../img/profesores.svg" alt="logo">Profesores</a></li>
             </ul>
         </aside>
+
         <main>
-            <iframe name="area-principal" src="principal-estudiante.html"></iframe>
+            
+            <!-- breadcrumb -->    
+            <nav class="nav-main">
+                <a href="homeAdmin.html">Home</a>
+            </nav>
+
+            <section>
+                <h2>Principal estudiante</h2>
+            </section>
+
         </main>
     </div>
     <hr>

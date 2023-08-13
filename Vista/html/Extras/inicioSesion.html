@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="shortcut icon" href="../../img/logo.svg">
+    <link rel="stylesheet" type="text/css" href="../../css/estilos-inicio-sesion.css">
+    <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
+    <script src="../../js/controlGeneral.js"></script>
+</head>
+
+<body>
+
+    <section>
+        <div class="logo">
+            <img src="../../img/logo.svg" alt="logo" title="inicio sesión">
+            <h1>Inicio de sesión</h1>
+        </div>
+        <div class="formulario">
+            <form action="../../../Controlador/inicioSesion.php" method="post" id="formulario">
+
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="usu">Usuario</legend>
+                    </fieldset>                    
+                    <input type="text" placeholder="Usuario" legend="#usu" required name="usuario">
+                </div>
+                
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="cla">Clave</legend>
+                    </fieldset>
+                    <input type="password" placeholder="Clave" legend="#cla" required name="clave"> 
+                </div>
+
+                <p id="texto"></p>
+
+                <button type="submit" class="enviar">Iniciar sesión</button>
+                <a href="olvido-clave.html">¿Olvidaste la clave?</a>
+            </form>
+        </div>
+    </section>
+
+    <script>
+
+    const validarInicioSesion = (even) => {
+        //even.preventDefault(); Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento, es decir, puede ser llamado de nuevo.
+        even.preventDefault();
+        const form = even.target;
+        const texto = document.getElementById('texto');
+        let usuario = document.getElementsByName('usuario');
+        usuario = usuario[0].value;
+        let clave = document.getElementsByName('clave');
+        clave = clave[0].value;
+    
+        // Validación para ingresar como profesor
+        if (clave.length > 0  && usuario.length > 0) {
+    
+            form.submit();
+            return;
+    
+        } else {
+    
+            texto.innerText = 'Por favor, complete todos los campos';
+            texto.style.visibility = 'visible';
+            
+            document.querySelectorAll('fieldset').forEach(function (elem) {
+                elem.style.border = 'var(--rojo) 2px solid';
+            });
+            document.querySelectorAll('legend').forEach(function (elem) {
+                elem.style.color = 'var(--rojo)';
+            });
+            return;
+    
+        }
+        
+    }
+    
+    document.addEventListener('DOMContentLoaded', function () {
+    
+        document.getElementById('formulario').addEventListener('submit', validarInicioSesion);
+    
+    });
+        
+    </script>
+
+</body>
+
+</html>

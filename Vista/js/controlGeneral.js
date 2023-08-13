@@ -1,4 +1,5 @@
-// Función ppara mostrar o no e
+// Función ppara mostrar o no un elemento
+// Para que funcione el elemento acciodador debe tener el atributo 'enlace' con el id correspondiante del elemento a mostrar y ocultar
 const mostrar = (event) => {
     let el = document.querySelector(event.target.getAttribute('enlace'));
     if (el !== null) {
@@ -10,11 +11,9 @@ const mostrar = (event) => {
 const onFocus = (event) => {
     document.querySelector(event.target.getAttribute('legend')).style.display = 'block';
 }
-
 const onBlur = (event) => {
     document.querySelector(event.target.getAttribute('legend')).style.display = 'none';
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -29,22 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener('click', mostrar);
     });
 
-    //quita el elemento con el id 'op1' cuando se da click sobre la página index
+    //Quita el elemento con el id 'op1' cuando se da click sobre la página index
     document.onclick = (ev) => {
-        if (ev.target.id != "opciones" && ev.target.id != "butdesplegar" && ev.target.parentElement.id != "butdesplegar") {
+        if (ev.target.id != "butdesplegar" && ev.target.parentElement.id != "butdesplegar") {
             let element = document.getElementById('op1');
             if (element !== null) {
-                element.classList.remove('show');
-            }
-        }
-    }
-
-    // quita la clase del elemento con el id 'op1' cuando se da click sobre el iframe
-    let iframe = document.querySelector('iframe');
-    if (iframe !== null){
-        iframe.onload = function () {
-            iframe.contentWindow.document.onclick = (ev) => {
-                let element = document.getElementById('op1');
                 element.classList.remove('show');
             }
         }
@@ -54,6 +42,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// quita la clase del elemento con el id 'op1' cuando se da click sobre el iframe
+// let iframe = document.querySelector('iframe');
+// if (iframe !== null){
+//     iframe.onload = function () {
+//         iframe.contentWindow.document.onclick = (ev) => {
+//             let element = document.getElementById('op1');
+//             element.classList.remove('show');
+//         }
+//     }
 
 
 /* <script>

@@ -139,6 +139,83 @@ body {
     color: var(--principal);
 }
 
+#formulario .textarea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 270px;
+}
+
+#formulario .textarea label {
+    color: var(--grisOscuro);
+    padding-left: 10px;
+}
+
+#formulario .textarea label:has( ~ textarea:focus) {
+    color: var(--principal);
+}
+
+#formulario textarea {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    border: 2px solid var(--grisOscuro);
+    padding: 10px;
+    overflow-y: scroll;
+    resize: none;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+#formulario textarea:focus {
+    border-color: var(--principal);
+    outline: none;
+}
+
+/* 
+::-webkit-scrollbar: Aplica estilos a la barra de desplazamiento en sí, incluyendo el área que rodea al pulgar y las áreas de los botones de desplazamiento.
+::-webkit-scrollbar-button: Aplica estilos a los botones de desplazamiento, como los botones de arriba y abajo.
+::-webkit-scrollbar-thumb: Aplica estilos al pulgar de la barra de desplazamiento, que es la parte que el usuario arrastra para desplazar el contenido.
+::-webkit-scrollbar-track: Aplica estilos a la pista o el área de fondo detrás del pulgar de la barra de desplazamiento.
+::-webkit-scrollbar-track-piece: Aplica estilos a la sección de la pista que no está ocupada por el pulgar.
+::-webkit-scrollbar-corner: Aplica estilos a la esquina formada por la unión de las pistas horizontal y vertical.
+::-webkit-resizer: Aplica estilos al manejador de redimensionamiento en las esquinas de un elemento que es redimensionable.
+*/
+
+.formulario textarea::-webkit-scrollbar {
+    width: 20px;
+}
+
+.formulario textarea::-webkit-scrollbar-thumb {
+    background: var(--grisOscuro);
+    background-clip: content-box;
+    border: 5px solid transparent;
+    border-radius: 50px;
+}
+
+#formulario .file {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+}
+
+#formulario .file label {
+    color: var(--grisOscuro);
+    padding-left: 10px;
+}
+
+#formulario .file input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--gris);
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+#formulario .file input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: var(--principal);
+}
+
 .formulario a {
     margin: 20px;
     text-decoration: none;
@@ -189,28 +266,46 @@ body {
 
 /* Estilo general de tablas */
 .tabla{
-    width: 90vw;
-    background-color: var(--beige);
+    width: 70vw;
+    background-color: transparent;
     padding: 10px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.tabla a img{
+    width: 20px
 }
 
 .tabla table {
-    width: 100%;
     border-right: 2px solid var(--negro)
 }
 
-.tabla td {
+.tabla table tr th{
+    font-size: 12px;
     padding: 10px;
+    max-width: 200px;
+    border-left: 2px solid var(--negro);
+    border-bottom: 2px solid var(--negro);
+    background-color: var(--grisOscuro);
+}
+
+.tabla tr td {
+    font-size: 12px;
+    padding: 10px;
+    max-width: 200px;
+    min-width: 100px;
     border-left: 2px solid var(--negro);
     border-bottom: 2px solid var(--negro);
 }
 
-.tabla table th{
-    padding: 10px;
-    border-left: 2px solid var(--negro);
-    border-bottom: 2px solid var(--negro);
-    background-color: var(--grisOscuro);
+.tabla tr td a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--negro);
 }
 /*Fin estilo general de tablas */
 
@@ -447,7 +542,7 @@ main {
     border-radius: 20px;
     margin: 0px 15px 15px 15px;
     background-color: var(--grisClaro);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .nav-main {
@@ -615,4 +710,10 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.colum {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
 }

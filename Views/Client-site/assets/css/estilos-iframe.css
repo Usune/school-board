@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+/* visibility: hidden; */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 10px; 
+    border-radius: 20px;
+}
+
+:root {
+    --beige: #FFFAF4;
+    --azulClaro: #7dcfff;
+    --azulOscuro: #0185B8;
+    --naranja: #FFA269;
+    --verde: #00BF63;
+    --blanco: #fff;
+    --negro: #000000;
+    --rojo: #ff2222;
+    --gris: #eaeaea;
+    --grisOscuro: #cbcbcb;
+}
+
+/* section {
+    height: 100%;
+} */
+
+.nav-main {
+    padding: 10px;
+}
+
+.nav-main a{
+    text-decoration: none;
+    color: var(--negro);
+}
+
+main h1 {
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+form .logo{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form .logo img {
+    width: 200px;
+    margin: 2px;
+}
+
+form .logo h1 {
+    color: var(--azulOscuro);
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.formulario .fila {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario .fila .fieldset {
+    margin: 10px;
+}
+
+.formulario .fila .fieldset_view {
+    margin: 10px;
+}
+
+.formulario .esconder fieldset{
+    background-color: transparent;
+}

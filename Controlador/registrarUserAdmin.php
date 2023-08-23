@@ -9,22 +9,21 @@
     $apellidos = $_POST['apellidos'];
     $rol = $_POST['rol'];
     $tipoDoc = $_POST['tipoDoc'];
-    $usuario = $_POST['usuario'];
+    $documento = $_POST['documento'];
     $clave = $_POST['clave'];
     $estado = 'activo';
 
-    if (strlen($nombres)>0 && strlen($apellidos)>0 && strlen($rol)>0 && strlen($tipoDoc)>0 && strlen($usuario)>0 && ($clave)>0 && ($estado)>0) {
+    if (strlen($nombres)>0 && strlen($apellidos)>0 && strlen($rol)>0 && strlen($tipoDoc)>0 && strlen($documento)>0 && strlen($clave)>0 && strlen($estado)>0) {
 
         $claveMd = md5($clave);
 
         $objConsultas = new Consultas();
-
-        $result = $objConsultas->insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $usuario, $claveMd, $estado);
+        $result = $objConsultas->insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado);
 
     } else{
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/adminUsuRegistro.html"</script>';
+        echo '<script>location.href="../Vista/html/Administrador/adminUsuRegistro.php"</script>';
 
     }
 

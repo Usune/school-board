@@ -5,29 +5,22 @@ USE  SB;
 
 CREATE TABLE usuario (
     idUsuario INT AUTO_INCREMENT,
-    usuario VARCHAR(15),
-    clave VARCHAR(100),
-    rol ENUM('1','2','3'), --1:Administrador, 2:Profesor, 3:Estudiante
-    estado ENUM('activo', 'pendiente', 'inactivo'),
-    fechaCreacion DATETIME DEFAULT NOW(),
-    fechaModificacion DATETIME DEFAULT NOW(),
-    PRIMARY KEY (idUsuario)
-);
-
-CREATE TABLE perfilUsuario (
-	idPerfilUsuario INT, --Será el mismo id de usuario(idUsuario)
-    idUsuario INT,
-    tipoDoc ENUM('CC', 'TI', 'pasaporte'), 
     documento VARCHAR(15),
+    clave VARCHAR(100),
+    rol ENUM('Administrador','Profesor','Estudiante'),
+    estado ENUM('activo', 'pendiente', 'inactivo'),
+    tipoDoc ENUM('CC', 'TI', 'pasaporte'), 
     nombres VARCHAR(100),
     apellidos VARCHAR(100),
     telefono VARCHAR(15),
     direccion VARCHAR(100),
     correo VARCHAR(100),
     foto VARCHAR(200),
-    PRIMARY KEY (idPerfilUsuario),
-    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+    fechaCreacion DATETIME DEFAULT NOW(),
+    PRIMARY KEY (idUsuario)
 );
+
+INSERT INTO usuario (documento, clave, rol, estado) VALUES ('1234', '1234', 'Administrador', 'activo');
 
 CREATE TABLE acudiente (
     idAcudiente INT AUTO_INCREMENT,
@@ -41,8 +34,8 @@ CREATE TABLE acudiente (
 
 CREATE TABLE curso (
     idCurso INT AUTO_INCREMENT,
-    jornada ENUM('única', 'mañana', 'tarde'),
-    nonbre VARCHAR(15),
+    jornada ENUM('unica', 'mañana', 'tarde'),
+    nombre VARCHAR(15),
     PRIMARY KEY (idCurso)
 );
 
@@ -60,7 +53,7 @@ CREATE TABLE estudianteCurso (
     idCurso INT,
     idUsuario INT,
     PRIMARY KEY (idestudianteCurso),
-    FOREIGN KEY (idCurso) REFERENCES usuario(idCurso)
+    FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
 
@@ -86,7 +79,7 @@ CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,
     idClase INT,
     idEstudiante INT,
-    fecha DATETIME NOW(),
+    fecha DATETIME DEFAULT NOW(),
     estado ENUM('Asiste', 'Falta', 'Falta Justificada', 'Retardo'),
     PRIMARY KEY (idAsistencia),
     FOREIGN KEY (idClase) REFERENCES clase(idClase),
@@ -97,13 +90,23 @@ CREATE TABLE observador (
     idObservador INT AUTO_INCREMENT,
     idEstudiante INT,
     idProfesor INT,
-    fecha DATETIME NOW(),
+    fecha DATETIME DEFAULT NOW(),
     observacion VARCHAR(400),
     PRIMARY KEY (idObservador),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(idUsuario),
     FOREIGN KEY (idProfesor) REFERENCES usuario(idUsuario)
 );
 
+CREATE TABLE comunicado (
+    idComunicado INT AUTO_INCREMENT,
+    idUsuario INT,
+    titulo VARCHAR(200),
+    fecha DATETIME DEFAULT NOW(),
+    descripcion VARCHAR(400),
+    archivo VARCHAR(200),
+    PRIMARY KEY (idComunicado),
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+);
 
 
 

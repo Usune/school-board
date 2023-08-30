@@ -58,7 +58,7 @@
         <div class="info-footer">
             <p>School Board</p>
             <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benabides y Tatiana Arevalo.</p>
+            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
         </div>
     </footer>
     

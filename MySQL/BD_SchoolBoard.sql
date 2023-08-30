@@ -20,7 +20,10 @@ CREATE TABLE usuario (
     PRIMARY KEY (idUsuario)
 );
 
-INSERT INTO usuario (documento, clave, rol, estado) VALUES ('1234', '1234', 'Administrador', 'activo');
+INSERT INTO `usuario` (`idUsuario`, `documento`, `clave`, `rol`, `estado`, `tipoDoc`, `nombres`, `apellidos`, `telefono`, `direccion`, `correo`, `foto`, `fechaCreacion`) VALUES ('1', 'administrador', MD5('administrador'), 'Administrador', 'activo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, current_timestamp());
+
+INSERT INTO `usuario` (`idUsuario`, `documento`, `clave`, `rol`, `estado`, `tipoDoc`, `nombres`, `apellidos`, `telefono`, `direccion`, `correo`, `foto`, `fechaCreacion`) VALUES ('3', 'estudiante', MD5('estudiante'), 'Estudiante', 'activo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, current_timestamp());
+
 
 CREATE TABLE acudiente (
     idAcudiente INT AUTO_INCREMENT,
@@ -60,9 +63,15 @@ CREATE TABLE estudianteCurso (
 CREATE TABLE asignatura (
     idAsignatura INT AUTO_INCREMENT,
     nombre VARCHAR(100),
-    descripción VARCHAR(400),
     PRIMARY KEY (idAsignatura)
 );
+
+INSERT INTO `asignatura` (`idAsignatura`, `nombre`) VALUES (NULL, 'Matemáticas');
+INSERT INTO `asignatura` (`idAsignatura`, `nombre`) VALUES (NULL, 'Español');
+INSERT INTO `asignatura` (`idAsignatura`, `nombre`) VALUES (NULL, 'Ciencias');
+INSERT INTO `asignatura` (`idAsignatura`, `nombre`) VALUES (NULL, 'Sociales');
+INSERT INTO `asignatura` (`idAsignatura`, `nombre`) VALUES (NULL, 'Fisica');
+INSERT INTO `asignatura` (`idAsignatura`, `nombre`) VALUES (NULL, 'Ciencias prueba');
 
 CREATE TABLE clase (--Ver si este nombre funciona o pensar en otro
     idClase INT AUTO_INCREMENT,

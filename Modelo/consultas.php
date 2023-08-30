@@ -220,6 +220,25 @@
 
         }
 
+        // CONSULTAS PARA ESTUDIANTES 
+        // Falta validar que se muestren solo las asignaturas asignadas a ese estudiante en especifico
+        public function mostrarAsignaturas(){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM asignatura";
+            $statement = $conexion->prepare($sql);
+            $statement->execute();
+
+            while ($resultado = $statement->fetch()) {
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+        }
+
     }
 
 ?> 

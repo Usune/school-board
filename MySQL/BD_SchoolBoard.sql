@@ -20,9 +20,14 @@ CREATE TABLE usuario (
     PRIMARY KEY (idUsuario)
 );
 
-INSERT INTO `usuario` (`idUsuario`, `documento`, `clave`, `rol`, `estado`, `tipoDoc`, `nombres`, `apellidos`, `telefono`, `direccion`, `correo`, `foto`, `fechaCreacion`) VALUES ('1', 'administrador', MD5('administrador'), 'Administrador', 'activo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, current_timestamp());
 
-INSERT INTO `usuario` (`idUsuario`, `documento`, `clave`, `rol`, `estado`, `tipoDoc`, `nombres`, `apellidos`, `telefono`, `direccion`, `correo`, `foto`, `fechaCreacion`) VALUES ('3', 'estudiante', MD5('estudiante'), 'Estudiante', 'activo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, current_timestamp());
+INSERT INTO `usuario` (`idUsuario`, `documento`, `clave`, `rol`, `estado`, `tipoDoc`, `nombres`, `apellidos`, `telefono`, `direccion`, `correo`, `foto`, `fechaCreacion`) VALUES
+(1, 'administrador', '91f5167c34c400758115c2a6826ec2e3', 'Administrador', 'activo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:28:26'),
+(1023163094, 'estudiante', 'e4e4564027d73a4325024d948d167e93', 'Estudiante', 'activo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:28:26'),
+(4, 'estudiante2', 'e4e4564027d73a4325024d948d167e93', 'Estudiante', 'activo', NULL, 'Nicole', NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:28:26'),
+(5, 'estudiante3', 'e4e4564027d73a4325024d948d167e93', 'Estudiante', 'activo', NULL, 'Nicole', NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:28:26'),
+(6, 'estudiante3', 'e4e4564027d73a4325024d948d167e93', 'Estudiante', 'activo', NULL, 'Carolina', NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:42:23');
+
 
 
 CREATE TABLE acudiente (
@@ -42,6 +47,10 @@ CREATE TABLE curso (
     PRIMARY KEY (idCurso)
 );
 
+INSERT INTO `curso` (`idCurso`, `jornada`, `nombre`) VALUES ('', 'unica', 'PRIMERO');
+INSERT INTO `curso` (`idCurso`, `jornada`, `nombre`) VALUES ('', 'unica', 'SEGUNDO');
+INSERT INTO `curso` (`idCurso`, `jornada`, `nombre`) VALUES ('', 'unica', 'TERCERO');
+
 CREATE TABLE estudianteAcudiente (--Tabla intermedia que relaciona estudiante y acudiente
     idEstudianteAcudiente INT AUTO_INCREMENT,
     idAcudiente INT,
@@ -59,6 +68,12 @@ CREATE TABLE estudianteCurso (
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
+
+INSERT INTO `estudiantecurso` (`idestudianteCurso`, `idCurso`, `idUsuario`) VALUES
+(1, 1, 1023163094),
+(2, 1, 5),
+(3, 2, 6);
+
 
 CREATE TABLE asignatura (
     idAsignatura INT AUTO_INCREMENT,
@@ -83,6 +98,13 @@ CREATE TABLE clase (--Ver si este nombre funciona o pensar en otro
     FOREIGN KEY (idProfesor) REFERENCES usuario(idUsuario),
     FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura)
 );
+
+
+INSERT INTO `clase` (`idClase`, `idCurso`, `idAsignatura`, `idProfesor`) VALUES
+(1, 1, 2, NULL),
+(2, 1, 4, NULL),
+(3, 2, 1, NULL);
+
 
 CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,

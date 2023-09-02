@@ -119,7 +119,8 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql1 = 'SELECT * FROM usuario WHERE documento = :usuario';
+            // Con idUsuario porque todas las conexiones se hacen a traves de idUsuario, no de documento
+            $sql1 = 'SELECT * FROM usuario WHERE idUsuario = :usuario';
 
             $consulta1 = $conexion->prepare($sql1);
             $consulta1->bindParam(':usuario', $usuario);
@@ -134,6 +135,10 @@
                     if ($f['estado'] == 'activo'){
                         // SE REALIZA EL INICIO DE SESIÓN
                         session_start();
+                        $_SESSION['id'] = $f['idUsuario'];
+                        $_SESSION['rol'] = $f['rol'];
+                        $_SESSION['Autenticado'] = "SI";
+
                         
                         switch ($f['rol']){
 
@@ -147,7 +152,7 @@
                             break;
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';
-                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.html'</script>";
+                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
                             break;
 
                         }
@@ -221,15 +226,26 @@
         }
 
         // CONSULTAS PARA ESTUDIANTES 
-        // Falta validar que se muestren solo las asignaturas asignadas a ese estudiante en especifico
-        public function mostrarAsignaturas(){
+        public function mostrarAsignaturas($id){
             $rows = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM asignatura";
+            $sql = "SELECT 
+                    asignatura.nombre as asignatura
+                    FROM estudiantecurso
+                    INNER JOIN usuario
+                    ON usuario.idUsuario = estudiantecurso.idUsuario
+                    INNER JOIN curso
+                    ON curso.idCurso = estudiantecurso.idCurso
+                    INNER JOIN clase
+                    ON clase.idCurso = curso.idCurso
+                    INNER JOIN asignatura
+                    ON asignatura.idAsignatura = clase.idAsignatura
+                    WHERE usuario.idUsuario = :id";
             $statement = $conexion->prepare($sql);
+            $statement->bindParam(':id' , $id);
             $statement->execute();
 
             while ($resultado = $statement->fetch()) {

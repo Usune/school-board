@@ -5,6 +5,7 @@
     require_once("../../../Controlador/mostrarInfoEstudiante.php");
 ?>
 
+
 <nav class="nav-pri">
     <div class="fila">
         <div class="menu">

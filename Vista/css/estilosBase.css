@@ -717,3 +717,48 @@ footer {
     flex-direction: column;
     margin-top: 15px;
 }
+
+/* Estilos para ESTUDIANTES */
+.card-tarea{
+    margin: 50px 0;
+    width: 70%;
+    background: #75757500;
+    border: 3px solid #dbdbdb00;
+    backdrop-filter: blur(0.4rem);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0px 5px 5px 5px #00000017;
+}
+
+
+
+.card-tarea .card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.card-header .info-user img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--azulClaro);
+    margin-right: 20px;
+}
+
+hr{
+    margin: 10px 0 20px 0;
+    background-color: var(--gris);
+    border: 1px solid var(--gris);
+}
+
+.card-tarea .card-info{
+    display: flex;
+    align-items: start;
+    padding-bottom: 40px;
+}
+
+.card-tarea .card-info img{
+    margin: 0 32px 0 5px;
+}

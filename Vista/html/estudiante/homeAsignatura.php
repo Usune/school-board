@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,36 +10,92 @@
     <link rel="stylesheet" type="text/css" href="../../css/estudiante/estilosEstu.css">
     <script src="../../js/controlGeneral.js"></script>
 </head>
+
 <body>
     <!-- Barra de navegación principal (horizontal) -->
     <?php
         include("menu-include.php");
     ?>
 
-        <main>
+    <main>
 
-            <!-- breadcrumb -->
-            <nav class="nav-main">
-                <a href="homeEstu.php">Home</a>
-                <a href="homeAsignatura.php"> / AsignaturaExample</a>
-            </nav>
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <a href="homeEstu.php">Home</a>
+            <a href="homeAsignatura.php"> / AsignaturaExample</a>
+        </nav>
 
-        
-            <section>
-                <h2>Principal de AsignaturaExample</h2>
-                <h3>hola</h3>
-                <div class="contenedor borde">
-                    <h3>Anuncio</h3>
-                    <div class="contenedor info">
-                        <p>Titulo:</p>
-                        <p>Titulo:</p>
-                        <p>Titulo:</p>
+
+        <section>
+            <h2>Principal de AsignaturaExample</h2>
+
+            <div class="card-tarea">
+                <div class="card-header">
+                    <div class="info-user fila">
+                        <img src="../../img/user.svg" alt="">
+                        <p>
+                            Nicole <br>
+                            Benavides
+                        </p>
+                    </div>
+                    <div class="fecha">
+                        <p>
+                            Mayo 2, 2023
+                        </p>
                     </div>
                 </div>
-            </section>
+                <hr>
+                <div class="card-cont">
+                    <div class="card-info">
+                        <img src="../../img/user.svg" alt="">
+                        <div class="info">
+                            <h3>Ensayo sobre Tecnologia</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus
+                                explicabo amet beatae saepe iste veniam sed quisquam.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <img src="../../img/user.svg" alt="">
+                        <div class="fechas">
+                            <div class="fila-cont">
+                                <div class="fecha">
+                                    <p>
+                                        03 / / 09 / 2023
+                                    </p>
+                                </div>
+                                <hr>
+                                <div class="fecha">
+                                    <p>
+                                        03 / / 09 / 2023
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <img src="../../img/user.svg" alt="">
+                        <div class="info">
+                            <div class="archivos"></div>
+                            <div class="archivos"></div>
+                            <div class="archivos"></div>
+                            <div class="boton">
+                                <button>Entregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        </main>
-   
+      
+
+
+
+        </section>
+
+    </main>
+
 
     </div>
 
@@ -52,4 +109,5 @@
         </div>
     </footer>
 </body>
+
 </html>

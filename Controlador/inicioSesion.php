@@ -10,7 +10,7 @@
 
     if (strlen($usuario)>0 && strlen($claveMd)>0) {
         
-        $objConsultas = new Consultas();
+        $objConsultas = new ValidarSesion();
         $result = $objConsultas->validarInicioSesion($usuario, $claveMd);
 
     } else {

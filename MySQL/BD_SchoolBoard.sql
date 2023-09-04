@@ -1,5 +1,9 @@
 --Tablas 
---DROP DATABASE SB; 
+--DROP DATABASE SB;
+
+-- school.board.company@gmail.com
+-- 75920school
+
 CREATE DATABASE SB;
 USE  SB;
 
@@ -7,7 +11,7 @@ CREATE TABLE usuario (
     idUsuario INT AUTO_INCREMENT,
     documento VARCHAR(15),
     clave VARCHAR(100),
-    rol ENUM('Administrador','Profesor','Estudiante'),
+    rol ENUM('Administrador','Docente','Estudiante','Master'),
     estado ENUM('activo', 'pendiente', 'inactivo'),
     tipoDoc ENUM('CC', 'TI', 'pasaporte'), 
     nombres VARCHAR(100),
@@ -20,7 +24,13 @@ CREATE TABLE usuario (
     PRIMARY KEY (idUsuario)
 );
 
-INSERT INTO usuario (documento, clave, rol, estado) VALUES ('1234', '1234', 'Administrador', 'activo');
+INSERT INTO usuario (documento, clave, rol, estado, nombres, correo, foto) VALUES ('estudiante', MD5('estudiante'), 'Estudiante', 'activo', 'Estudiante', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
+
+INSERT INTO usuario (documento, clave, rol, estado, nombres, correo, foto) VALUES ('docente', MD5('docente'), 'Docente', 'activo', 'Docente', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
+
+INSERT INTO usuario (documento, clave, rol, estado, nombres, correo, foto) VALUES ('administrador', MD5('administrador'), 'Administrador', 'activo', 'Administrador', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
+
+INSERT INTO usuario (documento, clave, rol, estado, nombres, apellidos, correo, foto) VALUES ('12345', MD5('12345'), 'Docente', 'activo', 'Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
 
 CREATE TABLE acudiente (
     idAcudiente INT AUTO_INCREMENT,
@@ -38,6 +48,13 @@ CREATE TABLE curso (
     nombre VARCHAR(15),
     PRIMARY KEY (idCurso)
 );
+
+CREATE TABLE aula (
+    idAula INT AUTO_INCREMENT,
+    nombre VARCHAR(50),
+    PRIMARY KEY (idAula)
+);
+
 
 CREATE TABLE estudianteAcudiente (--Tabla intermedia que relaciona estudiante y acudiente
     idEstudianteAcudiente INT AUTO_INCREMENT,
@@ -60,7 +77,6 @@ CREATE TABLE estudianteCurso (
 CREATE TABLE asignatura (
     idAsignatura INT AUTO_INCREMENT,
     nombre VARCHAR(100),
-    descripción VARCHAR(400),
     PRIMARY KEY (idAsignatura)
 );
 
@@ -69,6 +85,8 @@ CREATE TABLE clase (--Ver si este nombre funciona o pensar en otro
     idCurso INT,
     idAsignatura INT,
     idProfesor INT, --aquí el usuario tiene el rol de profesor
+    idAula INT,
+    descripción VARCHAR(400),
     PRIMARY KEY (idClase),
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
     FOREIGN KEY (idProfesor) REFERENCES usuario(idUsuario),
@@ -107,8 +125,6 @@ CREATE TABLE comunicado (
     PRIMARY KEY (idComunicado),
     FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
-
-
 
 
 

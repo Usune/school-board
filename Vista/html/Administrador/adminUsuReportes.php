@@ -1,15 +1,12 @@
-
 <?php
     require_once ('../../../Modelo/conexion.php');
     require_once ('../../../Modelo/consultas.php');
     require_once ('../../../Modelo/seguridadAdmin.php');
-    require_once ('../../../Controlador/mostrarCurAdmin.php');
     require_once ('../../../Controlador/mostrarUsuAdmin.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,42 +15,51 @@
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Usuarios</title>
+    <title>Consultar usuario</title>
 </head>
-
 <body>
-    
+
     <?php
-        include("menu-include.php");
+        include('menu-include.php');
     ?>
         <main>
-
+            
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminCurso.php"> / Cursos</a>
-                <a href="adminCurRegistro.php"> / Registrar</a>
+                <a href="adminUsu.php"> / Usuarios</a>
+                <a href="adminUsuConsu.html"> / Consultar</a>
             </nav>
         
             <section>
+                <h2>Administración de usuarios</h2>
 
-                <h2>Administración de cursos</h2>
-                
+                <h3>Reporte de usuarios</h3>
+
                 <div class="tabla">
                     <table>
                         <tr>
-                            <th>Curso</th>
-                            <th>Jornada</th>
-                            <th colspan="2">Opciones</th>
+                            <th>Tipo Documento</th>
+                            <th>Documento</th>
+                            <th>Apellidos</th>
+                            <th>Nombres</th>
+                            <th>Estado</th>
+                            <th>Rol</th>
+                            <th>Dirección</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
                         </tr>
-                        <?php
-                            cargarCurso();
-                        ?>
+                        <tr>
+                            <?php
+                                cargarUsuariosReportes();
+                            ?>
+                        </tr>
                     </table>
                 </div>
-
             </section>
-        
+
+
+            
         </main>
 
     </div>
@@ -69,5 +75,4 @@
     </footer>
 
 </body>
-
 </html>

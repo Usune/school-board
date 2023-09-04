@@ -18,16 +18,11 @@
             </form>
         </div>
         <div class="user">
-            <button type="button" enlace="#op1" class="desplegar" id="butdesplegar">
-                <h2 enlace="#op1" id="nombre">Nombre Usuario</h2>
-                <img src="../../img/user.svg" alt="imagen" enlace="#op1">
-            </button>
-            <div id="op1">
-                <ul>
-                    <li><a href="adminConfi.php">Configuración</a></li>
-                    <li><a href="../Extras/inicioSesion.html">Cerrar sesión</a></li>
-                </ul>
-            </div>
+            
+            <?php
+                perfil();
+            ?>
+
         </div>
     </nav>
 

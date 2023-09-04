@@ -8,8 +8,7 @@
     <link rel="shortcut icon" href="../../img/logo.svg">
     <link rel="stylesheet" type="text/css" href="../../css/estilos-olvido-clave.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
-    <script src="../../js/control-general.js"></script>
-    <script src="../../js/control-inicio-sesion.js"></script>
+    <script src="../../js/controlGeneral.js"></script>
 </head>
 <body>
 
@@ -19,23 +18,28 @@
             <h1>Recuperar clave</h1>
         </div>
 
-        <p>Ingresa tu usuario</p>
+        <p>Ingrese la siguiente información</p>
 
         <div class="formulario">
 
-            <form method="post" action=""  id="formulario">
+            <form action="../../../Controlador/generarClave.php" id="formulario" method="post" >
 
                 <div class="fieldset">
                     <fieldset>
                         <legend id="usu">Usuario</legend>
                     </fieldset>                    
-                    <input id="usuario" type="number" placeholder="Usuario" name="usuario" required legend="#usu" autocomplete="current-password">
+                    <input type="text" placeholder="Usuario" required legend="#usu" name="documento" >
                 </div>
 
-                <p id="texto">El usuario ingresado no existe, porfavor verifique o comuníquese con su entidad.</p>
+                <div class="fieldset">
+                    <fieldset>
+                        <legend id="correo">Correo</legend>
+                    </fieldset>                    
+                    <input type="email" placeholder="Correo" required legend="#correo" name="correo" >
+                </div>
 
                 <div class="submit">
-                    <a href="inicio-sesion.html"><img src="../../img/volver.svg" alt="volver">Volver</a>
+                    <a href="inicioSesion.html"><img src="../../img/volver.svg" alt="volver">Volver</a>
                     <button type="submit" class="enviar">Siguiente</button>                    
                 </div>
                 

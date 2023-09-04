@@ -1,6 +1,7 @@
 <?php
     require_once ('../../../Modelo/conexion.php');
     require_once ('../../../Modelo/consultas.php');
+    require_once ('../../../Modelo/seguridadAdmin.php');
     require_once ('../../../Controlador/mostrarUsuAdmin.php');
 ?>
 
@@ -65,6 +66,8 @@
                 </div>
 
                 <h3>Lista de usuarios</h3>
+
+                <a href="adminUsuReportes.php"><img src="../../img/curso" alt="Reportes">Reportes</a>
 
                 <div class="tabla">
                     <table>

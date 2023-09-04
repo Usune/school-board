@@ -1,3 +1,10 @@
+<?php
+    require_once ('../../../Modelo/conexion.php');
+    require_once ('../../../Modelo/consultas.php');
+    require_once ('../../../Modelo/seguridadAdmin.php');
+    require_once ('../../../Controlador/mostrarUsuAdmin.php');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -35,8 +42,8 @@
                     <h3>Registrar usuario</h3>
 
                     <p class="recordatorio">Antes de registrar el usuario, asegurese de que todos los campos son correctos.</p>
-        
-                    <form action="../../../Controlador/registrarUserAdmin.php" method="post" enctype="multipart/form-data" id="formularioAdmin">
+                    <!--  enctype="multipart/form-data" -->
+                    <form action="../../../Controlador/registrarUserAdmin.php" method="post" id="formularioAdmin">
 
                         <div class="fila-cont">
 
@@ -63,7 +70,7 @@
                                 <select class="veriSelect" required name="rol">
                                     <option value="Seleccione" selected disabled>Seleccione una opción</option>
                                     <option value="Administrador">Administrador</option>
-                                    <option value="Profesor">Profesor</option>
+                                    <option value="Docente">Docente</option>
                                     <option value="Estudiante">Estudiante</option>
                                 </select>
                             </div>

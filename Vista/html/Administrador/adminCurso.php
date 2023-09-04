@@ -1,3 +1,10 @@
+<?php
+    require_once ('../../../Modelo/conexion.php');
+    require_once ('../../../Modelo/consultas.php');
+    require_once ('../../../Modelo/seguridadAdmin.php');
+    require_once ('../../../Controlador/mostrarUsuAdmin.php');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -415,6 +415,8 @@ body {
 
 .nav-pri .user button img {
     margin-left: 10px;
+    width: 35px;
+    border-radius: 20px;
 }
 
 .nav-pri #op1 {

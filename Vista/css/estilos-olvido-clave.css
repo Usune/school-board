@@ -2,7 +2,7 @@
 /* font-family: 'Montserrat', sans-serif; */
 
 :root {
-    --principal: #0185B8;
+    --principal: #2F5494;
 }
 
 section {
@@ -29,19 +29,6 @@ section {
 
 section p {
     margin-bottom: 10px ;
-}
-
-.formulario {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.formulario form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 400px;
 }
 
 .submit {

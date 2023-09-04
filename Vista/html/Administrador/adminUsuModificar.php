@@ -1,3 +1,11 @@
+<?php
+    require_once ('../../../Modelo/conexion.php');
+    require_once ('../../../Modelo/consultas.php');
+    require_once ('../../../Modelo/seguridadAdmin.php');
+    require_once ('../../../Controlador/mostrarUsuAdmin.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,22 +45,14 @@
 
                     <p class="recordatorio">Digite el documento del usuario que desea modificar</p>
         
-                    <form action="../../../Controlador/registrarUserAdmin.php" method="post" id="formularioAdmin">
-            
-                        <div class="fieldset">
-                            <fieldset>
-                                <legend id="usu">Documento</legend>
-                            </fieldset>
-                            <input type="number" placeholder="Documento" required legend="#usu" id="campo1" name="usuario">
-                        </div>
-        
-                        <p id="texto">No hay nungún usuario registrado con el documento ingresado, verifique el documento</p>
-                        
-                        <button type="submit" class="enviar">Buscar</button>
-                    </form>
+                    <?php
+                        cargarUsuEditar();
+                    ?>
+
                 </div>
             </section>
-        </main>
+
+        </main> 
     </div>
 
     <hr>

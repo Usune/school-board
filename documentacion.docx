@@ -14,6 +14,12 @@ Archivo: La entrada de archivo permite al usuario seleccionar un archivo de su d
 
 even.preventDefault(); Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento, es decir, puede ser llamado de nuevo.
 
+COMANDOS BÁSICOS DE GIT
+    - Clonar el repositorio en el PC: git clone https://github.com/Usune/school-board.git
+    - Agregar un archivo al staging area: git add [NOMBRE DEL ARCHIVO]
+    - Agregar todos los archivos al staging area: git add . 
+    - Pasar del staging area al repository: git commit -m "Mensaje"
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

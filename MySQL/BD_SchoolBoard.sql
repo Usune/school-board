@@ -41,8 +41,6 @@ INSERT INTO usuario (idUsuario, documento, clave, rol, estado, tipoDoc, nombres,
 (5, 'estudiante3', 'e4e4564027d73a4325024d948d167e93', 'Estudiante', 'activo', NULL, 'Nicole', NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:28:26'),
 (6, 'estudiante3', 'e4e4564027d73a4325024d948d167e93', 'Estudiante', 'activo', NULL, 'Carolina', NULL, NULL, NULL, NULL, NULL, '2023-09-02 01:42:23');
 
-
-
 CREATE TABLE acudiente (
     idAcudiente INT AUTO_INCREMENT,
     documento VARCHAR(15),

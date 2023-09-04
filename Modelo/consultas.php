@@ -306,6 +306,36 @@
 
         }
 
+        // CONSULTAS PARA ESTUDIANTES 
+        public function mostrarAsignaturas($id){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT 
+                    asignatura.nombre as asignatura
+                    FROM estudiantecurso
+                    INNER JOIN usuario
+                    ON usuario.idUsuario = estudiantecurso.idUsuario
+                    INNER JOIN curso
+                    ON curso.idCurso = estudiantecurso.idCurso
+                    INNER JOIN clase
+                    ON clase.idCurso = curso.idCurso
+                    INNER JOIN asignatura
+                    ON asignatura.idAsignatura = clase.idAsignatura
+                    WHERE usuario.idUsuario = :id";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':id' , $id);
+            $statement->execute();
+
+            while ($resultado = $statement->fetch()) {
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+        }
+
     }
 
     class ValidarSesion{

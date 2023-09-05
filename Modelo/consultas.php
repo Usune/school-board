@@ -241,7 +241,8 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT 
-                    asignatura.nombre as asignatura
+                    asignatura.nombre as asignatura,
+                    asignatura.idAsignatura as idAsignatura
                     FROM estudiantecurso
                     INNER JOIN usuario
                     ON usuario.documento = estudiantecurso.idEstudiante
@@ -262,6 +263,44 @@
 
             return $rows;
         }
+
+        // Funcion para mostrar las tareas correspondientes a una Asignatura 
+        // idAsignaturas se llama por GET al seleccionar asignatura
+        // Apunte para colores de fecha 
+        // Capturar la fecha de hoy y la almacenda pasar a new dateTime (mismo tipo de formato)
+        // Realizar la difrencia entre esas fechas y guadar en una variable que es la que se llama en fronten
+        // Concatenar valor con la clase para cambiar el css
+        public function mostrarTareas($idAsignatura){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT *
+            FROM clase
+            INNER JOIN asignatura
+            ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN tarea 
+            ON tarea.idClase = clase.idClase
+            INNER JOIN curso
+            ON curso.idCurso = clase.idCurso
+            INNER JOIN usuario
+            ON usuario.documento = clase.idProfesor
+            WHERE asignatura.idAsignatura = :idAsignatura";
+
+            $statement = $conexion->prepare($conexion);
+            $statement->bindParam('idAsignatura' , $idAsignatura);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+
 
     }
 

@@ -112,21 +112,21 @@ CREATE TABLE clase (
     idClase INT AUTO_INCREMENT,
     idCurso INT,
     idAsignatura INT,
-    idProfesor VARCHAR(15), 
+    idDocente VARCHAR(15), 
     idAula INT,
     descripción VARCHAR(400),
     PRIMARY KEY (idClase),
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
-    FOREIGN KEY (idProfesor) REFERENCES usuario(documento),
+    FOREIGN KEY (idDocente) REFERENCES usuario(documento),
     FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura)
 );
 
 
 
-INSERT INTO clase (idCurso, idAsignatura, idProfesor) VALUES
-(1, 2, NULL),
+INSERT INTO clase (idCurso, idAsignatura, idDocente) VALUES
+(1, 2, 'docente'),
 (1, 4, NULL),
-(2, 1, NULL);
+(2, 1, 'docente');
 
 
 CREATE TABLE asistencia (
@@ -143,12 +143,12 @@ CREATE TABLE asistencia (
 CREATE TABLE observador (
     idObservador INT AUTO_INCREMENT,
     idEstudiante VARCHAR(15),
-    idProfesor VARCHAR(15),
+    idDocente VARCHAR(15),
     fecha DATETIME DEFAULT NOW(),
     observacion VARCHAR(400),
     PRIMARY KEY (idObservador),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
-    FOREIGN KEY (idProfesor) REFERENCES usuario(documento)
+    FOREIGN KEY (idDocente) REFERENCES usuario(documento)
 );
 
 CREATE TABLE comunicado (
@@ -161,5 +161,22 @@ CREATE TABLE comunicado (
     PRIMARY KEY (idComunicado),
     FOREIGN KEY (idUsuario) REFERENCES usuario(documento)
 );
+
+CREATE TABLE tarea (
+    idTarea INT AUTO_INCREMENT,
+    idClase INT,
+    titulo VARCHAR(200),
+    descripcion VARCHAR(200),
+    fecha_creacion	DATETIME DEFAULT NOW(),
+    fecha_vencimiento DATETIME,
+    archivos VARCHAR(400),
+    PRIMARY KEY(idTarea),
+    FOREIGN KEY (idClase) REFERENCES clase(idClase)
+);
+
+
+INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
+(1, 'Ensayo sobre Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-08 13:11:5', NULL);
+
 
 -- #show tables;

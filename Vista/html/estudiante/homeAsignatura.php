@@ -32,7 +32,7 @@
             <div class="card-tarea">
                 <div class="card-header">
                     <div class="info-user fila">
-                        <img src="../../img/user.svg" alt="">
+                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
                         <p>
                             Nicole <br>
                             Benavides
@@ -89,7 +89,7 @@
             <div class="card-tarea">
                 <div class="card-header">
                     <div class="info-user fila">
-                        <img src="../../img/user.svg" alt="">
+                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
                         <p>
                             Nicole <br>
                             Benavides
@@ -146,7 +146,7 @@
             <div class="card-tarea">
                 <div class="card-header">
                     <div class="info-user fila">
-                        <img src="../../img/user.svg" alt="">
+                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
                         <p>
                             Nicole <br>
                             Benavides

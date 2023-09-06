@@ -8,7 +8,7 @@
 
         foreach ($filas as $fila) {
             echo '
-                <li><a href="homeAsignatura.php">'.$fila['asignatura'].'</a></li>
+                <li><a href="homeAsignatura.php?idAsignatura'.$fila['idAsignatura'].'">'.$fila['asignatura'].'</a></li>
             ';
         }
     }

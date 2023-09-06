@@ -2,79 +2,6 @@
 
     class Consultas{
 
-        public function validarInicioSesion($usuario, $claveMd) {
-
-            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            $sql1 = 'SELECT * FROM usuario WHERE documento = :usuario';
-
-            $consulta1 = $conexion->prepare($sql1);
-            $consulta1->bindParam(':usuario', $usuario);
-            $consulta1->execute();
-
-            $f = $consulta1->fetch();
-
-            if ($f) {
-
-                if ($f['clave'] == $claveMd) {
-                    
-                    if ($f['estado'] == 'activo'){
-                        // SE REALIZA EL INICIO DE SESIÓN
-                        session_start();
-
-                        // CREAMOS VARIABLES DE SESIÓN
-                        $_SESSION['id'] = $f['documento'];
-                        $_SESSION['correo'] = $f['correo'];
-                        $_SESSION['AUTENTICADO'] = 'SI';
-                        $_SESSION['rol'] = $f['rol'];
-                        
-                        switch ($f['rol']){
-
-                            case "Administrador":
-                                echo '<script>alert("Bienvenido rol administrador")</script>';
-                                echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php'</script>";
-                            break;
-                            case "Docente":
-                                echo '<script>alert("Bienvenido rol docente")</script>';
-                                echo "<script>location.href='../Vista/html/Docente/homeDoc.html'</script>";
-                            break;
-                            case "Estudiante":
-                                echo '<script>alert("Bienvenido rol estudiante")</script>';
-                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.html'</script>";
-                            break;
-
-                        }
-
-                    }else {
-                        echo '<script>alert("Su cuenta no se encuentra activa, comuniquese con el administrador de la entidad")</script>';
-                        echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-                    }
-
-                }else {
-                    echo '<script>alert("Clave incorrecta, intentelo nuevamente.")</script>';
-                    echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-                }
-
-            }else {
-                echo '<script>alert("El usuario ingresado no está registrado.")</script>';
-                echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-            }
-
-        }
-
-        public function cerrarSesion(){
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            session_start();
-            session_destroy();
-            
-            echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-
-        }
-
         public function insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado){
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -327,26 +254,27 @@
         }
 
         // CONSULTAS PARA ESTUDIANTES 
-        public function mostrarAsignaturas($id){
+        public function mostrarAsignaturas($documento){
             $rows = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT 
-                    asignatura.nombre as asignatura
+                    asignatura.nombre as asignatura,
+                    asignatura.idAsignatura as idAsignatura
                     FROM estudiantecurso
                     INNER JOIN usuario
-                    ON usuario.idUsuario = estudiantecurso.idUsuario
+                    ON usuario.documento = estudiantecurso.idEstudiante
                     INNER JOIN curso
                     ON curso.idCurso = estudiantecurso.idCurso
                     INNER JOIN clase
                     ON clase.idCurso = curso.idCurso
                     INNER JOIN asignatura
                     ON asignatura.idAsignatura = clase.idAsignatura
-                    WHERE usuario.idUsuario = :id";
+                    WHERE usuario.documento = :documento";
             $statement = $conexion->prepare($sql);
-            $statement->bindParam(':id' , $id);
+            $statement->bindParam(':documento' , $documento);
             $statement->execute();
 
             while ($resultado = $statement->fetch()) {
@@ -355,6 +283,44 @@
 
             return $rows;
         }
+
+        // Funcion para mostrar las tareas correspondientes a una Asignatura 
+        // idAsignaturas se llama por GET al seleccionar asignatura
+        // Apunte para colores de fecha 
+        // Capturar la fecha de hoy y la almacenda pasar a new dateTime (mismo tipo de formato)
+        // Realizar la difrencia entre esas fechas y guadar en una variable que es la que se llama en fronten
+        // Concatenar valor con la clase para cambiar el css
+        public function mostrarTareas($idAsignatura){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT *
+            FROM clase
+            INNER JOIN asignatura
+            ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN tarea 
+            ON tarea.idClase = clase.idClase
+            INNER JOIN curso
+            ON curso.idCurso = clase.idCurso
+            INNER JOIN usuario
+            ON usuario.documento = clase.idProfesor
+            WHERE asignatura.idAsignatura = :idAsignatura";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idAsignatura' , $idAsignatura);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+
 
     }
 
@@ -400,7 +366,7 @@
                             break;
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';
-                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.html'</script>";
+                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
                             break;
 
                         }

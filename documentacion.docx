@@ -20,6 +20,11 @@ COMANDOS BÁSICOS DE GIT
     - Agregar todos los archivos al staging area: git add . 
     - Pasar del staging area al repository: git commit -m "Mensaje"
 
+FUNCION QUEPERMITE CREAR UN ARRAY DESDE UN STRING
+    // Example 1
+    $pizza  = "piece1 piece2 piece3 piece4 piece5 piece6";
+    $pieces = explode(" ", $pizza);
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

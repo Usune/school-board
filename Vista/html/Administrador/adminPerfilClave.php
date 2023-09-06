@@ -22,36 +22,23 @@
     <?php
         include("menu-include.php");
     ?>
-    
         <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminUsu.php"> / Usuarios</a>
+                <a href="adminPerfil.php"> / Perfil</a>
             </nav>
         
             <section>
 
-                <h2>Administración de usuarios</h2>
+                <h2>Perfil</h2>
                 
-                <div class="contenedor">
-                    <div class="fila-cont">
-                        <a href="adminUsuRegistro.php">
-                            <img src="../../img/registrar.svg" alt="logo">
-                            <p>Registrar</p>
-                        </a>
+                <div class="perfil">
 
-                        <a href="adminUsuConsu.php">
-                            <img src="../../img/lupa.svg" alt="logo">
-                            <p>Consultar</p>
-                        </a>
-                    </div>
-        
-                    <a href="adminUsuModificar.php">
-                        <img src="../../img/edit.svg" alt="logo">
-                        <p>Modificar</p>
-                    </a>
+                    <?php
+                        actualizarClave();
+                    ?>
 
                 </div>
         

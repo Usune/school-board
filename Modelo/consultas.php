@@ -167,6 +167,26 @@
 
         }
 
+        public function actualizarPerfilAdmin($telefono, $direccion, $correo, $documento){
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'UPDATE usuario SET telefono=:telefono, direccion=:direccion, correo=:correo WHERE documento=:documento';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam('documento', $documento);
+            $consulta->bindParam('telefono', $telefono);
+            $consulta->bindParam('direccion', $direccion);
+            $consulta->bindParam('correo', $correo);
+
+            $consulta->execute();
+
+            echo '<script>alert("Usuario actualizado con exito")</script>';
+            echo '<script>location.href="../Vista/html/Administrador/adminPerfil.php?id='.$documento.'"</script>';
+
+        }
+
         // Trae todos los usuarios registrados
         public function mostrarUsuAdmin() {
             $f = null;
@@ -248,10 +268,10 @@
  
                  $f[] = $resultado;
  
-             }
+            }
  
-             // return para que la variable vualva a su estado inicial
-             return $f;
+            // return para que la variable vualva a su estado inicial
+            return $f;
  
         }
 
@@ -403,6 +423,7 @@
         }
 
         public function cerrarSesion(){
+            
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 

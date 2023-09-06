@@ -28,7 +28,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 700px;
+    width: 650px;
     margin-bottom: 30px;
 }
 
@@ -43,25 +43,27 @@ body {
     align-items: center;
 }
 
-.fila-cont .fieldset {
+.fila-cont .fieldset{
     margin: 10px;
 }
 
-.fila-cont .fieldset_view {
+.fila-cont .fieldset_view{
     margin: 10px;
 }
 
 .fieldset {
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
-    height: 60px;
+    height: 50px;
     width: 300px;
 }
 
 .fieldset input {
+    position: relative;
+    z-index: 9;
     width: 95%;
-    height: 70%;
+    height: 78%;
     margin-left: -300px;
     border-radius: 20px;
     border: none;
@@ -82,24 +84,26 @@ body {
 
 .fieldset fieldset {
     border-radius: 20px;
-    height: 70%;
+    height: 80%;
     width: 100%;
     border: var(--grisOscuro) 2px solid;
     background-color: transparent;
 }
 
 .fieldset legend {
+    position: relative;
+    z-index: 10;
     text-align: start;
     margin-left: 15px;
     padding: 0px 4px 0px 4px;
     color: var(--principal);
     display: none;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .fieldset fieldset:has( ~ input:focus) {
     border: var(--principal) 2px solid;
-    height: 90%;
+    height: 94%;
 }
 
 /* Clase fieldset_view para los select*/
@@ -107,7 +111,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 75px;
+    height: 60px;
     width: 300px;
 }
 
@@ -127,7 +131,6 @@ body {
     background-color: transparent;
     padding-left: 15px;
     padding-right: 15px;
-    margin-bottom: 10px;
 }
 
 .fieldset_view select:focus {
@@ -228,8 +231,8 @@ body {
 
 /* Clase del button submit */
 .enviar{
-    width: 300px;
-    height: 42px;
+    margin-top: 20px;
+    padding: 10px 40px;
     border-radius: 20px;
     text-align: center;
     background-color: var(--principal);
@@ -271,7 +274,30 @@ body {
     padding: 10px;
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.tabla .reportes{
+    margin-bottom: 20px;
+}
+
+.tabla .reportes a{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--negro);
+    padding: 10px 0px;
+}
+
+.tabla .reportes a img{
+    width: 30px;
+}
+
+.tabla .reportes a:hover{
+    background-color: var(--principal);
 }
 
 .tabla a img{
@@ -569,12 +595,12 @@ section {
 
 section h2 {
     text-align: center;
-    margin: 20px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
     font-size: 40px;
 }
 
 footer {
-    height: 100px;
+    height: 80px;
     padding-left: 100px;
     display: flex;
     align-items: center;
@@ -583,6 +609,11 @@ footer {
 
 .info-footer {
     text-align: center;
+}
+
+.info-footer p{
+    text-align: center;
+    font-size: 12px;
 }
 
 /* Fin estilos del aside / main / nav-main */
@@ -683,6 +714,7 @@ footer {
 
 .fila-cont {
     display: flex;
+    align-items: end;
 }
 
 @media (max-width: 1250px){
@@ -720,7 +752,7 @@ footer {
     margin-top: 15px;
 }
 
-/* Estilos para ESTUDIANTES */
+/* Estilos para TARJETAS*/
 .card-tarea{
     margin: 50px 0;
     width: 70%;
@@ -750,7 +782,7 @@ footer {
 }
 
 hr{
-    margin: 10px 0 20px 0;
+    margin: 10px 0 10px 0;
     background-color: var(--gris);
     border: 1px solid var(--gris);
 }
@@ -764,3 +796,71 @@ hr{
 .card-tarea .card-info img{
     margin: 0 32px 0 5px;
 }
+/*Fin Estilos para TARJETAS*/
+
+/* Estilos PERFIL USUARIO */
+.perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.perfil .fotoNombre {
+    display: flex;
+    align-items: center;
+}
+
+.fotoNombre .texto {
+    margin-left: 20px;
+}
+
+.fotoNombre img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.texto p {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.texto h4 {
+    font-size: 30px;
+}
+
+.texto h5 {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.perfil .formulario{
+    border: 2px solid var(--gris);
+    padding: 30px 0;
+}
+
+.perfil .formulario .fieldset {
+    margin-bottom: 20px;
+}
+
+.enlacesPerfil {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.enlacesPerfil a {
+    text-decoration: none;
+    color: var(--negro);
+    padding: 10px 62px;
+    border: 2px solid var(--gris);
+}
+
+.enlacesPerfil a:hover {
+    background-color: var(--gris);
+}
+/* Fin Estilos PERFIL USUARIO */

@@ -62,8 +62,6 @@
                                 <label for="archivo">Seleccione un archivo</label>
                                 <input type="file" accept=".pdf" name="archivo">
                             </div>
-        
-                        <p id="texto"></p>
                         
                         <button type="submit" class="enviar">Subir comunicado</button>
                     </form>

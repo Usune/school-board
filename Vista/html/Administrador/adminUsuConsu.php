@@ -67,9 +67,12 @@
 
                 <h3>Lista de usuarios</h3>
 
-                <a href="adminUsuReportes.php"><img src="../../img/curso" alt="Reportes">Reportes</a>
-
                 <div class="tabla">
+
+                    <div class="reportes">
+                        <a href="adminUsuReportes.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
+                    </div>
+                    
                     <table>
                         <tr>
                             <th>Tipo Documento</th>

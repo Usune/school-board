@@ -115,7 +115,7 @@
         }
 
         // Trae todos los usuarios registrados
-        public function mostrarUsuAdmin() {
+        public function mostrarUsuAdmin(){
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -137,7 +137,7 @@
         }
 
         // Trae un usuario especifico de los usuarios registrados
-        public function mostrarUsuarioAdmin($id) {
+        public function mostrarUsuarioAdmin($id){
 
            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
            $objConexion = new Conexion();
@@ -160,7 +160,7 @@
         }
 
         // Trae todos los cursos registrados
-        public function mostrarCurAdmin() {
+        public function mostrarCurAdmin(){
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -180,7 +180,7 @@
             return $f;
         }
 
-        public function verPerfil($id) {
+        public function verPerfil($id){
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
             $objConexion = new Conexion();
@@ -202,7 +202,7 @@
  
         }
 
-        public function eliminarUsuAdmin($id) {
+        public function eliminarUsuAdmin($id){
             
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -217,7 +217,7 @@
 
         }
         
-        public function insertarComunAdmin($titulo, $descripcion, $archivo) {
+        public function insertarComunAdmin($titulo, $descripcion, $archivo){
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -236,7 +236,7 @@
 
         }
 
-        public function insertarCurAdmin($nombre, $jornada) {
+        public function insertarCurAdmin($nombre, $jornada){
             
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -319,8 +319,6 @@
             return $rows;
 
         }
-
-
 
     }
 

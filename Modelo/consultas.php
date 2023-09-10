@@ -254,7 +254,7 @@
         }
 
         // CONSULTAS PARA ESTUDIANTES 
-        public function mostrarAsignaturas($documento){
+        public function cargarAsignaturas($documento){
             $rows = null;
 
             $objConexion = new Conexion();
@@ -290,13 +290,20 @@
         // Capturar la fecha de hoy y la almacenda pasar a new dateTime (mismo tipo de formato)
         // Realizar la difrencia entre esas fechas y guadar en una variable que es la que se llama en fronten
         // Concatenar valor con la clase para cambiar el css
-        public function mostrarTareas($idAsignatura){
+        public function cargarTareas($idAsignatura){
             $rows = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT *
+            $sql = "SELECT 
+            asignatura.idAsignatura,
+            usuario.foto,
+            usuario.nombres,
+            usuario.apellidos,
+            tarea.fecha_vencimiento,
+            tarea.titulo,
+            tarea.descripcion
             FROM clase
             INNER JOIN asignatura
             ON asignatura.idAsignatura = clase.idAsignatura
@@ -305,7 +312,7 @@
             INNER JOIN curso
             ON curso.idCurso = clase.idCurso
             INNER JOIN usuario
-            ON usuario.documento = clase.idProfesor
+            ON usuario.documento = clase.idDocente
             WHERE asignatura.idAsignatura = :idAsignatura";
 
             $statement = $conexion->prepare($sql);

@@ -52,7 +52,7 @@
             <div id="asignaturas" class="cont-desplegar">
                 <ul>
                     <?php
-                        mostrarAsignaturaEstudiante();
+                        mostrarAsignaturasEstudiante();
                     ?>
                     
                     <!-- <li><a href="homeEstu.html">Matemáticas</a></li>

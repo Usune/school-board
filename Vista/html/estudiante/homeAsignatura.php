@@ -1,3 +1,9 @@
+<?php
+    require_once("../../../Modelo/conexion.php");
+    require_once("../../../Modelo/consultas.php");
+    require_once("../../../Controlador/mostrarInfoEstudiante.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +35,45 @@
         <section>
             <h2>Principal de AsignaturaExample</h2>
 
+            <?php mostrarTareasAsignatura() ?>
+
+            <h2>Frontend para las demas versiones de tareas</h2>
+
+            <div class="card-tarea">
+                <div class="card-header">
+                    <div class="info-user fila">
+                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
+                        <p>
+                            Nicole <br>
+                            Benavides
+                        </p>
+                    </div>
+                    <div class="fechas" id="estado">
+                        <p>
+                            Mayo 2, 2023
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="card-header">
+                    <div class="card-info">
+                        <img src="../../img/descripcion.png" alt="">
+                        <div class="info">
+                            <h3>Ensayo sobre Tecnologia</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus
+                                explicabo amet beatae saepe iste veniam sed quisquam.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="boton">
+                        <a href="#">Entregar</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- tareas con grandes descripciones -->
             <div class="card-tarea">
                 <div class="card-header">
                     <div class="info-user fila">

@@ -45,11 +45,11 @@ body {
     align-items: center;
 }
 
-.fila-cont .fieldset{
+.fila-cont .fieldset {
     margin: 10px;
 }
 
-.fila-cont .fieldset_view{
+.fila-cont .fieldset_view {
     margin: 10px;
 }
 
@@ -82,7 +82,7 @@ body {
     margin-top: 8px;
 }
 
-.fieldset input:focus::placeholder{
+.fieldset input:focus::placeholder {
     color: transparent;
 }
 
@@ -105,7 +105,7 @@ body {
     font-size: 15px;
 }
 
-.fieldset fieldset:has( ~ input:focus) {
+.fieldset fieldset:has(~ input:focus) {
     border: var(--principal) 2px solid;
     height: 95%;
 }
@@ -143,7 +143,7 @@ body {
     outline: none;
 }
 
-.fieldset_view label:has( ~ select:focus) {
+.fieldset_view label:has(~ select:focus) {
     color: var(--principal);
 }
 
@@ -159,7 +159,7 @@ body {
     padding-left: 10px;
 }
 
-#formulario .textarea label:has( ~ textarea:focus) {
+#formulario .textarea label:has(~ textarea:focus) {
     color: var(--principal);
 }
 
@@ -235,7 +235,7 @@ body {
 }
 
 /* Clase del button submit */
-.enviar{
+.enviar {
     margin-top: 20px;
     padding: 10px 40px;
     border-radius: 20px;
@@ -254,7 +254,7 @@ body {
 }
 
 /* Id para el texto que se muestra al verse un error */
-#texto{
+#texto {
     text-align: center;
     visibility: hidden;
     color: var(--rojo);
@@ -270,10 +270,11 @@ body {
     width: 75%;
     text-align: center;
 }
+
 /* Fin estilo general para formularios */
 
 /* Estilo general de tablas */
-.tabla{
+.tabla {
     width: 70vw;
     background-color: transparent;
     padding: 10px;
@@ -283,11 +284,11 @@ body {
     justify-content: center;
 }
 
-.tabla .reportes{
+.tabla .reportes {
     margin-bottom: 20px;
 }
 
-.tabla .reportes a{
+.tabla .reportes a {
     width: 200px;
     display: flex;
     justify-content: center;
@@ -297,15 +298,15 @@ body {
     padding: 10px 0px;
 }
 
-.tabla .reportes a img{
+.tabla .reportes a img {
     width: 30px;
 }
 
-.tabla .reportes a:hover{
+.tabla .reportes a:hover {
     background-color: var(--principal);
 }
 
-.tabla a img{
+.tabla a img {
     width: 20px
 }
 
@@ -313,7 +314,7 @@ body {
     border-right: 2px solid var(--negro)
 }
 
-.tabla table tr th{
+.tabla table tr th {
     font-size: 12px;
     padding: 10px;
     max-width: 200px;
@@ -331,13 +332,14 @@ body {
     border-bottom: 2px solid var(--negro);
 }
 
-.tabla tr td a{
+.tabla tr td a {
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     color: var(--negro);
 }
+
 /*Fin estilo general de tablas */
 
 /* Estilos barra de navegación principal (.nav-pri)*/
@@ -410,7 +412,7 @@ body {
     background-color: transparent;
 }
 
-.nav-pri .buscar button:hover{
+.nav-pri .buscar button:hover {
     cursor: pointer;
     background-color: var(--grisClaro);
 }
@@ -481,6 +483,7 @@ body {
     color: var(--negro);
     font-size: 15px;
 }
+
 /*Fin estilos barra de navegación principal (.nav-pri)*/
 
 /* Estilos del aside / main / nav-main  */
@@ -543,10 +546,11 @@ aside ul li button {
     align-items: center;
     justify-content: space-between;
     font-size: 15px;
-    cursor: pointer;background-color: transparent;
+    cursor: pointer;
+    background-color: transparent;
 }
 
-aside ul li button img{
+aside ul li button img {
     width: 30px;
     padding-right: 5px;
 }
@@ -557,11 +561,11 @@ aside .cont-desplegar {
     margin: 0px 0px 5px 10px;
 }
 
-aside .cont-desplegar ul li{
+aside .cont-desplegar ul li {
     margin-top: 5px;
 }
 
-aside .cont-desplegar ul li a{
+aside .cont-desplegar ul li a {
     width: 150px;
 }
 
@@ -583,12 +587,12 @@ main {
     padding: 20px;
 }
 
-.nav-main a{
+.nav-main a {
     text-decoration: none;
     color: var(--negro);
 }
 
-.nav-main a:hover{
+.nav-main a:hover {
     font-weight: bold;
 }
 
@@ -613,7 +617,7 @@ footer {
     justify-content: center;
 }
 
-hr{
+hr {
     margin: 10px 0 10px 0;
     background-color: var(--gris);
     border: 1px solid var(--gris);
@@ -623,7 +627,7 @@ hr{
     text-align: center;
 }
 
-.info-footer p{
+.info-footer p {
     text-align: center;
     font-size: 12px;
 }
@@ -631,14 +635,14 @@ hr{
 /* Fin estilos del aside / main / nav-main */
 
 /* Estilos para pantalla pequeña de aside / main / nav-main */
-@media (max-width: 1250px){
+@media (max-width: 1250px) {
 
     aside {
         display: none;
         position: absolute;
         background-color: var(--gris);
     }
-    
+
     main {
         width: 100%;
         height: 80vh;
@@ -676,7 +680,7 @@ hr{
         width: 50px;
     }
 
-    .nav-pri .user button img{
+    .nav-pri .user button img {
         margin: 0;
     }
 
@@ -684,6 +688,7 @@ hr{
         display: none;
     }
 }
+
 /* Fin Estilos para pantalla pequeña de aside / main / nav-main */
 
 /* Estilos para tarjetas */
@@ -699,7 +704,7 @@ hr{
 .contenedor a {
     text-decoration: none;
     color: var(--negro);
-    width: 150px;   
+    width: 150px;
     padding: 30px;
     margin: 20px;
     border: var(--principal) 5px solid;
@@ -729,7 +734,7 @@ hr{
     align-items: end;
 }
 
-@media (max-width: 1250px){
+@media (max-width: 1250px) {
     .fila-cont {
         flex-direction: column;
         align-items: center;
@@ -744,6 +749,7 @@ hr{
         width: 400px;
     }
 }
+
 /* Fin estilos para tarjetas */
 
 /* Clase para cambiar el display con ayuda de js */
@@ -764,45 +770,6 @@ hr{
     margin-top: 15px;
 }
 
-/* Estilos para TARJETAS*/
-.card-tarea{
-    margin: 50px 0;
-    width: 70%;
-    background: #75757500;
-    border: 3px solid #dbdbdb00;
-    backdrop-filter: blur(0.4rem);
-    padding: 40px 40px 20px 40px;
-    border-radius: 30px;
-    box-shadow: 0px 5px 5px 5px #00000017;
-}
-
-.card-tarea .card-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-.card-header .info-user img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--azulClaro);
-    margin-right: 20px;
-}
-
-.card-tarea .card-info{
-    display: flex;
-    align-items: start;
-    padding-bottom: 30px;
-}
-
-.card-tarea .card-info img{
-    width: 25px;
-    height: 25px;
-    margin: 0 32px 0 5px;
-}
-/*Fin Estilos para TARJETAS*/
 
 /* Estilos PERFIL USUARIO */
 .perfil {
@@ -841,7 +808,7 @@ hr{
     font-size: 20px;
 }
 
-.perfil .formulario{
+.perfil .formulario {
     border: 2px solid var(--gris);
     padding: 30px 0;
 }
@@ -869,27 +836,74 @@ hr{
 .enlacesPerfil a:hover {
     background-color: var(--gris);
 }
+
 /* Fin Estilos PERFIL USUARIO */
 
-.card-tarea .card-info .fechas{
+
+/* Estilos para TARJETAS*/
+.card-tarea {
+    width: 70%;
+    background: #75757500;
+    border: 3px solid #dbdbdb00;
+    padding: 20px 20px 0px 20px;
+    border-radius: 30px;
+    box-shadow: 0px 5px 5px 5px #00000017;
+    margin: 25px 0;
+    font-size: 12px;
+}
+
+.card-tarea .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header .info-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.card-tarea .card-info {
+    width: 70%;
+    display: flex;
+    align-items: start;
+    padding-bottom: 20px;
+}
+
+.card-tarea .card-info img {
+    width: 25px;
+    height: 25px;
+    margin: 0 32px 0 5px;
+}
+
+.card-info h3{
+    margin-bottom: 5px;
+}
+
+/* Revisar */
+
+.card-tarea .card-info .fechas {
     padding: 8px;
     border-radius: 10px;
     background-color: var(--gris);
 }
 
-.card-tarea .card-info .fechas#estado{
+.card-tarea .fechas#estado {
     padding: 8px;
     border-radius: 10px;
-    background-color: var(--rojo);
+    background-color: #ff222269;
+    border: 2px solid #ff222242;
 }
 
-.card-tarea .card-info .fechas#estado2{
+.card-tarea .card-info .fechas#estado2 {
     padding: 8px;
     border-radius: 10px;
     background-color: var(--verde);
 }
 
-.card-tarea .card-info .fechas#estado3{
+.card-tarea .card-info .fechas#estado3 {
     padding: 8px;
     border-radius: 10px;
     background-color: var(--amarillo);
@@ -897,21 +911,21 @@ hr{
 
 
 
-hr#fechas{
+hr#fechas {
     width: 10px;
     margin: 10px;
     background-color: var(--grisOscuro);
     border: 1px solid var(--grisOscuro);
 }
 
-.card-tarea .card-archivos{
+.card-tarea .card-archivos {
     width: 70%;
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
     align-items: flex-end;
 }
 
-.card-tarea .archivos{
+.card-tarea .archivos {
     width: 100px;
     height: 150px;
     background-color: var(--gris);
@@ -919,15 +933,15 @@ hr#fechas{
 }
 
 .card-tarea .boton {
-    width: 30%;
-    margin-top: 107px;
+    /* width: 30%;
+    margin-top: 107px; */
     display: flex;
     justify-content: end;
     align-items: flex-end;
 }
 
-.card-tarea .boton a{
-    padding: 10px 15px;
+.card-tarea .boton a {
+    padding: 10px 20px;
     background-color: var(--principal);
     border: 2px solid var(--principal);
     text-decoration: none;
@@ -935,4 +949,4 @@ hr#fechas{
     border-radius: 10px;
 }
 
-/* Fin Estilos para ESTUDIANTES */
+/*Fin Estilos para TARJETAS*/

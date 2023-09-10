@@ -313,7 +313,8 @@
             ON curso.idCurso = clase.idCurso
             INNER JOIN usuario
             ON usuario.documento = clase.idDocente
-            WHERE asignatura.idAsignatura = :idAsignatura";
+            WHERE asignatura.idAsignatura = :idAsignatura
+            ORDER BY tarea.idTarea DESC";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam('idAsignatura' , $idAsignatura);

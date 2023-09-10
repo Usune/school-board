@@ -882,6 +882,29 @@ hr {
     margin-bottom: 5px;
 }
 
+.card-tarea .fechas#vencida{
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #ff222269;
+    border: 2px solid #ff222242;
+}
+
+
+.card-tarea .fechas#proximo{
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #ffe92269;
+    border: 2px solid #ffe92269;
+}
+
+.card-tarea .fechas#conTiempo{
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #77ff2269;
+    border: 2px solid #77ff2269;
+}
+
+
 /* Revisar */
 
 .card-tarea .card-info .fechas {
@@ -890,24 +913,9 @@ hr {
     background-color: var(--gris);
 }
 
-.card-tarea .fechas#estado {
-    padding: 8px;
-    border-radius: 10px;
-    background-color: #ff222269;
-    border: 2px solid #ff222242;
-}
 
-.card-tarea .card-info .fechas#estado2 {
-    padding: 8px;
-    border-radius: 10px;
-    background-color: var(--verde);
-}
 
-.card-tarea .card-info .fechas#estado3 {
-    padding: 8px;
-    border-radius: 10px;
-    background-color: var(--amarillo);
-}
+
 
 
 

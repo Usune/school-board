@@ -110,7 +110,7 @@
                                 </p>
                             </div>
                             <hr id="fechas">
-                            <div class="fechas" id="estado">
+                            <div class="fechas" id="vencida">
                                 <p>
                                     03 / 09 / 2023
                                 </p>
@@ -167,7 +167,7 @@
                                 </p>
                             </div>
                             <hr id="fechas">
-                            <div class="fechas" id="estado2">
+                            <div class="fechas" id="proximo">
                                 <p>
                                     03 / 09 / 2023
                                 </p>
@@ -224,7 +224,7 @@
                                 </p>
                             </div>
                             <hr id="fechas">
-                            <div class="fechas" id="estado3">
+                            <div class="fechas" id="conTiempo">
                                 <p>
                                     03 / 09 / 2023
                                 </p>

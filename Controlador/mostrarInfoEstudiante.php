@@ -20,6 +20,18 @@
         $filas = $objConsultas->cargarTareas($idAsignatura);
 
         foreach($filas as $f){
+
+            // Operación para traer la fecha en este formato Sep 2, 2023
+
+            // Capturar la fecha desde la DB 
+            $fechaDB = $f['fecha_vencimiento'];
+            // Convertirla en el tipo de dato que se encuentra en la DB, ya que antes de este momento pasa como string (Verificar con  echo gettype($fechaDB); )
+            $fechaDateTime = new DateTime($fechaDB);
+            // Colocar en el formato Sep 2, 2023
+            $fechaFormato = $fechaDateTime->format('M j, Y');
+
+
+
             echo '
                 <div class="card-tarea">
                     <div class="card-header">
@@ -32,8 +44,7 @@
                         </div>
                         <div class="fechas" id="estado">
                             <p>
-                                '.$f['fecha_vencimiento'].'
-                                Mayo 2, 2023 
+                                '.$fechaFormato.'
                             </p>
                         </div>
                     </div>

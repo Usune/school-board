@@ -1,13 +1,11 @@
---Tablas 
---DROP DATABASE SB;
-
 -- school.board.company@gmail.com
 -- 75920sb-
 
+--Tablas 
+--DROP DATABASE SB;
+
 CREATE DATABASE SB;
 USE  SB;
-
--- El documento debe ser INT
 
 CREATE TABLE usuario (
     documento INT,
@@ -26,16 +24,15 @@ CREATE TABLE usuario (
 );
 
 INSERT INTO usuario (documento, clave, rol, estado, nombres, apellidos, correo, foto) VALUES 
-(1, MD5('estudiante'), 'Estudiante', 'activo', 'Estudiante', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
-(12, MD5('docente'), 'Docente', 'activo', 'Docente', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
-(123, MD5('administrador'), 'Administrador', 'activo', 'Administrador', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
-(12345, MD5('12345'), 'Docente', 'activo', 'Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
+(1, MD5('administrador'), 'Administrador', 'activo', 'Administrador', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
+(2, MD5('docente'), 'Docente', 'activo', 'Docente', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
+(3, MD5('estudiante'), 'Estudiante', 'activo', 'Estudiante', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'Nicole', 'Benavides', NULL, '../../Uploads/Usuario/fotoUsuario.jpg');
 
 
 CREATE TABLE acudiente (
     idAcudiente INT AUTO_INCREMENT,
-    documento VARCHAR(15),
+    documento INT,
     nombres VARCHAR(100),
     apellidos VARCHAR(100),
     telefono VARCHAR(15),
@@ -61,10 +58,10 @@ CREATE TABLE aula (
     PRIMARY KEY (idAula)
 );
 
-CREATE TABLE estudianteAcudiente (--Tabla intermedia que relaciona estudiante y acudiente
+CREATE TABLE estudianteAcudiente (
     idEstudianteAcudiente INT AUTO_INCREMENT,
     idAcudiente INT,
-    idEstudiante VARCHAR(15),
+    idEstudiante INT,
     PRIMARY KEY (idEstudianteAcudiente),
     FOREIGN KEY (idAcudiente) REFERENCES acudiente(idAcudiente),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
@@ -74,7 +71,7 @@ CREATE TABLE estudianteAcudiente (--Tabla intermedia que relaciona estudiante y 
 CREATE TABLE estudianteCurso (
     idestudianteCurso INT AUTO_INCREMENT,
     idCurso INT,
-    idEstudiante VARCHAR(15),
+    idEstudiante INT,
     PRIMARY KEY (idestudianteCurso),
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
@@ -82,9 +79,8 @@ CREATE TABLE estudianteCurso (
 
 
 INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES 
-(1, '1023163094'),
-(1, 'estudiante'),
-(2, '12345');
+(1, 1023163094),
+(1, 3);
 
 
 CREATE TABLE asignatura (
@@ -106,7 +102,7 @@ CREATE TABLE clase (
     idClase INT AUTO_INCREMENT,
     idCurso INT,
     idAsignatura INT,
-    idDocente VARCHAR(15), 
+    idDocente INT, 
     idAula INT,
     descripción VARCHAR(400),
     PRIMARY KEY (idClase),
@@ -118,15 +114,14 @@ CREATE TABLE clase (
 
 
 INSERT INTO clase (idCurso, idAsignatura, idDocente) VALUES
-(1, 2, 'docente'),
-(1, 4, NULL),
-(2, 1, 'docente');
+(1, 2, 2),
+(2, 1, 2);
 
 
 CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,
     idClase INT,
-    idEstudiante VARCHAR(15),
+    idEstudiante INT,
     fecha DATETIME DEFAULT NOW(),
     estado ENUM('Asiste', 'Falta', 'Falta Justificada', 'Retardo'),
     PRIMARY KEY (idAsistencia),
@@ -136,8 +131,8 @@ CREATE TABLE asistencia (
 
 CREATE TABLE observador (
     idObservador INT AUTO_INCREMENT,
-    idEstudiante VARCHAR(15),
-    idDocente VARCHAR(15),
+    idEstudiante INT,
+    idDocente INT,
     fecha DATETIME DEFAULT NOW(),
     observacion VARCHAR(400),
     PRIMARY KEY (idObservador),
@@ -147,7 +142,7 @@ CREATE TABLE observador (
 
 CREATE TABLE comunicado (
     idComunicado INT AUTO_INCREMENT,
-    idUsuario VARCHAR(15),
+    idUsuario INT,
     titulo VARCHAR(200),
     fecha DATETIME DEFAULT NOW(),
     descripcion VARCHAR(400),
@@ -173,4 +168,3 @@ INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimien
 (1, 'Ensayo sobre Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-08 13:11:5', NULL);
 
 
--- #show tables;

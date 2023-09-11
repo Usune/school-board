@@ -116,6 +116,31 @@
                 </div>
             </div>
 
+            <!-- Frontend para las tareas con entrega vencida -->
+            <!-- <div class="card-tarea">
+                <div class="card-header">
+                    <div class="info-user fila">
+                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
+                        <p>
+                            Nicole <br>
+                            Benavides
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="card-cont">
+                    <div class="card-info">
+                        <img src="../../img/candado.png" alt="">
+                        <div class="info">
+                            <h3>La fecha de entrega ya paso</h3>
+                            <p>
+                                Comuniquese con su docente para poder subir sus actividades.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
 
         </section>
 

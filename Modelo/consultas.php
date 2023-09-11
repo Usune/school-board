@@ -254,6 +254,8 @@
         }
 
         // CONSULTAS PARA ESTUDIANTES 
+
+        // Funcion para cargar las asignaturas correspondientes al estudiante
         public function cargarAsignaturas($documento){
             $rows = null;
 
@@ -285,11 +287,6 @@
         }
 
         // Funcion para mostrar las tareas correspondientes a una Asignatura 
-        // idAsignaturas se llama por GET al seleccionar asignatura
-        // Apunte para colores de fecha 
-        // Capturar la fecha de hoy y la almacenda pasar a new dateTime (mismo tipo de formato)
-        // Realizar la difrencia entre esas fechas y guadar en una variable que es la que se llama en fronten
-        // Concatenar valor con la clase para cambiar el css
         public function cargarTareas($idAsignatura){
             $rows = null;
 
@@ -297,6 +294,8 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT 
+            tarea.idTarea,
+            asignatura.nombre as nombreAsignatura,
             asignatura.idAsignatura,
             usuario.foto,
             usuario.nombres,

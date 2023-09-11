@@ -601,6 +601,7 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 section h2 {
@@ -848,7 +849,7 @@ hr {
     padding: 20px 20px 0px 20px;
     border-radius: 30px;
     box-shadow: 0px 5px 5px 5px #00000017;
-    margin: 25px 0;
+    margin: 20px 0;
     font-size: 12px;
 }
 
@@ -905,6 +906,61 @@ hr {
 }
 
 
+/* Estilos para entrega de tareas */
+
+.card-tarea .card-formulario {
+    padding: 0 60px 0 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.card-tarea .card-formulario .formulario{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: inherit;
+    font-size: 12px;
+
+}
+
+.card-formulario .formulario form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.card-tarea #formulario .textarea {
+    width: 100%;
+    height: 80px;
+    border: 2px solid transparent;
+    overflow-y: scroll;
+    resize: none;
+    font-size: 12px;
+}
+
+
+.card-tarea #formulario textarea {
+    width: 90%;
+    border-radius: 10px;
+    border: 2px solid var(--grisOscuro);
+    padding: 10px;
+    overflow-y: scroll;
+    resize: none;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
 /* Revisar */
 
 .card-tarea .card-info .fechas {
@@ -934,8 +990,8 @@ hr#fechas {
 }
 
 .card-tarea .archivos {
-    width: 100px;
-    height: 150px;
+    width: 40px;
+    height: 40px;
     background-color: var(--gris);
     margin: 0 10px 0 0;
 }

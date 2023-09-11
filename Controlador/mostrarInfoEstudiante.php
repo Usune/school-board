@@ -2,9 +2,9 @@
     // Mostrar asignaturas a los estudiantes en el aside  
     function mostrarAsignaturasEstudiante(){
         session_start();
-        $id = $_SESSION['id'];
+        $documento = $_SESSION['id'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarAsignaturas($id);
+        $filas = $objConsultas->cargarAsignaturas($documento);
 
         foreach ($filas as $fila) {
             echo '
@@ -52,6 +52,7 @@
 
 
             echo '
+
                 <div class="card-tarea">
                     <div class="card-header">
                         <div class="info-user fila">
@@ -79,7 +80,7 @@
                             </div>
                         </div>
                         <div class="boton">
-                            <a href="#">Entregar</a>
+                            <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idTarea='.$f['idTarea'].'">Ver más</a>
                         </div>
                     </div>
                 </div>

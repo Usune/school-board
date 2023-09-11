@@ -329,6 +329,46 @@
 
     }
 
+        // Funcion para mostrar las tareas correspondientes a una Asignatura 
+        public function cargarTarea($idTarea){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT 
+            tarea.idTarea,
+            asignatura.nombre as nombreAsignatura,
+            asignatura.idAsignatura,
+            usuario.foto,
+            usuario.nombres,
+            usuario.apellidos,
+            tarea.fecha_vencimiento,
+            tarea.titulo,
+            tarea.descripcion
+            FROM clase
+            INNER JOIN asignatura
+            ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN tarea 
+            ON tarea.idClase = clase.idClase
+            INNER JOIN curso
+            ON curso.idCurso = clase.idCurso
+            INNER JOIN usuario
+            ON usuario.documento = clase.idDocente
+            WHERE tarea.idTarea = :idTarea";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idTarea' , $idTarea);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
     class ValidarSesion{
 
         public function validarInicioSesion($usuario, $claveMd) {

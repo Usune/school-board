@@ -327,8 +327,6 @@
 
         }
 
-    }
-
         // Funcion para mostrar las tareas correspondientes a una Asignatura 
         public function cargarTarea($idTarea){
             $rows = null;
@@ -368,6 +366,9 @@
             return $rows;
 
         }
+    }
+
+
 
     class ValidarSesion{
 

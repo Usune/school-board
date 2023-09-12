@@ -140,6 +140,13 @@ CREATE TABLE observador (
     FOREIGN KEY (idDocente) REFERENCES usuario(documento)
 );
 
+CREATE TABLE archivo(
+	idArchivo INT,
+    url varchar(400),
+    PRIMARY KEY (idArchivo)
+);
+
+
 CREATE TABLE comunicado (
     idComunicado INT AUTO_INCREMENT,
     idUsuario INT,
@@ -151,6 +158,7 @@ CREATE TABLE comunicado (
     FOREIGN KEY (idUsuario) REFERENCES usuario(documento)
 );
 
+
 CREATE TABLE tarea (
     idTarea INT AUTO_INCREMENT,
     idClase INT,
@@ -158,15 +166,25 @@ CREATE TABLE tarea (
     descripcion VARCHAR(200),
     fecha_creacion	DATETIME DEFAULT NOW(),
     fecha_vencimiento DATETIME,
-    archivos VARCHAR(400),
+    idArchivo INT,
     PRIMARY KEY(idTarea),
-    FOREIGN KEY (idClase) REFERENCES clase(idClase)
+    FOREIGN KEY (idClase) REFERENCES clase(idClase),
+    FOREIGN KEY (idArchivo) REFERENCES archivo(idArchivo)
+
 );
 
 
-INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
+INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, idArchivo) VALUES
 (1, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', NULL),
 (1, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
 (1, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
 
 
+
+CREATE TABLE entrega(
+    idEntrega INT,
+    descripcion varchar(200),
+    idArchivo INT,
+    PRIMARY KEY (idEntrega),
+    FOREIGN KEY (idArchivo) REFERENCES archivo(idArchivo)
+);

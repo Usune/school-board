@@ -366,6 +366,37 @@
             return $rows;
 
         }
+
+        // Consulta para traer los archivos relacionados a la tarea
+        // SELECT 
+        //     tarea.idTarea,
+        //     tarea.idArchivo,
+        //     archivo.url,
+        //     asignatura.nombre as nombreAsignatura,
+        //     asignatura.idAsignatura,
+        //     usuario.foto,
+        //     usuario.nombres,
+        //     usuario.apellidos,
+        //     tarea.fecha_vencimiento,
+        //     tarea.titulo,
+        //     tarea.descripcion
+        //     FROM clase
+        //     INNER JOIN asignatura
+        //     ON asignatura.idAsignatura = clase.idAsignatura
+        //     INNER JOIN tarea 
+        //     ON tarea.idClase = clase.idClase
+        //     INNER JOIN curso
+        //     ON curso.idCurso = clase.idCurso
+        //     INNER JOIN usuario
+        //     ON usuario.documento = clase.idDocente
+        //     INNER JOIN archivo
+        //     ON archivo.idArchivo = tarea.idArchivo
+        //     WHERE tarea.idTarea = 1;
+
+
+
+
+
     }
 
 

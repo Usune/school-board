@@ -185,7 +185,7 @@
 
                                 <div class="file">
                                     <label for="archivo">Seleccione un archivo</label>
-                                    <input type="file" accept=".pdf" name="archivo">
+                                    <input type="file" accept=".pdf" name="archivo[]" multiple>
                                 </div>
 
                                 <button type="submit" class="enviar">Entregar Tarea</button>

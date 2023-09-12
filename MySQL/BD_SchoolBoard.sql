@@ -140,20 +140,13 @@ CREATE TABLE observador (
     FOREIGN KEY (idDocente) REFERENCES usuario(documento)
 );
 
-CREATE TABLE archivo(
-	idArchivo INT,
-    url varchar(400),
-    PRIMARY KEY (idArchivo)
-);
-
-
 CREATE TABLE comunicado (
     idComunicado INT AUTO_INCREMENT,
     idUsuario INT,
     titulo VARCHAR(200),
     fecha DATETIME DEFAULT NOW(),
     descripcion VARCHAR(400),
-    archivo VARCHAR(200),
+    archivos VARCHAR(200),
     PRIMARY KEY (idComunicado),
     FOREIGN KEY (idUsuario) REFERENCES usuario(documento)
 );
@@ -166,15 +159,14 @@ CREATE TABLE tarea (
     descripcion VARCHAR(200),
     fecha_creacion	DATETIME DEFAULT NOW(),
     fecha_vencimiento DATETIME,
-    idArchivo INT,
+    archivos VARCHAR(400),
     PRIMARY KEY(idTarea),
-    FOREIGN KEY (idClase) REFERENCES clase(idClase),
-    FOREIGN KEY (idArchivo) REFERENCES archivo(idArchivo)
-
+    FOREIGN KEY (idClase) REFERENCES clase(idClase)
 );
 
 
-INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, idArchivo) VALUES
+
+INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
 (1, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', NULL),
 (1, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
 (1, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
@@ -183,8 +175,7 @@ INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimien
 
 CREATE TABLE entrega(
     idEntrega INT,
-    descripcion varchar(200),
-    idArchivo INT,
-    PRIMARY KEY (idEntrega),
-    FOREIGN KEY (idArchivo) REFERENCES archivo(idArchivo)
+    descripcion VARCHAR(200),
+    archivos VARCHAR(400),
+    PRIMARY KEY (idEntrega)
 );

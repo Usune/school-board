@@ -98,7 +98,7 @@
                 <hr>
                 <div class="card-formulario">
                     <div class="formulario">
-                        <form action="#" method="post" enctype="multipart/form-data" id="formulario">
+                        <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data" id="formulario">
                             
                             <div class="textarea">
                                 <label for="descripcion">Descripción</label>
@@ -106,8 +106,8 @@
                             </div>
 
                             <div class="file">
-                                    <label for="archivo">Seleccione un archivo</label>
-                                    <input type="file" accept=".pdf" name="archivo">
+                                <label for="archivos">Seleccione archivos (PDF):</label>
+                                <input type="file" accept=".pdf" name="archivos[]" multiple>
                             </div>
 
                             <button type="submit" class="enviar">Entregar Tarea</button>

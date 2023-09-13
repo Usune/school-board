@@ -174,7 +174,7 @@ INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimien
 
 
 CREATE TABLE entrega(
-    idEntrega INT,
+    idEntrega INT AUTO_INCREMENT,
     descripcion VARCHAR(200),
     archivos VARCHAR(400),
     PRIMARY KEY (idEntrega)

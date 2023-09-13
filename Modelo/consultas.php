@@ -367,6 +367,24 @@
 
         }
 
+        // Función para entregar actividades
+        public function entregarTarea($descripcion, $archivos_str){
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "INSERT INTO entrega (descripcion, archivos)  VALUES (:descripcion, :archivos_str)";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':descripcion' , $descripcion);
+            $statement->bindParam(':archivos_str' , $archivos_str);
+            $statement->execute();
+
+            echo '<script>alert("Entrega exitosa")</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php"</script>';
+
+        }
+
+
+
         // Consulta para traer los archivos relacionados a la tarea
         // SELECT 
         //     tarea.idTarea,

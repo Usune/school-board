@@ -336,14 +336,16 @@
 
             $sql = "SELECT 
             tarea.idTarea,
+            tarea.titulo,
+            tarea.descripcion,
+            tarea.fecha_creacion,
+            tarea.fecha_vencimiento,
+            tarea.archivos,
             asignatura.nombre as nombreAsignatura,
             asignatura.idAsignatura,
             usuario.foto,
             usuario.nombres,
-            usuario.apellidos,
-            tarea.fecha_vencimiento,
-            tarea.titulo,
-            tarea.descripcion
+            usuario.apellidos
             FROM clase
             INNER JOIN asignatura
             ON asignatura.idAsignatura = clase.idAsignatura

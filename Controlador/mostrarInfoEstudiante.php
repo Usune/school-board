@@ -90,7 +90,7 @@
 
     }
 
- // Mostrar la tarea y habilitar la entrega
+    // Mostrar la tarea y habilitar la entrega
     function habilitarEntregaTareas(){
         $idTarea = $_GET['idTarea'];
         $objConsultas = new Consultas();
@@ -128,72 +128,110 @@
             }
 
 
+            // manejo de archivos 
+            $archivos = explode(",", $f['archivos']);
+
+
             echo '
-
-                <div class="card-tarea">
-                    <div class="card-header">
-                        <div class="info-user fila">
-                            <img src="'.$f['foto'].'" alt="foto perfil Docente">
-                            <p>
-                                '.$f['nombres'].' <br>
-                                '.$f['apellidos'].'
-                            </p>
-                        </div>
-                        <div class="fechas" id="'.$fechaEstado.'">
-                            <p>
-                                '.$fechaFormato.'
-                            </p>
-                        </div>
+            <div class="card-tarea">
+            <div class="card-header">
+                <div class="info-user fila">
+                    <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
+                    <p>
+                        '.$f['nombres'].' <br>
+                        '.$f['apellidos'].'
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card-cont">
+                <div class="card-info">
+                    <img src="../../img/descripcion.png" alt="">
+                    <div class="info">
+                        <h3>'.$f['titulo'].'</h3>
+                        <p>
+                            '.$f['descripcion'].'
+                        </p>
                     </div>
-                    <hr>
-                    <div class="card-header">
-                        <div class="card-info">
-                            <img src="../../img/descripcion.png" alt="">
-                            <div class="info">
-                                <h3>'.$f['titulo'].'</h3>
-                                <p>
-                                    '.$f['descripcion'].'
-                                </p>
-                            </div>
+                </div>
+                <div class="card-info">
+                    <img src="'.$f['foto'].'" alt="">
+                    <div class="fila">
+                        <div class="fechas">
+                            <p>
+                                '.$f['fecha_creacion'].'
+                                03 / 09 / 2023
+                            </p>
                         </div>
-                        <div class="boton">
-                            <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idTarea='.$f['idTarea'].'">Ver más</a>
+                        <hr id="fechas">
+                        <div class="fechas" id="vencida">
+                            <p>
+                                '.$fechaEstado.'
+                                03 / 09 / 2023
+                            </p>
                         </div>
                     </div>
                 </div>
-
-                <div class="card-tarea">
-                    <div class="card-header">
-                        <div class="info-user fila">
-                            <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
-                            <p>
-                                '.$f['nombres'].' <br>
-                                '.$f['apellidos'].'
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-formulario">
-                        <div class="formulario">
-                            <form action="../../../Controlador/entregarActividades.php" method="post" enctype="multipart/form-data" id="formulario">
-
-                                <div class="textarea">
-                                    <label for="descripcion">Descripción</label>
-                                    <textarea id="descripcion" cols="30" rows="10"
-                                        name="descripcion">Ingrese una descripción</textarea>
-                                </div>
-
-                                <div class="file">
-                                    <label for="archivo">Seleccione un archivo</label>
-                                    <input type="file" accept=".pdf" name="archivo[]" multiple>
-                                </div>
-
-                                <button type="submit" class="enviar">Entregar Tarea</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <div class="card-info">
+                    <img src="../../img/archivos.png" alt="">
             ';
+
+            echo '
+                </div>
+            
+            ';
+
+
+
+                //             foreach($archivos as $archivo){
+                //                 echo '
+                //                 <div class="card-archivos">
+                //                     <div class="'.$archivo.'"></div>
+                //                 </div>
+                //                 ';
+                //             }
+                          
+                // echo '
+                //     </div>
+                //         </div>
+                //     </div>
+                //     <div class="card-tarea">
+                //     <div class="card-header">
+                //         <div class="info-user fila">
+                //             <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
+                //             <p>
+                //                 '.$f['nombres'].' <br>
+                //                 '.$f['apellidos'].'
+                //             </p>
+                //         </div>
+                //     </div>
+                //     <hr>
+                //     <div class="card-formulario">
+                //         <div class="formulario">
+                //             <form action="../../../Controlador/entregarActividades.php" method="post" enctype="multipart/form-data" id="formulario">
+
+                //                 <div class="textarea">
+                //                     <label for="descripcion">Descripción</label>
+                //                     <textarea id="descripcion" cols="30" rows="10"
+                //                         name="descripcion">Ingrese una descripción</textarea>
+                //                 </div>
+
+                //                 <div class="file">
+                //                     <label for="archivo">Seleccione un archivo</label>
+                //                     <input type="file" accept=".pdf" name="archivo[]" multiple>
+                //                 </div>
+
+                //                 <button type="submit" class="enviar">Entregar Tarea</button>
+                //             </form>
+                //         </div>
+                //     </div>
+                // </div>
+                // ';        
+
+                
+
+                
+            
         };
 
 

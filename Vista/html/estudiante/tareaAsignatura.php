@@ -35,7 +35,11 @@
 
         <section>
             <h2>Principal de EnviarTareaExample</h2>
+            <?php habilitarEntregaTareas(); ?>
 
+            
+
+            <!-- <h2>extra</h2>
             <div class="card-tarea">
                 <div class="card-header">
                     <div class="info-user fila">
@@ -114,7 +118,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Frontend para las tareas con entrega vencida -->
             <!-- <div class="card-tarea">

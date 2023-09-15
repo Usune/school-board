@@ -32,7 +32,7 @@
             <div class="card-tarea">
                 <div class="card-header">
                     <div class="info-user fila">
-                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
+                        <img src="../../img/user.svg" alt="">
                         <p>
                             Nicole <br>
                             Benavides
@@ -47,7 +47,7 @@
                 <hr>
                 <div class="card-cont">
                     <div class="card-info">
-                        <img src="../../img/descripcion.png" alt="">
+                        <img src="../../img/user.svg" alt="">
                         <div class="info">
                             <h3>Ensayo sobre Tecnologia</h3>
                             <p>
@@ -57,150 +57,38 @@
                         </div>
                     </div>
                     <div class="card-info">
-                        <img src="../../img/reloj.png" alt="">
-                        <div class="fila">
-                            <div class="fechas">
-                                <p>
-                                    03 / 09 / 2023
-                                </p>
-                            </div>
-                            <hr id="fechas">
-                            <div class="fechas" id="estado">
-                                <p>
-                                    03 / 09 / 2023
-                                </p>
+                        <img src="../../img/user.svg" alt="">
+                        <div class="fechas">
+                            <div class="fila-cont">
+                                <div class="fecha">
+                                    <p>
+                                        03 / / 09 / 2023
+                                    </p>
+                                </div>
+                                <hr>
+                                <div class="fecha">
+                                    <p>
+                                        03 / / 09 / 2023
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-info">
-                        <img src="../../img/archivos.png" alt="">
-                        <div class="card-archivos">
-                            <div class="archivos"></div>
-                            <div class="archivos"></div>
-                            <div class="archivos"></div>
-                        </div>
-                        <div class="boton">
-                            <a href="#">Entregar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-tarea">
-                <div class="card-header">
-                    <div class="info-user fila">
-                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
-                        <p>
-                            Nicole <br>
-                            Benavides
-                        </p>
-                    </div>
-                    <div class="fecha">
-                        <p>
-                            Mayo 2, 2023
-                        </p>
-                    </div>
-                </div>
-                <hr>
-                <div class="card-cont">
-                    <div class="card-info">
-                        <img src="../../img/descripcion.png" alt="">
+                        <img src="../../img/user.svg" alt="">
                         <div class="info">
-                            <h3>Ensayo sobre Tecnologia</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus
-                                explicabo amet beatae saepe iste veniam sed quisquam.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <img src="../../img/reloj.png" alt="">
-                        <div class="fila">
-                            <div class="fechas">
-                                <p>
-                                    03 / 09 / 2023
-                                </p>
+                            <div class="archivos"></div>
+                            <div class="archivos"></div>
+                            <div class="archivos"></div>
+                            <div class="boton">
+                                <button>Entregar</button>
                             </div>
-                            <hr id="fechas">
-                            <div class="fechas" id="estado2">
-                                <p>
-                                    03 / 09 / 2023
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <img src="../../img/archivos.png" alt="">
-                        <div class="card-archivos">
-                            <div class="archivos"></div>
-                            <div class="archivos"></div>
-                            <div class="archivos"></div>
-                        </div>
-                        <div class="boton">
-                            <a href="#">Entregar</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="card-tarea">
-                <div class="card-header">
-                    <div class="info-user fila">
-                        <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="imagen" enlace="#op1">
-                        <p>
-                            Nicole <br>
-                            Benavides
-                        </p>
-                    </div>
-                    <div class="fecha">
-                        <p>
-                            Mayo 2, 2023
-                        </p>
-                    </div>
-                </div>
-                <hr>
-                <div class="card-cont">
-                    <div class="card-info">
-                        <img src="../../img/descripcion.png" alt="">
-                        <div class="info">
-                            <h3>Ensayo sobre Tecnologia</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus
-                                explicabo amet beatae saepe iste veniam sed quisquam.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <img src="../../img/reloj.png" alt="">
-                        <div class="fila">
-                            <div class="fechas">
-                                <p>
-                                    03 / 09 / 2023
-                                </p>
-                            </div>
-                            <hr id="fechas">
-                            <div class="fechas" id="estado3">
-                                <p>
-                                    03 / 09 / 2023
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <img src="../../img/archivos.png" alt="">
-                        <div class="card-archivos">
-                            <div class="archivos"></div>
-                            <div class="archivos"></div>
-                            <div class="archivos"></div>
-                        </div>
-                        <div class="boton">
-                            <a href="#">Entregar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+      
 
 
 

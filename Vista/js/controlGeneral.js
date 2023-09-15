@@ -9,29 +9,10 @@ const mostrar = (event) => {
 
 // Funciones para mostrar y quitar el legend de un input especifico al dar click en el input, para que eso funcione el input debe tener el atributo legend y dentro el id del legend al que está asociado, así mismo el legend debe tener el id especifico que tiene el atributo legend.
 const onFocus = (event) => {
-    let idLegend = event.target.getAttribute('legend');
-
     document.querySelector(event.target.getAttribute('legend')).style.display = 'block';
-
-    document.querySelector(idLegend).style.color = 'var(--principal)';
-    event.target.previousElementSibling.style.border = 'var(--principal) 2px solid';
-    event.target.previousElementSibling.style.height = '95%';
 }
-
 const onBlur = (event) => {
-    let value = event.target.value;
-    let idLegend = event.target.getAttribute('legend');
-
-    if(value.length > 0) {
-        event.target.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
-        event.target.previousElementSibling.style.height = '95%';
-        document.querySelector(idLegend).style.color = 'var(--grisOscuro)';
-        document.querySelector(event.target.getAttribute('legend')).style.display = 'block';
-    }else {
-        event.target.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
-        event.target.previousElementSibling.style.height = '80%';
-        document.querySelector(event.target.getAttribute('legend')).style.display = 'none';
-    }
+    document.querySelector(event.target.getAttribute('legend')).style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', function () {

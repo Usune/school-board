@@ -17,8 +17,6 @@
     --azul: #0185B8;
     --azulOscuro: #2F5494;
     --rojo: #ff2222;
-    --verde: #22ff56;
-    --amarillo: #fff822;
     --negro: #000000;
 }
 
@@ -59,7 +57,6 @@ body {
     justify-content: center;
     height: 50px;
     width: 300px;
-    margin-bottom: 10px;
 }
 
 .fieldset input {
@@ -68,7 +65,6 @@ body {
     width: 95%;
     height: 78%;
     margin-left: -300px;
-    margin-bottom: 2px;
     border-radius: 20px;
     border: none;
     font-size: 15px;
@@ -107,7 +103,7 @@ body {
 
 .fieldset fieldset:has( ~ input:focus) {
     border: var(--principal) 2px solid;
-    height: 95%;
+    height: 94%;
 }
 
 /* Clase fieldset_view para los select*/
@@ -117,7 +113,6 @@ body {
     justify-content: center;
     height: 60px;
     width: 300px;
-    margin-bottom: 10px;
 }
 
 .fieldset_view label {
@@ -456,7 +451,6 @@ body {
     top: 70px;
     background-color: var(--beige);
     border-radius: 20px;
-    z-index: 999;
 }
 
 .nav-pri #op1 ul {
@@ -613,12 +607,6 @@ footer {
     justify-content: center;
 }
 
-hr{
-    margin: 10px 0 10px 0;
-    background-color: var(--gris);
-    border: 1px solid var(--gris);
-}
-
 .info-footer {
     text-align: center;
 }
@@ -771,10 +759,12 @@ hr{
     background: #75757500;
     border: 3px solid #dbdbdb00;
     backdrop-filter: blur(0.4rem);
-    padding: 40px 40px 20px 40px;
+    padding: 40px;
     border-radius: 30px;
     box-shadow: 0px 5px 5px 5px #00000017;
 }
+
+
 
 .card-tarea .card-header{
     display: flex;
@@ -791,15 +781,19 @@ hr{
     margin-right: 20px;
 }
 
+hr{
+    margin: 10px 0 10px 0;
+    background-color: var(--gris);
+    border: 1px solid var(--gris);
+}
+
 .card-tarea .card-info{
     display: flex;
     align-items: start;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
 }
 
 .card-tarea .card-info img{
-    width: 25px;
-    height: 25px;
     margin: 0 32px 0 5px;
 }
 /*Fin Estilos para TARJETAS*/
@@ -870,69 +864,3 @@ hr{
     background-color: var(--gris);
 }
 /* Fin Estilos PERFIL USUARIO */
-
-.card-tarea .card-info .fechas{
-    padding: 8px;
-    border-radius: 10px;
-    background-color: var(--gris);
-}
-
-.card-tarea .card-info .fechas#estado{
-    padding: 8px;
-    border-radius: 10px;
-    background-color: var(--rojo);
-}
-
-.card-tarea .card-info .fechas#estado2{
-    padding: 8px;
-    border-radius: 10px;
-    background-color: var(--verde);
-}
-
-.card-tarea .card-info .fechas#estado3{
-    padding: 8px;
-    border-radius: 10px;
-    background-color: var(--amarillo);
-}
-
-
-
-hr#fechas{
-    width: 10px;
-    margin: 10px;
-    background-color: var(--grisOscuro);
-    border: 1px solid var(--grisOscuro);
-}
-
-.card-tarea .card-archivos{
-    width: 70%;
-    display: flex;
-    justify-content:flex-start;
-    align-items: flex-end;
-}
-
-.card-tarea .archivos{
-    width: 100px;
-    height: 150px;
-    background-color: var(--gris);
-    margin: 0 10px 0 0;
-}
-
-.card-tarea .boton {
-    width: 30%;
-    margin-top: 107px;
-    display: flex;
-    justify-content: end;
-    align-items: flex-end;
-}
-
-.card-tarea .boton a{
-    padding: 10px 15px;
-    background-color: var(--principal);
-    border: 2px solid var(--principal);
-    text-decoration: none;
-    color: var(--negro);
-    border-radius: 10px;
-}
-
-/* Fin Estilos para ESTUDIANTES */

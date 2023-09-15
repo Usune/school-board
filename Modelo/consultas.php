@@ -2,78 +2,79 @@
 
     class Consultas{
 
-        public function validarInicioSesion($usuario, $claveMd) {
+        // Estas consultas se repiten en la clase ValidarSesion
+        // public function validarInicioSesion($usuario, $claveMd) {
 
-            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
+        //     // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+        //     $objConexion = new Conexion();
+        //     $conexion = $objConexion->get_conexion();
 
-            $sql1 = 'SELECT * FROM usuario WHERE documento = :usuario';
+        //     $sql1 = 'SELECT * FROM usuario WHERE documento = :usuario';
 
-            $consulta1 = $conexion->prepare($sql1);
-            $consulta1->bindParam(':usuario', $usuario);
-            $consulta1->execute();
+        //     $consulta1 = $conexion->prepare($sql1);
+        //     $consulta1->bindParam(':usuario', $usuario);
+        //     $consulta1->execute();
 
-            $f = $consulta1->fetch();
+        //     $f = $consulta1->fetch();
 
-            if ($f) {
+        //     if ($f) {
 
-                if ($f['clave'] == $claveMd) {
+        //         if ($f['clave'] == $claveMd) {
                     
-                    if ($f['estado'] == 'activo'){
-                        // SE REALIZA EL INICIO DE SESIÓN
-                        session_start();
+        //             if ($f['estado'] == 'activo'){
+        //                 // SE REALIZA EL INICIO DE SESIÓN
+        //                 session_start();
 
-                        // CREAMOS VARIABLES DE SESIÓN
-                        $_SESSION['id'] = $f['documento'];
-                        $_SESSION['correo'] = $f['correo'];
-                        $_SESSION['AUTENTICADO'] = 'SI';
-                        $_SESSION['rol'] = $f['rol'];
+        //                 // CREAMOS VARIABLES DE SESIÓN
+        //                 $_SESSION['id'] = $f['documento'];
+        //                 $_SESSION['correo'] = $f['correo'];
+        //                 $_SESSION['AUTENTICADO'] = 'SI';
+        //                 $_SESSION['rol'] = $f['rol'];
                         
-                        switch ($f['rol']){
+        //                 switch ($f['rol']){
 
-                            case "Administrador":
-                                echo '<script>alert("Bienvenido rol administrador")</script>';
-                                echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php'</script>";
-                            break;
-                            case "Docente":
-                                echo '<script>alert("Bienvenido rol docente")</script>';
-                                echo "<script>location.href='../Vista/html/Docente/homeDoc.html'</script>";
-                            break;
-                            case "Estudiante":
-                                echo '<script>alert("Bienvenido rol estudiante")</script>';
-                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.html'</script>";
-                            break;
+        //                     case "Administrador":
+        //                         echo '<script>alert("Bienvenido rol administrador")</script>';
+        //                         echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php'</script>";
+        //                     break;
+        //                     case "Docente":
+        //                         echo '<script>alert("Bienvenido rol docente")</script>';
+        //                         echo "<script>location.href='../Vista/html/Docente/homeDoc.php'</script>";
+        //                     break;
+        //                     case "Estudiante":
+        //                         echo '<script>alert("Bienvenido rol estudiante")</script>';
+        //                         echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
+        //                     break;
 
-                        }
+        //                 }
 
-                    }else {
-                        echo '<script>alert("Su cuenta no se encuentra activa, comuniquese con el administrador de la entidad")</script>';
-                        echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-                    }
+        //             }else {
+        //                 echo '<script>alert("Su cuenta no se encuentra activa, comuniquese con el administrador de la entidad")</script>';
+        //                 echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
+        //             }
 
-                }else {
-                    echo '<script>alert("Clave incorrecta, intentelo nuevamente.")</script>';
-                    echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-                }
+        //         }else {
+        //             echo '<script>alert("Clave incorrecta, intentelo nuevamente.")</script>';
+        //             echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
+        //         }
 
-            }else {
-                echo '<script>alert("El usuario ingresado no está registrado.")</script>';
-                echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-            }
+        //     }else {
+        //         echo '<script>alert("El usuario ingresado no está registrado.")</script>';
+        //         echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
+        //     }
 
-        }
+        // }
 
-        public function cerrarSesion(){
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
+        // public function cerrarSesion(){
+        //     $objConexion = new Conexion();
+        //     $conexion = $objConexion->get_conexion();
 
-            session_start();
-            session_destroy();
+        //     session_start();
+        //     session_destroy();
             
-            echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
+        //     echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
 
-        }
+        // }
 
         public function insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado){
 
@@ -372,19 +373,20 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT 
-                    asignatura.nombre as asignatura
+                    asignatura.nombre as asignatura,
+                    asignatura.idAsignatura as idAsignatura
                     FROM estudiantecurso
                     INNER JOIN usuario
-                    ON usuario.idUsuario = estudiantecurso.idUsuario
+                    ON usuario.documento = estudiantecurso.idEstudiante
                     INNER JOIN curso
                     ON curso.idCurso = estudiantecurso.idCurso
                     INNER JOIN clase
                     ON clase.idCurso = curso.idCurso
                     INNER JOIN asignatura
                     ON asignatura.idAsignatura = clase.idAsignatura
-                    WHERE usuario.idUsuario = :id";
+                    WHERE usuario.documento = :documento";
             $statement = $conexion->prepare($sql);
-            $statement->bindParam(':id' , $id);
+            $statement->bindParam(':documento' , $documento);
             $statement->execute();
 
             while ($resultado = $statement->fetch()) {
@@ -477,21 +479,6 @@
 
         }
 
-           // Función para entregar actividades
-        public function insertarTarea($descripcion, $archivos_str){
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            $sql = "INSERT INTO tarea (descripcion, archivos)  VALUES (:descripcion, :archivos_str)";
-            $statement = $conexion->prepare($sql);
-            $statement->bindParam(':descripcion' , $descripcion);
-            $statement->bindParam(':archivos_str' , $archivos_str);
-            $statement->execute();
-
-            echo '<script>alert("Entrega exitosa")</script>';
-            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php"</script>';
-
-        }
 
         // Función para entregar actividades
         public function insertarEntregaTarea($descripcion, $archivos_str){
@@ -510,34 +497,22 @@
         }
 
 
+        // CONSULTAS DOCENTES
+        // Función para entregar actividades
+        public function insertarTarea($descripcion, $archivos_str){
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
 
-        // Consulta para traer los archivos relacionados a la tarea
-        // SELECT 
-        //     tarea.idTarea,
-        //     tarea.idArchivo,
-        //     archivo.url,
-        //     asignatura.nombre as nombreAsignatura,
-        //     asignatura.idAsignatura,
-        //     usuario.foto,
-        //     usuario.nombres,
-        //     usuario.apellidos,
-        //     tarea.fecha_vencimiento,
-        //     tarea.titulo,
-        //     tarea.descripcion
-        //     FROM clase
-        //     INNER JOIN asignatura
-        //     ON asignatura.idAsignatura = clase.idAsignatura
-        //     INNER JOIN tarea 
-        //     ON tarea.idClase = clase.idClase
-        //     INNER JOIN curso
-        //     ON curso.idCurso = clase.idCurso
-        //     INNER JOIN usuario
-        //     ON usuario.documento = clase.idDocente
-        //     INNER JOIN archivo
-        //     ON archivo.idArchivo = tarea.idArchivo
-        //     WHERE tarea.idTarea = 1;
+            $sql = "INSERT INTO tarea (descripcion, archivos)  VALUES (:descripcion, :archivos_str)";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':descripcion' , $descripcion);
+            $statement->bindParam(':archivos_str' , $archivos_str);
+            $statement->execute();
 
+            echo '<script>alert("Entrega exitosa")</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php"</script>';
 
+        }
 
 
 
@@ -587,7 +562,7 @@
                             break;
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';
-                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.html'</script>";
+                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
                             break;
 
                         }

@@ -63,6 +63,24 @@
             <section>
                 <h2>Cursos</h2>
 
+                <!-- Formulario para subir tareas (No borrar) -->
+                <form action="../../../Controlador/subirTarea.php" method="post" enctype="multipart/form-data"
+                    id="formulario">
+
+                    <div class="textarea">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" cols="30" rows="10"
+                            name="descripcion">Ingrese una descripción</textarea>
+                    </div>
+
+                    <div class="file">
+                        <label for="archivo">Seleccione un archivo</label>
+                        <input type="file" accept=".pdf" name="archivos[]" multiple>
+                    </div>
+
+                    <button type="submit" class="enviar">Entregar Tarea</button>
+                </form>
+                
                 <div class="contenedor">
                     <div class="fila-cont">
                         <a href="docCurso.html">

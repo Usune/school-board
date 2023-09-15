@@ -13,7 +13,7 @@
         $archivos_str = implode(",", $archivos);
 
         // carpeta de destino
-        $carpeta_destino = '../Vista/Uploads/Tareas/';
+        $carpeta_destino = '../Vista/Uploads/Actividades/';
 
         // foreach porque son varios archivos 
         // $tmp_name: nombre temporal de los archivos (Generado por el servidor web)
@@ -27,7 +27,7 @@
         
 
         $objConsultas = new Consultas();
-        $filas = $objConsultas->insertarEntregaTarea($descripcion, $archivos_str);
+        $filas = $objConsultas->insertarTarea($descripcion, $archivos_str);
 
     }else{
         echo '<script>alert("Por favor complete todos los campos")</script>';

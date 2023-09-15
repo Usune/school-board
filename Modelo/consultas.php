@@ -222,7 +222,7 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'INSERT INTO comunicado (titulo, descripcion, archivo) VALUES (:titulo, :descripcion, :archivo)';
+            $sql = 'INSERT INTO comunicado (titulo, descripcion, archivos) VALUES (:titulo, :descripcion, :archivo)';
             $consulta = $conexion->prepare($sql);
 
             $consulta->bindParam(':titulo',$titulo);
@@ -369,8 +369,24 @@
 
         }
 
+           // Función para entregar actividades
+        public function insertarTarea($descripcion, $archivos_str){
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "INSERT INTO tarea (descripcion, archivos)  VALUES (:descripcion, :archivos_str)";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':descripcion' , $descripcion);
+            $statement->bindParam(':archivos_str' , $archivos_str);
+            $statement->execute();
+
+            echo '<script>alert("Entrega exitosa")</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php"</script>';
+
+        }
+
         // Función para entregar actividades
-        public function entregarTarea($descripcion, $archivos_str){
+        public function insertarEntregaTarea($descripcion, $archivos_str){
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
@@ -459,7 +475,7 @@
                             break;
                             case "Docente":
                                 echo '<script>alert("Bienvenido rol docente")</script>';
-                                echo "<script>location.href='../Vista/html/Docente/homeDoc.html'</script>";
+                                echo "<script>location.href='../Vista/html/Docente/homeDoc.php'</script>";
                             break;
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';

@@ -201,7 +201,7 @@
         foreach($consulta as $f){
             echo '
                 <div class="fotoNombre fila-cont">
-                    <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="fotoPerfil">
+                    <img src="'.$f['foto'].'" alt="fotoPerfil">
                     <div class="texto">
                         <h4>'.$f['nombres'].'</h4>
                         <h4>'.$f['apellidos'].'</h4>
@@ -260,7 +260,7 @@
 
             echo'
                 <div class="fotoNombre fila-cont">
-                    <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="fotoPerfil">
+                <img src="'.$f['foto'].'" alt="fotoPerfil">
                     <div class="texto">
                         <h4>'.$f['nombres'].'</h4>
                         <h4>'.$f['apellidos'].'</h4>
@@ -281,8 +281,10 @@
 
                         <div class="file">
                             <label for="archivo">Seleccione una foto</label>
-                            <input type="file" accept=".jpg, .jpeg, .png, .gif" name="foto">
+                            <input type="file" accept=".jpg, .jpeg, .png, .gif" name="foto" required>
                         </div>
+                        
+                        <input type="number" value="'.$f['documento'].'" required name="documento" hidden>
                     
                         <button type="submit" class="enviar">Cambiar Foto</button>
                     </form>
@@ -303,7 +305,7 @@
 
             echo'
                 <div class="fotoNombre fila-cont">
-                    <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="fotoPerfil">
+                <img src="'.$f['foto'].'" alt="fotoPerfil">
                     <div class="texto">
                         <h4>'.$f['nombres'].'</h4>
                         <h4>'.$f['apellidos'].'</h4>
@@ -320,28 +322,30 @@
 
                 <div class="formulario">                    
                     <!--  enctype="multipart/form-data" -->
-                    <form action="../../../Controlador/actualizarPerfilClave.php" method="post" enctype="multipart/form-data">
+                    <form action="../../../Controlador/actualizarPerfilClave.php" method="post">
                         
                         <div class="fieldset">
                             <fieldset>
                                 <legend id="claA">Clave Actual</legend>
                             </fieldset>
-                            <input type="number" placeholder="Clave Actual" required legend="#claA">
+                            <input type="password" placeholder="Clave Actual" required legend="#claA" name="claveActual">
                         </div>
                     
                         <div class="fieldset">
                             <fieldset>
                                 <legend id="cla">Nueva Clave</legend>
                             </fieldset>
-                            <input type="number" placeholder="Nueva clave" required legend="#cla">
+                            <input type="password" placeholder="Nueva clave" required legend="#cla" name="claveNueva">
                         </div>
 
                         <div class="fieldset">
                             <fieldset>
                                 <legend id="cor">Confirmar clave</legend>
                             </fieldset>
-                            <input type="email" placeholder="Confirmar clave" required legend="#cor">
+                            <input type="password" placeholder="Confirmar clave" required legend="#cor" name="claveNueva2">
                         </div>
+                        
+                        <input type="number" value="'.$f['documento'].'" required name="documento" hidden>
 
                         <button type="submit" class="enviar">Actualizar Clave</button>
                     </form>

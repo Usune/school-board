@@ -363,7 +363,9 @@
         }
 
         // CONSULTAS PARA ESTUDIANTES 
-        public function mostrarAsignaturas($id){
+
+        // Funcion para cargar las asignaturas correspondientes al estudiante
+        public function cargarAsignaturas($documento){
             $rows = null;
 
             $objConexion = new Conexion();
@@ -392,7 +394,140 @@
             return $rows;
         }
 
+        // Funcion para mostrar las tareas correspondientes a una Asignatura 
+        public function cargarTareas($idAsignatura){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT 
+            tarea.idTarea,
+            asignatura.nombre as nombreAsignatura,
+            asignatura.idAsignatura,
+            usuario.foto,
+            usuario.nombres,
+            usuario.apellidos,
+            tarea.fecha_vencimiento,
+            tarea.titulo,
+            tarea.descripcion
+            FROM clase
+            INNER JOIN asignatura
+            ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN tarea 
+            ON tarea.idClase = clase.idClase
+            INNER JOIN curso
+            ON curso.idCurso = clase.idCurso
+            INNER JOIN usuario
+            ON usuario.documento = clase.idDocente
+            WHERE asignatura.idAsignatura = :idAsignatura
+            ORDER BY tarea.idTarea DESC";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idAsignatura' , $idAsignatura);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+        // Funcion para mostrar las tareas correspondientes a una Asignatura 
+        public function cargarTarea($idTarea){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT 
+            tarea.idTarea,
+            tarea.titulo,
+            tarea.descripcion,
+            tarea.fecha_creacion,
+            tarea.fecha_vencimiento,
+            tarea.archivos,
+            asignatura.nombre as nombreAsignatura,
+            asignatura.idAsignatura,
+            usuario.foto,
+            usuario.nombres,
+            usuario.apellidos
+            FROM clase
+            INNER JOIN asignatura
+            ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN tarea 
+            ON tarea.idClase = clase.idClase
+            INNER JOIN curso
+            ON curso.idCurso = clase.idCurso
+            INNER JOIN usuario
+            ON usuario.documento = clase.idDocente
+            WHERE tarea.idTarea = :idTarea";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idTarea' , $idTarea);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+        // Función para entregar actividades
+        public function entregarTarea($descripcion, $archivos_str){
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "INSERT INTO entrega (descripcion, archivos)  VALUES (:descripcion, :archivos_str)";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':descripcion' , $descripcion);
+            $statement->bindParam(':archivos_str' , $archivos_str);
+            $statement->execute();
+
+            echo '<script>alert("Entrega exitosa")</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php"</script>';
+
+        }
+
+
+
+        // Consulta para traer los archivos relacionados a la tarea
+        // SELECT 
+        //     tarea.idTarea,
+        //     tarea.idArchivo,
+        //     archivo.url,
+        //     asignatura.nombre as nombreAsignatura,
+        //     asignatura.idAsignatura,
+        //     usuario.foto,
+        //     usuario.nombres,
+        //     usuario.apellidos,
+        //     tarea.fecha_vencimiento,
+        //     tarea.titulo,
+        //     tarea.descripcion
+        //     FROM clase
+        //     INNER JOIN asignatura
+        //     ON asignatura.idAsignatura = clase.idAsignatura
+        //     INNER JOIN tarea 
+        //     ON tarea.idClase = clase.idClase
+        //     INNER JOIN curso
+        //     ON curso.idCurso = clase.idCurso
+        //     INNER JOIN usuario
+        //     ON usuario.documento = clase.idDocente
+        //     INNER JOIN archivo
+        //     ON archivo.idArchivo = tarea.idArchivo
+        //     WHERE tarea.idTarea = 1;
+
+
+
+
+
     }
+
+
 
     class ValidarSesion{
 

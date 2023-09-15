@@ -30,7 +30,6 @@ INSERT INTO usuario (documento, clave, rol, estado, nombres, apellidos, correo, 
 (12345, MD5('12345'), 'Docente', 'activo', 'Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'Nicole', 'Benavides', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
 
-
 CREATE TABLE acudiente (
     documento INT,
     nombres VARCHAR(100),
@@ -77,11 +76,9 @@ CREATE TABLE estudianteCurso (
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
 );
 
-
 INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES 
 (1, 1023163094),
-(1, 1);
-
+(1, 3);
 
 CREATE TABLE asignatura (
     idAsignatura INT AUTO_INCREMENT,
@@ -97,7 +94,6 @@ INSERT INTO asignatura (nombre) VALUES
 ('Fisica'),
 ('Ciencias prueba');
 
-
 CREATE TABLE clase (
     idClase INT AUTO_INCREMENT,
     idCurso INT,
@@ -111,12 +107,9 @@ CREATE TABLE clase (
     FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura)
 );
 
-
-
 INSERT INTO clase (idCurso, idAsignatura, idDocente) VALUES
 (1, 2, 2),
 (2, 1, 2);
-
 
 CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,
@@ -147,7 +140,7 @@ CREATE TABLE comunicado (
     titulo VARCHAR(200),
     fecha DATETIME DEFAULT NOW(),
     descripcion VARCHAR(400),
-    archivo VARCHAR(200),
+    archivos VARCHAR(200),
     PRIMARY KEY (idComunicado),
     FOREIGN KEY (idUsuario) REFERENCES usuario(documento),
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
@@ -165,6 +158,14 @@ CREATE TABLE tarea (
     FOREIGN KEY (idClase) REFERENCES clase(idClase)
 );
 
-
 INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
-(1, 'Ensayo sobre Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-08 13:11:5', NULL);
+(1, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', NULL),
+(1, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
+(1, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
+
+CREATE TABLE entrega(
+    idEntrega INT AUTO_INCREMENT,
+    descripcion VARCHAR(200),
+    archivos VARCHAR(400),
+    PRIMARY KEY (idEntrega)
+);

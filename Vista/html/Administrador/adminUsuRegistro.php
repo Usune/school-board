@@ -69,7 +69,6 @@
                                 <label for="rol">Rol</label>
                                 <select class="veriSelect" required name="rol">
                                     <option value="Seleccione" selected disabled>Seleccione una opción</option>
-                                    <option value="Administrador">Administrador</option>
                                     <option value="Docente">Docente</option>
                                     <option value="Estudiante">Estudiante</option>
                                 </select>

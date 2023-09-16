@@ -24,6 +24,7 @@ body {
     background-color: var(--beige);
 }
 
+/* Estilo general para formularios */
 .formulario {
     display: flex;
     flex-direction: column;
@@ -57,6 +58,7 @@ body {
     justify-content: center;
     height: 50px;
     width: 300px;
+    margin-bottom: 10px;
 }
 
 .fieldset input {
@@ -65,6 +67,7 @@ body {
     width: 95%;
     height: 78%;
     margin-left: -300px;
+    margin-bottom: 2px;
     border-radius: 20px;
     border: none;
     font-size: 15px;
@@ -103,7 +106,7 @@ body {
 
 .fieldset fieldset:has(~ input:focus) {
     border: var(--principal) 2px solid;
-    height: 94%;
+    height: 95%;
 }
 
 /* Clase fieldset_view para los select*/
@@ -113,6 +116,7 @@ body {
     justify-content: center;
     height: 60px;
     width: 300px;
+    margin-bottom: 10px;
 }
 
 .fieldset_view label {
@@ -229,6 +233,19 @@ body {
     color: var(--principal);
 }
 
+.formulario .radio {
+    text-align: start;
+}
+
+/* Estilos de romularios de filtro */
+/* #filtro {
+    display: none;
+} */
+
+#filtro form{
+    display: flex;
+}
+
 /* Clase del button submit */
 .enviar {
     margin-top: 20px;
@@ -279,26 +296,46 @@ body {
     justify-content: center;
 }
 
-.tabla .reportes {
+.tabla .opciones {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.tabla .reportes a {
-    width: 200px;
+.tabla .opciones a {
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     color: var(--negro);
-    padding: 10px 0px;
+    padding: 10px 10px;
 }
 
-.tabla .reportes a img {
+.tabla .opciones a img {
     width: 30px;
 }
 
-.tabla .reportes a:hover {
+.tabla .opciones a:hover {
     background-color: var(--principal);
+}
+
+.tabla .opciones button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tabla .opciones button:hover {
+    background-color: var(--principal);
+}
+
+.tabla .opciones button img {
+    width: 30px;
 }
 
 .tabla a img {
@@ -310,7 +347,7 @@ body {
 }
 
 .tabla table tr th {
-    font-size: 12px;
+    font-size: 14px;
     padding: 10px;
     max-width: 200px;
     border-left: 2px solid var(--negro);
@@ -453,6 +490,7 @@ body {
     top: 70px;
     background-color: var(--beige);
     border-radius: 20px;
+    z-index: 999;
 }
 
 .nav-pri #op1 ul {
@@ -612,15 +650,12 @@ footer {
     justify-content: center;
 }
 
-<<<<<<< HEAD
-=======
 hr {
     margin: 10px 0 10px 0;
     background-color: var(--gris);
     border: 1px solid var(--gris);
 }
 
->>>>>>> 2ab813672350040cc6e2e7177c19d8cec0fbfb53
 .info-footer {
     text-align: center;
 }
@@ -748,12 +783,11 @@ hr {
     }
 }
 
-/* Fin estilos para tarjetas */
-
 /* Clase para cambiar el display con ayuda de js */
 .show {
     display: block !important;
 }
+/* Fin Clase para cambiar el display con ayuda de js */
 
 /* Clase para acomodar los elementos en fila */
 .fila {
@@ -767,55 +801,7 @@ hr {
     flex-direction: column;
     margin-top: 15px;
 }
-
-<<<<<<< HEAD
-/* Estilos para TARJETAS*/
-.card-tarea{
-    margin: 50px 0;
-    width: 70%;
-    background: #75757500;
-    border: 3px solid #dbdbdb00;
-    backdrop-filter: blur(0.4rem);
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0px 5px 5px 5px #00000017;
-}
-
-
-
-.card-tarea .card-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-.card-header .info-user img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--azulClaro);
-    margin-right: 20px;
-}
-
-hr{
-    margin: 10px 0 10px 0;
-    background-color: var(--gris);
-    border: 1px solid var(--gris);
-}
-
-.card-tarea .card-info{
-    display: flex;
-    align-items: start;
-    padding-bottom: 40px;
-}
-
-.card-tarea .card-info img{
-    margin: 0 32px 0 5px;
-}
-/*Fin Estilos para TARJETAS*/
-=======
->>>>>>> 2ab813672350040cc6e2e7177c19d8cec0fbfb53
+/*Fin Clase para acomodar los elementos en fila */
 
 /* Estilos PERFIL USUARIO */
 .perfil {
@@ -882,10 +868,6 @@ hr{
 .enlacesPerfil a:hover {
     background-color: var(--gris);
 }
-<<<<<<< HEAD
-/* Fin Estilos PERFIL USUARIO */
-=======
-
 /* Fin Estilos PERFIL USUARIO */
 
 
@@ -1062,4 +1044,49 @@ hr#fechas {
 }
 
 /*Fin Estilos para TARJETAS*/
->>>>>>> 2ab813672350040cc6e2e7177c19d8cec0fbfb53
+
+/* Estilos para TARJETAS*/
+/* .card-tarea{
+    margin: 50px 0;
+    width: 70%;
+    background: #75757500;
+    border: 3px solid #dbdbdb00;
+    backdrop-filter: blur(0.4rem);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0px 5px 5px 5px #00000017;
+}
+
+
+
+.card-tarea .card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.card-header .info-user img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--azulClaro);
+    margin-right: 20px;
+}
+
+hr{
+    margin: 10px 0 10px 0;
+    background-color: var(--gris);
+    border: 1px solid var(--gris);
+}
+
+.card-tarea .card-info{
+    display: flex;
+    align-items: start;
+    padding-bottom: 40px;
+}
+
+.card-tarea .card-info img{
+    margin: 0 32px 0 5px;
+} */
+/*Fin Estilos para TARJETAS*/

@@ -14,16 +14,23 @@ Archivo: La entrada de archivo permite al usuario seleccionar un archivo de su d
 
 even.preventDefault(); Cancela el evento si este es cancelable, sin detener el resto del funcionamiento del evento, es decir, puede ser llamado de nuevo.
 
+
 COMANDOS BÁSICOS DE GIT
     - Clonar el repositorio en el PC: git clone https://github.com/Usune/school-board.git
     - Agregar un archivo al staging area: git add [NOMBRE DEL ARCHIVO]
     - Agregar todos los archivos al staging area: git add . 
     - Pasar del staging area al repository: git commit -m "Mensaje"
+    - Traer los cambios subidos por un colaborador: git pull origin main
+    - Subir los cambios al GitHub: git push
+
 
 FUNCION QUEPERMITE CREAR UN ARRAY DESDE UN STRING
     // Example 1
     $pizza  = "piece1 piece2 piece3 piece4 piece5 piece6";
     $pieces = explode(" ", $pizza);
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">

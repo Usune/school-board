@@ -34,43 +34,52 @@
             <section>
                 <h2>Administración de usuarios</h2>
 
-                <div class="formulario">
-
-                    <h3>Consultar usuario</h3>
-
-                    <p class="recordatorio">Seleccione el dato e ingrese la información del usuario que desea consultar</p>
-            
-                    <form action="administrador-usuario-consulta1.html" method="get">
-            
-                        <div class="fieldset_view">
-                            <label for="rol">Dato</label>
-                            <select class="veriSelect" required name="rol">
-                                <option value="Seleccione" selected disabled>Seleccione una opción</option>
-                                <option value="Administrador">Documento</option>
-                                <option value="Profesor">Rol</option>
-                                <option value="Estudiante">Estado</option>
-                                <option value="Estudiante">Apellidos</option>
-                                <option value="Estudiante">Nombres</option>
-                            </select>
-                        </div>
-                        
-                        <div class="fieldset"> 
-                            <fieldset>
-                                <legend id="usu">Documento</legend>
-                            </fieldset>
-                            <input type="number" placeholder="Documento" required legend="#usu" name="usuario">
-                        </div>
-                        <br>
-                        <button type="submit" class="enviar">Buscar</button>
-                    </form>
-                </div>
+                <h3>Consultar usuarios</h3>
 
                 <h3>Lista de usuarios</h3>
 
                 <div class="tabla">
 
-                    <div class="reportes">
+                    <div class="opciones">
                         <a href="adminUsuReportes.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
+                        
+                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
+                    </div>
+
+                    <div id="filtro">
+
+                        <form method="get">
+
+                            <div class="fieldset_view">
+                                <label for="rol">Dato</label>
+                                <select class="veriSelect" required name="rol">
+                                    <option value="Seleccione" selected disabled>Seleccione una opción</option>
+                                    <option value="documento">Documento</option>
+                                    <option value="Rol">Rol</option>
+                                    <option value="E">Estado</option>
+                                    <option value="Estudiante">Apellidos</option>
+                                    <option value="Estudiante">Nombres</option>
+                                </select>
+                            </div>
+
+                            <div class="radio">
+                                <p>Rol</p>
+                                <input type="radio" id="html" name="rol" value="HTML">
+                                <label for="html">Docente</label><br>
+                                <input type="radio" id="css" name="rol" value="CSS">
+                                <label for="css">Estudiante</label><br>
+                            </div>
+                            
+                            <div class="fieldset"> 
+                                <fieldset>
+                                    <legend id="bus">Buscar</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Buscar" required legend="#bus" name="usuario">
+                            </div>
+                            <br>
+                            <button type="submit" class="enviar">Filtrar</button>
+                        </form>
+                        
                     </div>
                     
                     <table>

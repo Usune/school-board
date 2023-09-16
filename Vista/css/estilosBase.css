@@ -1000,11 +1000,6 @@ hr {
 }
 
 
-
-
-
-
-
 hr#fechas {
     width: 10px;
     margin: 10px;
@@ -1020,10 +1015,15 @@ hr#fechas {
 }
 
 .card-tarea .archivos {
-    width: 40px;
+    width: 50%;
     height: 40px;
     background-color: var(--gris);
     margin: 0 10px 0 0;
+}
+
+.card-tarea .archivos a{
+    /* text-decoration: none; */
+    color: var(--negro);
 }
 
 .card-tarea .boton {

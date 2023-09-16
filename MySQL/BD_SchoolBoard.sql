@@ -158,6 +158,7 @@ CREATE TABLE tarea (
     FOREIGN KEY (idClase) REFERENCES clase(idClase)
 );
 
+
 INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
 (1, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', NULL),
 (1, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),

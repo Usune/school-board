@@ -54,14 +54,15 @@
         </aside>
 
         <main>
-            
-            <!-- breadcrumb -->    
+
+            <!-- breadcrumb -->
             <nav class="nav-main">
                 <a href="homeDoc.html">Cursos </a>
             </nav>
 
             <section>
                 <h2>Cursos</h2>
+
                 <div class="contenedor">
                     <div class="fila-cont">
                         <a href="docCurso.html">
@@ -79,7 +80,7 @@
             </section>
 
         </main>
-        
+
     </div>
 
     <hr>

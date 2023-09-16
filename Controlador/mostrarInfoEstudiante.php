@@ -133,100 +133,101 @@
 
 
             echo '
-            <div class="card-tarea">
-            <div class="card-header">
-                <div class="info-user fila">
-                    <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
-                    <p>
-                        '.$f['nombres'].' <br>
-                        '.$f['apellidos'].'
-                    </p>
+                <div class="card-tarea">
+                    <div class="card-header">
+                        <div class="info-user fila">
+                            <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
+                            <p>
+                                '.$f['nombres'].' <br>
+                                '.$f['apellidos'].'
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-cont">
+                        <div class="card-info">
+                            <img src="../../img/descripcion.png" alt="">
+                            <div class="info">
+                                <h3>'.$f['titulo'].'</h3>
+                                <p>
+                                    '.$f['descripcion'].'
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <img src="'.$f['foto'].'" alt="">
+                            <div class="fila">
+                                <div class="fechas">
+                                    <p>
+                                        '.$f['fecha_creacion'].'
+                                        03 / 09 / 2023
+                                    </p>
+                                </div>
+                                <hr id="fechas">
+                                <div class="fechas" id="vencida">
+                                    <p>
+                                        '.$fechaEstado.'
+                                        03 / 09 / 2023
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <img src="../../img/archivos.png" alt="">
+            ';
+
+                            foreach($archivos as $archivo){
+                                echo '
+                                    <div class="card-archivos">
+                                        <div class="archivos">
+                                            <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">ARCHIVITOS</a>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+
+            echo '
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="card-cont">
-                <div class="card-info">
-                    <img src="../../img/descripcion.png" alt="">
-                    <div class="info">
-                        <h3>'.$f['titulo'].'</h3>
+            
+                <div class="card-tarea">
+                <div class="card-header">
+                    <div class="info-user fila">
+                        <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
                         <p>
-                            '.$f['descripcion'].'
+                            '.$f['nombres'].' <br>
+                            '.$f['apellidos'].'
                         </p>
                     </div>
                 </div>
-                <div class="card-info">
-                    <img src="'.$f['foto'].'" alt="">
-                    <div class="fila">
-                        <div class="fechas">
-                            <p>
-                                '.$f['fecha_creacion'].'
-                                03 / 09 / 2023
-                            </p>
-                        </div>
-                        <hr id="fechas">
-                        <div class="fechas" id="vencida">
-                            <p>
-                                '.$fechaEstado.'
-                                03 / 09 / 2023
-                            </p>
-                        </div>
+                <hr>
+                <div class="card-formulario">
+                    <div class="formulario">
+                        <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data" id="formulario">
+
+                            <div class="textarea">
+                                <label for="descripcion">Descripción</label>
+                                <textarea id="descripcion" cols="30" rows="10"
+                                    name="descripcion">Ingrese una descripción</textarea>
+                            </div>
+
+                            <div class="file">
+                                <label for="archivo">Seleccione un archivo</label>
+                                <input type="file" accept=".pdf" name="archivos[]" multiple>
+                            </div>
+
+                            <button type="submit" class="enviar">Entregar Tarea</button>
+                        </form>
                     </div>
                 </div>
-                <div class="card-info">
-                    <img src="../../img/archivos.png" alt="">
-            ';
-
-            echo '
-                </div>
-            
+            </div>
+                  
             ';
 
 
 
-                //             foreach($archivos as $archivo){
-                //                 echo '
-                //                 <div class="card-archivos">
-                //                     <div class="'.$archivo.'"></div>
-                //                 </div>
-                //                 ';
-                //             }
-                          
-                // echo '
-                //     </div>
-                //         </div>
-                //     </div>
-                //     <div class="card-tarea">
-                //     <div class="card-header">
-                //         <div class="info-user fila">
-                //             <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
-                //             <p>
-                //                 '.$f['nombres'].' <br>
-                //                 '.$f['apellidos'].'
-                //             </p>
-                //         </div>
-                //     </div>
-                //     <hr>
-                //     <div class="card-formulario">
-                //         <div class="formulario">
-                //             <form action="../../../Controlador/entregarActividades.php" method="post" enctype="multipart/form-data" id="formulario">
-
-                //                 <div class="textarea">
-                //                     <label for="descripcion">Descripción</label>
-                //                     <textarea id="descripcion" cols="30" rows="10"
-                //                         name="descripcion">Ingrese una descripción</textarea>
-                //                 </div>
-
-                //                 <div class="file">
-                //                     <label for="archivo">Seleccione un archivo</label>
-                //                     <input type="file" accept=".pdf" name="archivo[]" multiple>
-                //                 </div>
-
-                //                 <button type="submit" class="enviar">Entregar Tarea</button>
-                //             </form>
-                //         </div>
-                //     </div>
-                // </div>
-                // ';        
+                
 
                 
 

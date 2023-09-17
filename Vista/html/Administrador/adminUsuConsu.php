@@ -2,6 +2,7 @@
     require_once ('../../../Modelo/conexion.php');
     require_once ('../../../Modelo/consultas.php');
     require_once ('../../../Modelo/seguridadAdmin.php');
+    require_once ('../../../Controlador/mostrarPerfil.php');
     require_once ('../../../Controlador/mostrarUsuAdmin.php');
 ?>
 
@@ -36,8 +37,6 @@
 
                 <h3>Consultar usuarios</h3>
 
-                <h3>Lista de usuarios</h3>
-
                 <div class="tabla">
 
                     <div class="opciones">
@@ -50,39 +49,56 @@
 
                         <form method="get">
 
-                            <div class="fieldset_view">
-                                <label for="rol">Dato</label>
-                                <select class="veriSelect" required name="rol">
-                                    <option value="Seleccione" selected disabled>Seleccione una opción</option>
-                                    <option value="documento">Documento</option>
-                                    <option value="Rol">Rol</option>
-                                    <option value="E">Estado</option>
-                                    <option value="Estudiante">Apellidos</option>
-                                    <option value="Estudiante">Nombres</option>
-                                </select>
-                            </div>
+                                <div class="radio">
+                                    <p>Rol</p>
+                                    <input type="radio" name="rol" value="nada" checked hidden>
+                                    <input type="radio" name="rol" value="docente">
+                                    <label for="html">Docente</label><br>
+                                    <input type="radio" name="rol" value="estudiante">
+                                    <label for="css">Estudiante</label><br>
+                                </div>
 
-                            <div class="radio">
-                                <p>Rol</p>
-                                <input type="radio" id="html" name="rol" value="HTML">
-                                <label for="html">Docente</label><br>
-                                <input type="radio" id="css" name="rol" value="CSS">
-                                <label for="css">Estudiante</label><br>
-                            </div>
+                                <div class="radio">
+                                    <p>Estado</p>
+                                    <input type="radio" name="estado" value="nada" checked hidden>
+                                    <input type="radio" name="estado" value="activo">
+                                    <label for="html">Activo</label><br>
+                                    <input type="radio" name="estado" value="inactivo">
+                                    <label for="css">Inactivo</label><br>
+                                </div>
+
+                                <div class="fieldset"> 
+                                    <fieldset>
+                                        <legend id="doc">Documento</legend>
+                                    </fieldset>
+                                    <input type="number" placeholder="Documento" legend="#doc" name="documento">
+                                </div>
+
+                                <div class="fieldset"> 
+                                    <fieldset>
+                                        <legend id="nom">Nombre</legend>
+                                    </fieldset>
+                                    <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
+                                </div>
+                                
+                                <div class="fieldset"> 
+                                    <fieldset>
+                                        <legend id="ape">Apellido</legend>
+                                    </fieldset>
+                                    <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
+                                </div>
                             
-                            <div class="fieldset"> 
-                                <fieldset>
-                                    <legend id="bus">Buscar</legend>
-                                </fieldset>
-                                <input type="text" placeholder="Buscar" required legend="#bus" name="usuario">
-                            </div>
-                            <br>
-                            <button type="submit" class="enviar">Filtrar</button>
+                            <button type="submit" class="filtrar">Filtrar</button>
+                            <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+
                         </form>
                         
                     </div>
                     
                     <table>
+                        <caption>
+                            Lista de usuarios registrados
+                        </caption>
                         <tr>
                             <th>Tipo Documento</th>
                             <th>Documento</th>
@@ -90,13 +106,23 @@
                             <th>Nombres</th>
                             <th>Estado</th>
                             <th>Rol</th>
-                            <th colspan="2">Opciones</th>
+                            <th>Opciones</th>
+                            <!-- <th colspan="2">Opciones</th> -->
                         </tr>
-                        <tr>
+
                             <?php
-                                cargarUsuarios();
+
+                                if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
+                                        
+                                    filtrarUsuarios($_GET['rol'], $_GET['estado'], $_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
+                                  
+                                }else {
+
+                                    cargarUsuarios();
+
+                                }
                             ?>
-                        </tr>
+
                     </table>
                 </div>
             </section>

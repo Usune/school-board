@@ -2,7 +2,7 @@
     require_once ('../../../Modelo/conexion.php');
     require_once ('../../../Modelo/consultas.php');
     require_once ('../../../Modelo/seguridadAdmin.php');
-    require_once ('../../../Controlador/mostrarUsuAdmin.php');
+    require_once ('../../../Controlador/mostrarPerfil.php');
 ?>
 
 <!DOCTYPE html>
@@ -39,19 +39,14 @@
                     <div class="fila-cont">
                         <a href="adminUsuRegistro.php">
                             <img src="../../img/registrar.svg" alt="logo">
-                            <p>Registrar</p>
+                            <p>Registrar usuario</p>
                         </a>
 
                         <a href="adminUsuConsu.php">
                             <img src="../../img/lupa.svg" alt="logo">
-                            <p>Consultar</p>
+                            <p>Consultar usuarios</p>
                         </a>
                     </div>
-        
-                    <a href="adminUsuModificar.php">
-                        <img src="../../img/edit.svg" alt="logo">
-                        <p>Modificar</p>
-                    </a>
 
                 </div>
         

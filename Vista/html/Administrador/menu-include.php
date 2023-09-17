@@ -12,10 +12,10 @@
             </div>
         </div>
         <div class="buscar">
-            <form action="#">
+            <!-- <form action="#">
                 <input type="text" name="q" placeholder="Buscar...">
                 <button type="button"><img src="../../img/lupa.svg" alt="buscar"></button>
-            </form>
+            </form> -->
         </div>
         <div class="user">
             

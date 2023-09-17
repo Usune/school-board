@@ -9,39 +9,38 @@ const mostrar = (event) => {
 
 // Funciones para mostrar y quitar el legend de un input especifico al dar click en el input, para que eso funcione el input debe tener el atributo legend y dentro el id del legend al que está asociado, así mismo el legend debe tener el id especifico que tiene el atributo legend.
 const onFocus = (event) => {
-    
     let idLegend = event.target.getAttribute('legend');
-
-    document.querySelector(event.target.getAttribute('legend')).style.display = 'block';
-
-    document.querySelector(idLegend).style.color = 'var(--principal)';
-    event.target.previousElementSibling.style.border = 'var(--principal) 2px solid';
-    event.target.previousElementSibling.style.height = '95%';
+    const fieldset = event.target.closest('.fieldset');
+    if(fieldset != null){
+        if(event.target.previousElementSibling === fieldset.querySelector('fieldset')) {
+            document.querySelector(event.target.getAttribute('legend')).style.display = 'block';
+        
+            document.querySelector(idLegend).style.color = 'var(--principal)';
+            event.target.previousElementSibling.style.border = 'var(--principal) 2px solid';
+            event.target.previousElementSibling.style.height = '95%';
+        }
+    }
 }
 
 const onBlur = (event) => {
     let value = event.target.value;
     let idLegend = event.target.getAttribute('legend');
-
-    if(value.length > 0) {
-        event.target.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
-        event.target.previousElementSibling.style.height = '95%';
-        document.querySelector(idLegend).style.color = 'var(--grisOscuro)';
-        document.querySelector(event.target.getAttribute('legend')).style.display = 'block';
-    }else {
-        event.target.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
-        event.target.previousElementSibling.style.height = '80%';
-        document.querySelector(event.target.getAttribute('legend')).style.display = 'none';
+    const fieldset = event.target.closest('.fieldset');
+    if(fieldset != null){
+        if(value.length > 0 && event.target.previousElementSibling === fieldset.querySelector('fieldset')) {
+            event.target.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
+            event.target.previousElementSibling.style.height = '95%';
+            document.querySelector(idLegend).style.color = 'var(--grisOscuro)';
+            document.querySelector(idLegend).style.display = 'block';
+        }else {
+            event.target.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
+            event.target.previousElementSibling.style.height = '80%';
+            document.querySelector(idLegend).style.display = 'none';
+        }
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
-    // Aquí de agregamos a todos los input la función onFocus y onBlur con ayuda de un forEach
-    document.querySelectorAll('input').forEach(function (elemt) {
-        elemt.addEventListener('focus', onFocus);
-        elemt.addEventListener('blur', onBlur);
-    });
 
     // En esta línea traemos todos los elementos con la clase 'desplegar' y le vamos a agregar el evento 'click', que ejecuta la función 'mostrar', esto lo hacemos con la función forEach() o tambien se puede hacer usando bucle 'for'
     document.querySelectorAll('.desplegar').forEach(function (element) {
@@ -58,7 +57,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Aquí le agregamos a todos los input la función onFocus y onBlur con ayuda de un forEach
+    document.querySelectorAll('input').forEach(function (elemt) {
+        elemt.addEventListener('focus', onFocus);
+        elemt.addEventListener('blur', onBlur);
+        
+        // Se evalua si los inpit ya están llenos para aplicar los estilos correspondiente
+        if (elemt.value.length > 0) {
+            // closest() busca el ancestro más cercano (o el propio elemento) que cumple con un selector especificado.
+            const fieldset = elemt.closest('.fieldset');
+            if (fieldset != null){
+                if (elemt.previousElementSibling === fieldset.querySelector('fieldset')) {
+                    elemt.previousElementSibling.style.border = 'var(--grisOscuro) 2px solid';
+                    elemt.previousElementSibling.style.height = '95%';
+                    let idLegend = elemt.getAttribute('legend');
+                    document.querySelector(idLegend).style.color = 'var(--grisOscuro)';
+                    document.querySelector(idLegend).style.display = 'block';
+                }
+            }
+        }
+    });
+
 });
+
+
 
 
 

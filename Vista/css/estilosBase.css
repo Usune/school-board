@@ -114,6 +114,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: start;
     height: 60px;
     width: 300px;
     margin-bottom: 10px;
@@ -206,6 +207,10 @@ body {
     margin: 15px 0px;
 }
 
+.fila-cont .file {
+    margin: 10px !important;
+}
+
 #formulario .file label {
     color: var(--grisOscuro);
     padding-left: 10px;
@@ -233,17 +238,47 @@ body {
     color: var(--principal);
 }
 
-.formulario .radio {
+.fila-cont .radio {
+    margin: 10px;
+}
+
+.radio {
     text-align: start;
 }
 
+.radio p{
+    font-weight: bold;
+}
+
 /* Estilos de romularios de filtro */
-/* #filtro {
+#filtro {
     display: none;
-} */
+    margin-bottom: 20px;
+}
 
 #filtro form{
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Clase button filtrar */
+.filtrar {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: var(--gris);
+    color: var(--negro);
+    border: var(--gris) 2px solid;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.filtrar:hover {
+    filter: brightness(0.9);
 }
 
 /* Clase del button submit */
@@ -279,7 +314,7 @@ body {
     color: var(--negro);
     font-size: 16px;
     margin: 0px 0px 20px 0px;
-    width: 75%;
+    width: 100%;
     text-align: center;
 }
 
@@ -290,7 +325,7 @@ body {
     width: 70vw;
     background-color: transparent;
     padding: 10px;
-    text-align: center;
+    text-align: start;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -308,7 +343,8 @@ body {
     align-items: center;
     text-decoration: none;
     color: var(--negro);
-    padding: 10px 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 
 .tabla .opciones a img {
@@ -323,11 +359,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 10px;
+    padding: 5px 10px;
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 10px;
 }
 
 .tabla .opciones button:hover {
@@ -342,17 +379,34 @@ body {
     width: 20px
 }
 
+/* border-collapse: collapse; Significa que no habrá espacio ni separación entre los bordes de las celdas adyacentes */
 .tabla table {
-    border-right: 2px solid var(--negro)
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla table caption{
+    font-size: 18px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.tabla table tr:nth-child(odd) {
+    background-color: var(--grisClaro);
+}
+
+.tabla table tr:nth-child(even) {
+    background-color: var(--gris);
 }
 
 .tabla table tr th {
     font-size: 14px;
     padding: 10px;
     max-width: 200px;
-    border-left: 2px solid var(--negro);
-    border-bottom: 2px solid var(--negro);
-    background-color: var(--grisOscuro);
+    border: none;
+    background-color: var(--principal);
+    filter: brightness(0.9);
+    text-align: start;
 }
 
 .tabla tr td {
@@ -360,14 +414,13 @@ body {
     padding: 10px;
     max-width: 200px;
     min-width: 100px;
-    border-left: 2px solid var(--negro);
-    border-bottom: 2px solid var(--negro);
+    border: none;
 }
 
 .tabla tr td a {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     text-decoration: none;
     color: var(--negro);
 }
@@ -480,7 +533,8 @@ body {
 
 .nav-pri .user button img {
     margin-left: 10px;
-    width: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 20px;
 }
 
@@ -526,7 +580,7 @@ body {
 aside {
     display: flex;
     width: 250px;
-    height: 80vh;
+    height: 90vh;
     min-height: 700px;
     padding-left: 10px;
     background-color: var(--grisClaro);
@@ -607,7 +661,7 @@ aside ul li button:hover {
 
 main {
     width: calc(100% - 300px);
-    height: 80vh;
+    height: 90vh;
     min-height: 700px;
     border-radius: 20px;
     margin: 0px 15px 15px 15px;
@@ -639,7 +693,13 @@ section {
 section h2 {
     text-align: center;
     margin: 10px 0px 10px 0px;
-    font-size: 40px;
+    font-size: 30px;
+}
+
+section h3 {
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    font-size: 24px;
 }
 
 footer {
@@ -802,6 +862,18 @@ hr {
     margin-top: 15px;
 }
 /*Fin Clase para acomodar los elementos en fila */
+
+/* Estilos ACTUALIZAR DATOS PRIMERA VEZ */
+.registroPrimero {
+    height: 98vh;
+}
+
+.cont-regisPrimero {
+    border: 2px solid var(--grisOscuro);
+    border-radius: 20px;
+    padding: 50px;
+}
+/* Fin Estilos ACTUALIZAR DATOS PRIMERA VEZ */
 
 /* Estilos PERFIL USUARIO */
 .perfil {

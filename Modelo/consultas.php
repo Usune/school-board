@@ -2,79 +2,7 @@
 
     class Consultas{
 
-        // Estas consultas se repiten en la clase ValidarSesion
-        // public function validarInicioSesion($usuario, $claveMd) {
-
-        //     // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
-        //     $objConexion = new Conexion();
-        //     $conexion = $objConexion->get_conexion();
-
-        //     $sql1 = 'SELECT * FROM usuario WHERE documento = :usuario';
-
-        //     $consulta1 = $conexion->prepare($sql1);
-        //     $consulta1->bindParam(':usuario', $usuario);
-        //     $consulta1->execute();
-
-        //     $f = $consulta1->fetch();
-
-        //     if ($f) {
-
-        //         if ($f['clave'] == $claveMd) {
-                    
-        //             if ($f['estado'] == 'activo'){
-        //                 // SE REALIZA EL INICIO DE SESIÓN
-        //                 session_start();
-
-        //                 // CREAMOS VARIABLES DE SESIÓN
-        //                 $_SESSION['id'] = $f['documento'];
-        //                 $_SESSION['correo'] = $f['correo'];
-        //                 $_SESSION['AUTENTICADO'] = 'SI';
-        //                 $_SESSION['rol'] = $f['rol'];
-                        
-        //                 switch ($f['rol']){
-
-        //                     case "Administrador":
-        //                         echo '<script>alert("Bienvenido rol administrador")</script>';
-        //                         echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php'</script>";
-        //                     break;
-        //                     case "Docente":
-        //                         echo '<script>alert("Bienvenido rol docente")</script>';
-        //                         echo "<script>location.href='../Vista/html/Docente/homeDoc.php'</script>";
-        //                     break;
-        //                     case "Estudiante":
-        //                         echo '<script>alert("Bienvenido rol estudiante")</script>';
-        //                         echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
-        //                     break;
-
-        //                 }
-
-        //             }else {
-        //                 echo '<script>alert("Su cuenta no se encuentra activa, comuniquese con el administrador de la entidad")</script>';
-        //                 echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-        //             }
-
-        //         }else {
-        //             echo '<script>alert("Clave incorrecta, intentelo nuevamente.")</script>';
-        //             echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-        //         }
-
-        //     }else {
-        //         echo '<script>alert("El usuario ingresado no está registrado.")</script>';
-        //         echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-        //     }
-
-        // }
-
-        // public function cerrarSesion(){
-        //     $objConexion = new Conexion();
-        //     $conexion = $objConexion->get_conexion();
-
-        //     session_start();
-        //     session_destroy();
-            
-        //     echo "<script>location.href='../Vista/html/Extras/inicioSesion.html'</script>";
-
-        // }
+        // CONSULTAS PARA ADMINISTRADORES
 
         public function insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado){
 
@@ -88,11 +16,11 @@
             $consulta1->bindParam(':documento', $documento);
             $consulta1->execute();
             // fetch() para corvertir un texto separado por comas en un array. Este no existira si en la consulta no se obtuvo nada.
-            $f1 = $consulta1->fetch();
+            $f = $consulta1->fetch();
 
-            if ($f1) {
+            if ($f) {
 
-                echo '<script>alert("El usuario ya existe en el sistema")</script>';
+                echo '<script>alert("Ya existe un usuario en el sistema con el número de documento ingresado")</script>';
                 echo "<script>location.href='../Vista/html/Administrador/adminUsuRegistro.php'</script>";
 
             } else {
@@ -146,26 +74,154 @@
 
         }
 
-        public function actualizarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $estado){
+        public function actualizarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $estado, $claveMD, $id){
+            $f = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'UPDATE usuario SET documento=:documento, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:documento';
-            $consulta = $conexion->prepare($sql);
+            if ($id != $documento) {
+
+                // SELECT DE USUARIO REGISTRADO EN EL SISTEMA
+                $sql1 = 'SELECT * FROM usuario WHERE documento = :documento';
+                $consulta1 = $conexion->prepare($sql1);
+                $consulta1->bindParam(':documento', $documento);
+                $consulta1->execute();
+    
+                // fetch() para corvertir un texto separado por comas en un array. Este no existira si en la consulta no se obtuvo nada.
+                $f = $consulta1->fetch();
+
+                if($f){
+
+                    echo '<script>alert("Ya existe un usuario en el sistema con el número de documento ingresado")</script>';
+                    echo "<script>location.href='../Vista/html/Administrador/adminUsuModificar.php?id=".$id."'</script>";
+
+                }else {
+                
+                    // SELECT PARA TRAER TODOS LOS DATOS DEL USUARIO
+                    $sql = 'SELECT * FROM usuario WHERE documento = :documento';
+                    $consulta = $conexion->prepare($sql);
+                    $consulta->bindParam(':documento', $id);
+                    $consulta->execute();
+                    
+                    while ($resultado = $consulta->fetch()) {
+        
+                        $f[] = $resultado;
+        
+                    }
+        
+                    // VERIFICAR SI YA HA INGRESADO
+                    foreach ($f as $f1) {
+        
+                        if (strlen($f1['correo'])>0) {
+                            
+                            echo '<script>alert('.$f1['correo'].')</script>';
+        
+                            $sql = 'UPDATE usuario SET documento=:documento, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:id';
+                            $consulta = $conexion->prepare($sql);
+                            
+                            $consulta->bindParam(':documento', $documento);
+                            $consulta->bindParam(':rol', $rol);
+                            $consulta->bindParam(':estado', $estado);
+                            $consulta->bindParam(':tipoDoc', $tipoDoc);
+                            $consulta->bindParam(':nombres', $nombres);
+                            $consulta->bindParam(':apellidos', $apellidos);
+                            $consulta->bindParam(':id', $id);
+                
+                            $consulta->execute();
+                
+                            echo '<script>alert("Usuario actualizado con exito (Sin clave)")</script>';
+                            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+        
+                        } else {
+        
+                            $sql = 'UPDATE usuario SET documento=:documento, clave=:claveMD, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:id';
+                            $consulta = $conexion->prepare($sql);
+                            
+                            $consulta->bindParam(':documento', $documento);
+                            $consulta->bindParam(':claveMD', $claveMD);
+                            $consulta->bindParam(':rol', $rol);
+                            $consulta->bindParam(':estado', $estado);
+                            $consulta->bindParam(':tipoDoc', $tipoDoc);
+                            $consulta->bindParam(':nombres', $nombres);
+                            $consulta->bindParam(':apellidos', $apellidos);
+                            $consulta->bindParam(':id', $id);
+                
+                            $consulta->execute();
+                
+                            echo '<script>alert("Usuario actualizado con exito (Con clave)")</script>';
+                            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+                
+                        }
+
+                    }
+                    
+                }
+
+
+            }else {
+                
+                // SELECT PARA TRAER TODOS LOS DATOS DEL USUARIO
+                $sql = 'SELECT * FROM usuario WHERE documento = :documento';
+                $consulta = $conexion->prepare($sql);
+                $consulta->bindParam(':documento', $id);
+                $consulta->execute();
+                
+                while ($resultado = $consulta->fetch()) {
+    
+                    $f[] = $resultado;
+    
+                }
+    
+                // VERIFICAR SI YA HA INGRESADO
+                foreach ($f as $f1) {
+    
+                    if (strlen($f1['correo'])>0) {
+                        
+                        echo '<script>alert('.$f1['correo'].')</script>';
+    
+                        $sql = 'UPDATE usuario SET documento=:documento, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:id';
+                        $consulta = $conexion->prepare($sql);
+                        
+                        $consulta->bindParam(':documento', $documento);
+                        $consulta->bindParam(':rol', $rol);
+                        $consulta->bindParam(':estado', $estado);
+                        $consulta->bindParam(':tipoDoc', $tipoDoc);
+                        $consulta->bindParam(':nombres', $nombres);
+                        $consulta->bindParam(':apellidos', $apellidos);
+                        $consulta->bindParam(':id', $id);
             
-            $consulta->bindParam(':documento', $documento);
-            $consulta->bindParam(':rol', $rol);
-            $consulta->bindParam(':estado', $estado);
-            $consulta->bindParam(':tipoDoc', $tipoDoc);
-            $consulta->bindParam(':nombres', $nombres);
-            $consulta->bindParam(':apellidos', $apellidos);
+                        $consulta->execute();
+            
+                        echo '<script>alert("Usuario actualizado con exito (Sin clave)")</script>';
+                        echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+    
+                    } else {
+    
+                        $sql = 'UPDATE usuario SET documento=:documento, clave=:claveMD, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:id';
+                        $consulta = $conexion->prepare($sql);
+                        
+                        $consulta->bindParam(':documento', $documento);
+                        $consulta->bindParam(':claveMD', $claveMD);
+                        $consulta->bindParam(':rol', $rol);
+                        $consulta->bindParam(':estado', $estado);
+                        $consulta->bindParam(':tipoDoc', $tipoDoc);
+                        $consulta->bindParam(':nombres', $nombres);
+                        $consulta->bindParam(':apellidos', $apellidos);
+                        $consulta->bindParam(':id', $id);
+            
+                        $consulta->execute();
+            
+                        echo '<script>alert("Usuario actualizado con exito (Con clave)")</script>';
+                        echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+            
+                    }
 
-            $consulta->execute();
+                }
 
-            echo '<script>alert("Usuario actualizado con exito")</script>';
-            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+            }
 
+            
         }
 
         public function actualizarPerfilAdmin($telefono, $direccion, $correo, $documento){
@@ -225,14 +281,14 @@
         }
 
         // Trae todos los usuarios registrados
-        public function mostrarUsuAdmin() {
+        public function mostrarUsuariosAdmin() {
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM usuario";
+            $sql = "SELECT * FROM usuario WHERE rol = 'Docente' OR rol = 'Estudiante'";
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -290,26 +346,71 @@
             return $f;
         }
 
-        public function verPerfil($id) {
+        public function filtrarUsuarios($rol, $estado, $nombres, $apellidos, $documento) {
+            $f = null;
 
-            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
- 
-            $sql = "SELECT * FROM usuario WHERE documento=:id";
-            $consulta = $conexion->prepare($sql);
-            $consulta->bindParam(':id', $id);
-            $consulta->execute(); 
- 
-            while ($resultado = $consulta->fetch()) {
- 
-                 $f[] = $resultado;
- 
+
+            $sql = 'SELECT * FROM usuario WHERE rol NOT LIKE "Administrador"';
+
+            if (!empty($nombres)) {
+                $sql .= " AND nombres LIKE :nombres";
             }
- 
-            // return para que la variable vualva a su estado inicial
+            
+            if (!empty($apellidos)) {
+                $sql .= " AND apellidos LIKE :apellidos";
+            }
+            
+            if (!empty($documento)) {
+                $sql .= " AND documento = :documento";
+            }
+            
+            if (!empty($estado) && $estado != 'nada') {
+                $sql .= " AND estado = :estado";
+            }
+            
+            if (!empty($rol) && $rol != 'nada') {
+                $sql .= " AND rol = :rol";
+            }
+
+            $consulta = $conexion->prepare($sql);
+
+            if (!empty($nombres)) {
+                $nombres = '%'.$nombres.'%';
+                $consulta->bindParam(':nombres', $nombres);
+            }
+            
+            if (!empty($apellidos)) {
+                
+                $apellidos = '%'.$apellidos.'%';
+                $consulta->bindParam(':apellidos', $apellidos);
+            }
+            
+            if (!empty($documento)) {
+                
+                // $documento = '%'.$documento.'%';
+                $consulta->bindParam(':documento', $documento);
+            }
+
+            if (!empty($estado) && $estado != 'nada') {
+                $consulta->bindParam(':estado', $estado);
+            }
+            
+            if (!empty($rol) && $rol != 'nada') {
+                $consulta->bindParam(':rol', $rol);
+            }
+
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
             return $f;
- 
+
         }
 
         public function eliminarUsuAdmin($id) {
@@ -522,6 +623,8 @@
 
     class ValidarSesion{
 
+        // FUNCIONES PARA TODOS LOS ROLES
+
         public function validarInicioSesion($usuario, $claveMd) {
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -553,8 +656,13 @@
                         switch ($f['rol']){
 
                             case "Administrador":
-                                echo '<script>alert("Bienvenido rol administrador")</script>';
-                                echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php'</script>";
+                                if($f['correo']){
+                                    echo '<script>alert("Bienvenido rol administrador")</script>';
+                                    echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php?id=".$f['documento']."'</script>";
+                                }else{
+                                    echo '<script>alert("Bienvenido rol administrador, registro primera vez")</script>';
+                                    echo "<script>location.href='../Vista/html/Administrador/registroPrimero.php?id=".$f['documento']."'</script>";
+                                }
                             break;
                             case "Docente":
                                 echo '<script>alert("Bienvenido rol docente")</script>';
@@ -596,28 +704,67 @@
 
         }
 
-        // Trae un usuario especifico de los usuarios registrados
-        public function buscarUsuario($documento, $correo) {
+    }
 
-           // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
-           $objConexion = new Conexion();
-           $conexion = $objConexion->get_conexion();
+    class ConsultasUsuario{
 
-           $sql = "SELECT * FROM usuario WHERE documento=:documento AND correo=:correo";
-           $consulta = $conexion->prepare($sql);
-           $consulta->bindParam(':documento', $documento);
-           $consulta->bindParam(':correo', $correo);
-           $consulta->execute(); 
+        public function buscarUsuario($id) {
 
-           while ($resultado = $consulta->fetch()) {
-
-                $f[] = $resultado;
-
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+ 
+            $sql = "SELECT * FROM usuario WHERE documento=:id";
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute(); 
+ 
+            while ($resultado = $consulta->fetch()) {
+ 
+                 $f[] = $resultado;
+ 
             }
-
+ 
             // return para que la variable vualva a su estado inicial
             return $f;
+ 
+        }
 
+        public function primeraActualizacion($rol, $telefono, $direccion, $correo, $documento, $foto, $claveMD) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'UPDATE usuario SET clave=:claveMD, telefono=:telefono, direccion=:direccion, correo=:correo, foto=:foto WHERE documento=:documento';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':claveMD', $claveMD);
+            $consulta->bindParam(':documento', $documento);
+            $consulta->bindParam(':telefono', $telefono);
+            $consulta->bindParam(':direccion', $direccion);
+            $consulta->bindParam(':correo', $correo);
+            $consulta->bindParam(':foto', $foto);
+
+            $consulta->execute();
+
+            echo '<script>alert("Información actualizada con exito")</script>';
+            // Evitar volver a la página anterior
+
+            // echo '<script>window.history.pushState(null, null, window.location.href); </script>';
+
+            switch ($rol){
+
+                case "Administrador":
+                    echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php?id=".$documento."'</script>";
+                break;
+                case "Docente":
+                    echo "<script>location.href='../Vista/html/Docente/homeDoc.php?id=".$documento."'</script>";
+                break;
+                case "Estudiante":
+                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php?id=".$documento."'</script>";
+                break;
+
+            }
         }
 
     }

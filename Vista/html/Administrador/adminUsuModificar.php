@@ -44,7 +44,7 @@
                     
                     <h3>Modificar usuario</h3>
 
-                    <p class="recordatorio">Digite el documento del usuario que desea modificar</p>
+                    <p class="recordatorio">Recuerde no dejar campos vacios</p>
         
                     <?php
                         cargarUsuEditar();

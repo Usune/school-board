@@ -30,10 +30,12 @@
 
         <aside id="menu">
             <ul>
+                <li id="liRol">Administrador</li>
                 <li><a href="adminUsu.php"><img src="../../img/user.svg" alt="logo">Usuarios</a></li>
                 <li><a href="adminCurso.php"><img src="../../img/curso.svg" alt="logo">Cursos</a></li>
-                <li><a href="adminAsig.html"><img src="../../img/asignaturas.svg" alt="logo">Asignaturas</a></li>
-                <li><a href="adminClase.html"><img src="../../img/asignaturas.svg" alt="logo">Clases</a></li>
+                <li><a href="adminAsig.php"><img src="../../img/asignaturas.svg" alt="logo">Asignaturas</a></li>
+                <li><a href="adminAula.php"><img src="../../img/aulas.svg" alt="logo">Aulas</a></li>
+                <li><a href="adminClase.php"><img src="../../img/clases.svg" alt="logo">Clases</a></li>
                 <li><a href="adminComun.php"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
             </ul>
         </aside>

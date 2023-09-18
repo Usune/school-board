@@ -5,7 +5,6 @@
     require_once ('../../../Controlador/mostrarPerfil.php');
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,36 +15,35 @@
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Comunicados Admin</title>
+    <title>Asignaruras Admin</title>
 </head>
 <body>
     
     <?php
         include("menu-include.php");
     ?>
-
         <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminCurso.php"> / Comunicados</a>
+                <a href="adminAsig.php"> / Asignaturas</a>
             </nav>
         
             <section>
 
-                <h2>Administración de comunicados</h2>
+                <h2>Administración de asignaturas</h2>
                 
                 <div class="contenedor">
                     <div class="fila-cont">
-                        <a href="adminComunRegistrar.php">
-                            <img src="../../img/agregar.svg" alt="logo">
-                            <p>Subir<br> comunicado</p>
+                        <a href="adminAsigRegistro.php">
+                            <img src="../../img/crearAsig.svg" alt="logo">
+                            <p>Crear <br> Asignatura</p>
                         </a>
 
-                        <a href="adminComunConsu.html">
+                        <a href="adminAsigConsu.php">
                             <img src="../../img/lupa.svg" alt="logo">
-                            <p>Consultar comunicados</p>
+                            <p>Consultar Asignaturas</p>
                         </a>
                     </div>
 

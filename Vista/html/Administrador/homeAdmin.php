@@ -45,14 +45,18 @@
                             <img src="../../img/curso.svg" alt="logo">
                             <p>Cursos</p>            
                         </a>
-                        <a href="adminAsig.html">
+                        <a href="adminAsig.php">
                             <img src="../../img/asignaturas.svg" alt="logo">
                             <p>Asignaturas</p>
                         </a>
                     </div>
                     <div class="fila-cont">
-                        <a href="adminClase.html">                
-                            <img src="../../img/asignaturas.svg" alt="logo">
+                        <a href="adminAulas.php">                
+                            <img src="../../img/aulas.svg" alt="logo">
+                            <p>Aulas</p>            
+                        </a>
+                        <a href="adminClase.php">                
+                            <img src="../../img/clases.svg" alt="logo">
                             <p>Clases</p>            
                         </a>
                         <a href="adminComun.php">                

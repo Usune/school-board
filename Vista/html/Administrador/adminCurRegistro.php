@@ -30,7 +30,7 @@
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminCurso.php"> / Cursos</a>
-                <a href="adminCurRegistro.php"> / Registrar</a>
+                <a href="adminCurRegistro.php"> / Crear</a>
             </nav>
         
             <section>
@@ -39,15 +39,14 @@
                 
                 <div class="formulario">
                     
-                    <h3>Registrar curso</h3>
+                    <h3>Crear curso</h3>
 
-                    <p class="recordatorio">Antes de registrar el curso, asegurese de que todos los campos son correctos.</p>
+                    <p class="recordatorio">Antes de crear el curso, asegurese de que todos los campos son correctos.</p>
         
                     <form action="../../../Controlador/registrarCurAdmin.php" method="post" id="formulario">
             
-            
                         <div class="fieldset_view">
-                            <label for="rol">Jornada</label>
+                            <label for="jornada">Jornada</label>
                             <select class="veriSelect" required name="jornada">
                                 <option value="Seleccione" selected disabled>Seleccione una opción</option>
                                 <option value="unica">Unica</option>
@@ -62,8 +61,6 @@
                             </fieldset>
                             <input type="text" placeholder="Nombre" required legend="#nom" name="nombre">
                         </div>
-        
-                        <p id="texto"></p>
                         
                         <button type="submit" class="enviar">Registrar curso</button>
                     </form>

@@ -11,8 +11,8 @@ CREATE TABLE usuario (
     documento INT,
     clave VARCHAR(100),
     rol ENUM('Administrador','Docente','Estudiante','Master'),
-    estado ENUM('activo', 'pendiente', 'inactivo'),
-    tipoDoc ENUM('CC', 'TI', 'pasaporte'), 
+    estado ENUM('Activo', 'Pendiente', 'Inactivo'),
+    tipoDoc ENUM('CC', 'TI', 'Pasaporte'), 
     nombres VARCHAR(100),
     apellidos VARCHAR(100),
     telefono VARCHAR(15),
@@ -41,7 +41,7 @@ CREATE TABLE acudiente (
 
 CREATE TABLE curso (
     idCurso INT AUTO_INCREMENT,
-    jornada ENUM('unica', 'mañana', 'tarde'),
+    jornada ENUM('Única', 'Mañana', 'Tarde'),
     nombre VARCHAR(15),
     PRIMARY KEY (idCurso)
 );

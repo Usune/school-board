@@ -74,6 +74,93 @@
 
         }
 
+        public function insertarCurAdmin($nombre, $jornada) {
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM curso WHERE nombre = :nombre AND jornada = :jornada';
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->bindParam(':jornada', $jornada);
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("El nombre del curso ingresado ya existe en la jornada seleccionada")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+                
+            }else {
+
+                $sql = 'INSERT INTO curso(nombre, jornada) VALUES (:nombre, :jornada)';
+                $resultado = $conexion->prepare($sql);
+                $resultado->bindParam(':nombre', $nombre);
+                $resultado->bindParam(':jornada', $jornada);
+    
+                $resultado->execute();
+    
+                echo '<script>alert("El curso fue registrado")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+
+            }
+
+        }
+
+        public function insertarAsigAdmin($nombre) {
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM curso WHERE nombre = :nombre';
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("Ya existe una asignatura con el nombre ingresado")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+                
+            }else {
+
+                $sql = 'INSERT INTO asignatura(nombre) VALUES (:nombre)';
+                $resultado = $conexion->prepare($sql);
+                $resultado->bindParam(':nombre', $nombre);
+    
+                $resultado->execute();
+    
+                echo '<script>alert("La asignatura fue creada correctamente")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAsigRegistro.php"</script>';
+
+            }
+
+        }
+        
+        public function insertarComunAdmin($titulo, $descripcion, $archivo) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO comunicado (titulo, descripcion, archivos) VALUES (:titulo, :descripcion, :archivo)';
+            $consulta = $conexion->prepare($sql);
+
+            $consulta->bindParam(':titulo',$titulo);
+            $consulta->bindParam(':descripcion',$descripcion);
+            $consulta->bindParam(':archivo',$archivo);
+
+            $consulta->execute();
+
+            echo '<script>alert("Comunicado subido correcamente")</script>';
+            echo "<script>location.href='../Vista/html/Administrador/adminComunRegistrar.php'</script>";         
+
+        }
+
         public function actualizarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $estado, $claveMD, $id){
             $f = null;
 
@@ -224,6 +311,43 @@
             
         }
 
+        public function actualizarCurAdmin($nombre, $jornada, $idCurso){
+            $f = null;
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM curso WHERE nombre = :nombre AND jornada = :jornada';
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->bindParam(':jornada', $jornada);
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("No se pudo realizar la actualización, el nombre del curso ingresado ya existe en la jornada seleccionada")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurModificar.php?id='.$idCurso.'"</script>';
+                
+            }else {
+                
+                $sql = 'UPDATE curso SET jornada=:jornada, nombre=:nombre WHERE idCurso=:idCurso';
+                $consulta = $conexion->prepare($sql);
+                
+                $consulta->bindParam(':jornada', $jornada);
+                $consulta->bindParam(':nombre', $nombre);
+                $consulta->bindParam(':idCurso', $idCurso);
+    
+                $consulta->execute();
+    
+                echo '<script>alert("El curso fue actualizado correctamente")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurConsu.php"</script>';
+
+            }
+        }
+
         public function actualizarPerfilAdmin($telefono, $direccion, $correo, $documento){
 
             $objConexion = new Conexion();
@@ -326,14 +450,14 @@
         }
 
         // Trae todos los cursos registrados
-        public function mostrarCurAdmin() {
+        public function mostrarCursosAdmin() {
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM curso";
+            $sql = "SELECT * FROM curso ORDER BY idCurso  DESC";
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -344,6 +468,29 @@
             }
 
             return $f;
+        }
+
+        // Trae un curso especifico de los cursos registrados
+        public function mostrarCursoAdmin($id) {
+
+           // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+           $objConexion = new Conexion();
+           $conexion = $objConexion->get_conexion();
+
+           $sql = "SELECT * FROM curso WHERE idCurso=:id";
+           $consulta = $conexion->prepare($sql);
+           $consulta->bindParam(':id', $id);
+           $consulta->execute(); 
+
+           while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            // return para que la variable vualva a su estado inicial
+            return $f;
+
         }
 
         public function filtrarUsuarios($rol, $estado, $nombres, $apellidos, $documento) {
@@ -413,6 +560,46 @@
 
         }
 
+        public function filtrarCursos($jornada, $nombre) {
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM curso WHERE 1=1';
+            
+            if (!empty($jornada) && $jornada != 'nada') {
+                $sql .= " AND jornada LIKE :jornada";
+            }
+
+            if (!empty($nombre)) {
+                $sql .= " AND nombre LIKE :nombre";
+            }
+            
+            $consulta = $conexion->prepare($sql);
+            
+            if (!empty($jornada)  && $jornada != 'nada') {
+                
+                $consulta->bindParam(':jornada', $jornada);
+            }
+
+            if (!empty($nombre)) {
+                $nombre = '%'.$nombre.'%';
+                $consulta->bindParam(':nombre', $nombre);
+            }
+            
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
         public function eliminarUsuAdmin($id) {
             
             $objConexion = new Conexion();
@@ -425,42 +612,6 @@
             
             echo '<script>alert("El usuario a sido eliminado.")</script>';
             echo "<script>location.href='../Vista/html/administrador/adminUsuConsu.php'</script>";
-
-        }
-        
-        public function insertarComunAdmin($titulo, $descripcion, $archivo) {
-
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            $sql = 'INSERT INTO comunicado (titulo, descripcion, archivos) VALUES (:titulo, :descripcion, :archivo)';
-            $consulta = $conexion->prepare($sql);
-
-            $consulta->bindParam(':titulo',$titulo);
-            $consulta->bindParam(':descripcion',$descripcion);
-            $consulta->bindParam(':archivo',$archivo);
-
-            $consulta->execute();
-
-            echo '<script>alert("Comunicado subido correcamente")</script>';
-            echo "<script>location.href='../Vista/html/Administrador/adminComunRegistrar.php'</script>";         
-
-        }
-
-        public function insertarCurAdmin($nombre, $jornada) {
-            
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            $sql = 'INSERT INTO curso(nombre, jornada) VALUES (:nombre, :jornada)';
-            $resultado = $conexion->prepare($sql);
-            $resultado->bindParam(':nombre', $nombre);
-            $resultado->bindParam(':jornada', $jornada);
-
-            $resultado->execute();
-
-            echo '<script>alert("El curso fue registrado")</script>';
-            echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
 
         }
 

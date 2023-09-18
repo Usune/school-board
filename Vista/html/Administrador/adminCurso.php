@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Administrar cursos</title>
+    <title>Cursos Admin</title>
 </head>
 <body>
     
@@ -37,8 +37,8 @@
                 <div class="contenedor">
                     <div class="fila-cont">
                         <a href="adminCurRegistro.php">
-                            <img src="../../img/registrar.svg" alt="logo">
-                            <p>Registrar curso</p>
+                            <img src="../../img/agregar.svg" alt="logo">
+                            <p>Crear curso</p>
                         </a>
 
                         <a href="adminCurConsu.php">

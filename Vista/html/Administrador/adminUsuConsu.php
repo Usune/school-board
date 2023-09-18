@@ -52,19 +52,19 @@
                                 <div class="radio">
                                     <p>Rol</p>
                                     <input type="radio" name="rol" value="nada" checked hidden>
-                                    <input type="radio" name="rol" value="docente">
-                                    <label for="html">Docente</label><br>
-                                    <input type="radio" name="rol" value="estudiante">
-                                    <label for="css">Estudiante</label><br>
+                                    <input type="radio" name="rol" id="docente" value="docente">
+                                    <label for="docente">Docente</label><br>
+                                    <input type="radio" name="rol" id="estu" value="estudiante">
+                                    <label for="estu">Estudiante</label><br>
                                 </div>
 
                                 <div class="radio">
                                     <p>Estado</p>
                                     <input type="radio" name="estado" value="nada" checked hidden>
-                                    <input type="radio" name="estado" value="activo">
-                                    <label for="html">Activo</label><br>
-                                    <input type="radio" name="estado" value="inactivo">
-                                    <label for="css">Inactivo</label><br>
+                                    <input type="radio" name="estado" id="activo" value="activo">
+                                    <label for="activo">Activo</label><br>
+                                    <input type="radio" name="estado" id="inactivo" value="inactivo">
+                                    <label for="inactivo">Inactivo</label><br>
                                 </div>
 
                                 <div class="fieldset"> 

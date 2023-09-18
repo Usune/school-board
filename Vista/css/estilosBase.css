@@ -595,6 +595,15 @@ aside ul {
     flex-direction: column;
 }
 
+#liRol {
+    margin-top: 15px;
+    width: 90%;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 aside ul li {
     margin-top: 15px;
     width: 90%;

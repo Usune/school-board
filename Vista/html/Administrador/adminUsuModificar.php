@@ -4,6 +4,7 @@
     require_once ('../../../Modelo/seguridadAdmin.php');
     require_once ('../../../Controlador/mostrarPerfil.php');
     require_once ('../../../Controlador/mostrarUsuAdmin.php');
+    require_once ('../../../Controlador/mostrarCurAdmin.php');
 ?>
 
 
@@ -33,7 +34,7 @@
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminUsu.php"> / Usuarios</a>
-                <a href="adminUsuModificar.php"> / Modificar</a>
+                <a href=""> / Modificar</a>
             </nav>
 
             <section>

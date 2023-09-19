@@ -73,10 +73,7 @@
                     <div class="fieldset_view">
                         <label for="rol">Rol</label>
                         <select class="veriSelect" required name="rol">
-                            <option value="'.$f['rol'].'" selected selected>'.$f['rol'].'</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Docente">Docente</option>
-                            <option value="Estudiante">Estudiante</option>
+                            <option value="'.$f['rol'].'" selected>'.$f['rol'].'</option>
                         </select>
                     </div>
 
@@ -110,22 +107,39 @@
 
                 </div>
 
-                <div class="fila-cont">
+                <div class="fila-cont">';
 
-                    <div class="fieldset_view">
-                        <label for="estado">Estado</label>
-                        <select class="veriSelect" required name="estado">
-                            <option value="'.$f['estado'].'" selected>'.$f['estado'].'</option>
-                            <option value="activo">activo</option>
-                            <option value="inactivo">inactivo</option>
-                        </select>
-                    </div>
-        
-                    <!-- Input clave temporal    -->
-                    <input id="clatem" type="text" hidden name="clave">
-                    <input type="number" hidden value="'.$f['documento'].'" name="id">
+                    if($f['rol'] == 'Estudiante'){
+                        echo'
+                        <div class="fieldset_view">
+                            <label for="rol">Curso</label>
+                            <select class="veriSelect" required name="curso">
+                                
+                            ';
+                            cargarCursoActual($f['documento']);
+                            cargarCursosRegistro();
+                        
+                        echo '</select>
+                        </div>';
+                        
+                    }
+
+                    echo'
+
+                        <div class="fieldset_view">
+                            <label for="estado">Estado</label>
+                            <select class="veriSelect" required name="estado">
+                                <option value="'.$f['estado'].'" selected>'.$f['estado'].'</option>
+                                <option value="activo">activo</option>
+                                <option value="inactivo">inactivo</option>
+                            </select>
+                        </div>
 
                 </div>
+        
+                <!-- Input clave temporal    -->
+                <input id="clatem" type="text" hidden name="clave">
+                <input type="number" hidden value="'.$f['documento'].'" name="id">
         
                 <p id="texto"></p>
                 
@@ -191,6 +205,65 @@
                     <td><a href="adminUsuModificar.php?id='.$f['documento'].'" alt="Modificar">Modificar<img src="../../img/edit.svg" alt="Eliminar"></a></td>
 
                     <!-- <td><a href="../../../Controlador/eliminarUsuAdmin.php?id='.$f['documento'].'">Eliminar<img src="../../img/eliminar.svg" alt="Eliminar"></a></td> -->
+                </tr>
+                ';
+
+            }
+
+
+        }
+
+    }
+
+    function cargarUsuariosReporte(){
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->mostrarUsuariosAdmin();
+
+        if (!isset($consultas)) {
+            echo '<h3> No hay usuarios registrados </h3>';
+        } else {
+
+            foreach($consultas as $f) {
+
+                echo '
+                <tr>
+                    <td>'.$f['tipoDoc'].'</td>
+                    <td>'.$f['documento'].'</td>
+                    <td>'.$f['apellidos'].'</td>
+                    <td>'.$f['nombres'].'</td>
+                    <td>'.$f['estado'].'</td>
+                    <td>'.$f['rol'].'</td>
+                </tr>
+                ';
+
+            }
+
+        }
+
+    } 
+
+    function filtrarUsuariosReporte($rol, $estado, $nombres, $apellidos, $documento){
+
+        $objConsultas = new Consultas();
+        $consulta = $objConsultas->filtrarUsuarios($rol, $estado, $nombres, $apellidos, $documento);
+
+        if(!isset($consulta)){
+
+            echo '<h3>NO HAY USUARIOS REGISTRADOS CON LAS CARACTERISTICAS SELECCIONADAS</h3>';
+
+        }else {
+
+            foreach($consulta as $f) {
+
+                echo '
+                <tr>
+                    <td>'.$f['tipoDoc'].'</td>
+                    <td>'.$f['documento'].'</td>
+                    <td>'.$f['apellidos'].'</td>
+                    <td>'.$f['nombres'].'</td>
+                    <td>'.$f['estado'].'</td>
+                    <td>'.$f['rol'].'</td>
                 </tr>
                 ';
 

@@ -32,8 +32,8 @@
             <!-- breadcrumb -->    
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminUsu.php"> / Cursos</a>
-                <a href="adminUsuModificar.php"> / Modificar</a>
+                <a href="adminCurso.php"> / Cursos</a>
+                <a href="adminCurModificar.php"> / Modificar</a>
             </nav>
 
             <section>
@@ -44,7 +44,7 @@
                     
                     <h3>Modificar curso</h3>
 
-                    <p class="recordatorio">Recuerde no dejas campos vacios</p>
+                    <p class="recordatorio">Recuerde no dejar campos vacios</p>
         
                     <?php
                         cargarCurEditar();

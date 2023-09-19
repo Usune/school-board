@@ -29,7 +29,7 @@
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminCurso.php"> / Comunicados</a>
+                <a href="adminComun.php"> / Comunicados</a>
             </nav>
         
             <section>
@@ -43,7 +43,7 @@
                             <p>Subir<br> comunicado</p>
                         </a>
 
-                        <a href="adminComunConsu.html">
+                        <a href="adminComunConsu.php">
                             <img src="../../img/lupa.svg" alt="logo">
                             <p>Consultar comunicados</p>
                         </a>

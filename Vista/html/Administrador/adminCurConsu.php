@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Usuarios</title>
+    <title>Cursos Admin</title>
 </head>
 
 <body>
@@ -32,18 +32,18 @@
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminCurso.php"> / Cursos</a>
-                <a href="adminCurRegistro.php"> / Consultar</a>
+                <a href="adminCurConsu.php"> / Consultar</a>
             </nav>
         
             <section>
 
                 <h2>Administración de cursos</h2>
-                <h3>Consultar usuarios</h3>
+                <h3>Consultar cursos</h3>
 
                 <div class="tabla">
 
                     <div class="opciones">
-                        <a href="adminUsuReportes.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
+                        <a href="reportesCurAdmin.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
                         
                         <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
                     </div>
@@ -51,6 +51,15 @@
                     <div id="filtro">
 
                         <form method="get">
+
+                                <div class="fieldset"> 
+                                    <fieldset>
+                                        <legend id="nom">Nombre</legend>
+                                    </fieldset>
+                                    <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
+                                </div>
+
+                            <div class="fila-cont">
 
                                 <div class="radio">
                                     <p>Jornada</p>
@@ -62,16 +71,11 @@
                                     <input type="radio" name="jornada" id="tarde" value="tarde">
                                     <label for="tarde">Tarde</label><br>
                                 </div>
+                                <button type="submit" class="filtrar">Filtrar</button>
+                                <a href="adminCurConsu.php" class="filtrar">Limpiar</a>
 
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="nom">Nombre</legend>
-                                    </fieldset>
-                                    <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
-                                </div>
+                            </div>
                             
-                            <button type="submit" class="filtrar">Filtrar</button>
-                            <a href="adminCurConsu.php" class="filtrar">Limpiar</a>
 
                         </form>
                         

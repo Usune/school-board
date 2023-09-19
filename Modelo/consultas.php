@@ -4,19 +4,19 @@
 
         // CONSULTAS PARA ADMINISTRADORES
 
-        public function insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado){
+        public function insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado, $idCurso){
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
             // SELECT DE USUARIO REGISTRADO EN EL SISTEMA
-            $sql1 = 'SELECT * FROM usuario WHERE documento = :documento';
-            $consulta1 = $conexion->prepare($sql1);
-            $consulta1->bindParam(':documento', $documento);
-            $consulta1->execute();
+            $sql = 'SELECT * FROM usuario WHERE documento = :documento';
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':documento', $documento);
+            $consulta->execute();
             // fetch() para corvertir un texto separado por comas en un array. Este no existira si en la consulta no se obtuvo nada.
-            $f = $consulta1->fetch();
+            $f = $consulta->fetch();
 
             if ($f) {
 
@@ -26,48 +26,42 @@
             } else {
             
                 // SE CREA LA VARIABLE QUE CONTENDRÁ LA CONSULTA A EJECUTAR EN LA TABLA usuario
-                $sql2 = 'INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos) VALUES (:documento, :claveMd, :rol, :estado, :tipoDoc, :nombres, :apellidos)';
+                $sql = 'INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos) VALUES (:documento, :claveMd, :rol, :estado, :tipoDoc, :nombres, :apellidos)';
 
                 // PREPARAMOS TODO LO NOCESARIO PARA EJECUTAR LA FUNCION ANTERIOR
-                $consulta2 = $conexion->prepare($sql2);
+                $consulta = $conexion->prepare($sql);
 
                 // CONVERTIMOS LOS ARGUMENTOS EN PARAMETROS
-                $consulta2->bindParam(':documento', $documento);
-                $consulta2->bindParam(':claveMd', $claveMd);
-                $consulta2->bindParam(':rol', $rol);
-                $consulta2->bindParam(':estado', $estado);
-                $consulta2->bindParam(':tipoDoc', $tipoDoc);
-                $consulta2->bindParam(':nombres', $nombres);
-                $consulta2->bindParam(':apellidos', $apellidos);
+                $consulta->bindParam(':documento', $documento);
+                $consulta->bindParam(':claveMd', $claveMd);
+                $consulta->bindParam(':rol', $rol);
+                $consulta->bindParam(':estado', $estado);
+                $consulta->bindParam(':tipoDoc', $tipoDoc);
+                $consulta->bindParam(':nombres', $nombres);
+                $consulta->bindParam(':apellidos', $apellidos);
 
                 // EJECUTAMOS EL INSERT DE LA TABLA usuario
-                $consulta2->execute();
+                $consulta->execute();
 
+                if($rol == 'Estudiante'){
+            
+                    $sql = 'INSERT INTO estudiantecurso (idCurso, idEstudiante) VALUES (:idCurso, :idEstudiante)';
+    
+                    $consulta = $conexion->prepare($sql);
+    
+                    $consulta->bindParam(':idCurso', $idCurso);
+                    $consulta->bindParam(':idEstudiante', $documento);
+    
+                    $consulta->execute();
+    
+                    echo '<script>alert("Usuario con rol estudiante registrado con exito")</script>';
 
-                // // SELECT PARA TRAER EL ID DEL USUARIO RECIEN REGISTRADO
-                // $sql3 = 'SELECT idUsuario FROM usuario WHERE usuario = :usuario';
-                // $consulta3 = $conexion->prepare($sql3);
-                // $consulta3->bindParam(':usuario', $usuario);
-                // $consulta3->execute();
-                // // fetch() para corvertir un texto separado por comas en un array. Este no existira si en la consulta no se obtuvo nada.
-                // $f2 = $consulta3->fetch();
+                }else if($rol == 'Docente'){
 
+                    echo '<script>alert("Usuario con rol docente registrado con exito")</script>';
 
-                // // SE CREA LA VARIABLE QUE CONTENDRÁ LA CONSULTA A EJECUTAR EN LA TABLA perfilUsuario
-                // $sql4 = 'INSERT INTO perfilUsuario (idPerfilUsuario, idUsuario, tipoDoc, documento, nombres, apellidos) VALUES (:idPerfilUsuario, :idUsuario, :tipoDoc, :usuario, :nombres, :apellidos)';
-                // // PREPARAMOS TODO LO NOCESARIO PARA EJECUTAR LA FUNCION ANTERIOR
-                // $consulta4 = $conexion->prepare($sql4);
-                // // CONVERTIMOS LOS ARGUMENTOS EN PARAMETROS $f['clave']
-                // $consulta4->bindParam(':idPerfilUsuario', $f2['idUsuario']);
-                // $consulta4->bindParam(':idUsuario', $f2['idUsuario']);
-                // $consulta4->bindParam(':tipoDoc', $tipoDoc);
-                // $consulta4->bindParam(':usuario', $usuario);
-                // $consulta4->bindParam(':nombres', $nombres);
-                // $consulta4->bindParam(':apellidos', $apellidos);
-                // // EJECUTAMOS EL INSERT DE LA TABLA perfilUsuario
-                // $consulta4->execute();
+                }
 
-                echo '<script>alert("Usuario registrado con exito")</script>';
                 echo "<script>location.href='../Vista/html/Administrador/adminUsuRegistro.php'</script>";
 
             }
@@ -125,7 +119,7 @@
             if($f){
 
                 echo '<script>alert("Ya existe una asignatura con el nombre ingresado")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAsigRegistro.php"</script>';
                 
             }else {
 
@@ -141,15 +135,50 @@
             }
 
         }
+
+        public function insertarAulaAdmin($nombre) {
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM aula WHERE nombre = :nombre';
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("Ya existe un aula con el nombre ingresado")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAulaRegistro.php"</script>';
+                
+            }else {
+
+                $sql = 'INSERT INTO aula(nombre) VALUES (:nombre)';
+                $resultado = $conexion->prepare($sql);
+                $resultado->bindParam(':nombre', $nombre);
+    
+                $resultado->execute();
+    
+                echo '<script>alert("El aula fue creada correctamente")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAulaRegistro.php"</script>';
+
+            }
+
+        }
         
-        public function insertarComunAdmin($titulo, $descripcion, $archivo) {
+        public function insertarComunAdmin($idUsuario, $idCurso, $titulo, $descripcion, $archivo) {
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'INSERT INTO comunicado (titulo, descripcion, archivos) VALUES (:titulo, :descripcion, :archivo)';
+            $sql = 'INSERT INTO comunicado (idUsuario, idCurso, titulo, descripcion, archivos) VALUES (:idUsuario, :idCurso, :titulo, :descripcion, :archivo)';
             $consulta = $conexion->prepare($sql);
 
+            $consulta->bindParam(':idUsuario',$idUsuario);
+            $consulta->bindParam(':idCurso',$idCurso);
             $consulta->bindParam(':titulo',$titulo);
             $consulta->bindParam(':descripcion',$descripcion);
             $consulta->bindParam(':archivo',$archivo);
@@ -161,15 +190,15 @@
 
         }
 
-        public function actualizarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $estado, $claveMD, $id){
+        public function actualizarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $estado, $claveMD, $id, $idCurso){
             $f = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
+            // Evaluamos si se está cambiando el documento
             if ($id != $documento) {
 
-                // SELECT DE USUARIO REGISTRADO EN EL SISTEMA
                 $sql1 = 'SELECT * FROM usuario WHERE documento = :documento';
                 $consulta1 = $conexion->prepare($sql1);
                 $consulta1->bindParam(':documento', $documento);
@@ -178,6 +207,7 @@
                 // fetch() para corvertir un texto separado por comas en un array. Este no existira si en la consulta no se obtuvo nada.
                 $f = $consulta1->fetch();
 
+                // SI SE ESTÁ CAMBIANDO MIRAMOS QUE NO EXISTA YA
                 if($f){
 
                     echo '<script>alert("Ya existe un usuario en el sistema con el número de documento ingresado")</script>';
@@ -185,7 +215,7 @@
 
                 }else {
                 
-                    // SELECT PARA TRAER TODOS LOS DATOS DEL USUARIO
+                    //ANTES DE HACER LA ACTUALIZACIÓN TRAEMOS EL DOCUMENTO ACTUAL HACIENDO UN SELECT PARA TRAER TODOS LOS DATOS DEL USUARIO
                     $sql = 'SELECT * FROM usuario WHERE documento = :documento';
                     $consulta = $conexion->prepare($sql);
                     $consulta->bindParam(':documento', $id);
@@ -197,12 +227,10 @@
         
                     }
         
-                    // VERIFICAR SI YA HA INGRESADO
+                    // VERIFICAMOS SI YA HA INGRESADO
                     foreach ($f as $f1) {
         
                         if (strlen($f1['correo'])>0) {
-                            
-                            echo '<script>alert('.$f1['correo'].')</script>';
         
                             $sql = 'UPDATE usuario SET documento=:documento, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:id';
                             $consulta = $conexion->prepare($sql);
@@ -218,7 +246,6 @@
                             $consulta->execute();
                 
                             echo '<script>alert("Usuario actualizado con exito (Sin clave)")</script>';
-                            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
         
                         } else {
         
@@ -237,14 +264,12 @@
                             $consulta->execute();
                 
                             echo '<script>alert("Usuario actualizado con exito (Con clave)")</script>';
-                            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
                 
                         }
 
                     }
-                    
-                }
 
+                }
 
             }else {
                 
@@ -281,7 +306,6 @@
                         $consulta->execute();
             
                         echo '<script>alert("Usuario actualizado con exito (Sin clave)")</script>';
-                        echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
     
                     } else {
     
@@ -300,7 +324,6 @@
                         $consulta->execute();
             
                         echo '<script>alert("Usuario actualizado con exito (Con clave)")</script>';
-                        echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
             
                     }
 
@@ -308,7 +331,20 @@
 
             }
 
+            if($rol == 'Estudiante') {
+
+                $sql = 'UPDATE estudiantecurso SET idCurso=:idCurso WHERE idEstudiante = :idEstudiante';
+                $consulta = $conexion->prepare($sql);
+                
+                $consulta->bindParam(':idCurso', $idCurso);
+                $consulta->bindParam(':idEstudiante', $documento);
+    
+                $consulta->execute();
+                
+            }
             
+            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+
         }
 
         public function actualizarCurAdmin($nombre, $jornada, $idCurso){
@@ -344,6 +380,76 @@
     
                 echo '<script>alert("El curso fue actualizado correctamente")</script>';
                 echo '<script>location.href="../Vista/html/Administrador/adminCurConsu.php"</script>';
+
+            }
+        }
+
+        public function actualizarAsigAdmin($nombre, $idAsignatura){
+            $f = null;
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM asignatura WHERE nombre = :nombre';
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("No se pudo realizar la actualización, el nombre ingresado ya existe en el sistema")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAulaModificar.php?id='.$idAsignatura.'"</script>';
+                
+            }else {
+                
+                $sql = 'UPDATE asignatura SET nombre=:nombre WHERE idAsignatura=:idAsignatura';
+                $consulta = $conexion->prepare($sql);
+                
+                $consulta->bindParam(':nombre', $nombre);
+                $consulta->bindParam(':idAsignatura', $idAsignatura);
+    
+                $consulta->execute();
+    
+                echo '<script>alert("La asignatura fue actualizada correctamente")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAsigConsu.php"</script>';
+
+            }
+        }
+
+        public function actualizarAulaAdmin($nombre, $idAula){
+            $f = null;
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM aula WHERE nombre = :nombre';
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("No se pudo realizar la actualización, el nombre ingresado ya existe en el sistema")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAulaModificar.php?id='.$idAula.'"</script>';
+                
+            }else {
+                
+                $sql = 'UPDATE aula SET nombre=:nombre WHERE idAula=:idAula';
+                $consulta = $conexion->prepare($sql);
+                
+                $consulta->bindParam(':nombre', $nombre);
+                $consulta->bindParam(':idAula', $idAula);
+    
+                $consulta->execute();
+    
+                echo '<script>alert("El aula fue actualizada correctamente")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAulaConsu.php"</script>';
 
             }
         }
@@ -412,7 +518,7 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM usuario WHERE rol = 'Docente' OR rol = 'Estudiante'";
+            $sql = "SELECT * FROM usuario WHERE rol = 'Docente' OR rol = 'Estudiante' ORDER BY fechaCreacion DESC";
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -457,7 +563,79 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM curso ORDER BY idCurso  DESC";
+            $sql = "SELECT * FROM curso WHERE idCurso != '1' ORDER BY idCurso  DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+        }
+
+        // Trae todas las asignaturas registrados
+        public function mostrarAsignaturasAdmin() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM asignatura ORDER BY idAsignatura  DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+        }
+
+        // Trae todas las aulas registrados
+        public function mostrarAulasAdmin() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM aula ORDER BY idAula  DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+        }
+
+        // Trae todos los comunicados registrados
+        public function mostrarComunicadosAdmin() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT usuario.nombres as nombre, usuario.apellidos as apellido, usuario.foto  as foto, 
+            comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.fecha  as fecha, comunicado.descripcion  as descripcion,  comunicado.archivos  as archivo,
+            curso.nombre as curso, curso.jornada as jornada
+            
+            FROM comunicado
+
+            INNER JOIN usuario ON comunicado.idUsuario = usuario.documento
+            INNER JOIN curso ON comunicado.idCurso = curso.idCurso
+            ORDER BY fecha  DESC";
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -491,6 +669,82 @@
             // return para que la variable vualva a su estado inicial
             return $f;
 
+        }
+
+        // Trae una asignatura especifica de las asignaturas registradas
+        public function mostrarAsignaturaAdmin($id) {
+
+           // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+           $objConexion = new Conexion();
+           $conexion = $objConexion->get_conexion();
+
+           $sql = "SELECT * FROM asignatura WHERE idAsignatura=:id";
+           $consulta = $conexion->prepare($sql);
+           $consulta->bindParam(':id', $id);
+           $consulta->execute(); 
+
+           while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            // return para que la variable vualva a su estado inicial
+            return $f;
+
+        }
+
+        // Trae un aula especifica de las aulas registradas
+        public function mostrarAulaAdmin($id) {
+
+           // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+           $objConexion = new Conexion();
+           $conexion = $objConexion->get_conexion();
+
+           $sql = "SELECT * FROM aula WHERE idAula=:id";
+           $consulta = $conexion->prepare($sql);
+           $consulta->bindParam(':id', $id);
+           $consulta->execute(); 
+
+           while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            // return para que la variable vualva a su estado inicial
+            return $f;
+
+        }
+
+        // Trae un comunicados especifico registrados
+        public function mostrarComunicadoAdmin($idComunicado) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.descripcion  as descripcion, 
+            curso.idCurso as idCurso, curso.nombre as curso, curso.jornada as jornada
+            
+            FROM comunicado
+
+            INNER JOIN curso ON comunicado.idCurso = curso.idCurso
+            
+            WHERE comunicado.idComunicado = :idComunicado";
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idComunicado', $idComunicado);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
         }
 
         public function filtrarUsuarios($rol, $estado, $nombres, $apellidos, $documento) {
@@ -597,6 +851,87 @@
             }
 
             return $f;
+
+        }
+
+        public function filtrarAsignaturas($nombre) {
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $nombre = '%'.$nombre.'%';
+            $sql = 'SELECT * FROM asignatura WHERE nombre LIKE :nombre';
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
+        public function filtrarAulas($nombre) {
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $nombre = '%'.$nombre.'%';
+            $sql = 'SELECT * FROM aula WHERE nombre LIKE :nombre';
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':nombre', $nombre);
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+        
+        public function buscarCursoEstudiante($idEstudiante) {
+
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM estudiantecurso WHERE idEstudiante = :idEstudiante';
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idEstudiante', $idEstudiante);
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            $sql = 'SELECT * FROM curso WHERE idCurso = :idCurso';
+            $consulta = $conexion->prepare($sql);
+            
+            foreach ($f as $f1) {
+                $consulta->bindParam(':idCurso', $f1['idCurso']);
+            }
+
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f2[] = $resultado;
+
+            }
+
+            return $f2;
 
         }
 
@@ -794,7 +1129,7 @@
 
                 if ($f['clave'] == $claveMd) {
                     
-                    if ($f['estado'] == 'activo'){
+                    if ($f['estado'] == 'Activo'){
                         // SE REALIZA EL INICIO DE SESIÓN
                         session_start();
 

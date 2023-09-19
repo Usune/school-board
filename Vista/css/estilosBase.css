@@ -239,7 +239,7 @@ body {
 }
 
 .fila-cont .radio {
-    margin: 10px;
+    margin: 10px 50px 10px 10px;
 }
 
 .radio {
@@ -254,12 +254,22 @@ body {
 #filtro {
     display: none;
     margin-bottom: 20px;
+    transition: 1s;
 }
 
 #filtro form{
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-around;
+    flex-direction: column;
+}
+
+.fila-cont button{
+    margin: 10px;
+}
+
+.fila-cont a{
+    margin: 10px;
 }
 
 /* Clase button filtrar */
@@ -322,7 +332,7 @@ body {
 
 /* Estilo general de tablas */
 .tabla {
-    width: 70vw;
+    /* width: 70vw; */
     background-color: transparent;
     padding: 10px;
     text-align: start;
@@ -743,6 +753,7 @@ hr {
         display: none;
         position: absolute;
         background-color: var(--gris);
+        z-index: 100;
     }
 
     main {
@@ -788,6 +799,10 @@ hr {
 
     .nav-pri .buscar {
         display: none;
+    }
+
+    section {
+        align-items: stretch;
     }
 }
 
@@ -931,10 +946,10 @@ hr {
 }
 
 .enlacesPerfil {
-    width: 100%;
+    /* width: 100%; */
     height: 50px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     margin-top: 20px;
 }
@@ -1116,14 +1131,22 @@ hr#fechas {
 }
 
 .card-tarea .boton a {
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: var(--principal);
     border: 2px solid var(--principal);
     text-decoration: none;
     color: var(--negro);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
 }
 
+.card-tarea .boton a:hover {
+    filter: brightness(0.9);
+}
 /*Fin Estilos para TARJETAS*/
 
 /* Estilos para TARJETAS*/

@@ -103,4 +103,64 @@
 
     }
 
+    function cargarCursosRegistro() {
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->mostrarCursosAdmin();
+
+        if (!isset($consultas)) {
+            echo '<h2> No hay cursos registrados </h2>';
+        } else {
+
+            foreach($consultas as $f) {
+
+                echo '
+                    <option value="'.$f['idCurso'].'">'.$f['nombre'].' - Jornada: '.$f['jornada'].'</option>
+                ';
+
+            }
+
+        }
+
+    }
+
+    function cargarCursoActual($idEstudiante) {
+
+        $objConsultas = new Consultas();
+        $consulta = $objConsultas->buscarCursoEstudiante($idEstudiante);
+
+        foreach ($consulta as $f) {
+
+            echo ' 
+                <option value="'.$f['idCurso'].'" selected>'.$f['nombre'].' - Jornada: '.$f['jornada'].'</option>
+            ';
+        }
+
+
+    }
+
+    function cargarCursosReportes() {
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->mostrarCursosAdmin();
+
+        if (!isset($consultas)) {
+            echo '<h2> No hay cursos registrados </h2>';
+        } else {
+
+            foreach($consultas as $f) {
+
+                echo '
+                <tr>
+                    <td>'.$f['nombre'].'</td>
+                    <td>'.$f['jornada'].'</td>                    
+                </tr>
+                ';
+
+            }
+
+        }
+
+    }
+
 ?>

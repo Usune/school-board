@@ -12,13 +12,18 @@
     $documento = $_POST['documento'];
     $clave = $_POST['clave'];
     $estado = 'activo';
+    $idCurso = 'na';
 
     if (strlen($nombres)>0 && strlen($apellidos)>0 && strlen($rol)>0 && strlen($tipoDoc)>0 && strlen($documento)>0 && strlen($clave)>0 && strlen($estado)>0) {
 
         $claveMd = md5($clave);
 
+        if ($rol == 'Estudiante'){
+            $idCurso = $_POST['curso'];
+        }
+
         $objConsultas = new Consultas();
-        $result = $objConsultas->insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado);
+        $result = $objConsultas->insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado, $idCurso);
 
     } else{
 

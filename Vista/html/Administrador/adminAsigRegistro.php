@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Usuarios</title>
+    <title>Asignaturas Admin</title>
 </head>
 
 <body>

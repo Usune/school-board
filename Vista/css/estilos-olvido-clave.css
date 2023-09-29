@@ -32,10 +32,11 @@ section p {
 }
 
 .submit {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
 }
 
 .bt-metodo {
@@ -91,6 +92,7 @@ section p {
     border-radius: 20px;
     padding: 0px 10px 0px 5px;
     height: 42px;
+    margin: 0px;
 }
 
 .submit a:hover {
@@ -108,6 +110,7 @@ section p {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+    margin: 0;
 }
 
 .submit button:hover {

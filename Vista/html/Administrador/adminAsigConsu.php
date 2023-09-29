@@ -75,6 +75,7 @@
                             Lista de asignaturas creadas
                         </caption>
                         <tr>
+                            <th>#</th>
                             <th>Asignatura</th>
                             <th>Opciones</th>
                             <!-- <th colspan="2">Opciones</th> -->

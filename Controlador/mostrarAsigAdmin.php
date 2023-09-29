@@ -11,11 +11,12 @@
         if (!isset($consultas)) {
             echo '<h2> No hay asignaturas registradas con el nombre ingresado</h2>';
         } else {
-
+            $n = 0;
             foreach($consultas as $f) {
-
+                $n += 1;
                 echo '
                 <tr>
+                    <td>'.$n.'</td>
                     <td>'.$f['nombre'].'</td>
 
                     <td><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
@@ -39,11 +40,12 @@
             echo '<h3>NO HAY ASIGNATURAS EN EL SISTEMA CON EL NOMBRE INGRESADO</h3>';
 
         }else {
-
+            $n = 0;
             foreach($consulta as $f) {
-
+                $n += 1;
                 echo '
                 <tr>
+                    <td>'.$n.'</td>
                     <td>'.$f['nombre'].'</td>
 
                     <td><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>

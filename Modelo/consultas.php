@@ -469,19 +469,20 @@
 
             $consulta->execute();
 
-            if($_SESSION['rol'] = 'administrador') {
-                echo '<script>alert("Usuario actualizado con exito")</script>';
+            echo '<script>alert("Usuario actualizado con exito")</script>';
+            session_start();
+            // echo $_SESSION['rol'];
+
+            if($_SESSION['rol'] == 'Administrador') {
                 echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
             }
 
-            if($_SESSION['rol'] = 'docente') {
-                echo '<script>alert("Usuario actualizado con exito")</script>';
+            if($_SESSION['rol'] == 'Docente') {
                 echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
             }
 
-            if($_SESSION['rol'] = 'estudiante') {
-                echo '<script>alert("Usuario actualizado con exito")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            if($_SESSION['rol'] == 'Estudiante') {
+                echo '<script>location.href="../Vista/html/Estudiante/Perfil.php?id='.$documento.'"</script>';
             }
 
         }
@@ -500,17 +501,18 @@
             $consulta->execute();
             
             echo '<script>alert("Foto actualizada con exito")</script>';
+            session_start();
 
-            if($_SESSION['rol'] = 'Administrador') {
+            if($_SESSION['rol'] == 'Administrador') {
                 echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
             }
 
-            if($_SESSION['rol'] = 'Docente') {
+            if($_SESSION['rol'] == 'Docente') {
                 echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
             }
 
-            if($_SESSION['rol'] = 'Estudiante') {
-                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            if($_SESSION['rol'] == 'Estudiante') {
+                echo '<script>location.href="../Vista/html/Estudiante/Perfil.php?id='.$documento.'"</script>';
             }
 
         }
@@ -529,17 +531,18 @@
             $consulta->execute();
             
             echo '<script>alert("Clave actualizada con exito")</script>';
+            session_start();
 
-            if($_SESSION['rol'] = 'Administrador') {
+            if($_SESSION['rol'] == 'Administrador') {
                 echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
             }
 
-            if($_SESSION['rol'] = 'Docente') {
+            if($_SESSION['rol'] == 'Docente') {
                 echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
             }
 
-            if($_SESSION['rol'] = 'Estudiante') {
-                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            if($_SESSION['rol'] == 'Estudiante') {
+                echo '<script>location.href="../Vista/html/Estudiante/Perfil.php?id='.$documento.'"</script>';
             }
 
         }

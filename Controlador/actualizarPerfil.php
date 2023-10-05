@@ -19,7 +19,19 @@
     } else{
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
+        session_start();
+
+        if($_SESSION['rol'] = 'Administrador') {
+            echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
+        }
+
+        if($_SESSION['rol'] = 'Docente') {
+            echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+        }
+
+        if($_SESSION['rol'] = 'Estudiante') {
+            echo '<script>location.href="../Vista/html/Estudiante/Perfil.php?id='.$documento.'"</script>';
+        }
 
     }
 

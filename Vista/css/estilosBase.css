@@ -747,8 +747,8 @@ hr {
 
 /* Fin estilos del aside / main / nav-main */
 
-/* Estilos para pantalla pequeña de aside / main / nav-main */
-@media (max-width: 1250px) {
+/* Estilos para mediana pequeña de aside / main / nav-main */
+@media (max-width: 960px) {
 
     aside {
         display: none;
@@ -807,9 +807,8 @@ hr {
     }
 }
 
-/* Fin Estilos para pantalla pequeña de aside / main / nav-main */
+/* Fin Estilos para pantalla mediana de aside / main / nav-main */
 
-/* Estilos para tarjetas */
 .contenedor {
     margin: 0 auto;
     margin-top: 50px;
@@ -852,7 +851,7 @@ hr {
     align-items: end;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1080px) {
     .fila-cont {
         flex-direction: column;
         align-items: center;
@@ -861,10 +860,6 @@ hr {
 
     .nav-pri .logo h1 {
         display: none;
-    }
-
-    .formulario {
-        width: 400px;
     }
 }
 
@@ -948,7 +943,6 @@ hr {
 
 .enlacesPerfil {
     /* width: 100%; */
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -965,6 +959,43 @@ hr {
 .enlacesPerfil a:hover {
     background-color: var(--gris);
 }
+
+@media (max-width: 960px) {
+
+    .fotoNombre img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+
+    .texto p {
+        font-size: 16px;
+    }
+    
+    .texto h4 {
+        font-size: 24px;
+    }
+    
+    .texto h5 {
+        font-size: 16px;
+    }
+
+    .enlacesPerfil {
+        margin-top: 20px;
+    }
+
+    .enlacesPerfil a {
+        /* width: 400px; */
+        padding: 5px 20px;
+    }
+
+    .formulario {
+        width: 400px;
+    }
+
+}
+
+
 /* Fin Estilos PERFIL USUARIO */
 
 

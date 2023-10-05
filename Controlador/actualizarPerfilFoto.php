@@ -7,12 +7,13 @@
     $documento = $_POST['documento'];
 
     $foto = '../../Uploads/Usuario/'.$_FILES['foto']['name'];
+
+    $guardar = "../Vista/Uploads/Usuario/".$_FILES['foto']['name'];
     // MOVEMOS EL ARCHIVO A LA CARPETA UPLOADS CON LA FUNCIÓN DE PHP move_uploaded_file()
     // tmp_name: NOMBRE TEMPORAL DEL ARCHIVO
-    $mover = move_uploaded_file($_FILES['foto']['tmp_name'], $foto);
+    $mover = move_uploaded_file($_FILES['foto']['tmp_name'], $guardar);
 
     $objConsultas = new Consultas();
-    $result = $objConsultas->actualizarFotoAdmin($documento ,$foto);
-
+    $result = $objConsultas->actualizarFotoPerfil($documento, $foto);
 
 ?>

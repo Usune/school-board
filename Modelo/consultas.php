@@ -454,7 +454,7 @@
             }
         }
 
-        public function actualizarPerfilAdmin($telefono, $direccion, $correo, $documento){
+        public function actualizarPerfil($telefono, $direccion, $correo, $documento){
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -469,12 +469,24 @@
 
             $consulta->execute();
 
-            echo '<script>alert("Usuario actualizado con exito")</script>';
-            echo '<script>location.href="../Vista/html/Administrador/adminPerfil.php?id='.$documento.'"</script>';
+            if($_SESSION['rol'] = 'administrador') {
+                echo '<script>alert("Usuario actualizado con exito")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            }
+
+            if($_SESSION['rol'] = 'docente') {
+                echo '<script>alert("Usuario actualizado con exito")</script>';
+                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+            }
+
+            if($_SESSION['rol'] = 'estudiante') {
+                echo '<script>alert("Usuario actualizado con exito")</script>';
+                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            }
 
         }
 
-        public function actualizarFotoAdmin($documento, $foto){
+        public function actualizarFotoPerfil($documento, $foto){
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -486,9 +498,20 @@
             $consulta->bindParam(':foto', $foto);
 
             $consulta->execute();
-
+            
             echo '<script>alert("Foto actualizada con exito")</script>';
-            echo '<script>location.href="../Vista/html/Administrador/adminPerfil.php?id='.$documento.'"</script>';
+
+            if($_SESSION['rol'] = 'Administrador') {
+                echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
+            }
+
+            if($_SESSION['rol'] = 'Docente') {
+                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+            }
+
+            if($_SESSION['rol'] = 'Estudiante') {
+                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            }
 
         }
 
@@ -504,9 +527,20 @@
             $consulta->bindParam(':claveMD', $claveMD);
 
             $consulta->execute();
-
+            
             echo '<script>alert("Clave actualizada con exito")</script>';
-            echo '<script>location.href="../Vista/html/Administrador/adminPerfil.php?id='.$documento.'"</script>';
+
+            if($_SESSION['rol'] = 'Administrador') {
+                echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
+            }
+
+            if($_SESSION['rol'] = 'Docente') {
+                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+            }
+
+            if($_SESSION['rol'] = 'Estudiante') {
+                echo '<script>location.href="../Vista/html/Administrador/Perfil.php?id='.$documento.'"</script>';
+            }
 
         }
 

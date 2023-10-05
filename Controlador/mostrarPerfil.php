@@ -121,9 +121,9 @@
                 </div>
 
                 <div class="enlacesPerfil">
-                    <a href="adminPerfil.php?id='.$f['documento'].'">Perfil</a>
-                    <a href="adminPerfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
-                    <a href="adminPerfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
+                    <a href="perfil.php?id='.$f['documento'].'">Perfil</a>
+                    <a href="perfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
+                    <a href="perfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
                 </div>
 
                 <div class="formulario">
@@ -180,9 +180,9 @@
                 </div>
 
                 <div class="enlacesPerfil">
-                    <a href="adminPerfil.php?id='.$f['documento'].'">Perfil</a>
-                    <a href="adminPerfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
-                    <a href="adminPerfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
+                    <a href="perfil.php?id='.$f['documento'].'">Perfil</a>
+                    <a href="perfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
+                    <a href="perfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
                 </div>
 
                 <div class="formulario">                    
@@ -225,9 +225,9 @@
                 </div>
 
                 <div class="enlacesPerfil">
-                    <a href="adminPerfil.php?id='.$f['documento'].'">Perfil</a>
-                    <a href="adminPerfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
-                    <a href="adminPerfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
+                    <a href="perfil.php?id='.$f['documento'].'">Perfil</a>
+                    <a href="perfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
+                    <a href="perfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
                 </div>
 
                 <div class="formulario">                    

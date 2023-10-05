@@ -1101,6 +1101,75 @@
 
         }
 
+<<<<<<< HEAD
+=======
+        //FUNCION PARA CARGAR LOS CURSOS ASIGNADOS A UN DOCENTE
+
+        public function mostrarCursosDoc($documento){
+            
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT curso.idCurso as idCur, curso.nombre as nomCur, curso.jornada as curJor,asignatura.nombre as asigNom 
+            
+            FROM clase
+
+            INNER JOIN curso ON clase.idCurso = curso.idCurso
+            INNER JOIN asignatura ON clase.idAsignatura = asignatura.idAsignatura
+            WHERE clase.idDocente = :documento
+            ";
+
+            $result = $conexion->prepare($sql);
+
+            $result->bindParam(':documento',$documento);
+
+            $result->execute();
+
+
+            //para que separe el result en un array
+            while ($resultado = $result->fetch()){
+                $f[] = $resultado;
+            }
+
+            return $f;
+
+
+        }
+
+        public function mostrarCurDoc($id){
+            
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM curso
+
+            WHERE idCurso = :id
+
+            ";
+            
+            $result = $conexion->prepare($sql);
+
+            $result->bindParam(':id',$id);
+
+            $result->execute();
+
+            //para que separe el result en un array
+            while ($resultado = $result->fetch()){
+                $f[] = $resultado;
+            }
+
+            return $f;
+
+
+        }
+
+
+
+>>>>>>> 15be3640ba391113061eb687f7f9d9477a38419d
     }
 
 

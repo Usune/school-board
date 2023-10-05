@@ -1101,8 +1101,6 @@
 
         }
 
-<<<<<<< HEAD
-=======
         //FUNCION PARA CARGAR LOS CURSOS ASIGNADOS A UN DOCENTE
 
         public function mostrarCursosDoc($documento){
@@ -1169,7 +1167,6 @@
 
 
 
->>>>>>> 15be3640ba391113061eb687f7f9d9477a38419d
     }
 
 

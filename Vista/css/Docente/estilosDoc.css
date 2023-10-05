@@ -1,3 +1,11 @@
 :root {
     --principal: #7DCFFF;
 }
+
+.home {
+    width: 99% !important;
+}
+
+.Doc a {
+    width: 180px !important;
+}

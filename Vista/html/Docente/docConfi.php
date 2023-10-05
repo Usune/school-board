@@ -1,3 +1,10 @@
+<?php
+require_once ('../../../Modelo/conexion.php');
+require_once ('../../../Modelo/consultas.php');
+require_once('../../../Modelo/seguridadDoc.php');
+require_once ('../../../Controlador/mostrarPerfil.php');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +20,9 @@
 </head>
 
 <body>
-
+        <?php
+        include("menu-include.php");
+        ?>
     <!-- Barra de navegación principal -->
     <nav class="nav-pri">
         <div class="fila">
@@ -40,8 +49,8 @@
             </button>
             <div id="op1">
                 <ul>
-                    <li><a href="docConfi.html">Configuración</a></li>
-                    <li><a href="../Extras/inicioSesion.html">Cerrar sesión</a></li>
+                    <li><a href="docConfi.php">Configuración</a></li>
+                    <li><a href="../Extras/inicioSesion.php">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -51,11 +60,11 @@
 
         <aside id="menu">
             <ul>
-                <li><a href="homeDoc.html"><img src="../../img/curso.svg" alt="logo">Cursos</a></li>
-                <li><a href="docCurso.html"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
-                <li><a href="docCurso.html"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
-                <li><a href="docCurso.html"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
-                <li><a href="docCurso.html"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
+                <li><a href="homeDoc.php"><img src="../../img/curso.svg" alt="logo">Cursos</a></li>
+                <li><a href="docCurso.php"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
+                <li><a href="calificaciones-estudiante.php"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
+                <li><a href="docCurso.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
+                <li><a href="docCurso.php"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
             </ul>
         </aside>
 
@@ -63,12 +72,12 @@
             
             <!-- breadcrumb -->    
             <nav class="nav-main">
-                <a href="homeDoc.html">Cursos </a>
-                <a href="docConfi.html"> / Curso ###</a>
+                <a href="homeDoc.php">Cursos </a>
+                <a href="docConfi.php"> / Configuración</a>
             </nav>
 
             <section>
-                <h2>Curso ###</h2>
+                <h2>Configuración perfil</h2>
                 
             </section>
 

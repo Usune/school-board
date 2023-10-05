@@ -21,15 +21,15 @@
         echo '<script>alert("Por favor complete todos los campos")</script>';
         session_start();
 
-        if($_SESSION['rol'] = 'Administrador') {
+        if($_SESSION['rol'] == 'Administrador') {
             echo '<script>location.href="../Vista/html/Administrador/perfil.php?id='.$documento.'"</script>';
         }
 
-        if($_SESSION['rol'] = 'Docente') {
+        if($_SESSION['rol'] == 'Docente') {
             echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
         }
 
-        if($_SESSION['rol'] = 'Estudiante') {
+        if($_SESSION['rol'] == 'Estudiante') {
             echo '<script>location.href="../Vista/html/Estudiante/Perfil.php?id='.$documento.'"</script>';
         }
 

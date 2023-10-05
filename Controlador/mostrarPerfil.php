@@ -92,7 +92,7 @@
                 </button>
                 <div id="op1">
                     <ul>
-                        <li><a href="adminPerfil.php?id='.$f['documento'].'">Perfil</a></li>
+                        <li><a href="perfil.php?id='.$f['documento'].'">Perfil</a></li>
                         <li><a href="../../../Controlador/cerrarSesion.php">Cerrar sesión</a></li>
                     </ul>
                 </div>
@@ -110,7 +110,7 @@
 
         foreach($consulta as $f){
             echo '
-                <div class="fotoNombre fila-cont">
+                <div class="fotoNombre">
                     <img src="'.$f['foto'].'" alt="fotoPerfil">
                     <div class="texto">
                         <h4>'.$f['nombres'].'</h4>
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="formulario">
-                    <form action="../../../Controlador/actualizarPerfilAdmin.php" method="post" enctype="multipart/form-data">
+                    <form action="../../../Controlador/actualizarPerfil.php" method="post" enctype="multipart/form-data">
 
                         <div class="fieldset">
                             <fieldset>
@@ -169,7 +169,7 @@
         foreach($consulta as $f){
 
             echo'
-                <div class="fotoNombre fila-cont">
+                <div class="fotoNombre">
                 <img src="'.$f['foto'].'" alt="fotoPerfil">
                     <div class="texto">
                         <h4>'.$f['nombres'].'</h4>
@@ -214,7 +214,7 @@
         foreach($consulta as $f){
 
             echo'
-                <div class="fotoNombre fila-cont">
+                <div class="fotoNombre">
                 <img src="'.$f['foto'].'" alt="fotoPerfil">
                     <div class="texto">
                         <h4>'.$f['nombres'].'</h4>

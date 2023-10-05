@@ -270,7 +270,7 @@ color: #ffff;
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-  width: 79vw;
+  width: calc(99vw - 300px);
   margin-left: 300px;
   height: 100vh;
   background: url("../img/hero-bg.jpg") top center;
@@ -1033,6 +1033,10 @@ section {
 
 .contact .php-email-form button[type=submit]:hover {
   background: #37b3ed;
+}
+
+.contact iframe {
+  width: inherit;
 }
 
 @keyframes animate-loading {

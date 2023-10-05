@@ -53,7 +53,7 @@
                     <div class="fila-cont">
                         <a href="adminAulas.php">                
                             <img src="../../img/aulas.svg" alt="logo">
-                            <p>Aulas</p>            
+                            <p>Aulas</p>
                         </a>
                         <a href="adminClase.php">                
                             <img src="../../img/clases.svg" alt="logo">
@@ -63,7 +63,6 @@
                             <img src="../../img/comunicados.svg" alt="logo">
                             <p>Comunicados</p>            
                         </a>
-
                     </div>
                 </div>
             </section>

@@ -14,7 +14,7 @@
     if (strlen($telefono)>0 && strlen($direccion)>0 && strlen($correo)>0 && strlen($documento)>0) {
 
         $objConsultas = new Consultas();
-        $result = $objConsultas->actualizarPerfilAdmin($telefono, $direccion, $correo, $documento);
+        $result = $objConsultas->actualizarPerfil($telefono, $direccion, $correo, $documento);
 
     } else{
 

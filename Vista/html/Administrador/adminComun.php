@@ -3,6 +3,7 @@
     require_once ('../../../Modelo/consultas.php');
     require_once ('../../../Modelo/seguridadAdmin.php');
     require_once ('../../../Controlador/mostrarPerfil.php');
+    require_once ('../../../Controlador/mostrarComunAdmin.php');
 ?>
 
 
@@ -34,18 +35,19 @@
         
             <section>
 
-                <h2>Administración de comunicados</h2>
+                <h2>Comunicados</h2>
+
+                <?php
+
+                    cargarComunicados();
+
+                ?>
                 
                 <div class="contenedor">
                     <div class="fila-cont">
                         <a href="adminComunRegistrar.php">
                             <img src="../../img/agregar.svg" alt="logo">
                             <p>Subir<br> comunicado</p>
-                        </a>
-
-                        <a href="adminComunConsu.php">
-                            <img src="../../img/lupa.svg" alt="logo">
-                            <p>Consultar comunicados</p>
                         </a>
                     </div>
 

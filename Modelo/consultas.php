@@ -685,6 +685,40 @@
             return $f;
         }
 
+        // Trae las observaciones de un estudiante
+        public function mostrarObservadorAdmin($documento) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT 
+            o.observacion AS Observacion, o.idObservador,
+            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
+            CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
+            CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
+            o.fecha AS FechaObservacion
+            FROM observador o
+            INNER JOIN usuario a ON o.idAutor = a.documento
+            INNER JOIN usuario e ON o.idEstudiante = e.documento
+            WHERE o.idEstudiante = :documento";
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':documento', $documento);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
         // Trae un curso especifico de los cursos registrados
         public function mostrarCursoAdmin($id) {
 

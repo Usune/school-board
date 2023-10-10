@@ -40,37 +40,6 @@
                 <h2>Administración de comunicados</h2>
                 <h3>Consultar comunicados</h3>
 
-                <!-- <div class="tabla">
-                    <div class="opciones">
-                        <a href="adminComunReportes.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
-                        
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                    </div>
-
-                    <div id="filtro">
-
-                        <form method="get">
-
-                            <div class="fieldset"> 
-                                <fieldset>
-                                    <legend id="nom">Nombre</legend>
-                                </fieldset>
-                                <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
-                            </div>
-
-                            <div class="fila-cont">
-                            
-                                <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminComunConsu.php" class="filtrar">Limpiar</a>
-
-                            </div>
-
-                        </form>
-                        
-                    </div>
-                    
-                </div> -->
-
                 <?php
 
                     cargarComunicados();

@@ -37,5 +37,6 @@
                 <li><a href="adminAula.php"><img src="../../img/aulas.svg" alt="logo">Aulas</a></li>
                 <li><a href="adminClase.php"><img src="../../img/clases.svg" alt="logo">Clases</a></li>
                 <li><a href="adminComun.php"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
+                <li><a href="adminObser.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
             </ul>
         </aside>

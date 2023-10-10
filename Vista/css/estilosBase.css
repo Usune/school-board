@@ -994,9 +994,42 @@ hr {
     }
 
 }
-
-
 /* Fin Estilos PERFIL USUARIO */
+
+
+.datosCabecera{
+    width: 70%;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.datosCabecera p{
+    font-size: 18px;
+}
+
+.datosCabecera a{
+    position: fixed;
+    top: 160px;
+    right: 14%;
+    text-decoration: none;
+    color: var(--negro);
+    background-color: var(--principal);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.datosCabecera a:hover{
+    filter: brightness(0.9);
+}
+
+.datosCabecera a img{
+    width: 26px;
+}
 
 
 /* Estilos para TARJETAS*/

@@ -20,9 +20,7 @@
 </head>
 <body>
     
-    <?php
-        include("menu-include.php");
-    ?>
+    
         <main>
             
             <!-- breadcrumb -->  

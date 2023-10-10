@@ -1253,7 +1253,7 @@
                             break;
                             case "Docente":
                                 echo '<script>alert("Bienvenido rol docente")</script>';
-                                echo "<script>location.href='../Vista/html/Docente/homeDoc.php'</script>";
+                                echo "<script>location.href='../Vista/html/Docente/registroPrimero.php'</script>";
                             break;
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';
@@ -1345,7 +1345,7 @@
                     echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php?id=".$documento."'</script>";
                 break;
                 case "Docente":
-                    echo "<script>location.href='../Vista/html/Docente/homeDoc.php?id=".$documento."'</script>";
+                    echo "<script>location.href='../Vista/html/Docente/registroPrimero.php?id=".$documento."'</script>";
                 break;
                 case "Estudiante":
                     echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php?id=".$documento."'</script>";

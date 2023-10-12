@@ -43,25 +43,25 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                 <div class="contenedor">
                     <div class="fila-cont">                        
                         <a href="docCurso.php">            
-                            <img src="../../img/user.svg" alt="logo">
+                            <img src="../../img/curso.svg" alt="logo">
                             <p>Cursos</p>
                         </a>
                         <a href="docTareaRegistro.php">                
-                            <img src="../../img/curso.svg" alt="logo">
+                            <img src="../../img/tareas.svg" alt="logo">
                             <p>Tareas</p>            
                         </a>
                         <a href="docCalif.php">
-                            <img src="../../img/asignaturas.svg" alt="logo">
+                            <img src="../../img/calificaciones.svg" alt="logo">
                             <p>Calificaciones</p>
                         </a>
                     </div>
                     <div class="fila-cont">
                         <a href="docObser.php">                
-                            <img src="../../img/aulas.svg" alt="logo">
+                            <img src="../../img/observador.svg" alt="logo">
                             <p>Observador</p>            
                         </a>
                         <a href="docComun.php">                
-                            <img src="../../img/clases.svg" alt="logo">
+                            <img src="../../img/comunicados.svg" alt="logo">
                             <p>Comunicados</p>            
                         </a>
                         

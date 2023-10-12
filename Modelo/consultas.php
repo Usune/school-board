@@ -1286,9 +1286,13 @@
                                 }
                             break;
                             case "Docente":
-                                echo '<script>alert("Bienvenido rol docente")</script>';
-                                echo "<script>location.href='../Vista/html/Docente/registroPrimero.php'</script>";
-                            break;
+                               if($f['correo']){
+                                    echo '<script>alert("Bienvenido rol Docente")</script>';
+                                    echo "<script>location.href='../Vista/html/Docente/homeDoc.php?id=".$f['documento']."'</script>";
+                                }else{
+                                    echo '<script>alert("Bienvenido rol docente, registro primera vez")</script>';
+                                    echo "<script>location.href='../Vista/html/Docente/registroPrimero.php?id=".$f['documento']."'</script>";
+                                }
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';
                                 echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";

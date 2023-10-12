@@ -9,3 +9,19 @@
 .Doc a {
     width: 180px !important;
 }
+
+.doc .textarea #titulo {
+    overflow-y: clip;
+    width: 120%;
+    height: 20px;
+    text-align: center;
+}
+
+.doc {
+    width: 53%;
+}
+
+/* .doc #formulario .textarea label{
+
+
+} */

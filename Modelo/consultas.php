@@ -1236,6 +1236,26 @@
 
         }
 
+        public function insertarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO tarea (titulo, descripcion, fecha_creacion, fecha_vencimiento) VALUES (:titulo, :descripcion, :fecha_C, :fecha_V)';
+            $consulta  = $conexion ->prepare($sql);
+
+            $consulta->bindParam(':titulo',$titulo);
+            $consulta->bindParam(':descripcion',$descripcion);
+            $consulta->bindParam(':fecha_C',$fecha_creacion);
+            $consulta->bindParam(':fecha_V',$fecha_vencimiento);
+
+            $consulta->execute();
+
+            echo '<script>alert("Tarea registrada exitosamente")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docTareaRegistro.php"</script>';
+            
+        }
+
 
 
     }

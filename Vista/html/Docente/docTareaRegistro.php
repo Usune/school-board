@@ -39,8 +39,12 @@ require_once('../../../Controlador/mostrarPerfil.php');
                 <h2>Cursos</h2>
 
                 <!-- Formulario para subir tareas (No borrar) -->
-                <form action="../../../Controlador/subirTarea.php" method="post" enctype="multipart/form-data" id="formulario">
+                <form class="doc" action="../../../Controlador/subirTarea.php" method="post" enctype="multipart/form-data" id="formulario">
 
+                    <div class="textarea" >
+                        <label for="titulo">Título</label>
+                        <textarea id="titulo" cols="30" rows="10" name="titulo">Ingrese un título</textarea>
+                    </div>
                     <div class="textarea">
                         <label for="descripcion">Descripción</label>
                         <textarea id="descripcion" cols="30" rows="10" name="descripcion">Ingrese una descripción</textarea>

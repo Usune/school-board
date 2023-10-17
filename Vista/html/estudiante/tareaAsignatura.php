@@ -26,13 +26,30 @@
     <main>
 
         <!-- breadcrumb -->
-        <nav class="nav-main">
+        <!-- <nav class="nav-main">
             <a href="homeEstu.php">Home</a>
             <a href="homeAsignatura.php"> / AsignaturaExample</a>
             <a href="tareaAsignatura.php"> / TareaExample</a>
+        </nav> -->
+
+
+        <?php
+            $idAsignatura = $_GET['idAsignatura'];
+            $nombreAsignatura = $_GET['nombreAsignatura'];
+            $idTarea = $_GET['idTarea'];
+            $nombreTarea = $_GET['tarea'];
+        ?>
+
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <a href="homeEstu.php">Home</a>
+            <a href="homeAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>"> / <?php echo $nombreAsignatura;?></a>
+            <a href="tareaAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>&tarea=<?php echo $nombreTarea?>&idTarea=<?php echo $idTarea?>"> / <?php echo $nombreTarea ?></a>
         </nav>
 
 
+
+      
         <section>
             <h2>Principal de EnviarTareaExample</h2>
             <?php habilitarEntregaTareas(); ?>

@@ -8,7 +8,7 @@
 
         foreach ($filas as $fila) {
             echo '
-                <li><a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'">'.$fila['asignatura'].'</a></li>
+                <li><a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'&nombreAsignatura='.$fila['asignatura'].'">'.$fila['asignatura'].'</a></li>
             ';
         }
     }
@@ -44,7 +44,7 @@
             // Condicional para aplicar estilos en css
             if ($fechaEstado < 1) {
                 $fechaEstado = "vencida"; // La tarea esta vencida o vence ese dia
-            } elseif ($fechaEstado >= 1 && $fechaEstado <=3) {
+            } elseif ($fechaEstado >= 1 && $fechaEstado <=4) {
                 $fechaEstado = "proximo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
             } else {
                 $fechaEstado = "conTiempo"; // La tarea tiene un plazo de más de 4 dias para ser entregada
@@ -52,7 +52,6 @@
 
 
             echo '
-
                 <div class="card-tarea">
                     <div class="card-header">
                         <div class="info-user fila">
@@ -73,14 +72,14 @@
                         <div class="card-info">
                             <img src="../../img/descripcion.png" alt="">
                             <div class="info">
-                                <h3>'.$f['titulo'].'</h3>
+                                <h3>'.$f['tarea'].'</h3>
                                 <p>
                                     '.$f['descripcion'].'
                                 </p>
                             </div>
                         </div>
                         <div class="boton">
-                            <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idTarea='.$f['idTarea'].'">Ver más</a>
+                            <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['tarea'].'&idTarea='.$f['idTarea'].'">Ver más</a>
                         </div>
                     </div>
                 </div>

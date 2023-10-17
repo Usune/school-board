@@ -1063,13 +1063,13 @@
 
             $sql = "SELECT 
             tarea.idTarea,
-            asignatura.nombre as nombreAsignatura,
+            asignatura.nombre as asignatura,
             asignatura.idAsignatura,
             usuario.foto,
             usuario.nombres,
             usuario.apellidos,
             tarea.fecha_vencimiento,
-            tarea.titulo,
+            tarea.titulo as tarea,
             tarea.descripcion
             FROM clase
             INNER JOIN asignatura

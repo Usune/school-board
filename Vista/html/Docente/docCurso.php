@@ -36,9 +36,11 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
                 <?php
 
-                traerCurso();
+                traerCursos();
 
                 ?>
+
+                
 
                 <div class="contenedor">
                     <div class="fila-cont">                        

@@ -32,7 +32,7 @@
                 <ul>
                     <li id="liRol">Docente</li>
                     <li><a href="docCurso.php"><img src="../../img/curso.svg" alt="logo">Cursos</a></li>
-                    <li><a href="docTareaRegistro.php"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
+                    <li><a href="tareasDoc.php"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
                     <li><a href="docCalif.php"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
                     <li><a href="docObser.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
                     <li><a href="docComun.php"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>

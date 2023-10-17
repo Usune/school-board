@@ -10,15 +10,64 @@
     width: 180px !important;
 }
 
-.doc .textarea #titulo {
-    overflow-y: clip;
-    width: 120%;
-    height: 20px;
+.doc .textarea #titulo{
+    
+    width: 100%;
+    height: 22px;
     text-align: center;
+}
+
+.doc .textarea #titulo2{
+    overflow-y: clip;
+    width: 100%;
+    height: 22px;
+    text-align: center;
+}
+
+.doc .textarea #descrip2{
+    /* border-radius: 20px; */
+    overflow: visible;/* Controla el desbordamiento vertical */
+    width: 89%;
+    text-align: center;
+    margin-left: 31px;
+   
+}
+
+.doc .textarea #descrip1{
+    margin-top: -20%;
+    padding-left: 43px
 }
 
 .doc {
     width: 53%;
+}
+
+
+.doc #descripcion{
+    /* margin-top: -10%; */
+    width: 80%;
+}
+
+.doc .file {
+    align-items: center;
+
+}
+
+.doc .enviar{
+    margin-left: 330px;
+}
+
+
+@media (max-width:1100px) {
+    .doc .enviar{
+        margin-left: 122px;
+        padding-left: 43px
+    }  
+
+    .doc .descrip {
+   
+      width: 0;
+    }
 }
 
 /* .doc #formulario .textarea label{

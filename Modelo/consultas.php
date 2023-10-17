@@ -1207,7 +1207,7 @@
 
         }
 
-        public function mostrarCurDoc($id){
+        public function mostrarCurDoc($idCurso){
             
             $f = null;
 
@@ -1236,18 +1236,19 @@
 
         }
 
-        public function insertarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento) {
+        public function insertarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $archivos) {
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'INSERT INTO tarea (titulo, descripcion, fecha_creacion, fecha_vencimiento) VALUES (:titulo, :descripcion, :fecha_C, :fecha_V)';
+            $sql = 'INSERT INTO tarea (titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES (:titulo, :descripcion, :fecha_C, :fecha_V, :archivos)';
             $consulta  = $conexion ->prepare($sql);
 
             $consulta->bindParam(':titulo',$titulo);
             $consulta->bindParam(':descripcion',$descripcion);
             $consulta->bindParam(':fecha_C',$fecha_creacion);
             $consulta->bindParam(':fecha_V',$fecha_vencimiento);
+            $consulta->bindParam(':archivos',$archivos);
 
             $consulta->execute();
 
@@ -1255,6 +1256,9 @@
             echo '<script>location.href="../Vista/html/Docente/docTareaRegistro.php"</script>';
             
         }
+
+
+       
 
 
 

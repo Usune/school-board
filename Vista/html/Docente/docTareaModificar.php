@@ -3,8 +3,11 @@ require_once('../../../Modelo/conexion.php');
 require_once('../../../Modelo/consultas.php');
 require_once('../../../Modelo/seguridadDoc.php');
 require_once('../../../Controlador/mostrarPerfil.php');
-require_once('../../../Controlador/mostrarCursosDoc.php');
 require_once('../../../Controlador/mostrarTareasDoc.php');
+require_once('../../../Controlador/mostrarCursosDoc.php');
+// require_once('../../../Controlador/actualizarTarDoc.php');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,17 +37,19 @@ require_once('../../../Controlador/mostrarTareasDoc.php');
 
             <!-- breadcrumb -->
             <nav class="nav-main">
-                <a href="homeDoc.php">crearTarea </a>
+                <a href="homeDoc.php">Cursos </a>
+                <!-- <a href="tareasDoc.php"> / Tareas</a>  -->
             </nav>
 
             <section>
-                <h2>Crear Tareas</h2>
+                <h2>Tareas</h2>
 
-                <div class="formulario">
+                <!-- Formulario para subir tareas (No borrar) -->
                 <?php
-                    formRegistroTarDoc();
+                    cargarTareaEditarDoc(); 
                 ?>
-                </div>
+
+
 
                 
             </section>

@@ -54,12 +54,6 @@
                     <?php
                         mostrarAsignaturasEstudiante();
                     ?>
-                    
-                    <!-- <li><a href="homeEstu.html">Matemáticas</a></li>
-                    <li><a href="homeEstu.html">Español</a></li>
-                    <li><a href="homeEstu.html">Ciencias</a></li>
-                    <li><a href="homeEstu.html">Sociales</a></li>
-                    <li><a href="homeEstu.html">Física</a></li> -->
                 </ul>
             </div>
             <li><a href="homeEstu.html"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>

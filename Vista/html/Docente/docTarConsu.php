@@ -4,6 +4,7 @@ require_once ('../../../Modelo/consultas.php');
 require_once('../../../Modelo/seguridadDoc.php');
 require_once ('../../../Controlador/mostrarPerfil.php');
 require_once ('../../../Controlador/mostrarCursosDoc.php');
+require_once ('../../../Controlador/mostrarTareasDoc.php');
 ?>
 
 <!DOCTYPE html>
@@ -40,21 +41,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
                 <div class="tabla">
 
-                    <div class="opciones">
-
-                    <?php
-
-                        if(isset($_GET['titulo']) || isset($_GET['descripcion']) || isset($_GET['fechaActual']) || isset($_GET['fecha_V']) || isset($_GET['archivos'])){
-                                
-                            echo'<a href="reportesUsuAdmin.php?titulo='.$_GET['titulo'].'&estado='.$_GET['descripcion'].'&descripcion='.$_GET['fechaActual'].'&fecha_V='.$_GET['fecha_V'].'&documento='.$_GET['documento'].'" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
-                            
-                        }else {
-
-                            echo'<a href="reportesUsuAdmin.php" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
-
-                        }
-                    ?>
-                        
+                    <div class="opciones">                        
                         <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
                     </div>
 
@@ -120,35 +107,11 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                         
                     </div>
                     
-                    <table>
-                        <caption>
-                            Lista de usuarios registrados
-                        </caption>
-                        <tr>
-                            <th>Tipo Documento</th>
-                            <th>Documento</th>
-                            <th>Apellidos</th>
-                            <th>Nombres</th>
-                            <th>Estado</th>
-                            <th>Rol</th>
-                            <th>Opciones</th>
-                            <!-- <th colspan="2">Opciones</th> -->
-                        </tr>
+                    <?php
+                    cargarTareas();
 
-                            <?php
+                    ?>
 
-                                if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
-                                        
-                                    filtrarUsuarios($_GET['rol'], $_GET['estado'], $_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
-                                  
-                                }else {
-
-                                    cargarUsuarios();
-
-                                }
-                            ?>
-
-                    </table>
                 </div>
             </section>
 

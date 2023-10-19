@@ -25,16 +25,23 @@
 
     <main>
 
+        
+
+    <?php
+        $idAsignatura = $_GET['idAsignatura'];
+        $nombreAsignatura = $_GET['nombreAsignatura'];
+    ?>
+
         <!-- breadcrumb -->
         <nav class="nav-main">
             <a href="homeEstu.php">Home</a>
-            <a href="homeAsignatura.php"> / AsignaturaExample</a>
+            <a href="homeAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>"> / <?php echo $nombreAsignatura;?></a>
         </nav>
 
 
         <section>
             
-            <h2>Principal de AsignaturaExample</h2>
+            <h2>Principal de <?php echo $nombreAsignatura;?></h2>
 
             <?php mostrarTareasAsignatura(); ?>
         

@@ -7,7 +7,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> 
 
 <head>
     <meta charset="UTF-8">
@@ -30,44 +30,22 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
             
             <!-- breadcrumb -->    
             <nav class="nav-main">
-                <a href="homeDoc.php">Cursos </a>
+                <a href="homeDoc.php">Clases </a>
                
 
 
                 <?php
-
-                traerCursos();
+                
+                    traerCurso();
 
                 ?>
 
                 
 
                 <div class="contenedor">
-                    <div class="fila-cont">                        
-                        <a href="docCurso.php">            
-                            <img src="../../img/curso.svg" alt="logo">
-                            <p>Cursos</p>
-                        </a>
-                        <a href="docTareaRegistro.php">                
-                            <img src="../../img/tareas.svg" alt="logo">
-                            <p>Tareas</p>            
-                        </a>
-                        <a href="docCalif.php">
-                            <img src="../../img/calificaciones.svg" alt="logo">
-                            <p>Calificaciones</p>
-                        </a>
-                    </div>
-                    <div class="fila-cont">
-                        <a href="docObser.php">                
-                            <img src="../../img/observador.svg" alt="logo">
-                            <p>Observador</p>            
-                        </a>
-                        <a href="docComun.php">                
-                            <img src="../../img/comunicados.svg" alt="logo">
-                            <p>Comunicados</p>            
-                        </a>
-                        
-                    </div>
+                    <?php
+                        tarjetasInicioDoc();
+                    ?>
                 </div>
             </section>
 

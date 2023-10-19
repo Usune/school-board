@@ -9,12 +9,19 @@
 .Doc a {
     width: 180px !important;
 }
-
+/* 
 .doc .textarea #titulo{
     
     width: 100%;
     height: 22px;
     text-align: center;
+}
+
+.doc .textarea #titulo:hover {
+        
+        color: var(--principal); 
+        background-color: var(--principal); 
+        border: 1px solid ;
 }
 
 .doc .textarea #titulo2{
@@ -25,8 +32,8 @@
 }
 
 .doc .textarea #descrip2{
-    /* border-radius: 20px; */
-    overflow: visible;/* Controla el desbordamiento vertical */
+    
+    overflow: visible;
     width: 89%;
     text-align: center;
     margin-left: 31px;
@@ -36,17 +43,16 @@
 .doc .textarea #descrip1{
     margin-top: -20%;
     padding-left: 43px
-}
+} */
 
 .doc {
     width: 53%;
 }
 
 
-.doc #descripcion{
-    /* margin-top: -10%; */
+/* .doc #descripcion{
     width: 80%;
-}
+} */
 
 .doc .file {
     align-items: center;

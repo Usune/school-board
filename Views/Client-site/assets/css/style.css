@@ -40,7 +40,7 @@ h6 {
 
 .inicio{
   position: fixed;
-  right: 10px;
+  right: 20px;
   top: 10px;
   background-color: #fff;
   width: 100px;
@@ -270,7 +270,7 @@ color: #ffff;
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-  width: calc(99vw - 300px);
+  width: calc(100vw - 300px);
   margin-left: 300px;
   height: 100vh;
   background: url("../img/hero-bg.jpg") top center;

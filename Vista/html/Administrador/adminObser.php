@@ -36,12 +36,14 @@
             <section>
 
             <?php
-                if(isset($_GET['documento'])){
+                if(isset($_GET['id'])){
                     cargarObservador();
                 }else {
                     mostrarObserForm();
                 }
             ?>
+
+            
 
             </section>
     

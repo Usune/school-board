@@ -31,8 +31,8 @@
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminComun.php"> / Observador</a>
-                <a href="adminComunRegistrar.php"> / Registrar</a>
+                <a href="adminObser.php"> / Observador</a>
+                <a href="adminObserRegistro.php"> / Nueva</a>
             </nav>
         
             <section>
@@ -41,7 +41,7 @@
                 
                 <div class="formulario">
                     
-                    <h3>Subir Observador</h3>
+                    <h3>Crear Observación</h3>
 
                     <p class="recordatorio">Antes de subir la observación, asegurese de que todos los campos son correctos.</p>
         

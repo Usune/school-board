@@ -7,6 +7,15 @@ const mostrar = (event) => {
     }
 }
 
+// Función ppara mostrar o no un modal elemento
+// Para que funcione el elemento acciodador debe tener el atributo 'modal' con el id correspondiante del elemento a mostrar y ocultar
+const mostrarModal = (event) => {
+    let el = document.querySelector(event.target.getAttribute('modal'));
+    if (el !== null) {
+        el.classList.toggle('show_modal');
+    }
+}
+
 // Funciones para mostrar y quitar el legend de un input especifico al dar click en el input, para que eso funcione el input debe tener el atributo legend y dentro el id del legend al que está asociado, así mismo el legend debe tener el id especifico que tiene el atributo legend.
 const onFocus = (event) => {
     let idLegend = event.target.getAttribute('legend');
@@ -45,6 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // En esta línea traemos todos los elementos con la clase 'desplegar' y le vamos a agregar el evento 'click', que ejecuta la función 'mostrar', esto lo hacemos con la función forEach() o tambien se puede hacer usando bucle 'for'
     document.querySelectorAll('.desplegar').forEach(function (element) {
         element.addEventListener('click', mostrar);
+    });
+    // En esta línea traemos todos los elementos con la clase 'desplegarModal' y le vamos a agregar el evento 'click', que ejecuta la función 'mostrarModal', esto lo hacemos con la función forEach() o tambien se puede hacer usando bucle 'for'
+    document.querySelectorAll('.desplegarModal').forEach(function (element) {
+        element.addEventListener('click', mostrarModal);
     });
 
     //Quita el elemento con el id 'op1' cuando se da click sobre la página index

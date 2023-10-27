@@ -29,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 650px;
+    width: 400px;
     margin-bottom: 30px;
 }
 
@@ -164,7 +164,7 @@ body {
 }
 
 #formulario textarea {
-    width: 300px;
+    width: 280px;
     height: 200px;
     border-radius: 20px;
     border: 2px solid var(--grisOscuro);
@@ -307,7 +307,7 @@ body {
 }
 
 .enviar:hover {
-    filter: brightness(1.1);
+    filter: brightness(0.9);
 }
 
 /* Id para el texto que se muestra al verse un error */
@@ -801,10 +801,6 @@ hr {
     .nav-pri .buscar {
         display: none;
     }
-
-    section {
-        align-items: stretch;
-    }
 }
 
 /* Fin Estilos para pantalla mediana de aside / main / nav-main */
@@ -996,23 +992,11 @@ hr {
 }
 /* Fin Estilos PERFIL USUARIO */
 
-
-.datosCabecera{
-    width: 70%;
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.datosCabecera p{
-    font-size: 18px;
-}
-
-.datosCabecera a{
-    position: fixed;
-    top: 160px;
-    right: 14%;
+/* ESTILOS CABECERA */
+.btn-cabecera{
+    position: absolute;
+    top: 200px;
+    right: 10%;
     text-decoration: none;
     color: var(--negro);
     background-color: var(--principal);
@@ -1021,26 +1005,45 @@ hr {
     font-weight: bold;
     display: flex;
     align-items: center;
+    font-size: 14px;
 }
 
-.datosCabecera a:hover{
+.btn-cabecera:hover{
     filter: brightness(0.9);
 }
 
-.datosCabecera a img{
-    width: 26px;
+.cabecera button{
+    border: none;
+    cursor: pointer;
 }
 
+.cabecera{
+    width: 70%;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+}
+
+.cabecera p{
+    font-size: 18px;
+}
+
+.cabecera img{
+    width: 26px;
+}
+/* FIN ESTILOS CABECERA */
 
 /* Estilos para TARJETAS*/
 .card-tarea {
     width: 70%;
     background: #75757500;
     border: 3px solid #dbdbdb00;
-    padding: 20px 20px 0px 20px;
+    padding: 20px;
     border-radius: 30px;
     box-shadow: 0px 5px 5px 5px #00000017;
-    margin: 20px 0;
+    margin-top: 20px;
     font-size: 12px;
 }
 
@@ -1205,57 +1208,63 @@ hr#fechas {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     font-weight: bold;
+    font-size: 10px;
 }
+
+.card-tarea .boton img {
+    width: 18px;
+} 
 
 .card-tarea .boton a:hover {
     filter: brightness(0.9);
 }
 /*Fin Estilos para TARJETAS*/
 
-/* Estilos para TARJETAS*/
-/* .card-tarea{
-    margin: 50px 0;
-    width: 70%;
-    background: #75757500;
-    border: 3px solid #dbdbdb00;
-    backdrop-filter: blur(0.4rem);
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0px 5px 5px 5px #00000017;
+/* Estilos MODAL */
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #111111bd;
+    display: none;
 }
 
-
-
-.card-tarea .card-header{
+.modal_container {
+    width: 650px;
+    background-color: var(--grisClaro);
+    margin: auto;
+    border-radius: 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-
-.card-header .info-user img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--azulClaro);
-    margin-right: 20px;
+.btn-cerrar {
+    text-decoration: none;
+    color: var(--negro);
+    background-color: transparent;
+    border: 1px solid var(--negro);
+    border-radius: 20px;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    margin-left: 580px;
+    margin-top: 20px;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-hr{
-    margin: 10px 0 10px 0;
-    background-color: var(--gris);
-    border: 1px solid var(--gris);
+.btn-cerrar:hover {
+    filter: brightness(1);
+    background-color: var(--rojo);
+    border: 1px solid var(--rojo);
 }
 
-.card-tarea .card-info{
+.show_modal {
     display: flex;
-    align-items: start;
-    padding-bottom: 40px;
 }
-
-.card-tarea .card-info img{
-    margin: 0 32px 0 5px;
-} */
-/*Fin Estilos para TARJETAS*/
+/* Fin estilos MODAL */

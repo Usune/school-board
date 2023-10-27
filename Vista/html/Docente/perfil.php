@@ -14,21 +14,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/logo.svg">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
-    <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
+    <link rel="stylesheet" type="text/css" href="../../css/docente/estilosDoc.css">
     <script src="../../js/controlGeneral.js"></script>
     <title>Administrar usuarios</title>
 </head>
 <body>
     
-    <?php
-        include("menu-include.php");
-    ?>
+    
         <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
-                <a href="homeAdmin.php">Home</a>
-                <a href="adminPerfil.php"> / Perfil</a>
+                <a href="homeDoc.php">Home</a>
+                <a href="Perfil.php"> / Perfil</a>
             </nav>
         
             <section>

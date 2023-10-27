@@ -7,7 +7,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> 
 
 <head>
     <meta charset="UTF-8">
@@ -56,18 +56,18 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
             <!-- breadcrumb -->
             <nav class="nav-main">
-                <a href="homeDoc.php">Cursos </a>
+                <a href="homeDoc.php">Clases </a>
             </nav>
 
             <section>
-                <h2>Cursos</h2>
+                <h2>Clases</h2>
 
                 <div class="contenedor Doc">
                     <div class="fila-cont">
                         <?php
-                        traerCursos();
+                        traerCursos(); 
                         ?>
-                    </div>
+                    </div> 
                 </div>
             </section>
 

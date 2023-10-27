@@ -20,7 +20,7 @@
         <div class="user">
             
             <?php
-                perfilHome(); 
+                perfilHome();  
             ?>
 
         </div>
@@ -29,12 +29,9 @@
     <div class="aside-main">
 
         <aside id="menu">
-            <ul>
-                <li id="liRol">Docente</li>
-                <li><a href="docCurso.php"><img src="../../img/user.svg" alt="logo">Cursos</a></li>
-                <li><a href="docTareaRegistro.php"><img src="../../img/curso.svg" alt="logo">Tareas</a></li>
-                <li><a href="docCalif.php"><img src="../../img/asignaturas.svg" alt="logo">Calificaciones</a></li>
-                <li><a href="docObser.php"><img src="../../img/aulas.svg" alt="logo">Observador</a></li>
-                <li><a href="docComun.php"><img src="../../img/clases.svg" alt="logo">Comunicados</a></li>
-            </ul>
-        </aside>
+                <ul>
+                    <?php
+                        menuIncludeDoc();
+                    ?>
+                </ul>
+            </aside>

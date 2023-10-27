@@ -1063,13 +1063,13 @@
 
             $sql = "SELECT 
             tarea.idTarea,
-            asignatura.nombre as nombreAsignatura,
+            asignatura.nombre as asignatura,
             asignatura.idAsignatura,
             usuario.foto,
             usuario.nombres,
             usuario.apellidos,
             tarea.fecha_vencimiento,
-            tarea.titulo,
+            tarea.titulo as tarea,
             tarea.descripcion
             FROM clase
             INNER JOIN asignatura
@@ -1174,14 +1174,14 @@
 
         //FUNCION PARA CARGAR LOS CURSOS ASIGNADOS A UN DOCENTE
 
-        public function mostrarCursosDoc($documento){
+        public function mostrarClasesDoc($documento){
             
             $f = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT curso.idCurso as idCur, curso.nombre as nomCur, curso.jornada as curJor,asignatura.nombre as asigNom 
+            $sql = "SELECT curso.idCurso as idCur, curso.nombre as nomCur, curso.jornada as curJor,asignatura.nombre as asigNom , clase.idClase as idClase
             
             FROM clase
 
@@ -1207,22 +1207,18 @@
 
         }
 
-        public function mostrarCurDoc($id){
+        public function mostrarCurDoc($idCurso){
             
             $f = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM curso
-
-            WHERE idCurso = :id
-
-            ";
+            $sql = "SELECT * FROM curso WHERE idCurso = :id";
             
             $result = $conexion->prepare($sql);
 
-            $result->bindParam(':id',$id);
+            $result->bindParam(':id',$idCurso);
 
             $result->execute();
 
@@ -1236,8 +1232,139 @@
 
         }
 
+        public function insertarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $archivos,$idClase, $idDocente) {
 
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
 
+            $sql = 'INSERT INTO tarea (idClase, idDocente,titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES (:idClase, :idDocente,:titulo, :descripcion, :fecha_C, :fecha_V, :archivos)';
+            $consulta  = $conexion ->prepare($sql);
+
+            $consulta->bindParam(':idDocente',$idDocente);
+            $consulta->bindParam(':idClase',$idClase);
+            $consulta->bindParam(':titulo',$titulo);
+            $consulta->bindParam(':descripcion',$descripcion);
+            $consulta->bindParam(':fecha_C',$fecha_creacion);
+            $consulta->bindParam(':fecha_V',$fecha_vencimiento);
+            $consulta->bindParam(':archivos',$archivos);
+
+            $consulta->execute();
+
+            echo '<script>alert("Tarea registrada exitosamente")</script>';
+            echo '<script>location.href="../Vista/html/Docente/tareasDoc.php?idClase='.$idClase.'"</script>';
+            
+        }
+      
+        public function consultarTareasDoc($docente, $clase){
+
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT tarea.idTarea as idTarea, tarea.titulo as titulo, tarea.descripcion as descripcion, tarea.fecha_creacion as fecha_C, tarea.fecha_vencimiento as fecha_V, tarea.archivos as archivos, usuario.nombres as nombreUsu, usuario.apellidos as apellidoUsu, usuario.foto as fotoUsu
+            
+            FROM tarea 
+
+            INNER JOIN usuario ON tarea.idDocente = usuario.documento
+            WHERE tarea.idClase = :idClase
+            ORDER BY fecha_C DESC';
+
+            $consulta = $conexion->prepare($sql);          
+            $consulta->bindParam(':idClase', $clase); 
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+
+            return $f;            
+
+        }
+
+        public function consultarTareaDoc($idTarea){
+
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT idTarea ,titulo,descripcion,fecha_creacion AS fecha_C ,fecha_vencimiento AS fecha_V,archivos FROM tarea WHERE idTarea='.$idTarea;
+
+            $consulta = $conexion->prepare($sql);          
+      
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+
+            return $f;            
+
+        }
+
+        public function ActualizarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT*FROM tarea WHERE titulo = :titulo AND descripcion = :descripcion AND fecha_creacion = :fecha_C AND fecha_vencimiento = :fecha_V AND idTarea = :id AND idClase = idClase';
+
+            $consulta = $conexion->prepare($sql);
+            
+                            
+            $consulta->bindParam(':titulo', $titulo);
+            $consulta->bindParam(':descripcion', $descripcion);
+            $consulta->bindParam(':fecha_C', $fecha_creacion);
+            $consulta->bindParam(':fecha_V', $fecha_vencimiento);
+            $consulta->bindParam(':id', $id);
+
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("No se pudo realizar la actualización, debe actualizar al menos un campo")</script>';
+                echo '<script>location.href="../Vista/html/Docente/docTareaModificar.php?idClase='.$idClase.'"</script>';
+                
+            }else {
+                
+                $sql = 'UPDATE tarea SET titulo=:titulo, descripcion=:descripcion, fecha_creacion=:fecha_C, fecha_vencimiento=:fecha_V WHERE idTarea=:id';
+                
+                $consulta = $conexion->prepare($sql);
+                
+                $consulta->bindParam(':titulo', $titulo);
+                $consulta->bindParam(':descripcion', $descripcion);
+                $consulta->bindParam(':fecha_C', $fecha_creacion);
+                $consulta->bindParam(':fecha_V', $fecha_vencimiento);
+                $consulta->bindParam(':id', $id);
+                $consulta->execute();
+    
+                echo '<script>alert("Tarea actualizado con exito</script>';
+                echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idClase='.$idClase.'"</script>';
+
+            }
+            
+
+            
+            
+        }
+
+        public function eliminarTareas($idTarea) {
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'DELETE FROM usuario WHERE documento = :id';
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':id', $id);
+            $consulta->execute();
+            
+            echo '<script>alert("El usuario a sido eliminado.")</script>';
+            echo "<script>location.href='../Vista/html/administrador/adminUsuConsu.php'</script>";
+
+        }
     }
 
 
@@ -1286,9 +1413,13 @@
                                 }
                             break;
                             case "Docente":
-                                echo '<script>alert("Bienvenido rol docente")</script>';
-                                echo "<script>location.href='../Vista/html/Docente/homeDoc.php'</script>";
-                            break;
+                               if($f['correo']){
+                                    echo '<script>alert("Bienvenido rol Docente")</script>';
+                                    echo "<script>location.href='../Vista/html/Docente/homeDoc.php?id=".$f['documento']."'</script>";
+                                }else{
+                                    echo '<script>alert("Bienvenido rol docente, registro primera vez")</script>';
+                                    echo "<script>location.href='../Vista/html/Docente/registroPrimero.php?id=".$f['documento']."'</script>";
+                                }
                             case "Estudiante":
                                 echo '<script>alert("Bienvenido rol estudiante")</script>';
                                 echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
@@ -1379,7 +1510,7 @@
                     echo "<script>location.href='../Vista/html/Administrador/homeAdmin.php?id=".$documento."'</script>";
                 break;
                 case "Docente":
-                    echo "<script>location.href='../Vista/html/Docente/homeDoc.php?id=".$documento."'</script>";
+                    echo "<script>location.href='../Vista/html/Docente/registroPrimero.php?id=".$documento."'</script>";
                 break;
                 case "Estudiante":
                     echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php?id=".$documento."'</script>";

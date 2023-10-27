@@ -164,19 +164,21 @@ CREATE TABLE asistencia (
 CREATE TABLE tarea (
     idTarea INT AUTO_INCREMENT,
     idClase INT,
+    idDocente INT,
     titulo VARCHAR(200),
     descripcion VARCHAR(200),
     fecha_creacion	DATETIME DEFAULT NOW(),
     fecha_vencimiento DATETIME,
     archivos VARCHAR(400),
     PRIMARY KEY(idTarea),
-    FOREIGN KEY (idClase) REFERENCES clase(idClase)
+    FOREIGN KEY (idClase) REFERENCES clase(idClase),
+    FOREIGN KEY (idDocente) REFERENCES usuario(documento)
 );
 
-INSERT INTO tarea (idClase, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
-(1, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', NULL),
-(1, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
-(1, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
+INSERT INTO tarea (idClase,idDocente, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
+(1, 2, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
+(1, 2, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
+(1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
 
 CREATE TABLE entrega(
     idEntrega INT AUTO_INCREMENT,

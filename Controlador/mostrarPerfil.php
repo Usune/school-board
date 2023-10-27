@@ -203,7 +203,7 @@
 
         }
     
-    }
+    } 
 
     function actualizarClave() {
         $id = $_GET['id'];

@@ -532,7 +532,7 @@ body {
     border: var(--grisClaro) solid 2px;
     font-size: 15px;
     cursor: pointer;
-    border: 3px solid var(--principal);
+    /* border: 3px solid var(--principal); */
 }
 
 .nav-pri .user button:hover {
@@ -598,7 +598,7 @@ aside {
     background-color: var(--grisClaro);
     border-radius: 20px;
     margin-left: 15px;
-    border: 3px solid var(--principal);
+    /* border: 3px solid var(--principal); */
 }
 
 aside ul {
@@ -689,7 +689,7 @@ main {
     margin: 0px 15px 15px 15px;
     background-color: var(--grisClaro);
     overflow-y: auto;
-    border: 3px solid var(--principal);
+    /* border: 3px solid var(--principal); */
 }
 
 .nav-main {
@@ -1045,7 +1045,7 @@ hr {
     border: 3px solid #dbdbdb00;
     padding: 20px;
     border-radius: 30px;
-    box-shadow: 0px 5px 5px 1px var(--principal);
+    box-shadow: 0px 5px 5px 1px var(--gris);
     margin: 20px 0;
     font-size: 12px;
 }

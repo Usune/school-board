@@ -185,8 +185,28 @@
 
             $consulta->execute();
 
-            echo '<script>alert("Comunicado subido correcamente")</script>';
+            echo '<script>alert("Comunicado subido correctamente")</script>';
             echo "<script>location.href='../Vista/html/Administrador/adminComunRegistrar.php'</script>";         
+
+        }
+
+        public function insertarObserAdmin($observacion, $idEstudiante, $idAutor, $fecha) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO observador (idEstudiante, idAutor, observacion, fecha) VALUES (:idEstudiante, :idAutor, :observacion, :fecha)';
+            $consulta = $conexion->prepare($sql);
+
+            $consulta->bindParam(':idEstudiante',$idEstudiante);
+            $consulta->bindParam(':idAutor',$idAutor);
+            $consulta->bindParam(':observacion',$observacion);
+            $consulta->bindParam(':fecha',$fecha);
+
+            $consulta->execute();
+
+            echo '<script>alert("Obervación subida correctamente")</script>';
+            echo '<script>location.href="../Vista/html/Administrador/adminObser.php?id='.$idEstudiante.'"</script>';
 
         }
 

@@ -67,23 +67,18 @@
 
                             <p class="recordatorio">Antes de subir la observación, asegurese de que todos los campos son correctos.</p>
                 
-                            <form action="../../../Controlador/registrarComunAdmin.php" method="post" enctype="multipart/form-data" id="formulario">
+                            <form action="../../../Controlador/registrarObserAdmin.php?id='.$f['documento'].'" method="post" id="formulario">
 
                                 <div class="fieldset">
                                     <fieldset>
-                                        <legend id="tit">Título</legend>
+                                        <legend id="estu">Estudiante</legend>
                                     </fieldset>
-                                    <input type="text" placeholder="Título" required legend="#tit" name="titulo">
+                                    <input type="text" value="'.$f['nombres'].' '.$f['apellidos'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
                                 </div>
                 
                                 <div class="textarea">
-                                    <label for="descripcion">Descripción</label>
-                                    <textarea id="descripcion" cols="30" rows="10" name="descripcion">Ingrese una descripción</textarea>
-                                </div>
-
-                                <div class="file">
-                                    <label for="archivo">Seleccione un archivo</label>
-                                    <input type="file" accept=".pdf" name="archivo">
+                                    <label for="obser">Observación</label>
+                                    <textarea id="obser" cols="30" rows="10" name="observacion">Ingrese la observación</textarea>
                                 </div>
             
                                 <p id="texto"></p>

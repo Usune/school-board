@@ -1115,6 +1115,54 @@
 
         }
 
+        // Funcion para mostrar todas las tareas 
+        public function cargarTodasTareas($idEstudiante){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT 
+            tarea.idTarea,
+            tarea.idClase,
+            tarea.idDocente,
+            tarea.titulo,
+            tarea.descripcion,
+            tarea.estado,
+            tarea.fecha_creacion,
+            tarea.fecha_vencimiento,
+            asignatura.idAsignatura,
+            asignatura.nombre as asignatura,
+            usuario.foto as fotoDoc,
+            usuario.nombres as nombres,
+            usuario.apellidos as apellidos,
+            tarea.archivos
+            FROM clase
+            INNER JOIN tarea
+            ON tarea.idClase = clase.idClase
+            INNER JOIN asignatura 
+            ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN curso
+            ON curso.idCurso = clase.idCurso
+            INNER JOIN estudiantecurso 
+            ON estudiantecurso.idestudianteCurso = curso.idCurso
+            INNER JOIN usuario
+            ON usuario.documento = clase.idDocente
+            WHERE estudiantecurso.idEstudiante =  :idEstudiante
+            ORDER BY tarea.idTarea DESC";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
         // Funcion para mostrar las tareas correspondientes a una Asignatura 
         public function cargarTarea($idTarea){
             $rows = null;

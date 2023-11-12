@@ -1,7 +1,8 @@
 <?php
+   session_start();
+
     // Mostrar asignaturas a los estudiantes en el aside  
     function mostrarAsignaturasEstudiante(){
-        session_start();
         $documento = $_SESSION['id'];
         $objConsultas = new Consultas();
         $filas = $objConsultas->cargarAsignaturas($documento);
@@ -236,6 +237,46 @@
 
 
     }
+
+    // Mostrar todas las tareas
+    function mostrarTodasTareas(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodasTareas($idEstudiante);
+
+        foreach ($filas as $f) {
+            echo '
+                <tr>
+                  <td>'.$f['asignatura'].'</td>
+                  <td>
+                    <div class="row">
+                      <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
+                        <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
+                      </div>
+                      <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
+                        <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>'.$f['titulo'].' </td>
+                  <td>
+                    '.$f['fecha_vencimiento'].' 
+                  </td>
+                  <td>01</td>
+                  <td class="'.$f['estado'].'">
+                    <p>
+                        '.$f['estado'].'
+                    </p>
+                  </td>
+                  <td>
+                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" id="verMas"></a>
+                  </td>
+                </tr>
+            ';
+        }
+    }
+
+
 
 
 ?>

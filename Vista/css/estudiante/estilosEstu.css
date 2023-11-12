@@ -2,3 +2,145 @@
     --principal: #FFA269;
 }
 
+/* Estilos TABLA TODAS LAS TAREAS  */
+/* Espacio entre filas */
+#tbTareas table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 18px;
+}
+
+/* THEAD - TH */
+#tbTareas thead tr th {
+    background-color: #F9F9F9;
+    vertical-align: middle;
+    padding: 15px;
+}
+
+/* Bordes generales */
+#tbTareas thead tr th:nth-child(1) {
+    border-radius: 20px 0 0 20px;
+}
+
+#tbTareas thead tr th:nth-child(7) {
+    border-radius: 0 20px 20px 0;
+}
+
+
+/* TBODY - TD */
+#tbTareas tbody tr td {
+    background-color: var(--blanco);
+    vertical-align: middle;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+/* Bordes generales */
+#tbTareas tbody tr td:nth-child(1) {
+    border-radius: 20px 0 0 20px;
+}
+
+#tbTareas tbody tr td:nth-child(7) {
+    border-radius: 0 20px 20px 0;
+}
+
+/* TD - "Docente" */
+#tbTareas tbody tr td:nth-child(2) {
+    width: 200px;
+}
+
+#tbTareas tbody tr td .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tbTareas tbody tr td .row .imgDoc img {
+    max-width: 80%;
+    border-radius: 50%;
+}
+
+#tbTareas tbody tr td .row .textDoc p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* TD - "Archivos" */
+#tbTareas tbody tr td:nth-child(5) {
+    text-align: center;
+}
+
+/* TD - "Estado" */
+#tbTareas tbody tr td:nth-child(6) p {
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+
+/* Pendiente - rojo */
+#tbTareas tbody tr td.pendiente:nth-child(6){
+    position: relative;
+    text-transform: capitalize;
+}
+
+#tbTareas tbody tr td.pendiente:nth-child(6)::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--rojo);
+}
+
+/* Entregada - verde */
+#tbTareas tbody tr td.entregada:nth-child(6){
+    position: relative;
+    text-transform: capitalize;
+}
+
+#tbTareas tbody tr td.entregada:nth-child(6)::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--verde);
+}
+
+
+/* TD "Ver más" */
+#tbTareas tbody tr td img#verMas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--grisClaro);
+    transform: rotate(90deg);
+    opacity: 0.5;
+    border-radius: 10px;
+}
+
+/* Hover */
+#tbTareas .table-hover tbody tr:hover {
+    box-shadow:  4px 6px 0px 0px #fa5e00;
+    border-radius: 21px;
+    transform: scale(1.01);
+}
+
+
+#tbTareas  .table-hover tbody tr:hover td {
+    background-color: var(--principal);
+    box-shadow: 0px 2px 0 0 var(--principal);
+    font-weight: 700;
+    filter: saturate(105%);
+}
+
+
+
+/* Fin Estilos TABLA TODAS LAS TAREAS

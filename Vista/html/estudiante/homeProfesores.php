@@ -32,14 +32,47 @@
     </nav>
 
     <section>
-      <div class="container-fluid">
-      <h2>Profesores</h2>
-      <select name="" id="">
-        <option value="">hola</option>
-        <option value="">hol22a</option>
-      </select>
+      <div class="container-fluid" id="integrantes">
+        <h2>Integrantes</h2>
+        <div class="row filtros">
+          <div class="col-md-6 col-sm-12">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <select>
+                  <option value="">Rol</option>
+                  <option value="">Administrativo</option>
+                  <option value="">Docente</option>
+                  <option value="">Estudiante</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <select>
+                  <option value="">Asignatura</option>
+                  <option value="">Matematicas</option>
+                  <option value="">Español</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="buscador">
+              <input type="text" placeholder="Buscar por nombre">
+              <a href="">
+                <img src="../../img/lupa.svg" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <h3>Todos</h3>
+
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <?php mostrarTodosUsuarios(); ?>
+        </div>
       </div>
     </section>
+
 
   </main>
 

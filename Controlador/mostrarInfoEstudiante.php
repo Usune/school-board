@@ -276,6 +276,47 @@
         }
     }
 
+    // Mostrar todos los usuarios
+    function mostrarTodosUsuarios(){
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodosUsuarios();
+
+        foreach ($filas as $f) {
+            $rol = $f['rol'];
+            if($rol === 'Administrador'){
+                $imagen = '../../img/escritorio.png';
+            }elseif ($rol === 'Docente') {
+                $imagen = '../../img/pizarron.png';
+            }elseif ($rol === 'Estudiante') {
+                $imagen = '../../img/gorra.png';
+            }
+
+            echo '
+                <div class="col">
+                    <div class="card card-usu">
+                        <div class="iconos">
+                            <img src="'.$imagen.'" alt="">
+                        </div>
+                        <div class="fotoUsu">
+                            <img src="'.$f['foto'].'" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <p>'.$f['rol'].'</p>
+                            <h5 class="card-title">'.$f['nombres'].' '.$f['apellidos'].'</h5>
+                            <p class="card-text">
+                                <a href="">'.$f['correo'].'</a>
+                            </p>
+                            <a href="">
+                                <button>Contactar</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ';
+        }
+    }
+  
+
 
 
 

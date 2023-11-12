@@ -1205,7 +1205,6 @@
 
         }
 
-
         // Función para entregar actividades
         public function insertarEntregaTarea($descripcion, $archivos_str){
             $objConexion = new Conexion();
@@ -1222,6 +1221,25 @@
 
         }
 
+        //  Función para mostrar todos los usuarios (Integrantes)
+        public function cargarTodosUsuarios(){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM usuario";
+
+            $statement = $conexion->prepare($sql);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
 
         // CONSULTAS DOCENTES
         // Función para entregar actividades

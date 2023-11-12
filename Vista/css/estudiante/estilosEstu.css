@@ -1,5 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --principal: #FFA269;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+h2,
+h3 {
+    font-weight: 700;
 }
 
 /* Estilos TABLA TODAS LAS TAREAS  */
@@ -29,6 +44,11 @@
 
 
 /* TBODY - TD */
+#tbTareas .table-hover tbody tr {
+    box-shadow: 4px 6px 7px 0px #8a8a8a;
+    border-radius: 21px;
+}
+
 #tbTareas tbody tr td {
     background-color: var(--blanco);
     vertical-align: middle;
@@ -80,7 +100,7 @@
 }
 
 /* Pendiente - rojo */
-#tbTareas tbody tr td.pendiente:nth-child(6){
+#tbTareas tbody tr td.pendiente:nth-child(6) {
     position: relative;
     text-transform: capitalize;
 }
@@ -97,7 +117,7 @@
 }
 
 /* Entregada - verde */
-#tbTareas tbody tr td.entregada:nth-child(6){
+#tbTareas tbody tr td.entregada:nth-child(6) {
     position: relative;
     text-transform: capitalize;
 }
@@ -128,13 +148,13 @@
 
 /* Hover */
 #tbTareas .table-hover tbody tr:hover {
-    box-shadow:  4px 6px 0px 0px #fa5e00;
+    box-shadow: 4px 6px 0px 0px #fa5e00;
     border-radius: 21px;
     transform: scale(1.01);
 }
 
 
-#tbTareas  .table-hover tbody tr:hover td {
+#tbTareas .table-hover tbody tr:hover td {
     background-color: var(--principal);
     box-shadow: 0px 2px 0 0 var(--principal);
     font-weight: 700;
@@ -144,3 +164,147 @@
 
 
 /* Fin Estilos TABLA TODAS LAS TAREAS
+
+/* Estilos INTEGRANTES  */
+/* Espacio entre filas */
+#integrantes {
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* Filtro */
+
+#integrantes .filtros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 9px;
+    margin: 20px auto;
+}
+
+#integrantes .filtros select {
+    width: 100%;
+    padding: 10px;
+    background-color: #F9F9F9;
+    border: 1px solid #F9F9F9;
+    border-radius: 15px;
+    margin: 10px 0;
+    box-shadow: 4px 6px 7px 0px #8a8a8a;
+}
+
+#integrantes .buscador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F9F9F9;
+    border: 1px solid #F9F9F9;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 4px 6px 7px 0px #8a8a8a;
+}
+
+#integrantes .buscador input,
+#integrantes .buscador input:focus,
+#integrantes .buscador input:focus-visible  {
+    width: 100%;
+    background-color: #F9F9F9;
+    border: 1px solid #F9F9F9;
+    padding-left: 10px;
+}
+
+#integrantes .buscador input::placeholder{
+    color: var(--negro);
+}
+
+
+
+
+
+/* Cards */
+#integrantes h3 {
+    width: 95%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#integrantes .card-usu {
+    background-color: var(--blanco);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px;
+    box-shadow: 4px 6px 7px 0px #8a8a8a;
+}
+
+#integrantes .card-usu .iconos {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#integrantes .card-usu .iconos img {
+    width: 30px;
+}
+
+#integrantes .card-usu .fotoUsu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#integrantes .card-usu .fotoUsu img {
+    width: 50%;
+    border-radius: 50%;
+    border: 5px solid var(--principal);
+}
+
+
+#integrantes .card-usu h5 {
+    width: 80%;
+    margin: 10px auto;
+    font-weight: 700;
+}
+
+#integrantes .card-usu a {
+    color: var(--negro);
+    font-weight: 300;
+}
+
+#integrantes .card-usu a button {
+    width: 80%;
+    margin: 15px auto 0 auto;
+    font-weight: 700;
+    background-color: var(--principal);
+    border: 1px solid var(--principal);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/* Hover Cards */
+#integrantes .card-usu:hover {
+    background-color: var(--principal);
+}
+
+
+#integrantes .card-usu:hover .fotoUsu img {
+    border: 5px solid var(--blanco);
+}
+
+#integrantes .card-usu:hover h5 {
+    color: var(--blanco);
+}
+
+#integrantes .card-usu:hover a button {
+    background-color: var(--grisClaro);
+    border: 1px solid var(--grisClaro);
+}
+
+
+
+
+
+
+
+/* Estilos INTEGRANTES  */

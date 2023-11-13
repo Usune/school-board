@@ -1222,14 +1222,13 @@
         }
 
         //  Función para mostrar todos los usuarios (Integrantes)
-        public function cargarTodosUsuarios(){
+        public function cargarTodosUsuarios() {
             $rows = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM usuario";
-
+            $sql = 'SELECT * FROM usuario';
             $statement = $conexion->prepare($sql);
             $statement->execute();
 
@@ -1240,6 +1239,58 @@
             return $rows;
 
         }
+
+        //  Función para mostrar usuarios filtrados (Integrantes) 
+        public function cargarUsuariosFiltrados($rol, $estado, $nombres) {
+            $f = null;
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = 'SELECT * FROM usuario WHERE';
+        
+            $condiciones = array();
+        
+            if (!empty($nombres)) {
+                $condiciones[] = "nombres LIKE :nombres";
+            }
+        
+            if (!empty($estado) && $estado != 'nada') {
+                $condiciones[] = "estado = :estado";
+            }
+        
+            if (!empty($rol) && $rol != 'nada') {
+                $condiciones[] = "rol = :rol";
+            }
+        
+            if (!empty($condiciones)) {
+                $sql .= ' ' . implode(' AND ', $condiciones);
+            }
+        
+            $consulta = $conexion->prepare($sql);
+        
+            if (!empty($nombres)) {
+                $nombres = '%'.$nombres.'%';
+                $consulta->bindParam(':nombres', $nombres);
+            }
+        
+            if (!empty($estado) && $estado != 'nada') {
+                $consulta->bindParam(':estado', $estado);
+            }
+        
+            if (!empty($rol) && $rol != 'nada') {
+                $consulta->bindParam(':rol', $rol);
+            }
+        
+            $consulta->execute();
+        
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+        
+            return $f;
+        }
+        
 
         // CONSULTAS DOCENTES
         // Función para entregar actividades

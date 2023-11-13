@@ -293,28 +293,94 @@
 
             echo '
                 <div class="col">
-                    <div class="card card-usu">
+                    <div class="card h-100 card-usu '.$f['estado'].'">
                         <div class="iconos">
-                            <img src="'.$imagen.'" alt="">
+                            ' . (isset($imagen) ? '<img src="'.$imagen.'" alt="">' : '<img src="placeholder.jpg" alt="Placeholder">') . '
                         </div>
                         <div class="fotoUsu">
-                            <img src="'.$f['foto'].'" class="card-img-top" alt="...">
+                            ' . (isset($f['foto']) ? '<img src="'.$f['foto'].'" class="card-img-top" alt="...">' : '<img src="placeholder.jpg" class="card-img-top" alt="Placeholder">') . '
                         </div>
                         <div class="card-body">
-                            <p>'.$f['rol'].'</p>
-                            <h5 class="card-title">'.$f['nombres'].' '.$f['apellidos'].'</h5>
-                            <p class="card-text">
-                                <a href="">'.$f['correo'].'</a>
+                            <p>
+                                ' . (isset($f['rol']) ? $f['rol'] : 'Rol no disponible') . '
                             </p>
-                            <a href="">
-                                <button>Contactar</button>
-                            </a>
+                            <h5 class="card-title">
+                                ' . (isset($f['nombres']) && isset($f['apellidos']) ? $f['nombres'] . ' ' . $f['apellidos'] : 'Nombres y apellidos no disponibles') .'
+                            </h5>
+                            <p class="card-text">
+                                ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
+                            </p>
+                            <a href=""><button>Contactar</button></a>
                         </div>
                     </div>
                 </div>
             ';
+
         }
     }
+
+    
+    // Mostrar los usuarios Filtrado 
+    function mostrarUsuariosFiltrados($rol, $estado, $nombres){
+
+        $objConsultas = new Consultas();
+
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($rol === 'nada' && $estado === 'nada' && $nombres === '') {
+            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
+            return;  // No ejecutar la consulta
+        }
+
+        $consulta = $objConsultas->cargarUsuariosFiltrados($rol, $estado, $nombres);
+
+        if(!isset($consulta)){
+            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+
+        }else {
+
+            foreach($consulta as $f) {
+
+                $rol = $f['rol'];
+                if($rol === 'Administrador'){
+                    $imagen = '../../img/escritorio.png';
+                }elseif ($rol === 'Docente') {
+                    $imagen = '../../img/pizarron.png';
+                }elseif ($rol === 'Estudiante') {
+                    $imagen = '../../img/gorra.png';
+                }
+                
+                echo '
+                    <div class="col">
+                        <div class="card h-100 card-usu '.$f['estado'].'">
+                            <div class="iconos">
+                                ' . (isset($imagen) ? '<img src="'.$imagen.'" alt="">' : '<img src="placeholder.jpg" alt="Placeholder">') . '
+                            </div>
+                            <div class="fotoUsu">
+                                ' . (isset($f['foto']) ? '<img src="'.$f['foto'].'" class="card-img-top" alt="...">' : '<img src="placeholder.jpg" class="card-img-top" alt="Placeholder">') . '
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    ' . (isset($f['rol']) ? $f['rol'] : 'Rol no disponible') . '
+                                </p>
+                                <h5 class="card-title">
+                                    ' . (isset($f['nombres']) && isset($f['apellidos']) ? $f['nombres'] . ' ' . $f['apellidos'] : 'Nombres y apellidos no disponibles') .'
+                                </h5>
+                                <p class="card-text">
+                                    ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
+                                </p>
+                                <a href=""><button>Contactar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                ';
+
+            }
+
+
+        }
+
+    }
+
   
 
 

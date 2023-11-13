@@ -173,67 +173,103 @@ h3 {
 }
 
 /* Filtro */
-
-#integrantes .filtros {
+#integrantes .filtro{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 9px;
-    margin: 20px auto;
-}
-
-#integrantes .filtros select {
-    width: 100%;
-    padding: 10px;
     background-color: #F9F9F9;
-    border: 1px solid #F9F9F9;
-    border-radius: 15px;
-    margin: 10px 0;
-    box-shadow: 4px 6px 7px 0px #8a8a8a;
+    border-radius: 20px;
+    padding: 5px 0 15px 10px;
+    margin-top: 20px;
 }
 
-#integrantes .buscador {
+#integrantes .filtro-inputs .fieldset_view{
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 4px;
+}
+
+#integrantes .filtro-inputs .fieldset_view .fieldset{
+    margin-bottom: -5px;
+    justify-content: left;
+    width: 100%;
+    position: relative;
+    margin-top: 6px;
+}
+
+#integrantes .filtro-inputs .fieldset_view .fieldset input{
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    /* background-color: #fa5e00; */
+}
+#integrantes .filtro-inputs .fieldset_view .fieldset input:focus{
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+#integrantes .filtro-inputs {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #F9F9F9;
-    border: 1px solid #F9F9F9;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 4px 6px 7px 0px #8a8a8a;
+    justify-content: left;
+    align-items: end;
 }
 
-#integrantes .buscador input,
-#integrantes .buscador input:focus,
-#integrantes .buscador input:focus-visible  {
+
+#integrantes .filtro-inputs .buscador {
     width: 100%;
-    background-color: #F9F9F9;
-    border: 1px solid #F9F9F9;
-    padding-left: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
-#integrantes .buscador input::placeholder{
-    color: var(--negro);
+#integrantes .filtro-inputs .buscador button,
+#integrantes .filtro-inputs .buscador a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    margin: 10px 10px 0 0;
 }
 
-
-
+#integrantes .filtro-inputs .buscador button:hover, 
+#integrantes .filtro-inputs .buscador a:hover {
+    background-color: var(--principal);
+    filter: brightness(1);
+}
 
 
 /* Cards */
-#integrantes h3 {
+#integrantes h3.texto {
     width: 95%;
     margin: 0 auto;
+    padding-top: 50px;
     text-align: left;
+    text-transform: capitalize;
 }
 
 #integrantes .card-usu {
     background-color: var(--blanco);
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
     text-align: center;
-    margin: 20px;
     box-shadow: 4px 6px 7px 0px #8a8a8a;
+}
+
+#integrantes .card-usu.Inactivo {
+    filter: brightness(0.9);
 }
 
 #integrantes .card-usu .iconos {
@@ -260,16 +296,41 @@ h3 {
     border: 5px solid var(--principal);
 }
 
-
-#integrantes .card-usu h5 {
-    width: 80%;
-    margin: 10px auto;
-    font-weight: 700;
+#integrantes h4{
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 20px;
 }
 
-#integrantes .card-usu a {
+#integrantes .card-usu h5 {
+    height: 50px;
+    margin: 10px auto;
+    font-weight: 700;
+    font-size: 100%;
+}
+
+#integrantes .card-usu .card-body  p.card-text , 
+#integrantes .card-usu .card-body .card-text a {
+    height: 50px;
+    font-size: 100%;
+    margin-bottom: 10px;
     color: var(--negro);
     font-weight: 300;
+    
+}
+
+/* Media Quares */
+/* Telefono - Espacios para que el contenido se vea igual */
+@media screen and (min-width: 390px) and (max-width: 576px){
+    #integrantes .card-usu h5 {
+        height: 25px;
+    }
+
+    #integrantes .card-usu .card-body  p.card-text , 
+    #integrantes .card-usu .card-body .card-text a {
+        height: 25px;
+    }
 }
 
 #integrantes .card-usu a button {

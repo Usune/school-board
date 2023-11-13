@@ -60,6 +60,6 @@
             <li><a href="calificaciones-estudiante.php"><img src="../../img/calificaciones.svg"
                         alt="logo">Calificaciones</a></li>
             <li><a href="homeEstu.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
-            <li><a href="homeProfesores.php"><img src="../../img/profesores.svg" alt="logo">Profesores</a></li>
+            <li><a href="homeIntegrantes.php"><img src="../../img/profesores.svg" alt="logo">Integrantes</a></li>
         </ul>
     </aside>

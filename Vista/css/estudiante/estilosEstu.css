@@ -45,7 +45,9 @@ h3 {
 
 /* TBODY - TD */
 #tbTareas .table-hover tbody tr {
-    box-shadow: 4px 6px 7px 0px #8a8a8a;
+    /* REVISAR BOX SHADOW */
+    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
     border-radius: 21px;
 }
 

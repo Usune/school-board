@@ -43,7 +43,9 @@
         <!-- breadcrumb -->
         <nav class="nav-main">
             <a href="homeEstu.php">Home</a>
+            
             <a href="homeAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>"> / <?php echo $nombreAsignatura;?></a>
+
             <a href="tareaAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>&tarea=<?php echo $nombreTarea?>&idTarea=<?php echo $idTarea?>"> / <?php echo $nombreTarea ?></a>
         </nav>
 

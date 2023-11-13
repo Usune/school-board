@@ -36,7 +36,8 @@
 
     <!-- breadcrumb -->
     <nav class="nav-main">
-      <a href="homeAdmin.html">Home</a>
+      <a href="homeEstu.php">Home</a>
+      <a href="homeIntegrantes.php"> / Integrantes</a>
     </nav>
 
     <section>

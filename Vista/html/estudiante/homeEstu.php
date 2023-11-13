@@ -32,13 +32,13 @@
 
         <!-- breadcrumb -->
         <nav class="nav-main">
-            <a href="homeAdmin.html">Home</a>
+            <a href="homeEstu.php">Home</a>
         </nav>
 
         <section>
             <h2>Tareas</h2>
 
-
+           
            
             <div class="card text-center">
   <div class="card-header">

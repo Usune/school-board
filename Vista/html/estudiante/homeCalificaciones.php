@@ -1,11 +1,3 @@
-<?php
-    require_once ('../../../Modelo/conexion.php');
-    require_once ('../../../Modelo/consultas.php');
-    require_once ('../../../Controlador/mostrarPerfil.php');
-    require_once ('../../../Controlador/mostrarUsuAdmin.php');
-    require_once ('../../../Controlador/mostrarInfoEstudiante.php');
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,13 +29,12 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeTareas.php"> / Tareas</a>
+      <a href="homeCalificaciones.php"> / Calificaciones</a>
     </nav>
 
     <section>
       <div class="container-fluid">
-      <h2>Tareas</h2>
-      <a href="../../../Controlador/excel.php">Excel</a>
+      <h2>Calificaciones</h2>
         <div class="row">
           <div id="tbTareas" class="table-responsive col-md-12">
             <table class="table table-borderless table-hover">

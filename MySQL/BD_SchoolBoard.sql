@@ -167,7 +167,6 @@ CREATE TABLE tarea (
     idDocente INT,
     titulo VARCHAR(200),
     descripcion VARCHAR(200),
-    estado VARCHAR(200),
     fecha_creacion	DATETIME DEFAULT NOW(),
     fecha_vencimiento DATETIME,
     archivos VARCHAR(400),
@@ -176,15 +175,29 @@ CREATE TABLE tarea (
     FOREIGN KEY (idDocente) REFERENCES usuario(documento)
 );
 
-INSERT INTO tarea (idClase,idDocente, titulo, descripcion, estado, fecha_creacion, fecha_vencimiento, archivos) VALUES
-(1, 2, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', 'entregada', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
-(2, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', 'pendiente', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
-(1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', 'pendiente', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
-(1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', 'pendiente', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
+INSERT INTO tarea (idClase,idDocente, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
+(1, 2, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
+(2, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
+(1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL),
+(1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
 
 CREATE TABLE entrega(
     idEntrega INT AUTO_INCREMENT,
+    idEstudiante INT,
+    idTarea INT ,
+    fechaEntrega DATETIME,
     descripcion VARCHAR(200),
     archivos VARCHAR(400),
-    PRIMARY KEY (idEntrega)
+    PRIMARY KEY (idEntrega),
+    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+    FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
 );
+
+
+INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fechaEntrega)
+VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
+
+-- Cnsulta ?
+-- SELECT * FROM entrega
+-- WHERE idEstudiante = "1023163094"
+-- AND idTarea = 1;

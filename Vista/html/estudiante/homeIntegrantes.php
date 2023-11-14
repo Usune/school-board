@@ -98,7 +98,7 @@
                     </div>
 
                     <div class="col-6">
-                      <a href="homeProfesores.php" class="filtrar">Limpiar</a>
+                      <a href="homeIntegrantes.php" class="filtrar">Limpiar</a>
                     </div>
                   </div>
 

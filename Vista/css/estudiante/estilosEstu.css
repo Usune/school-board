@@ -24,6 +24,7 @@ h3 {
     margin: 0 auto;
     border-collapse: separate;
     border-spacing: 0 18px;
+    font-size: 80%;
 }
 
 /* THEAD - TH */
@@ -38,7 +39,7 @@ h3 {
     border-radius: 20px 0 0 20px;
 }
 
-#tbTareas thead tr th:nth-child(7) {
+#tbTareas thead tr th:nth-child(6) {
     border-radius: 0 20px 20px 0;
 }
 
@@ -63,7 +64,7 @@ h3 {
     border-radius: 20px 0 0 20px;
 }
 
-#tbTareas tbody tr td:nth-child(7) {
+#tbTareas tbody tr td:nth-child(6) {
     border-radius: 0 20px 20px 0;
 }
 
@@ -90,28 +91,24 @@ h3 {
     margin: 0;
 }
 
-/* TD - "Archivos" */
-#tbTareas tbody tr td:nth-child(5) {
-    text-align: center;
-}
 
 /* TD - "Estado" */
-#tbTareas tbody tr td:nth-child(6) p {
-    margin-left: 20px;
+#tbTareas tbody tr td:nth-child(5) p {
+    margin-left: 18px;
     margin-bottom: 0;
 }
 
 /* Pendiente - rojo */
-#tbTareas tbody tr td.pendiente:nth-child(6) {
+#tbTareas tbody tr td.pendiente:nth-child(5) {
     position: relative;
     text-transform: capitalize;
 }
 
-#tbTareas tbody tr td.pendiente:nth-child(6)::after {
+#tbTareas tbody tr td.pendiente:nth-child(5)::after {
     content: "";
     position: absolute;
     top: 45%;
-    left: 20px;
+    left: 18px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -119,16 +116,16 @@ h3 {
 }
 
 /* Entregada - verde */
-#tbTareas tbody tr td.entregada:nth-child(6) {
+#tbTareas tbody tr td.entregada:nth-child(5) {
     position: relative;
     text-transform: capitalize;
 }
 
-#tbTareas tbody tr td.entregada:nth-child(6)::after {
+#tbTareas tbody tr td.entregada:nth-child(5)::after {
     content: "";
     position: absolute;
     top: 45%;
-    left: 20px;
+    left: 18px;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -175,7 +172,7 @@ h3 {
 }
 
 /* Filtro */
-#integrantes .filtro{
+#integrantes .filtro {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -185,13 +182,13 @@ h3 {
     margin-top: 20px;
 }
 
-#integrantes .filtro-inputs .fieldset_view{
+#integrantes .filtro-inputs .fieldset_view {
     width: 100%;
     margin-bottom: 0;
     margin-top: 4px;
 }
 
-#integrantes .filtro-inputs .fieldset_view .fieldset{
+#integrantes .filtro-inputs .fieldset_view .fieldset {
     margin-bottom: -5px;
     justify-content: left;
     width: 100%;
@@ -199,7 +196,7 @@ h3 {
     margin-top: 6px;
 }
 
-#integrantes .filtro-inputs .fieldset_view .fieldset input{
+#integrantes .filtro-inputs .fieldset_view .fieldset input {
     margin-left: -294px;
     width: 95%;
     position: absolute;
@@ -209,7 +206,8 @@ h3 {
     margin: 0 auto;
     /* background-color: #fa5e00; */
 }
-#integrantes .filtro-inputs .fieldset_view .fieldset input:focus{
+
+#integrantes .filtro-inputs .fieldset_view .fieldset input:focus {
     margin-left: -294px;
     width: 95%;
     position: absolute;
@@ -242,11 +240,11 @@ h3 {
     width: 90%;
     height: 45px;
     border: 1px solid transparent;
-    border-radius: 15px;
+    border-radius: 25px;
     margin: 10px 10px 0 0;
 }
 
-#integrantes .filtro-inputs .buscador button:hover, 
+#integrantes .filtro-inputs .buscador button:hover,
 #integrantes .filtro-inputs .buscador a:hover {
     background-color: var(--principal);
     filter: brightness(1);
@@ -262,12 +260,13 @@ h3 {
     text-transform: capitalize;
 }
 
-#integrantes .card-usu {
+.card-usu {
     background-color: var(--blanco);
     padding: 10px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 4px 6px 7px 0px #8a8a8a;
+    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
 }
 
 #integrantes .card-usu.Inactivo {
@@ -298,7 +297,7 @@ h3 {
     border: 5px solid var(--principal);
 }
 
-#integrantes h4{
+#integrantes h4 {
     width: 95%;
     margin: 0 auto;
     margin-top: 20px;
@@ -306,34 +305,21 @@ h3 {
 }
 
 #integrantes .card-usu h5 {
-    height: 50px;
+    height: 28px;
     margin: 10px auto;
     font-weight: 700;
     font-size: 100%;
 }
 
-#integrantes .card-usu .card-body  p.card-text , 
+#integrantes .card-usu .card-body p.card-text,
 #integrantes .card-usu .card-body .card-text a {
-    height: 50px;
+    height: 28px;
     font-size: 100%;
     margin-bottom: 10px;
     color: var(--negro);
     font-weight: 300;
-    
 }
 
-/* Media Quares */
-/* Telefono - Espacios para que el contenido se vea igual */
-@media screen and (min-width: 390px) and (max-width: 576px){
-    #integrantes .card-usu h5 {
-        height: 25px;
-    }
-
-    #integrantes .card-usu .card-body  p.card-text , 
-    #integrantes .card-usu .card-body .card-text a {
-        height: 25px;
-    }
-}
 
 #integrantes .card-usu a button {
     width: 80%;
@@ -364,10 +350,68 @@ h3 {
     border: 1px solid var(--grisClaro);
 }
 
+/* Fin Estilos INTEGRANTES  */
+
+/* Estilos OBSERVADOR  */
+#observador {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#observador .card-usu {
+    text-align: left;
+    font-size: 14px;
+    position: relative;
+}
+
+#observador .card-usu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 100%;
+    background-color: #fa5e00;
+    border-radius: 20px 0 0 20px;
+}
+
+#observador .card-usu .card-body {
+    margin-left: 10px;
+}
+
+#observador .card-usu h5 {
+    font-weight: 700;
+}
+
+#observador .card-usu hr {
+    width: 100%;
+    background-color: var(--grisClaro);
+}
+
+#observador .card-usu .usuario {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: -7px;
+    margin-top: 14px;
+    height: 20px;
+}
+
+#observador .card-usu .usuario img {
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
 
 
 
 
 
-/* Estilos INTEGRANTES  */
+
+
+/* Fin Estilos OBSERVADOR  */
+
+/* Media Quares */
+/* Phone  */
+

@@ -53,7 +53,6 @@
                   <th scope="col">Docente</th>
                   <th scope="col">Titulo</th>
                   <th scope="col">Fecha</th>
-                  <th scope="col">Archivos</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Detalles</th>
                 </tr>

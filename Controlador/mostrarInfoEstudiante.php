@@ -262,10 +262,9 @@
                   <td>
                     '.$f['fecha_vencimiento'].' 
                   </td>
-                  <td>01</td>
-                  <td class="'.$f['estado'].'">
+                  <td class="'.$f['estadoTarea'].'">
                     <p>
-                        '.$f['estado'].'
+                        '.$f['estadoTarea'].'
                     </p>
                   </td>
                   <td>
@@ -273,6 +272,8 @@
                   </td>
                 </tr>
             ';
+
+
         }
     }
 

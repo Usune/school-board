@@ -79,16 +79,23 @@ h3 {
     align-items: center;
 }
 
+
+#tbTareas tbody tr td .row .imgDoc  {
+    text-align: center;
+}
+
 #tbTareas tbody tr td .row .imgDoc img {
-    max-width: 80%;
+    max-width: 50%;
     border-radius: 50%;
 }
+
 
 #tbTareas tbody tr td .row .textDoc p {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin-left: -45%;
+    text-align: center;
 }
 
 
@@ -371,7 +378,7 @@ h3 {
     left: 0;
     width: 15px;
     height: 100%;
-    background-color: #fa5e00;
+    background-color: var(--principal);
     border-radius: 20px 0 0 20px;
 }
 

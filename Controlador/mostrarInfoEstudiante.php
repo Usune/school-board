@@ -134,7 +134,6 @@
 
     }
 
-
     // Mostrar la tarea y habilitar la entrega
     function habilitarEntregaTareas(){
         $idTarea = $_GET['idTarea'];
@@ -251,6 +250,9 @@
                     <div class="formulario">
                         <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data" id="formulario">
 
+                            <input type="number" placeholder="idEstudiante"  name="idEstudiante" value="1023163094" hidden >
+                            <input type="number" placeholder="idTarea"   name="idTarea" value="4" hidden>
+
                             <div class="textarea">
                                 <label for="descripcion">Descripción</label>
                                 <textarea id="descripcion" cols="30" rows="10"
@@ -266,6 +268,7 @@
                         </form>
                     </div>
                 </div>
+            </div>
             </div>
                   
             ';
@@ -291,7 +294,7 @@
 
             echo '
                 <tr>
-                    <td>'.$f['asignatura'].'</td>
+                    <td>'.$f['asignaturaNombre'].'</td>
                     <td>
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
@@ -312,7 +315,7 @@
                         </p>
                     </td>
                     <td class="ultimo">
-                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
                     </td>
                 </tr>
             ';

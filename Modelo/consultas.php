@@ -1189,7 +1189,7 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT 
+            $sql = "SELECT DISTINCT
             tarea.*, 
             asignatura.*,
             curso.*,
@@ -1230,7 +1230,7 @@
         }
 
 
-
+        // Funcion que me trae todas las tareas de un estudiante con la ultima entrega que realizo y su calificacion correspondiente
         public function cargarTodasTareas($idEstudiante){
             $rows = null;
 
@@ -1238,35 +1238,44 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT 
-            tarea.idTarea,
-            tarea.idClase,
-            tarea.idDocente,
-            tarea.titulo,
-            tarea.descripcion,
-            tarea.fecha_creacion,
-            tarea.fecha_vencimiento,
-            asignatura.idAsignatura,
-            asignatura.nombre as asignatura,
-            usuario.foto as fotoDoc,
-            usuario.nombres as nombres,
-            usuario.apellidos as apellidos,
-            tarea.archivos,
-            CASE
-                WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
-                ELSE 'pendiente'
-            END as estadoTarea
-            FROM clase
-            INNER JOIN tarea ON tarea.idClase = clase.idClase
-            INNER JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
-            INNER JOIN curso ON curso.idCurso = clase.idCurso
-            INNER JOIN estudiantecurso ON estudiantecurso.idestudianteCurso = curso.idCurso
-            INNER JOIN usuario ON usuario.documento = clase.idDocente
-            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea AND entrega.idEstudiante = :idEstudiante
-            WHERE estudiantecurso.idEstudiante = :idEstudiante
-            ORDER BY tarea.idTarea DESC";
+            t.*,
+            c.*,
+            a.*,
+            uDocente.*,
+            e.*,
+            cal.*,
+            a.nombre as asignaturaNombre,
+            uDocente.foto as fotoDoc,
+            CASE 
+                WHEN e.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+            FROM tarea t
+            JOIN clase c ON t.idClase = c.idClase
+            JOIN asignatura a ON c.idAsignatura = a.idAsignatura
+            JOIN usuario uDocente ON c.idDocente = uDocente.documento  -- Nueva JOIN
+            LEFT JOIN (
+                SELECT 
+                    e1.idTarea,
+                    e1.idEstudiante,
+                    e1.idEntrega,
+                    e1.fechaEntrega,
+                    e1.descripcion,
+                    e1.archivos
+                FROM entrega e1
+                JOIN (
+                    SELECT 
+                        idTarea,
+                        idEstudiante,
+                        MAX(fechaEntrega) AS max_fechaEntrega
+                    FROM entrega
+                    GROUP BY idTarea, idEstudiante
+                ) e2 ON e1.idTarea = e2.idTarea AND e1.idEstudiante = e2.idEstudiante AND e1.fechaEntrega = e2.max_fechaEntrega
+            ) e ON t.idTarea = e.idTarea AND e.idEstudiante = :idEstudiante
+            LEFT JOIN calificacion cal ON e.idEntrega = cal.idEntrega AND cal.idEstudiante = :idEstudiante";
 
             $statement = $conexion->prepare($sql);
-            $statement->bindParam('idEstudiante' , $idEstudiante);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
             $statement->execute();
 
             while($resultado = $statement->fetch()){
@@ -1320,18 +1329,22 @@
         }
 
         // Función para entregar actividades
-        public function insertarEntregaTarea($descripcion, $archivos_str){
+        public function insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str){
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "INSERT INTO entrega (descripcion, archivos)  VALUES (:descripcion, :archivos_str)";
+            $sql = "INSERT INTO entrega (idEstudiante, idTarea, fechaEntrega, descripcion, archivos) VALUES (:idEstudiante, :idTarea, :fechaEntrega, :descripcion, :archivos_str);
+            ";
             $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->bindParam(':idTarea' , $idTarea);
+            $statement->bindParam(':fechaEntrega' , $fechaEntrega);
             $statement->bindParam(':descripcion' , $descripcion);
             $statement->bindParam(':archivos_str' , $archivos_str);
             $statement->execute();
 
             echo '<script>alert("Entrega exitosa")</script>';
-            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php"</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php?idAsignatura='.$idAsignatura.'&idTarea='.$idTarea.'&nombreAsignatura='.$nombreAsignatura.'&tarea='.$nombreTarea.'"</script>';
 
         }
 

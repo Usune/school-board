@@ -1284,4 +1284,89 @@ hr#fechas {
 /* Fin estilos MODAL */
 
 
+/* Estilos TABLAS */
+/* Cosas a cambiar 
+    1. La etiqueta table debe ir dentro de un div con la class="tablas"
+    2. El box-shadow cuando hace hover
+    3. Colocar en el ultimo TH y TD la class="ultimo"
+    4. Estrutura table > thead - tr - th  > tbody - tr - td
+*/
+
+/* Espacio entre filas */
+.tablas table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 18px;
+    font-size: 80%;
+}
+
+/* THEAD - TH */
+.tablas thead tr {
+    background-color: #F9F9F9;
+    vertical-align: middle;
+    padding: 10px 15px;
+}
+
+.tablas thead tr th{
+    padding: 10px 15px;
+    background-color: transparent;
+}
+
+/* TBODY - TD */
+.tablas tbody tr {
+    background-color: var(--blanco);
+    vertical-align: middle;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.tablas tbody tr td{
+    padding: 10px 15px;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+/* Redondeo los ultimos bordes generales */
+.tablas thead tr th:nth-child(1),
+.tablas tbody tr td:nth-child(1) {
+    border-radius: 20px 0 0 20px;
+}
+
+/* Colocar en el ultimo TH y TD la class="ultimo" */
+.tablas thead tr th.ultimo,
+.tablas tbody tr td.ultimo {
+    border-radius: 0 20px 20px 0;
+}
+
+.tablas a img {
+    width: 20px
+}
+
+.tablas tr td a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
+    color: var(--negro);
+}
+
+
+/* TABLAS HOVER */
+.tablas tbody tr:hover {
+    background-color: var(--principal);
+    /* Cambiar el box-shadow por el color principal pero mas ocurito */
+    /* box-shadow: 4px 6px 0px 0px  #fa5e00;  */
+    border-radius: 21px;
+    transform: scale(1.01);
+}
+
+.tablas tbody tr:hover td {
+    border: 1px solid var(--principal);
+    background-color: var(--principal);
+}
+
+
+/* Fin Estilos TABLAS */
+
 

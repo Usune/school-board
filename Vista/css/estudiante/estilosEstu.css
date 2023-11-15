@@ -1,12 +1,13 @@
+:root {
+    --principal: #FFA269;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --principal: #FFA269;
-}
 
 p {
     margin-bottom: 0;
@@ -16,160 +17,6 @@ h2,
 h3 {
     font-weight: 700;
 }
-
-/* Estilos TABLA TODAS LAS TAREAS  */
-/* Espacio entre filas */
-#tbTareas table {
-    width: 95%;
-    margin: 0 auto;
-    border-collapse: separate;
-    border-spacing: 0 18px;
-    font-size: 80%;
-}
-
-/* THEAD - TH */
-#tbTareas thead tr th {
-    background-color: #F9F9F9;
-    vertical-align: middle;
-    padding: 15px;
-}
-
-/* Bordes generales */
-#tbTareas thead tr th:nth-child(1) {
-    border-radius: 20px 0 0 20px;
-}
-
-#tbTareas thead tr th:nth-child(6) {
-    border-radius: 0 20px 20px 0;
-}
-
-
-/* TBODY - TD */
-#tbTareas .table-hover tbody tr {
-    /* REVISAR BOX SHADOW */
-    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
-    box-shadow: 4px 6px 7px 0px #d6d6d6;
-    border-radius: 21px;
-}
-
-#tbTareas tbody tr td {
-    background-color: var(--blanco);
-    vertical-align: middle;
-    padding: 10px 15px;
-    transition: background-color 0.3s ease;
-}
-
-/* Bordes generales */
-#tbTareas tbody tr td:nth-child(1) {
-    border-radius: 20px 0 0 20px;
-}
-
-#tbTareas tbody tr td:nth-child(6) {
-    border-radius: 0 20px 20px 0;
-}
-
-/* TD - "Docente" */
-#tbTareas tbody tr td:nth-child(2) {
-    width: 200px;
-}
-
-#tbTareas tbody tr td .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-#tbTareas tbody tr td .row .imgDoc  {
-    text-align: center;
-}
-
-#tbTareas tbody tr td .row .imgDoc img {
-    max-width: 50%;
-    border-radius: 50%;
-}
-
-
-#tbTareas tbody tr td .row .textDoc p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -45%;
-    text-align: center;
-}
-
-
-/* TD - "Estado" */
-#tbTareas tbody tr td:nth-child(5) p {
-    margin-left: 18px;
-    margin-bottom: 0;
-}
-
-/* Pendiente - rojo */
-#tbTareas tbody tr td.pendiente:nth-child(5) {
-    position: relative;
-    text-transform: capitalize;
-}
-
-#tbTareas tbody tr td.pendiente:nth-child(5)::after {
-    content: "";
-    position: absolute;
-    top: 45%;
-    left: 18px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--rojo);
-}
-
-/* Entregada - verde */
-#tbTareas tbody tr td.entregada:nth-child(5) {
-    position: relative;
-    text-transform: capitalize;
-}
-
-#tbTareas tbody tr td.entregada:nth-child(5)::after {
-    content: "";
-    position: absolute;
-    top: 45%;
-    left: 18px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--verde);
-}
-
-
-/* TD "Ver más" */
-#tbTareas tbody tr td img#verMas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    background-color: var(--grisClaro);
-    transform: rotate(90deg);
-    opacity: 0.5;
-    border-radius: 10px;
-}
-
-/* Hover */
-#tbTareas .table-hover tbody tr:hover {
-    box-shadow: 4px 6px 0px 0px #fa5e00;
-    border-radius: 21px;
-    transform: scale(1.01);
-}
-
-
-#tbTareas .table-hover tbody tr:hover td {
-    background-color: var(--principal);
-    box-shadow: 0px 2px 0 0 var(--principal);
-    font-weight: 700;
-    filter: saturate(105%);
-}
-
-
-
-/* Fin Estilos TABLA TODAS LAS TAREAS
 
 /* Estilos INTEGRANTES  */
 /* Espacio entre filas */
@@ -410,15 +257,123 @@ h3 {
     margin-right: 10px;
 }
 
-
-
-
-
-
-
-
 /* Fin Estilos OBSERVADOR  */
 
-/* Media Quares */
-/* Phone  */
+
+/* Estilos Generales Tablas */
+
+/* Estilos Especificos Tablas */
+/* Tareas */
+
+/* TD - "Docente" */
+.tablas tbody tr td:nth-child(2) {
+    width: 200px;
+}
+
+.tablas tbody tr td .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tablas tbody tr td .row .imgDoc img {
+    max-width: 50%;
+    border-radius: 50%;
+}
+
+.tablas tbody tr td .row .textDoc p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -80%;
+    text-align: center;
+}
+
+
+/* TD - "Estado" */
+.tablas tbody tr td:nth-child(5) p {
+    margin-left: 18px;
+    margin-bottom: 0;
+}
+
+/* Pendiente - rojo */
+.tablas tbody tr td.pendiente:nth-child(5) {
+    position: relative;
+    text-transform: capitalize;
+}
+
+.tablas tbody tr td.pendiente:nth-child(5)::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--rojo);
+}
+
+/* Entregada - verde */
+.tablas tbody tr td.entregada:nth-child(5) {
+    position: relative;
+    text-transform: capitalize;
+}
+
+.tablas tbody tr td.entregada:nth-child(5)::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--verde);
+}
+
+
+/* TD "Ver más" */
+.tablas tbody tr td img#verMas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--grisClaro);
+    transform: rotate(90deg);
+    opacity: 0.5;
+    border-radius: 10px;
+}
+
+/* Hover */
+.tablas .table-hover tbody tr {
+    /* REVISAR BOX SHADOW */
+    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
+    border-radius: 21px;
+}
+
+.tablas .table-hover tbody tr:hover td {
+    background-color: var(--principal);
+    /* box-shadow: 0px 2px 0 0  #fa5e00; */
+    box-shadow:   4px 6px 0px 0px  #fa5e00;
+    font-weight: 700;
+    filter: saturate(105%);
+}
+
+/* Media Queries */
+/* Phone */
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .tablas tbody tr td .row .imgDoc  {
+        text-align: center;
+    }
+
+    .tablas tbody tr td .row .textDoc p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+
 

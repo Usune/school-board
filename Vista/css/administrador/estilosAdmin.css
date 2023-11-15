@@ -4,4 +4,10 @@
 }
 
 
+/* TABLAS HOVER */
+.tablas tbody tr:hover {
+    /* Cambiar el box-shadow por el color principal pero mas oscuro */
+    box-shadow: 4px 6px 0px 0px #48a87a; 
+}
+
 

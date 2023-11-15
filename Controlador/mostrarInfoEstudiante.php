@@ -267,7 +267,7 @@
                         '.$f['estadoTarea'].'
                     </p>
                   </td>
-                  <td>
+                  <td class="ultimo">
                     <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" id="verMas"></a>
                   </td>
                 </tr>

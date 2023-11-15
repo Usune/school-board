@@ -45,8 +45,8 @@
       <h2>Tareas</h2>
       <a href="../../../Controlador/excel.php">Excel</a>
         <div class="row">
-          <div id="tbTareas" class="table-responsive col-md-12">
-            <table class="table table-borderless table-hover">
+          <div id="tbTareas" class="table-responsive col-md-12 tablas">
+            <table class="table table-borderless table-hover ">
               <thead>
                 <tr>
                   <th scope="col">Clase</th>
@@ -54,7 +54,7 @@
                   <th scope="col">Titulo</th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Detalles</th>
+                  <th scope="col" class="ultimo">Detalles</th>
                 </tr>
               </thead>
               <tbody>

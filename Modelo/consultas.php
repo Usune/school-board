@@ -720,10 +720,12 @@
             CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
             CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
             o.fecha AS FechaObservacion
-            FROM observador o
+            FROM 
+            observador o
             INNER JOIN usuario a ON o.idAutor = a.documento
             INNER JOIN usuario e ON o.idEstudiante = e.documento
-            WHERE o.idEstudiante = :documento";
+            WHERE o.idEstudiante = :documento
+            ORDER BY o.fecha DESC";
 
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':documento', $documento);
@@ -736,6 +738,66 @@
             }
 
             return $f;
+
+        }
+        
+        // Trae la observación de un estudiante
+        public function mostrarObservacionAdmin($documento, $idObservacion) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT 
+            o.observacion AS Observacion, o.idObservador,
+            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
+            CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
+            CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
+            o.fecha AS FechaObservacion
+            FROM observador o
+            INNER JOIN usuario a ON o.idAutor = a.documento
+            INNER JOIN usuario e ON o.idEstudiante = e.documento
+            WHERE o.idEstudiante = :documento AND o.idObservador = :idObservacion";
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':documento', $documento);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $fetch[] = $resultado;
+
+            }
+
+            foreach($fetch as $f) {
+                return '
+                    <h3>Crear Observación</h3>
+
+                    <p class="recordatorio">Antes de subir la observación, asegurese de que todos los campos son correctos.</p>
+
+                    <form action="../../../Controlador/registrarObserAdmin.php?id='.$f['documento'].'" method="post" id="formulario">
+
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="estu">Estudiante</legend>
+                            </fieldset>
+                            <input type="text" value="'.$f['nombres'].' '.$f['apellidos'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
+                        </div>
+
+                        <div class="textarea">
+                            <label for="obser">Observación</label>
+                            <textarea id="obser" cols="30" rows="10" name="observacion">Ingrese la observación</textarea>
+                        </div>
+
+                        <p id="texto"></p>
+                    
+                        <button type="submit" class="enviar">Subir Observación</button>
+                    </form>
+                ';
+            }
 
         }
 

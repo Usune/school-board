@@ -255,6 +255,29 @@ body {
     display: none;
     margin-bottom: 20px;
     transition: 1s;
+    width: 70vw;
+}
+
+.cont-filtro {
+    background-color: var(--beige);
+    width: 650px;
+    border-radius: 30px;
+    position: relative;
+    z-index: 100;
+    padding: 20px;
+    box-shadow: 0 0 10px 5px var(--gris);
+}
+
+.cont-filtro::after {
+    content: "";
+    position: absolute;
+    background-color: var(--beige);
+    width: 30px;
+    height: 30px;
+    transform: rotate(45deg);
+    top: -15px;
+    left: 30px;
+    z-index: -200;
 }
 
 #filtro form{
@@ -332,7 +355,8 @@ body {
 
 /* Estilo general de tablas */
 .tabla {
-    /* width: 70vw; */
+    width: 70vw;
+    overflow: scroll;
     background-color: transparent;
     padding: 10px;
     text-align: start;
@@ -342,13 +366,14 @@ body {
     min-width: 500px;
 }
 
-.tabla .opciones {
+.opciones {
+    width: 70vw;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
 }
 
-.tabla .opciones a {
+.opciones a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -358,15 +383,15 @@ body {
     border-radius: 10px;
 }
 
-.tabla .opciones a img {
+.opciones a img {
     width: 30px;
 }
 
-.tabla .opciones a:hover {
+.opciones a:hover {
     background-color: var(--principal);
 }
 
-.tabla .opciones button {
+.opciones button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -378,15 +403,15 @@ body {
     border-radius: 10px;
 }
 
-.tabla .opciones button:hover {
+.opciones button:hover {
     background-color: var(--principal);
 }
 
-.tabla .opciones button img {
+.opciones button img {
     width: 30px;
 }
 
-.tabla a img {
+a img {
     width: 20px
 }
 
@@ -411,7 +436,7 @@ body {
 }
 
 .tabla table tr th {
-    font-size: 14px;
+    font-size: 16px;
     padding: 10px;
     max-width: 200px;
     border: none;
@@ -421,7 +446,7 @@ body {
 }
 
 .tabla tr td {
-    font-size: 12px;
+    font-size: 15px;
     padding: 10px;
     max-width: 200px;
     min-width: 100px;
@@ -693,7 +718,10 @@ main {
 }
 
 .nav-main {
-    padding: 20px;
+    padding: 10px 0px;
+    position: absolute;
+    background-color: var(--grisClaro);
+    margin-left: 20px;
 }
 
 .nav-main a {
@@ -715,8 +743,8 @@ section {
 
 section h2 {
     text-align: center;
-    margin: 10px 0px 10px 0px;
-    font-size: 30px;
+    margin: 40px 0px 10px 0px;
+    font-size: 28px;
 }
 
 section h3 {
@@ -998,8 +1026,8 @@ hr {
 /* ESTILOS CABECERA */
 .btn-cabecera{
     position: absolute;
-    top: 200px;
-    right: 10%;
+    top: 25px;
+    right: 0;
     text-decoration: none;
     color: var(--negro);
     background-color: var(--principal);
@@ -1021,6 +1049,7 @@ hr {
 }
 
 .cabecera{
+    position: relative;
     width: 70%;
     padding-top: 20px;
     display: flex;
@@ -1041,11 +1070,10 @@ hr {
 /* Estilos para TARJETAS*/
 .card-tarea {
     width: 70%;
-    background: #75757500;
-    border: 3px solid #dbdbdb00;
+    background: transparent;
     padding: 20px;
     border-radius: 30px;
-    box-shadow: 0px 5px 5px 1px var(--gris);
+    box-shadow: 0px 0px 10px 5px var(--gris);
     margin: 20px 0;
     font-size: 12px;
 }
@@ -1213,6 +1241,21 @@ hr#fechas {
     align-items: center;
     font-weight: bold;
     font-size: 10px;
+}
+
+.card-tarea .boton button {
+    padding: 5px 10px;
+    background-color: var(--principal);
+    border: 2px solid var(--principal);
+    text-decoration: none;
+    color: var(--negro);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
 }
 
 .card-tarea .boton img {

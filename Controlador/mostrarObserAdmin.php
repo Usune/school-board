@@ -1,5 +1,12 @@
 <?php
 
+    // Condicional para la función consultarInfoObservacion() en el documento controlGeneral.js
+    if (isset($_GET['funcion']) && $_GET['funcion'] == 'cargarObserEditar'){
+        $idObservacion = $_POST['idObser'];
+        $resultado = cargarObserEditar($idObservacion);
+        echo $resultado;
+    }
+
     // SE RECIBEN TODAS LAS CONSULTAS PARA MOSTRAR ASIGNATURAS
 
     // ESTA FUNCIÓN ES LA QUE SE LLAMA EN LA VISTA
@@ -10,7 +17,7 @@
 
         <div class="formulario">
             
-            <h3>Observador</h3>
+            <h2>Observador</h2>
 
             <p class="recordatorio">Ingrese el documento del estudiante.</p>
 
@@ -95,7 +102,6 @@
 
             }
 
-        
             $consultas = $objConsultas->mostrarObservadorAdmin($documento);
     
             if (!isset($consultas)) {
@@ -131,9 +137,26 @@
                                 </div>
                             </div>
                             <div class="boton">
-                                <a href="adminObserModificar.php?id='.$f['idObservador'].'"><img src="../../img/edit.svg">Modificar</a>
+                                <button type="button" class="desplegarModal" modal="#modificar" data-id="'.$f['idObservador'].'">
+                                    <img src="../../img/edit.svg" alt="Agregar" modal="#modificar">Modificar
+                                </button>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="modal" id="modificar">
+
+                        <div class="modal_container">
+                            <button type="button" class="desplegarModal btn-cerrar" modal="#modificar"><img src="../../img/x.svg" alt="Salir" modal="#modificar"></button>
+                        
+                            <div class="formulario" id="resultadoConsulta">
+                                
+                                <!-- Resultado consulta en controlGenereal.js -->
+                                
+                            </div>
+
+                        </div>
+                        
                     </div>
                     ';
     
@@ -218,6 +241,75 @@
         }
 
     }
+    
+    function cargarObserEditar(){
+
+        // Aterrizamos la PK enviada desde la tabla
+        $id = $_POST['id']; 
+
+        // Eviamos la PK a una función de la clase consultas
+        $objConsultas = new Consultas();
+        $consulta = $objConsultas->mostrarComunicadoAdmin($id);
+
+        // Pintamos la información consultada en el artefacto (formulario)
+        foreach ($consulta as $f) {
+
+            echo '
+                    
+                <form action="../../../Controlador/actualizarComunAdmin.php" method="post" enctype="multipart/form-data" id="formulario">
+
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="tit">Título</legend>
+                            </fieldset>
+                            <input type="text" value="'.$f['titulo'].'" placeholder="Título" required legend="#tit" name="titulo">
+                        </div>
+        
+                        <div class="textarea">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" cols="30" rows="10" name="descripcion"> '.$f['descripcion'].' </textarea>
+                        </div> 
+
+                        <div class="fieldset_view">
+                            <label for="rol">Curso</label>
+                            <select class="veriSelect" required name="curso">
+            ';
+
+            if($f['curso'] == 'Todos'){
+
+                echo '
+                            <option value="'.$f['idCurso'].'" selected>'.$f['curso'].'</option>
+                            <option value="1">Todos</option> 
+                ';
+
+            }else {
+
+                echo '
+                            <option value="'.$f['idCurso'].'" selected>'.$f['curso'].' - Jornada: '.$f['jornada'].'</option>
+                            <option value="1">Todos</option> 
+                ';
+
+            }
+                cargarCursosRegistro();
+
+            echo '            
+                            </select>
+                        </div>
+
+                        <div class="file">
+                            <label for="archivo">Seleccione un archivo</label>
+                            <input type="file" accept=".pdf" name="archivo">
+                        </div>
+
+                        <p id="texto"></p>
+                    
+                    <button type="submit" class="enviar">Subir comunicado</button>
+                </form>
+            ';
+        }
+
+    }
+
 
 
 

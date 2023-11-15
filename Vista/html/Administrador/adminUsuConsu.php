@@ -37,10 +37,9 @@
                 <h2>Administración de usuarios</h2>
 
                 <h3>Consultar usuarios</h3>
-
-                <div class="tabla">
-
-                    <div class="opciones">
+                <div class="opciones">
+                        
+                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
 
                     <?php
 
@@ -54,12 +53,11 @@
 
                         }
                     ?>
+                </div>
+                <div id="filtro">
+
+                    <div class="cont-filtro">
                         
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                    </div>
-
-                    <div id="filtro">
-
                         <form method="get">
 
                             <div class="fila-cont">
@@ -70,7 +68,7 @@
                                     <input type="radio" name="rol" id="docente" value="docente">
                                     <label for="docente">Docente</label><br>
                                     <input type="radio" name="rol" id="estu" value="estudiante">
-                                    <label for="estu">Estudiante</label><br>
+                                    <label for="estu">Estudiante</label>
                                 </div>
 
                                 <div class="radio">
@@ -79,7 +77,7 @@
                                     <input type="radio" name="estado" id="activo" value="activo">
                                     <label for="activo">Activo</label><br>
                                     <input type="radio" name="estado" id="inactivo" value="inactivo">
-                                    <label for="inactivo">Inactivo</label><br>
+                                    <label for="inactivo">Inactivo</label>
                                 </div>
 
                             </div>
@@ -117,8 +115,12 @@
                             </div>
 
                         </form>
-                        
+
                     </div>
+                    
+                </div>
+
+                <div class="tabla">
                     
                     <table>
                         <caption>

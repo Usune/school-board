@@ -103,6 +103,24 @@
 
         }
 
+        public function insertarObserDoc($idEstudiante, $idAutor, $fecha, $observacion, $idClase)
+        {
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO observador(idEstudiante, idAutor, fecha, observacion) VALUES (:idEstudiante, :idAutor, :fecha, :observacion)';
+            $resultado = $conexion->prepare($sql);
+            $resultado->bindParam(':idEstudiante', $idEstudiante);
+            $resultado->bindParam(':idAutor', $idAutor);
+            $resultado->bindParam(':fecha', $fecha);
+            $resultado->bindParam(':observacion', $observacion);
+
+            $resultado->execute();
+            echo '<script>alert("La observación fue registrado")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docObser.php?documento='.$idEstudiante.'&idClase='.$idClase.' "</script>';
+
+        }
+
         public function insertarAsigAdmin($nombre) {
             
             $objConexion = new Conexion();
@@ -1534,20 +1552,159 @@
             
         }
 
-        public function eliminarTareas($idTarea) {
+        public function eliminarTarDoc($idTarea,$idClase) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
             
+         
+
+            $sql = 'DELETE FROM tarea WHERE idTarea = :idTarea';
+        
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idTarea', $idTarea);
+            $consulta->execute();
+            
+            echo '<script>alert("La tarea ha sido eliminado.")</script>';
+            echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idTarea='.$idTarea.'&idClase='.$idClase.'"</script>';
+
+
+        }
+
+        public function mostrarObservadorDoc($documento) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'DELETE FROM usuario WHERE documento = :id';
+            $sql = 
+            "SELECT 
+            o.observacion AS Observacion, o.idObservador,
+            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
+            CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
+            CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
+            o.fecha AS FechaObservacion
+            FROM observador o
+            INNER JOIN usuario a ON o.idAutor = a.documento
+            INNER JOIN usuario e ON o.idEstudiante = e.documento
+            WHERE o.idEstudiante = :documento";
+
             $consulta = $conexion->prepare($sql);
-            $consulta->bindParam(':id', $id);
+            $consulta->bindParam(':documento', $documento);
             $consulta->execute();
             
-            echo '<script>alert("El usuario a sido eliminado.")</script>';
-            echo "<script>location.href='../Vista/html/administrador/adminUsuConsu.php'</script>";
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
 
         }
+
+        public function mostrarUsuariosAsis($idClase){
+
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT usuario.tipoDoc, usuario.documento, usuario.apellidos, usuario.nombres, CURDATE() AS Fecha
+                    FROM estudiantecurso INNER JOIN
+                        curso on curso.idCurso = estudiantecurso.idCurso INNER JOIN
+                        clase on clase.idCurso = estudiantecurso.idCurso INNER JOIN
+                        usuario on usuario.documento=estudiantecurso.idEstudiante
+                    WHERE clase.idClase = :idClase';
+
+            $consulta = $conexion->prepare($sql);          
+            $consulta->bindParam(':idClase', $idClase);
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+
+            return $f;            
+        }
+
+        public function mostrarComunicadosDoc() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT usuario.nombres as nombre, usuario.apellidos as apellido, usuario.foto  as foto, 
+                    comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.fecha  as fecha, comunicado.descripcion  as descripcion,  comunicado.archivos  as archivo,
+                    curso.nombre as curso, curso.jornada as jornada            
+            FROM comunicado INNER JOIN 
+                usuario ON comunicado.idUsuario = usuario.documento INNER JOIN 
+                curso ON comunicado.idCurso = curso.idCurso
+            ORDER BY fecha  DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+
+            return $f;
+        }
+
+        public function mostrarComunicadoDoc($idComunicado) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto ncdunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.descripcion  as descripcion, 
+            curso.idCurso as idCurso, curso.nombre as curso, curso.jornada as jornada
+            
+            FROM comunicado
+
+            INNER JOIN curso ON comunicado.idCurso = curso.idCurso
+            
+            WHERE comunicado.idComunicado = :idComunicado";
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idComunicado', $idComunicado);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+        }
+
+        public function insertarComunDoc($idUsuario, $idCurso, $titulo, $descripcion, $archivo) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO comunicado (idUsuario, idCurso, titulo, descripcion, archivos) VALUES (:idUsuario, :idCurso, :titulo, :descripcion, :archivo)';
+            $consulta = $conexion->prepare($sql);
+
+            $consulta->bindParam(':idUsuario',$idUsuario);
+            $consulta->bindParam(':idCurso',$idCurso);
+            $consulta->bindParam(':titulo',$titulo);
+            $consulta->bindParam(':descripcion',$descripcion);
+            $consulta->bindParam(':archivo',$archivo);
+
+            $consulta->execute();
+
+            echo '<script>alert("Comunicado subido correcamente")</script>';
+            echo "<script>location.href='../Vista/html/Docente/docComunRegistrar.php'</script>";         
+
+        }
+
+
     }
 
 

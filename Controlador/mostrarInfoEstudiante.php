@@ -322,6 +322,48 @@
         }
     }
 
+    // Mostrar todas las calificaciones de las tareas
+    function mostrarTodasCalificaciones(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodasTareas($idEstudiante);
+
+        foreach ($filas as $f) {
+            // Formatear la fecha
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_calificacion']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_calificacion']));
+
+            echo '
+                <tr>
+                    <td>'.$f['asignaturaNombre'].'</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
+                                <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
+                                <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>'.$f['titulo'].' </td>
+                    <td class="estado '.$f['estadoTarea'].'">
+                        <p>
+                            '.$f['estadoTarea'].'
+                        </p>
+                    </td>
+                    <td>
+                        '.($f["fecha_calificacion"] !== null ? $formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento : "No se ha calificado" ).' 
+                    </td>
+                    <td class="calificacion">'.($f["calificacion"] !== null ? $f["calificacion"] : "-").'</td>
+                    <td class="ultimo">
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                    </td>
+                </tr>
+            ';
+        }
+    }
+
 
     // Mostrar todos los usuarios
     function mostrarTodosUsuarios(){

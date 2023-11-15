@@ -1181,40 +1181,49 @@
             return $rows;
         }
 
-
-        // Funcion para mostrar las tareas correspondientes a una Asignatura 
+        // Función que trae todas las tareas asignadas a una asignatura en especifico, con la ultima entrega y calificacion del estudiante, incluye detalles sobre la asignatura y el docente.
         public function cargarTareasAsignatura($idEstudiante, $idAsignatura){
             $rows = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT DISTINCT
-            tarea.*, 
-            asignatura.*,
-            curso.*,
-            estudiantecurso.*,
-            usuario.*,
-            entrega.*,
-            calificacion.*,
-            asignatura.nombre as asignaturaNombre,
-            tarea.idTarea as idTarea,
-            aula.nombre as aulaNombre,
-                CASE
-                    WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
-                    ELSE 'pendiente'
-                END as estadoTarea
-            FROM clase
-            INNER JOIN tarea ON tarea.idClase = clase.idClase
-            INNER JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
-            INNER JOIN curso ON curso.idCurso = clase.idCurso
-            INNER JOIN estudiantecurso ON estudiantecurso.idestudianteCurso = curso.idCurso
-            INNER JOIN usuario ON usuario.documento = clase.idDocente
-            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea AND entrega.idEstudiante = :idEstudiante
-            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
-            LEFT JOIN aula ON aula.idAula = clase.idAula
-            WHERE asignatura.idAsignatura =  :idAsignatura
-            ORDER BY tarea.idTarea DESC";
+            $sql = "SELECT 
+            t.*,
+            c.*,
+            a.*,
+            uDocente.*,
+            e.*,
+            cal.*,
+            a.nombre as asignaturaNombre,
+            CASE 
+                WHEN e.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+            FROM tarea t
+            JOIN clase c ON t.idClase = c.idClase
+            JOIN asignatura a ON c.idAsignatura = a.idAsignatura
+            JOIN usuario uDocente ON c.idDocente = uDocente.documento
+            LEFT JOIN (
+                SELECT 
+                    e1.idTarea,
+                    e1.idEstudiante,
+                    e1.idEntrega,
+                    e1.fecha_entrega,
+                    e1.descripcion,
+                    e1.archivos
+                FROM entrega e1
+                JOIN (
+                    SELECT 
+                        idTarea,
+                        idEstudiante,
+                        MAX(fecha_entrega) AS max_fecha_entrega
+                    FROM entrega
+                    GROUP BY idTarea, idEstudiante
+                ) e2 ON e1.idTarea = e2.idTarea AND e1.idEstudiante = e2.idEstudiante AND e1.fecha_entrega = e2.max_fecha_entrega
+            ) e ON t.idTarea = e.idTarea AND e.idEstudiante = :idEstudiante
+            LEFT JOIN calificacion cal ON e.idEntrega = cal.idEntrega AND cal.idEstudiante = :idEstudiante
+            WHERE a.idAsignatura = :idAsignatura";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
@@ -1230,7 +1239,7 @@
         }
 
 
-        // Funcion que me trae todas las tareas de un estudiante con la ultima entrega que realizo y su calificacion correspondiente
+        // Funcion que me obtiene todas las tareas de un estudiante junto con la última entrega realizada y su calificación correspondiente. Además, la consulta incluye información sobre la asignatura de la tarea y el docente que la asignó.
         public function cargarTodasTareas($idEstudiante){
             $rows = null;
 
@@ -1259,7 +1268,7 @@
                     e1.idTarea,
                     e1.idEstudiante,
                     e1.idEntrega,
-                    e1.fechaEntrega,
+                    e1.fecha_entrega,
                     e1.descripcion,
                     e1.archivos
                 FROM entrega e1
@@ -1267,10 +1276,10 @@
                     SELECT 
                         idTarea,
                         idEstudiante,
-                        MAX(fechaEntrega) AS max_fechaEntrega
+                        MAX(fecha_entrega) AS max_fecha_entrega
                     FROM entrega
                     GROUP BY idTarea, idEstudiante
-                ) e2 ON e1.idTarea = e2.idTarea AND e1.idEstudiante = e2.idEstudiante AND e1.fechaEntrega = e2.max_fechaEntrega
+                ) e2 ON e1.idTarea = e2.idTarea AND e1.idEstudiante = e2.idEstudiante AND e1.fecha_entrega = e2.max_fecha_entrega
             ) e ON t.idTarea = e.idTarea AND e.idEstudiante = :idEstudiante
             LEFT JOIN calificacion cal ON e.idEntrega = cal.idEntrega AND cal.idEstudiante = :idEstudiante";
 
@@ -1333,12 +1342,12 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "INSERT INTO entrega (idEstudiante, idTarea, fechaEntrega, descripcion, archivos) VALUES (:idEstudiante, :idTarea, :fechaEntrega, :descripcion, :archivos_str);
+            $sql = "INSERT INTO entrega (idEstudiante, idTarea, fecha_entrega, descripcion, archivos) VALUES (:idEstudiante, :idTarea, :fechaEntrega, :descripcion, :archivos_str);
             ";
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
             $statement->bindParam(':idTarea' , $idTarea);
-            $statement->bindParam(':fechaEntrega' , $fechaEntrega);
+            $statement->bindParam(':fecha_entrega' , $fechaEntrega);
             $statement->bindParam(':descripcion' , $descripcion);
             $statement->bindParam(':archivos_str' , $archivos_str);
             $statement->execute();

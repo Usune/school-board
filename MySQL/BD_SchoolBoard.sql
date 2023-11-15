@@ -190,7 +190,7 @@ CREATE TABLE entrega(
     idEntrega INT AUTO_INCREMENT,
     idEstudiante INT,
     idTarea INT ,
-    fechaEntrega DATETIME,
+    fecha_entrega DATETIME,
     descripcion VARCHAR(200),
     archivos VARCHAR(400),
     PRIMARY KEY (idEntrega),
@@ -199,7 +199,7 @@ CREATE TABLE entrega(
 );
 
 
-INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fechaEntrega)
+INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fecha_entrega)
 VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
 
 
@@ -208,7 +208,7 @@ CREATE TABLE calificacion (
     idEstudiante INT,
     idEntrega INT,
     calificacion FLOAT,
-    fechaCalificacion DATETIME DEFAULT NOW(),
+    fecha_calificacion DATETIME DEFAULT NOW(),
     PRIMARY KEY (idCalificacion),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
     FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)

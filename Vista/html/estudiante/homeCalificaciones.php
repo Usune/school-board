@@ -1,3 +1,11 @@
+<?php
+    require_once ('../../../Modelo/conexion.php');
+    require_once ('../../../Modelo/consultas.php');
+    require_once ('../../../Controlador/mostrarPerfil.php');
+    require_once ('../../../Controlador/mostrarUsuAdmin.php');
+    require_once ('../../../Controlador/mostrarInfoEstudiante.php');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -36,21 +44,21 @@
       <div class="container-fluid">
       <h2>Calificaciones</h2>
         <div class="row">
-          <div id="tbTareas" class="table-responsive col-md-12">
-            <table class="table table-borderless table-hover">
+          <div class="table-responsive col-md-12 tablas">
+            <table class="table table-borderless table-hover ">
               <thead>
                 <tr>
-                  <th scope="col">Clase</th>
+                  <th scope="col">Asignatura</th>
                   <th scope="col">Docente</th>
                   <th scope="col">Titulo</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Archivos</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Detalles</th>
+                  <th scope="col">Fecha de Calificación</th>
+                  <th scope="col">Calificación</th>
+                  <th scope="col" class="ultimo">Detalles</th>
                 </tr>
               </thead>
               <tbody>
-                <?php mostrarTodasTareas(); ?>
+                <?php mostrarTodasCalificaciones(); ?>
                 <!-- <tr>
                   <td>Español</td>
                   <td>

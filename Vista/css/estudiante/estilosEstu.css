@@ -2,3 +2,378 @@
     --principal: #FFA269;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+p {
+    margin-bottom: 0;
+}
+
+h2,
+h3 {
+    font-weight: 700;
+}
+
+/* Estilos INTEGRANTES  */
+/* Espacio entre filas */
+#integrantes {
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* Filtro */
+#integrantes .filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F9F9F9;
+    border-radius: 20px;
+    padding: 5px 0 15px 10px;
+    margin-top: 20px;
+}
+
+#integrantes .filtro-inputs .fieldset_view {
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 4px;
+}
+
+#integrantes .filtro-inputs .fieldset_view .fieldset {
+    margin-bottom: -5px;
+    justify-content: left;
+    width: 100%;
+    position: relative;
+    margin-top: 6px;
+}
+
+#integrantes .filtro-inputs .fieldset_view .fieldset input {
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    /* background-color: #fa5e00; */
+}
+
+#integrantes .filtro-inputs .fieldset_view .fieldset input:focus {
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+#integrantes .filtro-inputs {
+    display: flex;
+    justify-content: left;
+    align-items: end;
+}
+
+
+#integrantes .filtro-inputs .buscador {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+#integrantes .filtro-inputs .buscador button,
+#integrantes .filtro-inputs .buscador a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    margin: 10px 10px 0 0;
+}
+
+#integrantes .filtro-inputs .buscador button:hover,
+#integrantes .filtro-inputs .buscador a:hover {
+    background-color: var(--principal);
+    filter: brightness(1);
+}
+
+
+/* Cards */
+#integrantes h3.texto {
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.card-usu {
+    background-color: var(--blanco);
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
+}
+
+#integrantes .card-usu.Inactivo {
+    filter: brightness(0.9);
+}
+
+#integrantes .card-usu .iconos {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#integrantes .card-usu .iconos img {
+    width: 30px;
+}
+
+#integrantes .card-usu .fotoUsu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#integrantes .card-usu .fotoUsu img {
+    width: 50%;
+    border-radius: 50%;
+    border: 5px solid var(--principal);
+}
+
+#integrantes h4 {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#integrantes .card-usu h5 {
+    height: 28px;
+    margin: 10px auto;
+    font-weight: 700;
+    font-size: 100%;
+}
+
+#integrantes .card-usu .card-body p.card-text,
+#integrantes .card-usu .card-body .card-text a {
+    height: 28px;
+    font-size: 100%;
+    margin-bottom: 10px;
+    color: var(--negro);
+    font-weight: 300;
+}
+
+
+#integrantes .card-usu a button {
+    width: 80%;
+    margin: 15px auto 0 auto;
+    font-weight: 700;
+    background-color: var(--principal);
+    border: 1px solid var(--principal);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/* Hover Cards */
+#integrantes .card-usu:hover {
+    background-color: var(--principal);
+}
+
+
+#integrantes .card-usu:hover .fotoUsu img {
+    border: 5px solid var(--blanco);
+}
+
+#integrantes .card-usu:hover h5 {
+    color: var(--blanco);
+}
+
+#integrantes .card-usu:hover a button {
+    background-color: var(--grisClaro);
+    border: 1px solid var(--grisClaro);
+}
+
+/* Fin Estilos INTEGRANTES  */
+
+/* Estilos OBSERVADOR  */
+#observador {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#observador .card-usu {
+    text-align: left;
+    font-size: 14px;
+    position: relative;
+}
+
+#observador .card-usu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 100%;
+    background-color: var(--principal);
+    border-radius: 20px 0 0 20px;
+}
+
+#observador .card-usu .card-body {
+    margin-left: 10px;
+}
+
+#observador .card-usu h5 {
+    font-weight: 700;
+}
+
+#observador .card-usu hr {
+    width: 100%;
+    background-color: var(--grisClaro);
+}
+
+#observador .card-usu .usuario {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: -7px;
+    margin-top: 14px;
+    height: 20px;
+}
+
+#observador .card-usu .usuario img {
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Fin Estilos OBSERVADOR  */
+
+
+/* Estilos Generales Tablas */
+
+/* Estilos Especificos Tablas */
+/* Tareas */
+
+/* TD - "Docente" */
+.tablas tbody tr td:nth-child(2) {
+    width: 200px;
+}
+
+.tablas tbody tr td .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tablas tbody tr td .row .imgDoc img {
+    max-width: 50%;
+    border-radius: 50%;
+}
+
+.tablas tbody tr td .row .textDoc p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -80%;
+    text-align: center;
+}
+
+
+/* TD - "Estado" */
+.tablas tbody tr td:nth-child(5) p {
+    margin-left: 18px;
+    margin-bottom: 0;
+}
+
+/* Pendiente - rojo */
+.tablas tbody tr td.pendiente:nth-child(5) {
+    position: relative;
+    text-transform: capitalize;
+}
+
+.tablas tbody tr td.pendiente:nth-child(5)::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--rojo);
+}
+
+/* Entregada - verde */
+.tablas tbody tr td.entregada:nth-child(5) {
+    position: relative;
+    text-transform: capitalize;
+}
+
+.tablas tbody tr td.entregada:nth-child(5)::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--verde);
+}
+
+
+/* TD "Ver más" */
+.tablas tbody tr td img#verMas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--grisClaro);
+    transform: rotate(90deg);
+    opacity: 0.5;
+    border-radius: 10px;
+}
+
+/* Hover */
+.tablas .table-hover tbody tr {
+    /* REVISAR BOX SHADOW */
+    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
+    border-radius: 21px;
+}
+
+.tablas .table-hover tbody tr:hover td {
+    background-color: var(--principal);
+    /* box-shadow: 0px 2px 0 0  #fa5e00; */
+    box-shadow:   4px 6px 0px 0px  #fa5e00;
+    font-weight: 700;
+    filter: saturate(105%);
+}
+
+/* Media Queries */
+/* Phone */
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .tablas tbody tr td .row .imgDoc  {
+        text-align: center;
+    }
+
+    .tablas tbody tr td .row .textDoc p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+
+

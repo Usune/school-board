@@ -56,10 +56,10 @@
                     ?>
                 </ul>
             </div>
-            <li><a href="homeEstu.html"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
-            <li><a href="calificaciones-estudiante.html"><img src="../../img/calificaciones.svg"
+            <li><a href="homeTareas.php"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
+            <li><a href="homeCalificaciones.php"><img src="../../img/calificaciones.svg"
                         alt="logo">Calificaciones</a></li>
-            <li><a href="homeEstu.html"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
-            <li><a href="homeEstu.html"><img src="../../img/profesores.svg" alt="logo">Profesores</a></li>
+            <li><a href="homeObservador.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
+            <li><a href="homeIntegrantes.php"><img src="../../img/profesores.svg" alt="logo">Integrantes</a></li>
         </ul>
     </aside>

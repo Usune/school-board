@@ -17,12 +17,14 @@
     --azul: #0185B8;
     --azulOscuro: #2F5494;
     --rojo: #ff2222;
+    --verde: #00E640;
     --negro: #000000;
 }
 
 body {
     background-color: var(--beige);
 }
+
 
 /* Estilo general para formularios */
 .formulario {
@@ -66,7 +68,7 @@ body {
     z-index: 9;
     width: 95%;
     height: 78%;
-    margin-left: -300px;
+    margin-left: -295px;
     margin-bottom: 2px;
     border-radius: 20px;
     border: none;
@@ -246,7 +248,7 @@ body {
     text-align: start;
 }
 
-.radio p{
+.radio p {
     font-weight: bold;
 }
 
@@ -280,18 +282,18 @@ body {
     z-index: -200;
 }
 
-#filtro form{
+#filtro form {
     display: flex;
     align-items: start;
     justify-content: space-around;
     flex-direction: column;
 }
 
-.fila-cont button{
+.fila-cont button {
     margin: 10px;
 }
 
-.fila-cont a{
+.fila-cont a {
     margin: 10px;
 }
 
@@ -421,7 +423,7 @@ a img {
     border-collapse: collapse;
 }
 
-.tabla table caption{
+.tabla table caption {
     font-size: 18px;
     padding: 10px;
     font-weight: bold;
@@ -631,6 +633,8 @@ aside ul {
     list-style: none;
     display: flex;
     flex-direction: column;
+    padding-left: 0;
+
 }
 
 #liRol {
@@ -894,6 +898,7 @@ hr {
 .show {
     display: block !important;
 }
+
 /* Fin Clase para cambiar el display con ayuda de js */
 
 /* Clase para acomodar los elementos en fila */
@@ -908,6 +913,7 @@ hr {
     flex-direction: column;
     margin-top: 15px;
 }
+
 /*Fin Clase para acomodar los elementos en fila */
 
 /* Estilos ACTUALIZAR DATOS PRIMERA VEZ */
@@ -920,6 +926,7 @@ hr {
     border-radius: 20px;
     padding: 50px;
 }
+
 /* Fin Estilos ACTUALIZAR DATOS PRIMERA VEZ */
 
 /* Estilos PERFIL USUARIO */
@@ -998,11 +1005,11 @@ hr {
     .texto p {
         font-size: 16px;
     }
-    
+
     .texto h4 {
         font-size: 24px;
     }
-    
+
     .texto h5 {
         font-size: 16px;
     }
@@ -1021,10 +1028,11 @@ hr {
     }
 
 }
+
 /* Fin Estilos PERFIL USUARIO */
 
 /* ESTILOS CABECERA */
-.btn-cabecera{
+.btn-cabecera {
     position: absolute;
     top: 25px;
     right: 0;
@@ -1039,11 +1047,11 @@ hr {
     font-size: 14px;
 }
 
-.btn-cabecera:hover{
+.btn-cabecera:hover {
     filter: brightness(0.9);
 }
 
-.cabecera button{
+.cabecera button {
     border: none;
     cursor: pointer;
 }
@@ -1058,13 +1066,14 @@ hr {
     border: none;
 }
 
-.cabecera p{
+.cabecera p {
     font-size: 18px;
 }
 
-.cabecera img{
+.cabecera img {
     width: 26px;
 }
+
 /* FIN ESTILOS CABECERA */
 
 /* Estilos para TARJETAS*/
@@ -1104,11 +1113,11 @@ hr {
     margin: 0 32px 0 5px;
 }
 
-.card-info h3{
+.card-info h3 {
     margin-bottom: 5px;
 }
 
-.card-tarea .fechas#vencida{
+.card-tarea .fechas#vencida {
     padding: 8px;
     border-radius: 10px;
     background-color: #ff222269;
@@ -1116,14 +1125,14 @@ hr {
 }
 
 
-.card-tarea .fechas#proximo{
+.card-tarea .fechas#proximo {
     padding: 8px;
     border-radius: 10px;
     background-color: #ffe92269;
     border: 2px solid #ffe92269;
 }
 
-.card-tarea .fechas#conTiempo{
+.card-tarea .fechas#conTiempo {
     padding: 8px;
     border-radius: 10px;
     background-color: #77ff2269;
@@ -1140,7 +1149,7 @@ hr {
     align-items: center;
 }
 
-.card-tarea .card-formulario .formulario{
+.card-tarea .card-formulario .formulario {
     width: 100%;
     display: flex;
     justify-content: left;
@@ -1216,7 +1225,7 @@ hr#fechas {
     margin: 0 10px 0 0;
 }
 
-.card-tarea .archivos a{
+.card-tarea .archivos a {
     /* text-decoration: none; */
     color: var(--negro);
 }
@@ -1260,11 +1269,12 @@ hr#fechas {
 
 .card-tarea .boton img {
     width: 18px;
-} 
+}
 
 .card-tarea .boton a:hover {
     filter: brightness(0.9);
 }
+
 /*Fin Estilos para TARJETAS*/
 
 /* Estilos MODAL */
@@ -1313,4 +1323,93 @@ hr#fechas {
 .show_modal {
     display: flex;
 }
+
 /* Fin estilos MODAL */
+
+
+/* Estilos TABLAS */
+/* Cosas a cambiar 
+    1. La etiqueta table debe ir dentro de un div con la class="tablas"
+    2. El box-shadow cuando hace hover
+    3. Colocar en el ultimo TH y TD la class="ultimo"
+    4. Estrutura table > thead - tr - th  > tbody - tr - td
+*/
+
+/* Espacio entre filas */
+.tablas table {
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 18px;
+    font-size: 80%;
+}
+
+/* THEAD - TH */
+.tablas thead tr {
+    background-color: #F9F9F9;
+    vertical-align: middle;
+    padding: 10px 15px;
+}
+
+.tablas thead tr th{
+    padding: 10px 15px;
+    background-color: transparent;
+}
+
+/* TBODY - TD */
+.tablas tbody tr {
+    background-color: var(--blanco);
+    vertical-align: middle;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.tablas tbody tr td{
+    padding: 10px 15px;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+/* Redondeo los ultimos bordes generales */
+.tablas thead tr th:nth-child(1),
+.tablas tbody tr td:nth-child(1) {
+    border-radius: 20px 0 0 20px;
+}
+
+/* Colocar en el ultimo TH y TD la class="ultimo" */
+.tablas thead tr th.ultimo,
+.tablas tbody tr td.ultimo {
+    border-radius: 0 20px 20px 0;
+}
+
+.tablas a img {
+    width: 20px
+}
+
+.tablas tr td a {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
+    color: var(--negro);
+}
+
+
+/* TABLAS HOVER */
+.tablas tbody tr:hover {
+    background-color: var(--principal);
+    /* Cambiar el box-shadow por el color principal pero mas ocurito */
+    /* box-shadow: 4px 6px 0px 0px  #fa5e00;  */
+    border-radius: 21px;
+    transform: scale(1.01);
+}
+
+.tablas tbody tr:hover td {
+    border: 1px solid var(--principal);
+    background-color: var(--principal);
+}
+
+
+/* Fin Estilos TABLAS */
+
+

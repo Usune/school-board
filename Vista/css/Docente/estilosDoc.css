@@ -2,6 +2,14 @@
     --principal: #7DCFFF;
 }
 
+/* TABLAS HOVER */
+.tablas tbody tr:hover {
+    /* Cambiar el box-shadow por el color principal pero mas oscuro */
+    box-shadow: 4px 6px 0px 0px #2e99d6; 
+}
+
+
+
 .home {
     width: 99% !important;
 }

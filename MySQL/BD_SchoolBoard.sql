@@ -26,7 +26,7 @@ CREATE TABLE usuario (
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
-(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+(3, MD5('estudiante'), 'Estudiante', 'inactivo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (12345, MD5('12345'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole', 'Benavides', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
 
@@ -160,6 +160,10 @@ CREATE TABLE asistencia (
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
 );
 
+INSERT INTO asistencia (idAsistencia,idClase, idEstudiante, fecha, estado) VALUES
+(1, 1, 1,'2023-09-05 13:12:13','Asiste'),
+(2, 1, 1,'2023-09-05 13:12:13', 'Falta'),
+(3, 1, 1,'2023-09-05 13:12:13', 'Retardo');
 
 CREATE TABLE tarea (
     idTarea INT AUTO_INCREMENT,
@@ -177,12 +181,27 @@ CREATE TABLE tarea (
 
 INSERT INTO tarea (idClase,idDocente, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
 (1, 2, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
-(1, 2, 'Ensayo sobre Tecnologia2', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
-(1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
+(2, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
+(1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL),
+(1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
 
 CREATE TABLE entrega(
     idEntrega INT AUTO_INCREMENT,
+    idEstudiante INT,
+    idTarea INT ,
+    fechaEntrega DATETIME,
     descripcion VARCHAR(200),
     archivos VARCHAR(400),
-    PRIMARY KEY (idEntrega)
+    PRIMARY KEY (idEntrega),
+    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+    FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
 );
+
+
+INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fechaEntrega)
+VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
+
+-- Cnsulta ?
+-- SELECT * FROM entrega
+-- WHERE idEstudiante = "1023163094"
+-- AND idTarea = 1;

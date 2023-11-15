@@ -5,6 +5,7 @@ require_once('../../../Modelo/seguridadDoc.php');
 require_once ('../../../Controlador/mostrarPerfil.php');
 require_once ('../../../Controlador/mostrarTareasDoc.php');
 require_once ('../../../Controlador/mostrarCursosDoc.php');
+// require_once ('../../../Controlador/eliminarTarDoc.php');
 
 ?>
 
@@ -63,12 +64,14 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                             <div class="fila-cont">
 
                                 <div class="radio">
-                                    <p>Rol</p>
-                                    <input type="radio" name="rol" value="nada" checked hidden>
-                                    <input type="radio" name="rol" id="docente" value="docente">
-                                    <label for="docente">Docente</label><br>
-                                    <input type="radio" name="rol" id="estu" value="estudiante">
-                                    <label for="estu">Estudiante</label><br>
+                                    <p>Fecha</p>
+                                    <label for="fechaInicio">Fecha de creación:</label>
+                                    <input type="date" id="fechaInicio" name="fechaInicio">
+                                    
+                                    <label for="fechaFin">Fecha de vencimiento:</label>
+                                    <input type="date" id="fechaFin" name="fechaFin">
+                                    
+
                                 </div>
 
                                 <div class="radio">
@@ -76,8 +79,8 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                                     <input type="radio" name="estado" value="nada" checked hidden>
                                     <input type="radio" name="estado" id="activo" value="activo">
                                     <label for="activo">Activo</label><br>
-                                    <input type="radio" name="estado" id="inactivo" value="inactivo">
-                                    <label for="inactivo">Inactivo</label><br>
+                                    <input type="radio" name="estado" id="vencido" value="vencido">
+                                    <label for="inactivo">Vencido</label><br>
                                 </div>
 
                             </div>
@@ -86,28 +89,11 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
                                 <div class="fieldset"> 
                                     <fieldset>
-                                        <legend id="nom">Nombre</legend>
+                                        <legend id="tarea">Tarea</legend>
                                     </fieldset>
-                                    <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
+                                    <input type="text" placeholder="Tarea" legend="#tarea" name="tarea">
                                 </div>
                                 
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="ape">Apellido</legend>
-                                    </fieldset>
-                                    <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
-                                </div>
-
-                            </div>
-
-                            <div class="fila-cont">
-
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="doc">Documento</legend>
-                                    </fieldset>
-                                    <input type="number" placeholder="Documento" legend="#doc" name="documento">
-                                </div>
                             
                                 <button type="submit" class="filtrar">Filtrar</button>
                                 <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
@@ -123,8 +109,11 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                 
                     
                 <?php
-                    cargarTareas();
+                    cargarTareas();  
                 ?>
+
+                
+               
             </section>
 
 

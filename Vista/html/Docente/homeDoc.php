@@ -5,7 +5,7 @@ require_once('../../../Modelo/seguridadDoc.php');
 require_once ('../../../Controlador/mostrarPerfil.php');
 require_once ('../../../Controlador/mostrarCursosDoc.php');
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="es"> 
 

@@ -42,6 +42,9 @@ function cargarTareas(){
                 <div class="boton">
                     <a href="docTareaModificar.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Modificar</a>
                 </div>
+                <div class="boton">
+                <a href="../../../Controlador/eliminarTarDoc.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/eliminar.svg">Eliminar</a>
+            </div>
             </div>
         </div>
             ';
@@ -69,17 +72,24 @@ function cargarTareaEditarDoc(){
 
         echo '<form class="doc" action="../../../Controlador/actualizarTarDoc.php" method="post" enctype="multipart/form-data" id="formulario">
 
-        <div class="textarea" >
-            <label for="titulo">Título</label>
-            <textarea id="titulo" cols="30" rows="10" name="titulo" placeholder="Ingrese un título">'.$f['titulo'].'</textarea>
+
+        <div class="fieldset">
+        
+            <fieldset>
+                <legend id="tit">Título</legend>
+            </fieldset>
+            <input id="titulo" type="text" placeholder="Título" required legend="#tit" name="titulo" value="'.$f['titulo'].'">
         </div>
+
+
         <div class="textarea">
             <label for="descripcion">Descripción</label>
             <textarea id="descripcion" cols="30" rows="10" name="descripcion" placeholder="Ingrese una descripción">'.$f['descripcion'].'</textarea>
         </div>
+
        
         <div class="select">
-            <label for="fecha_V">Seleccione la fecha limite de entrega </label>
+            <label for="fecha_V">Fecha limite de entrega </label>
             <input type="date" value="'.$fecha_formateada.'" name="fecha_V">
         </div>
 
@@ -118,7 +128,7 @@ function formRegistroTarDoc(){
         </div>
         
         <div class="select">
-            <label for="fecha_V">Seleccione la fecha limite de entrega </label>
+            <label for="fecha_V">Fecha limite de entrega </label>
             <input type="date" name="fecha_V">
         </div>
 

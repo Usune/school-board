@@ -20,10 +20,10 @@
     <title>Comunicados </title>
 </head>
 <body>
-<?php
+    <?php
         include('menu-include.php');
     ?>
-    <main>            
+        <main>            
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeDoc.php">Clases</a>                            
@@ -48,7 +48,9 @@
                     </div>
                 </div>
             </section>            
-    </main>
+        </main>
+        
+    </div>
     <hr>
     <footer>
         <div class="info-footer">

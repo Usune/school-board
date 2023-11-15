@@ -1115,53 +1115,7 @@
 
         }
 
-        // Funcion para mostrar todas las tareas 
-        // public function cargarTodasTareas($idEstudiante){
-        //     $rows = null;
 
-        //     $objConexion = new Conexion();
-        //     $conexion = $objConexion->get_conexion();
-
-        //     $sql = "SELECT 
-        //     tarea.idTarea,
-        //     tarea.idClase,
-        //     tarea.idDocente,
-        //     tarea.titulo,
-        //     tarea.descripcion,
-        //     tarea.estado,
-        //     tarea.fecha_creacion,
-        //     tarea.fecha_vencimiento,
-        //     asignatura.idAsignatura,
-        //     asignatura.nombre as asignatura,
-        //     usuario.foto as fotoDoc,
-        //     usuario.nombres as nombres,
-        //     usuario.apellidos as apellidos,
-        //     tarea.archivos
-        //     FROM clase
-        //     INNER JOIN tarea
-        //     ON tarea.idClase = clase.idClase
-        //     INNER JOIN asignatura 
-        //     ON asignatura.idAsignatura = clase.idAsignatura
-        //     INNER JOIN curso
-        //     ON curso.idCurso = clase.idCurso
-        //     INNER JOIN estudiantecurso 
-        //     ON estudiantecurso.idestudianteCurso = curso.idCurso
-        //     INNER JOIN usuario
-        //     ON usuario.documento = clase.idDocente
-        //     WHERE estudiantecurso.idEstudiante =  :idEstudiante
-        //     ORDER BY tarea.idTarea DESC";
-
-        //     $statement = $conexion->prepare($sql);
-        //     $statement->bindParam('idEstudiante' , $idEstudiante);
-        //     $statement->execute();
-
-        //     while($resultado = $statement->fetch()){
-        //         $rows[] = $resultado;
-        //     }
-
-        //     return $rows;
-
-        // }
 
         public function cargarTodasTareas($idEstudiante){
             $rows = null;
@@ -1336,6 +1290,180 @@
         
             return $f;
         }
+
+        // Funcion para mostrar todos los compañeros (relacionados)
+        public function cargarTodosCompañeros($idEstudiante){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT compañeros.*
+                FROM estudiantecurso 
+                INNER JOIN curso ON estudiantecurso.idCurso = curso.idCurso
+                INNER JOIN usuario ON usuario.documento = estudiantecurso.idEstudiante
+                INNER JOIN estudiantecurso AS compañerosCurso ON compañerosCurso.idCurso = curso.idCurso
+                INNER JOIN usuario AS compañeros ON compañeros.documento = compañerosCurso.idEstudiante
+                WHERE usuario.documento = :idEstudiante AND compañeros.documento != :idEstudiante"
+            ;
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+        //  Función para mostrar compañeros filtrados (Integrantes) 
+        public function cargarCompañerosFiltrados($estado, $nombres, $idEstudiante) {
+            $f = null;
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = 'SELECT compañeros.*
+            FROM estudiantecurso 
+            INNER JOIN curso ON estudiantecurso.idCurso = curso.idCurso
+            INNER JOIN usuario ON usuario.documento = estudiantecurso.idEstudiante
+            INNER JOIN estudiantecurso AS compañerosCurso ON compañerosCurso.idCurso = curso.idCurso
+            INNER JOIN usuario AS compañeros ON compañeros.documento = compañerosCurso.idEstudiante
+            WHERE usuario.documento = :idEstudiante AND compañeros.documento != :idEstudiante AND compañeros.';
+        
+            $condiciones = array();
+        
+            if (!empty($nombres)) {
+                $condiciones[] = "nombres LIKE :nombres";
+            }
+        
+            if (!empty($estado) && $estado != 'nada') {
+                $condiciones[] = "estado = :estado";
+            }
+        
+        
+            if (!empty($condiciones)) {
+                $sql .= ' ' . implode(' AND ', $condiciones);
+            }
+
+        
+            $consulta = $conexion->prepare($sql);
+
+            // echo "Consulta SQL: " . $sql . "<br>";
+        
+            if (!empty($nombres)) {
+                $nombres = '%'.$nombres.'%';
+                $consulta->bindParam(':nombres', $nombres);
+            }
+        
+            if (!empty($estado) && $estado != 'nada') {
+                $consulta->bindParam(':estado', $estado);
+            }
+        
+            $consulta->bindParam(':idEstudiante', $idEstudiante);
+
+
+            $consulta->execute();
+        
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+        
+            return $f;
+        }
+
+
+        // Funcion para mostrar todos los profesores (relacionados)
+        public function cargarTodosprofesores($idEstudiante){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT  *
+            FROM clase 
+            JOIN usuario
+            ON clase.idDocente = usuario.documento
+            JOIN estudianteCurso 
+            ON clase.idCurso = estudianteCurso.idCurso
+            WHERE estudianteCurso.idEstudiante = :idEstudiante"
+            ;
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam('idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+        //  Función para mostrar Profesores filtrados (Integrantes) 
+        public function cargarProfesoresFiltrados($estado, $nombres, $idEstudiante) {
+            $f = null;
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = 'SELECT  *
+            FROM clase 
+            JOIN usuario
+            ON clase.idDocente = usuario.documento
+            JOIN estudianteCurso 
+            ON clase.idCurso = estudianteCurso.idCurso
+            WHERE estudianteCurso.idEstudiante = :idEstudiante AND usuario.';
+        
+            $condiciones = array();
+        
+            if (!empty($nombres)) {
+                $condiciones[] = "nombres LIKE :nombres";
+            }
+        
+            if (!empty($estado) && $estado != 'nada') {
+                $condiciones[] = "estado = :estado";
+            }
+        
+        
+            if (!empty($condiciones)) {
+                $sql .= ' ' . implode(' AND ', $condiciones);
+            }
+
+        
+            $consulta = $conexion->prepare($sql);
+
+            // echo "Consulta SQL: " . $sql . "<br>";
+        
+            if (!empty($nombres)) {
+                $nombres = '%'.$nombres.'%';
+                $consulta->bindParam(':nombres', $nombres);
+            }
+        
+            if (!empty($estado) && $estado != 'nada') {
+                $consulta->bindParam(':estado', $estado);
+            }
+        
+            $consulta->bindParam(':idEstudiante', $idEstudiante);
+
+
+            $consulta->execute();
+        
+            while ($resultado = $consulta->fetch()) {
+                $f[] = $resultado;
+            }
+        
+            return $f;
+        }
+
+
+
+
+
         
 
         // CONSULTAS DOCENTES

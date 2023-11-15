@@ -109,12 +109,13 @@ CREATE TABLE clase (
     PRIMARY KEY (idClase),
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
     FOREIGN KEY (idDocente) REFERENCES usuario(documento),
-    FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura)
+    FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura),
+    FOREIGN KEY (idAula) REFERENCES aula(idAula)
 );
 
-INSERT INTO clase (idCurso, idAsignatura, idDocente) VALUES
-(1, 2, 2),
-(2, 1, 2);
+INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
+(1, 2, 2, 1),
+(2, 1, 2, 2);
 
 
 CREATE TABLE acudiente (

@@ -43,7 +43,6 @@
     <section>
       <div class="container-fluid">
       <h2>Tareas</h2>
-      <a href="../../../Controlador/excel.php">Excel</a>
         <div class="row">
           <div id="tbTareas" class="table-responsive col-md-12 tablas">
             <table class="table table-borderless table-hover ">

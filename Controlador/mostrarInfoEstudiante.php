@@ -227,11 +227,6 @@
 
 
 
-                
-
-                
-
-                
             
         };
 
@@ -268,7 +263,7 @@
                     </p>
                   </td>
                   <td class="ultimo">
-                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" id="verMas"></a>
+                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
                   </td>
                 </tr>
             ';
@@ -319,7 +314,6 @@
 
         }
     }
-
     
     // Mostrar los usuarios Filtrado 
     function mostrarUsuariosFiltrados($rol, $estado, $nombres){
@@ -375,6 +369,128 @@
                     </div>
                 ';
 
+            }
+
+
+        }
+
+    }
+
+    // Mostrar todos los compañeros
+    function mostrarTodosCompañeros(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodosCompañeros($idEstudiante);
+
+        foreach ($filas as $f) {
+
+            echo '
+            <tr class="'.$f['estado'].'">
+                <td>
+                    <img src="'.$f['foto'].'" alt="img perfil">
+                </td>
+                <td>'.$f['apellidos'].' </td>
+                <td>'.$f['nombres'].' </td>
+                <td>'.$f['correo'].' </td>
+                <td class="ultimo">'.$f['estado'].' </td>
+            </tr>
+            ';
+        }
+    }
+
+    // Mostrar todos los profesores
+    function mostrarTodosProfesores(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodosProfesores($idEstudiante);
+
+        foreach ($filas as $f) {
+
+            echo '
+                <tr class="'.$f['estado'].'">
+                    <td>
+                        <img src="'.$f['foto'].'" alt="img perfil">
+                    </td>
+                    <td>'.$f['apellidos'].' </td>
+                    <td>'.$f['nombres'].' </td>
+                    <td>'.$f['correo'].' </td>
+                    <td class="ultimo">'.$f['estado'].' </td>
+                </tr>
+            ';
+        }
+    }
+
+    // Mostrar los compañeros Filtrado 
+    function mostrarCompañerosFiltrados($estado, $nombres){
+        $idEstudiante = $_SESSION['id'];
+
+        $objConsultas = new Consultas();
+
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($estado === 'nada' && $nombres === '') {
+            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
+            return;  // No ejecutar la consulta
+        }
+
+        $consulta = $objConsultas->cargarCompañerosFiltrados($estado, $nombres, $idEstudiante);
+
+        if(!isset($consulta)){
+            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+
+        }else {
+
+            foreach($consulta as $f) {
+
+                echo '
+                    <tr class="'.$f['estado'].'">
+                        <td>
+                            <img src="'.$f['foto'].'" alt="img perfil">
+                        </td>
+                        <td>'.$f['apellidos'].' </td>
+                        <td>'.$f['nombres'].' </td>
+                        <td>'.$f['correo'].' </td>
+                        <td class="ultimo">'.$f['estado'].' </td>
+                    </tr>
+                ';
+            }
+
+
+        }
+
+    }
+
+    // Mostrar los profesores Filtrado 
+    function mostrarProfesoresFiltrados($estado, $nombres){
+        $idEstudiante = $_SESSION['id'];
+
+        $objConsultas = new Consultas();
+
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($estado === 'nada' && $nombres === '') {
+            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
+            return;  // No ejecutar la consulta
+        }
+
+        $consulta = $objConsultas->cargarProfesoresFiltrados($estado, $nombres, $idEstudiante);
+
+        if(!isset($consulta)){
+            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+
+        }else {
+
+            foreach($consulta as $f) {
+
+                echo '
+                    <tr class="'.$f['estado'].'">
+                        <td>
+                            <img src="'.$f['foto'].'" alt="img perfil">
+                        </td>
+                        <td>'.$f['apellidos'].' </td>
+                        <td>'.$f['nombres'].' </td>
+                        <td>'.$f['correo'].' </td>
+                        <td class="ultimo">'.$f['estado'].' </td>
+                    </tr>
+                ';
             }
 
 

@@ -18,6 +18,8 @@ h3 {
     font-weight: 700;
 }
 
+
+
 /* Estilos INTEGRANTES  */
 /* Filtro */
 .filtro {
@@ -106,6 +108,11 @@ h3 {
     filter: brightness(1);
 }
 
+h4.errorFiltro  {
+    width: 95%;
+    margin: 0 auto;
+    font-size: 80%;
+}
 
 /* Cards */
 /* h3.texto {
@@ -212,18 +219,18 @@ h3 {
 
 
 /* TD - "Estado" */
-.tablas tbody tr td:nth-child(5) p {
+.tablas tbody tr td.estado p {
     margin-left: 18px;
     margin-bottom: 0;
 }
 
 /* Pendiente - rojo */
-.tablas tbody tr td.pendiente:nth-child(5) {
+.tablas tbody tr td.estado.pendiente {
     position: relative;
     text-transform: capitalize;
 }
 
-.tablas tbody tr td.pendiente:nth-child(5)::after {
+.tablas tbody tr td.estado.pendiente::after {
     content: "";
     position: absolute;
     top: 45%;
@@ -235,12 +242,12 @@ h3 {
 }
 
 /* Entregada - verde */
-.tablas tbody tr td.entregada:nth-child(5) {
+.tablas tbody tr td.estado.entregada {
     position: relative;
     text-transform: capitalize;
 }
 
-.tablas tbody tr td.entregada:nth-child(5)::after {
+.tablas tbody tr td.estado.entregada::after {
     content: "";
     position: absolute;
     top: 45%;
@@ -254,16 +261,18 @@ h3 {
 
 /* TD "Ver más" */
 .tablas tbody tr td img.verMas {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+    width: 25px;
+    margin: 0 10px;
     background-color: var(--grisClaro);
     transform: rotate(90deg);
     opacity: 0.5;
     border-radius: 10px;
 }
+
+/* TD "Calificacion" */
+/* .tablas tbody tr td.calificacion {
+    text-align: center;
+} */
 
 /* Hover */
 .tablas .table-hover tbody tr {

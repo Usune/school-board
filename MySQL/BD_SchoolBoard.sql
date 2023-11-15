@@ -26,7 +26,7 @@ CREATE TABLE usuario (
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
-(3, MD5('estudiante'), 'Estudiante', 'inactivo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (12345, MD5('12345'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole', 'Benavides', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
 
@@ -202,7 +202,33 @@ CREATE TABLE entrega(
 INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fechaEntrega)
 VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
 
--- Cnsulta ?
+
+CREATE TABLE calificacion (
+    idCalificacion INT AUTO_INCREMENT,
+    idEstudiante INT,
+    idEntrega INT,
+    calificacion FLOAT,
+    fechaCalificacion DATETIME DEFAULT NOW(),
+    PRIMARY KEY (idCalificacion),
+    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+    FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)
+);
+
+INSERT INTO calificacion (idEstudiante, idEntrega, calificacion) VALUES 
+(1023163094, 1, 4.5);
+
+
+
+-- Consulta para traer todas las entregas realizadas sobre una tarea 
 -- SELECT * FROM entrega
--- WHERE idEstudiante = "1023163094"
--- AND idTarea = 1;
+-- INNER JOIN calificacion
+-- ON calificacion.idEntrega = entrega.idEntrega
+-- WHERE entrega.idTarea = "1" and calificacion.idEstudiante = "1023163094";
+
+-- Consulta para traer calificaciones que tiene un estudiante
+-- SELECT * FROM entrega
+-- INNER JOIN calificacion
+-- ON calificacion.idEntrega = entrega.idEntrega
+-- INNER JOIN tarea
+-- ON tarea.idTarea = entrega.idTarea
+-- WHERE calificacion.idEstudiante = "1023163094";

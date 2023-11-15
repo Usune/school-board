@@ -44,14 +44,14 @@
       <div class="container-fluid">
       <h2>Tareas</h2>
         <div class="row">
-          <div id="tbTareas" class="table-responsive col-md-12 tablas">
+          <div class="table-responsive col-md-12 tablas">
             <table class="table table-borderless table-hover ">
               <thead>
                 <tr>
-                  <th scope="col">Clase</th>
+                  <th scope="col">Asignatura</th>
                   <th scope="col">Docente</th>
                   <th scope="col">Titulo</th>
-                  <th scope="col">Fecha</th>
+                  <th scope="col">Fecha de Entrega</th>
                   <th scope="col">Estado</th>
                   <th scope="col" class="ultimo">Detalles</th>
                 </tr>

@@ -1,24 +1,44 @@
 <?php
    session_start();
 
-    // Mostrar asignaturas a los estudiantes en el aside  
+    // Mostrar solo asignaturas a los estudiantes en el aside  
     function mostrarAsignaturasEstudiante(){
-        $documento = $_SESSION['id'];
+        $idEstudiante = $_SESSION['id'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarAsignaturas($documento);
+        $filas = $objConsultas->cargarAsignaturas($idEstudiante);
 
         foreach ($filas as $fila) {
             echo '
-                <li><a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'&nombreAsignatura='.$fila['asignatura'].'">'.$fila['asignatura'].'</a></li>
+                <li>
+                    <a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'&nombreAsignatura='.$fila['asignaturaNombre'].'">
+                        '.$fila['asignaturaNombre'].'
+                    </a>
+                </li>
+            ';
+        }
+    }
+
+    // Mostrar informacion de la clase = asignaturas a los estudiantes en el homeAsignatura  
+    function mostrarClaseEstudiante(){
+        $idEstudiante = $_SESSION['id'];
+        $idAsignatura = $_GET['idAsignatura'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarClase($idEstudiante, $idAsignatura);
+
+        foreach ($filas as $f) {
+            echo '
+                <h2>'.$f['asignaturaNombre'].'</h2>
+                <p class="fila">'.$f['nombres'].' '.$f['apellidos'].' - '.$f['aulaNombre'].'</p>
             ';
         }
     }
 
     // Mostrar tareas de la asignatura a los estudiantes en homeAsignatura 
     function mostrarTareasAsignatura(){
+        $idEstudiante = $_SESSION['id'];
         $idAsignatura = $_GET['idAsignatura'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarTareas($idAsignatura);
+        $filas = $objConsultas->cargarTareasAsignatura($idEstudiante, $idAsignatura);
 
         foreach($filas as $f){
 
@@ -51,44 +71,69 @@
                 $fechaEstado = "conTiempo"; // La tarea tiene un plazo de más de 4 dias para ser entregada
             }
 
+            // Formatear la fecha
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
+            
+
+            // echo '
+            //     <div class="card-tarea">
+            //         <div class="card-header">
+            //             <div class="info-user fila">
+            //                 <img src="'.$f['foto'].'" alt="foto perfil Docente">
+            //                 <p>
+            //                     '.$f['nombres'].' <br>
+            //                     '.$f['apellidos'].'
+            //                 </p>
+            //             </div>
+            //             <div class="fechas" id="'.$fechaEstado.'">
+            //                 <p>
+            //                     '.$fechaFormato.'
+            //                 </p>
+            //             </div>
+            //         </div>
+            //         <hr>
+            //         <div class="card-header">
+            //             <div class="card-info">
+            //                 <img src="../../img/descripcion.png" alt="">
+            //                 <div class="info">
+            //                     <h3>'.$f['tarea'].'</h3>
+            //                     <p>
+            //                         '.$f['descripcion'].'
+            //                     </p>
+            //                 </div>
+            //             </div>
+            //             <div class="boton">
+            //                 <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['tarea'].'&idTarea='.$f['idTarea'].'">Ver más</a>
+            //             </div>
+            //         </div>
+            //     </div>
+            // ';
 
             echo '
-                <div class="card-tarea">
-                    <div class="card-header">
-                        <div class="info-user fila">
-                            <img src="'.$f['foto'].'" alt="foto perfil Docente">
-                            <p>
-                                '.$f['nombres'].' <br>
-                                '.$f['apellidos'].'
-                            </p>
-                        </div>
-                        <div class="fechas" id="'.$fechaEstado.'">
-                            <p>
-                                '.$fechaFormato.'
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-header">
-                        <div class="card-info">
-                            <img src="../../img/descripcion.png" alt="">
-                            <div class="info">
-                                <h3>'.$f['tarea'].'</h3>
-                                <p>
-                                    '.$f['descripcion'].'
-                                </p>
-                            </div>
-                        </div>
-                        <div class="boton">
-                            <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['tarea'].'&idTarea='.$f['idTarea'].'">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            ';
+            <tr>
+                <td>'.$f['titulo'].' </td>
+                <td>
+                    '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
+                </td>
+                <td class="estado '.$f['estadoTarea'].'">
+                    <p>
+                        '.$f['estadoTarea'].'
+                    </p>
+                </td>
+                <td class="calificacion">'.($f["calificacion"] !== null ? $f["calificacion"] : "-").'</td>
+                <td class="ultimo">
+                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                </td>
+            </tr>
+        ';
+
+
         };
 
 
     }
+
 
     // Mostrar la tarea y habilitar la entrega
     function habilitarEntregaTareas(){
@@ -240,37 +285,40 @@
         $filas = $objConsultas->cargarTodasTareas($idEstudiante);
 
         foreach ($filas as $f) {
+            // Formatear la fecha
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
+
             echo '
                 <tr>
-                  <td>'.$f['asignatura'].'</td>
-                  <td>
-                    <div class="row">
-                      <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
-                        <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
-                      </div>
-                      <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
-                        <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>'.$f['titulo'].' </td>
-                  <td>
-                    '.$f['fecha_vencimiento'].' 
-                  </td>
-                  <td class="'.$f['estadoTarea'].'">
-                    <p>
-                        '.$f['estadoTarea'].'
-                    </p>
-                  </td>
-                  <td class="ultimo">
-                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
-                  </td>
+                    <td>'.$f['asignatura'].'</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
+                                <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
+                                <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>'.$f['titulo'].' </td>
+                    <td>
+                        '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
+                    </td>
+                    <td class="estado '.$f['estadoTarea'].'">
+                        <p>
+                            '.$f['estadoTarea'].'
+                        </p>
+                    </td>
+                    <td class="ultimo">
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                    </td>
                 </tr>
             ';
-
-
         }
     }
+
 
     // Mostrar todos los usuarios
     function mostrarTodosUsuarios(){
@@ -322,14 +370,14 @@
 
         // Verifica si los parámetros son 'nada' o vacíos
         if ($rol === 'nada' && $estado === 'nada' && $nombres === '') {
-            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
+            echo '<h4 class="errorFiltro">No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
             return;  // No ejecutar la consulta
         }
 
         $consulta = $objConsultas->cargarUsuariosFiltrados($rol, $estado, $nombres);
 
         if(!isset($consulta)){
-            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
 
         }else {
 
@@ -428,14 +476,14 @@
 
         // Verifica si los parámetros son 'nada' o vacíos
         if ($estado === 'nada' && $nombres === '') {
-            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
-            return;  // No ejecutar la consulta
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            return;  
         }
 
         $consulta = $objConsultas->cargarCompañerosFiltrados($estado, $nombres, $idEstudiante);
 
         if(!isset($consulta)){
-            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
 
         }else {
 
@@ -467,15 +515,14 @@
 
         // Verifica si los parámetros son 'nada' o vacíos
         if ($estado === 'nada' && $nombres === '') {
-            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
-            return;  // No ejecutar la consulta
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            return;  
         }
 
         $consulta = $objConsultas->cargarProfesoresFiltrados($estado, $nombres, $idEstudiante);
 
         if(!isset($consulta)){
-            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
-
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
         }else {
 
             foreach($consulta as $f) {

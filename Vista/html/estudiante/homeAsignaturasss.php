@@ -43,32 +43,11 @@
 
 
         <section>
+            
+            <h2><?php echo $nombreAsignatura;?></h2>
 
-            <div class="container-fluid">
-                <!-- <h2>Español</h2>
-                <p class="fila">Docente Prueba - Aula</p> -->
-                <?php mostrarClaseEstudiante(); ?>
-                <div class="row">
-                    <div class="table-responsive col-md-12 tablas">
-                        <table class="table table-borderless table-hover ">
-                        <thead>
-                            <tr>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Fecha de Entrega</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Nota</th>
-                            <th scope="col" class="ultimo">Detalles</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- cambiar -->
-                            <?php mostrarTareasAsignatura(); ?>
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
+            <?php mostrarTareasAsignatura(); ?>
+        
         </section>
 
     </main>

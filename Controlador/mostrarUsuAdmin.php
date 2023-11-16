@@ -149,7 +149,7 @@
         }
 
     }
-
+ 
     function cargarUsuariosReportes(){
         
         $objConsultas = new Consultas();

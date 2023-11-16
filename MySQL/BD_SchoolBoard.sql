@@ -26,7 +26,7 @@ CREATE TABLE usuario (
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
-(3, MD5('estudiante'), 'Estudiante', 'inactivo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (12345, MD5('12345'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole', 'Benavides', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
 
@@ -109,12 +109,13 @@ CREATE TABLE clase (
     PRIMARY KEY (idClase),
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
     FOREIGN KEY (idDocente) REFERENCES usuario(documento),
-    FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura)
+    FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura),
+    FOREIGN KEY (idAula) REFERENCES aula(idAula)
 );
 
-INSERT INTO clase (idCurso, idAsignatura, idDocente) VALUES
-(1, 2, 2),
-(2, 1, 2);
+INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
+(1, 2, 2, 1),
+(2, 1, 2, 2);
 
 
 CREATE TABLE acudiente (
@@ -189,7 +190,7 @@ CREATE TABLE entrega(
     idEntrega INT AUTO_INCREMENT,
     idEstudiante INT,
     idTarea INT ,
-    fechaEntrega DATETIME,
+    fecha_entrega DATETIME,
     descripcion VARCHAR(200),
     archivos VARCHAR(400),
     PRIMARY KEY (idEntrega),
@@ -198,27 +199,53 @@ CREATE TABLE entrega(
 );
 
 
-INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fechaEntrega)
+INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fecha_entrega)
 VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
 
 
-CREATE TABLE calificacion(
-    idCalificacion INT AUTO_INCREMENT,
-    idEstudiante INT,
-    idTarea INT, 
-    fecha_Entrega_Est DATETIME,
-    fecha_Vencimiento DATETIME,
-    archivos_Tarea VARCHAR(400),
-    notaTarea FLOAT,
-    PRIMARY KEY (idCalificacion),
-    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
-    FOREIGN KEY (idTarea) REFERENCES tarea(idTarea),
-    FOREIGN KEY (fechaEntregaEst) REFERENCES entrega(idEntrega),
-    FOREIGN KEY (fechaVencimiento) REFERENCES tarea(idTarea),
-    FOREIGN KEY (archivosTarea) REFERENCES tarea(idTarea),
-)
+-- CREATE TABLE calificacion(
+--     idCalificacion INT AUTO_INCREMENT,
+--     idEstudiante INT,
+--     idTarea INT, 
+--     fecha_Entrega_Est DATETIME,
+--     fecha_Vencimiento DATETIME,
+--     archivos_Tarea VARCHAR(400),
+--     notaTarea FLOAT,
+--     PRIMARY KEY (idCalificacion),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+--     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea),
+--     FOREIGN KEY (fechaEntregaEst) REFERENCES entrega(idEntrega),
+--     FOREIGN KEY (fechaVencimiento) REFERENCES tarea(idTarea),
+--     FOREIGN KEY (archivosTarea) REFERENCES tarea(idTarea),
+-- )
 
 -- Cnsulta ?
+CREATE TABLE calificacion (
+    idCalificacion INT AUTO_INCREMENT,
+    idEstudiante INT,
+    idEntrega INT,
+    calificacion FLOAT,
+    fecha_calificacion DATETIME DEFAULT NOW(),
+    PRIMARY KEY (idCalificacion),
+    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+    FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)
+);
+
+INSERT INTO calificacion (idEstudiante, idEntrega, calificacion) VALUES 
+(1023163094, 1, 4.5);
+
+
+
+-- Consulta para traer todas las entregas realizadas sobre una tarea 
 -- SELECT * FROM entrega
--- WHERE idEstudiante = "1023163094"
--- AND idTarea = 1;
+-- INNER JOIN calificacion
+-- ON calificacion.idEntrega = entrega.idEntrega
+-- WHERE entrega.idTarea = "1" and calificacion.idEstudiante = "1023163094";
+
+-- Consulta para traer calificaciones que tiene un estudiante
+-- SELECT * FROM entrega
+-- INNER JOIN calificacion
+-- ON calificacion.idEntrega = entrega.idEntrega
+-- INNER JOIN tarea
+-- ON tarea.idTarea = entrega.idTarea
+-- WHERE calificacion.idEstudiante = "1023163094";

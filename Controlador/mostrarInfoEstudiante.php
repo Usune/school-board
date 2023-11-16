@@ -1,90 +1,98 @@
 <?php
    session_start();
 
-    // Mostrar asignaturas a los estudiantes en el aside  
-    function mostrarAsignaturasEstudiante(){
-        $documento = $_SESSION['id'];
+    //    ASIGNATURAS - TAREAS  
+
+    function navAsignatura(){
+        $idEstudiante = $_SESSION['id'];
+        $idAsignatura = $_GET['idAsignatura'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarAsignaturas($documento);
+        $filas = $objConsultas->cargarClase($idEstudiante, $idAsignatura);
+
+        foreach ($filas as $f) {
+            echo '
+                <a href="homeEstu.php">Home</a>
+                <a href="homeAsignatura.php?idAsignatura='.$f['idAsignatura'].'"> / '.$f['asignaturaNombre'].'</a>
+            ';
+        }
+    }
+
+    function navTarea(){
+        $idTarea = $_GET['idTarea'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTareaNav($idTarea);
+
+        foreach ($filas as $f) {
+            echo '
+                <a href="TareaAsignatura.php?idAsignatura='.$f['idTarea'].'"> / '.$f['titulo'].'</a>
+            ';
+        }
+    }
+
+    // Mostrar solo asignaturas a los estudiantes en el aside  
+    function mostrarAsignaturasEstudiante(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarAsignaturas($idEstudiante);
 
         foreach ($filas as $fila) {
             echo '
-                <li><a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'&nombreAsignatura='.$fila['asignatura'].'">'.$fila['asignatura'].'</a></li>
+                <li>
+                    <a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'">
+                        '.$fila['asignaturaNombre'].'
+                    </a>
+                </li>
+            ';
+        }
+    }
+
+    // Mostrar informacion de la clase = asignaturas a los estudiantes en el homeAsignatura  
+    function mostrarClaseEstudiante(){
+        $idEstudiante = $_SESSION['id'];
+        $idAsignatura = $_GET['idAsignatura'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarClase($idEstudiante, $idAsignatura);
+
+        foreach ($filas as $f) {
+            echo '
+                <h2>'.$f['asignaturaNombre'].'</h2>
+                <p class="fila">'.$f['nombres'].' '.$f['apellidos'].' - '.$f['aulaNombre'].'</p>
             ';
         }
     }
 
     // Mostrar tareas de la asignatura a los estudiantes en homeAsignatura 
     function mostrarTareasAsignatura(){
+        $idEstudiante = $_SESSION['id'];
         $idAsignatura = $_GET['idAsignatura'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarTareas($idAsignatura);
+        $filas = $objConsultas->cargarTareasAsignatura($idEstudiante, $idAsignatura);
 
         foreach($filas as $f){
 
-            // Operación para traer la fecha en este formato Sep 2, 2023
-            // Capturar la fecha desde la DB 
-            $fechaDB = $f['fecha_vencimiento'];
-            // Convertirla en el tipo de dato que se encuentra en la DB, ya que antes de este momento pasa como string (Verificar con  echo gettype($fechaDB); )
-            $fechaDBDateTime = new DateTime($fechaDB);
-            // Colocar en el formato Sep 2, 2023
-            $fechaFormato = $fechaDBDateTime->format('M j, Y');
-
-
-            // Operación para indicar el color de vencimiento de la fecha (Vencida, Proxima y Con Tiempo)
-            // Capturar fecha actual
-            $fechaActual = date("Y-m-d H:i:s");
-            // Convertirla en DateTime
-            $fechaActualDateTime = new DateTime($fechaActual);
-            // Restar las dos fechas, para definir estado
-            $fechaDiferencia = $fechaActualDateTime->diff($fechaDBDateTime);
-
-            // El signo %r devuelve el signo (+ o -) de la diferencia y %a es el numero
-            $fechaEstado = $fechaDiferencia->format('%r%a');
-
-            // Condicional para aplicar estilos en css
-            if ($fechaEstado < 1) {
-                $fechaEstado = "vencida"; // La tarea esta vencida o vence ese dia
-            } elseif ($fechaEstado >= 1 && $fechaEstado <=4) {
-                $fechaEstado = "proximo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
-            } else {
-                $fechaEstado = "conTiempo"; // La tarea tiene un plazo de más de 4 dias para ser entregada
-            }
-
-
+            // Formatear la fecha
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
+            
             echo '
-                <div class="card-tarea">
-                    <div class="card-header">
-                        <div class="info-user fila">
-                            <img src="'.$f['foto'].'" alt="foto perfil Docente">
-                            <p>
-                                '.$f['nombres'].' <br>
-                                '.$f['apellidos'].'
-                            </p>
-                        </div>
-                        <div class="fechas" id="'.$fechaEstado.'">
-                            <p>
-                                '.$fechaFormato.'
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-header">
-                        <div class="card-info">
-                            <img src="../../img/descripcion.png" alt="">
-                            <div class="info">
-                                <h3>'.$f['tarea'].'</h3>
-                                <p>
-                                    '.$f['descripcion'].'
-                                </p>
-                            </div>
-                        </div>
-                        <div class="boton">
-                            <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['tarea'].'&idTarea='.$f['idTarea'].'">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            ';
+            <tr>
+                <td>'.$f['titulo'].' </td>
+                <td>
+                    '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
+                </td>
+                <td class="estado '.$f['estadoTarea'].'">
+                    <p>
+                        '.$f['estadoTarea'].'
+                    </p>
+                </td>
+                <td class="calificacion">'.($f["calificacion"] !== null ? $f["calificacion"] : "-").'</td>
+                <td class="ultimo">
+                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                </td>
+            </tr>
+        ';
+
+
         };
 
 
@@ -92,9 +100,10 @@
 
     // Mostrar la tarea y habilitar la entrega
     function habilitarEntregaTareas(){
+        $idEstudiante = $_SESSION['id'];
         $idTarea = $_GET['idTarea'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarTarea($idTarea);
+        $filas = $objConsultas->cargarTareaConEntregas($idTarea, $idEstudiante);
 
         foreach($filas as $f){
 
@@ -129,7 +138,7 @@
 
 
             // manejo de archivos 
-            $archivos = explode(",", $f['archivos']);
+            $archivos = explode(",", $f['tareaArchivos']);
 
 
             echo '
@@ -150,7 +159,7 @@
                             <div class="info">
                                 <h3>'.$f['titulo'].'</h3>
                                 <p>
-                                    '.$f['descripcion'].'
+                                    '.$f['tareaDescripcion'].'
                                 </p>
                             </div>
                         </div>
@@ -203,35 +212,35 @@
                 </div>
                 <hr>
                 <div class="card-formulario">
-                    <div class="formulario">
-                        <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data" id="formulario">
+                <div class="formulario">
+                    <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data"
+                    id="formulario">
 
-                            <div class="textarea">
-                                <label for="descripcion">Descripción</label>
-                                <textarea id="descripcion" cols="30" rows="10"
-                                    name="descripcion">Ingrese una descripción</textarea>
-                            </div>
+                        <input type="number" placeholder="idEstudiante"  name="idEstudiante" value="'.$idEstudiante.'" hidden >
+                        <input type="number" placeholder="idTarea"   name="idTarea" value="'.$f['idTarea'].'" hidden>
 
-                            <div class="file">
-                                <label for="archivo">Seleccione un archivo</label>
-                                <input type="file" accept=".pdf" name="archivos[]" multiple>
-                            </div>
+                        <div class="textarea">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" cols="30" rows="10"
+                                name="descripcion">Ingrese una descripción</textarea>
+                        </div>
 
-                            <button type="submit" class="enviar">Entregar Tarea</button>
-                        </form>
-                    </div>
+                        <div class="file">
+                            <label for="archivo">Seleccione un archivo</label>
+                            <input type="file" accept=".pdf" name="archivos[]" multiple>
+                        </div>
+
+                        <button type="submit" class="enviar">Entregar Tarea</button>
+                    </form>
                 </div>
+            </div>
+            </div>
             </div>
                   
             ';
 
 
 
-                
-
-                
-
-                
             
         };
 
@@ -245,37 +254,82 @@
         $filas = $objConsultas->cargarTodasTareas($idEstudiante);
 
         foreach ($filas as $f) {
+            // Formatear la fecha
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
+
             echo '
                 <tr>
-                  <td>'.$f['asignatura'].'</td>
-                  <td>
-                    <div class="row">
-                      <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
-                        <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
-                      </div>
-                      <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
-                        <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>'.$f['titulo'].' </td>
-                  <td>
-                    '.$f['fecha_vencimiento'].' 
-                  </td>
-                  <td class="'.$f['estadoTarea'].'">
-                    <p>
-                        '.$f['estadoTarea'].'
-                    </p>
-                  </td>
-                  <td class="ultimo">
-                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" id="verMas"></a>
-                  </td>
+                    <td>'.$f['asignaturaNombre'].'</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
+                                <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
+                                <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>'.$f['titulo'].' </td>
+                    <td>
+                        '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
+                    </td>
+                    <td class="estado '.$f['estadoTarea'].'">
+                        <p>
+                            '.$f['estadoTarea'].'
+                        </p>
+                    </td>
+                    <td class="ultimo">
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                    </td>
                 </tr>
             ';
-
-
         }
     }
+
+    // Mostrar todas las calificaciones de las tareas
+    function mostrarTodasCalificaciones(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodasTareas($idEstudiante);
+
+        foreach ($filas as $f) {
+            // Formatear la fecha
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_calificacion']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_calificacion']));
+
+            echo '
+                <tr>
+                    <td>'.$f['asignaturaNombre'].'</td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
+                                <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
+                                <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>'.$f['titulo'].' </td>
+                    <td class="estado '.$f['estadoTarea'].'">
+                        <p>
+                            '.$f['estadoTarea'].'
+                        </p>
+                    </td>
+                    <td>
+                        '.($f["fecha_calificacion"] !== null ? $formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento : "No se ha calificado" ).' 
+                    </td>
+                    <td class="calificacion">'.($f["calificacion"] !== null ? $f["calificacion"] : "-").'</td>
+                    <td class="ultimo">
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
+                    </td>
+                </tr>
+            ';
+        }
+    }
+
 
     // Mostrar todos los usuarios
     function mostrarTodosUsuarios(){
@@ -319,7 +373,6 @@
 
         }
     }
-
     
     // Mostrar los usuarios Filtrado 
     function mostrarUsuariosFiltrados($rol, $estado, $nombres){
@@ -328,14 +381,14 @@
 
         // Verifica si los parámetros son 'nada' o vacíos
         if ($rol === 'nada' && $estado === 'nada' && $nombres === '') {
-            echo '<h4>No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
+            echo '<h4 class="errorFiltro">No ha seleccionado ningún filtro. Por favor, elija una opción o limpie la selección para ver resultados.</h4>';
             return;  // No ejecutar la consulta
         }
 
         $consulta = $objConsultas->cargarUsuariosFiltrados($rol, $estado, $nombres);
 
         if(!isset($consulta)){
-            echo '<h4>No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
 
         }else {
 
@@ -375,6 +428,127 @@
                     </div>
                 ';
 
+            }
+
+
+        }
+
+    }
+
+    // Mostrar todos los compañeros
+    function mostrarTodosCompañeros(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodosCompañeros($idEstudiante);
+
+        foreach ($filas as $f) {
+
+            echo '
+            <tr class="'.$f['estado'].'">
+                <td>
+                    <img src="'.$f['foto'].'" alt="img perfil">
+                </td>
+                <td>'.$f['apellidos'].' </td>
+                <td>'.$f['nombres'].' </td>
+                <td>'.$f['correo'].' </td>
+                <td class="ultimo">'.$f['estado'].' </td>
+            </tr>
+            ';
+        }
+    }
+
+    // Mostrar todos los profesores
+    function mostrarTodosProfesores(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodosProfesores($idEstudiante);
+
+        foreach ($filas as $f) {
+
+            echo '
+                <tr class="'.$f['estado'].'">
+                    <td>
+                        <img src="'.$f['foto'].'" alt="img perfil">
+                    </td>
+                    <td>'.$f['apellidos'].' </td>
+                    <td>'.$f['nombres'].' </td>
+                    <td>'.$f['correo'].' </td>
+                    <td class="ultimo">'.$f['estado'].' </td>
+                </tr>
+            ';
+        }
+    }
+
+    // Mostrar los compañeros Filtrado 
+    function mostrarCompañerosFiltrados($estado, $nombres){
+        $idEstudiante = $_SESSION['id'];
+
+        $objConsultas = new Consultas();
+
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($estado === 'nada' && $nombres === '') {
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            return;  
+        }
+
+        $consulta = $objConsultas->cargarCompañerosFiltrados($estado, $nombres, $idEstudiante);
+
+        if(!isset($consulta)){
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+
+        }else {
+
+            foreach($consulta as $f) {
+
+                echo '
+                    <tr class="'.$f['estado'].'">
+                        <td>
+                            <img src="'.$f['foto'].'" alt="img perfil">
+                        </td>
+                        <td>'.$f['apellidos'].' </td>
+                        <td>'.$f['nombres'].' </td>
+                        <td>'.$f['correo'].' </td>
+                        <td class="ultimo">'.$f['estado'].' </td>
+                    </tr>
+                ';
+            }
+
+
+        }
+
+    }
+
+    // Mostrar los profesores Filtrado 
+    function mostrarProfesoresFiltrados($estado, $nombres){
+        $idEstudiante = $_SESSION['id'];
+
+        $objConsultas = new Consultas();
+
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($estado === 'nada' && $nombres === '') {
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+            return;  
+        }
+
+        $consulta = $objConsultas->cargarProfesoresFiltrados($estado, $nombres, $idEstudiante);
+
+        if(!isset($consulta)){
+            echo '<h4 class="errorFiltro">No se encontraron usuarios registrados con las características seleccionadas. Por favor, elija otro filtro o limpie la selección para ver resultados.</h4>';
+        }else {
+
+            foreach($consulta as $f) {
+
+                echo '
+                    <tr class="'.$f['estado'].'">
+                        <td>
+                            <img src="'.$f['foto'].'" alt="img perfil">
+                        </td>
+                        <td>'.$f['apellidos'].' </td>
+                        <td>'.$f['nombres'].' </td>
+                        <td>'.$f['correo'].' </td>
+                        <td class="ultimo">'.$f['estado'].' </td>
+                    </tr>
+                ';
             }
 
 

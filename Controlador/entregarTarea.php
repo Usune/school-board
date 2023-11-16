@@ -4,8 +4,11 @@
     require_once('../Modelo/consultas.php');
     
     $descripcion = $_POST['descripcion'];
+    $idEstudiante = $_POST['idEstudiante'];
+    $idTarea = $_POST['idTarea'];
+    $fechaEntrega = date("Y-m-d H:i:s");
 
-    if(strlen($descripcion) > 0){
+    if(strlen($idEstudiante) > 0 &&  strlen($idTarea) > 0 &&  strlen($fechaEntrega) > 0 && strlen($descripcion) > 0){
 
         // Nombre del archivo 
         $archivos = $_FILES['archivos']['name'];
@@ -13,7 +16,7 @@
         $archivos_str = implode(",", $archivos);
 
         // carpeta de destino
-        $carpeta_destino = '../Vista/Uploads/Tareas/';
+        $carpeta_destino = '../Vista/Uploads/Entregas/';
 
         // foreach porque son varios archivos 
         // $tmp_name: nombre temporal de los archivos (Generado por el servidor web)
@@ -27,7 +30,7 @@
         
 
         $objConsultas = new Consultas();
-        $filas = $objConsultas->insertarEntregaTarea($descripcion, $archivos_str);
+        $filas = $objConsultas->insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str);
 
     }else{
         echo '<script>alert("Por favor complete todos los campos")</script>';

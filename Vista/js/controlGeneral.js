@@ -7,12 +7,42 @@ const mostrar = (event) => {
     }
 }
 
-// Función ppara mostrar o no un modal elemento
+// Función para mostrar o no un modal elemento
 // Para que funcione el elemento acciodador debe tener el atributo 'modal' con el id correspondiante del elemento a mostrar y ocultar
 const mostrarModal = (event) => {
     let el = document.querySelector(event.target.getAttribute('modal'));
     if (el !== null) {
         el.classList.toggle('show_modal');
+    }
+}
+
+// Función para mostrar el formulario de una observación a modificar
+const consultarInfoObservacion = (event) => {
+
+    let idObser = document.querySelector(event.target.getAttribute('data-id'));
+
+    if (idObser !== null){
+        fetch('mostrarObserAdmin.php?funcion=' + cargarObserEditar, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'id=' + idObser,
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Mostrar el resultado en el modal
+            document.getElementById("resultadoConsulta").innerHTML = data;
+            document.getElementById("modificar").style.display = "block";
+        })
+        .catch(error => {
+            console.error('Error al realizar la solicitud:', error);
+        });
     }
 }
 

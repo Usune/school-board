@@ -37,127 +37,30 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeIntegrantes.php"> / Integrantes</a>
+      <a href="homeIntegrantes.php"> / Usuarios</a>
     </nav>
 
     <section>
-      <div class="container-fluid" id="integrantes">
-        <h2>Integrantes</h2>
 
-        <!-- Filtro funcional -->
-        <div class="row filtro">
-          <div class="col-md-12">
-            <form method="get">
+      <h2>Administración de usuarios</h2>
 
-              <div class="row ">
+      <div class="contenedor">
+        <div class="fila-cont">
+          <a href="homeCompañeros.php">
+            <img src="../../img/lupa.svg" alt="lupa">
+            <p>Consultar Compañeros</p>
+          </a>
 
-                <!-- select - rol -->
-                <div class="col-lg-3 col-md-6 col-sm-12 filtro-inputs">
-                  <div class="fieldset_view">
-                    <label for="rol">Rol</label>
-                    <select class="veriSelect" required="" name="rol">
-                      <option value="nada" selected  checked>Seleccione ...</option>
-                      <option value="administrador">Administrativo</option>
-                      <option value="docente">Docente</option>
-                      <option value="estudiante">Estudiante</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- select - Estado -->
-                <div class="col-lg-3 col-md-6 col-sm-12 filtro-inputs">
-                  <div class="fieldset_view">
-                    <label for="rol">Estado</label>
-                    <select name="estado">
-                      <option value="nada" checked>Seleccione ...</option>
-                      <option value="activo" id="activo">Activo</option>
-                      <option value="inactivo" id="inactivo">Inactivo</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- input - nombres -->
-                <div class="col-lg-3 col-md-6 col-sm-12 filtro-inputs">
-                  <div class="fieldset_view">
-                    <div class="fieldset">
-                      <fieldset>
-                        <legend id="nom">Nombre</legend>
-                      </fieldset>
-                      <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- botones -->
-                <div class="col-lg-3 col-md-6 col-sm-12 filtro-inputs">
-
-                  <div class="buscador col-6">
-                    <div class="col-6">
-                      <button type="submit" class="filtrar">Filtrar</button>
-                    </div>
-
-                    <div class="col-6">
-                      <a href="homeIntegrantes.php" class="filtrar">Limpiar</a>
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- <div class="col-lg-3 col-md-6 col-sm-12 filtro-inputs">
-                  <div class="buscador">
-                    <input type="text" placeholder="Buscar por nombre" name="nombres">
-                    <a href="">
-                      <img src="../../img/lupa.svg" alt="">
-                    </a>
-                  </div>
-                </div> -->
-
-
-              </div>
-            </form>
-
-
-          </div>
+          <a href="homeProfesores.php">
+            <img src="../../img/lupa.svg" alt="lupa">
+            <p>Consultar Profesores</p>
+          </a>
         </div>
-
-        <!-- Contenedor de Error  -->
-        
-        
-        <!-- Listado - Cards -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 g-4">
-
-          <?php
-
-              if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres'])){
-
-                if($_GET['rol'] === 'administrador'){
-                  echo '<h3 class="texto">'.'Administradores'.'</h3>';
-                }elseif ($_GET['rol'] === 'docente') {
-                  echo '<h3 class="texto">'.'Docentes'.'</h3>';
-                }elseif ($_GET['rol'] === 'estudiante') {
-                  echo '<h3 class="texto">'.'Estudiantes'.'</h3>';
-                }else{
-                  echo '<h3 class="texto">'.'Todos'.'</h3>';
-                }
-
-                mostrarUsuariosFiltrados($_GET['rol'], $_GET['estado'], $_GET['nombres']);
-                        
-              }else {
-
-                echo '<h3  class="texto">'.'Todos'.'</h3>';
-
-                mostrarTodosUsuarios();
-
-              }
-            ?>
-        </div>
-
       </div>
+
     </section>
-
-
   </main>
+
 
 
   </div>

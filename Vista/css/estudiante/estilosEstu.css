@@ -18,15 +18,13 @@ h3 {
     font-weight: 700;
 }
 
+
+
 /* Estilos INTEGRANTES  */
-/* Espacio entre filas */
-#integrantes {
+/* Filtro */
+.filtro {
     width: 95%;
     margin: 0 auto;
-}
-
-/* Filtro */
-#integrantes .filtro {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,13 +34,13 @@ h3 {
     margin-top: 20px;
 }
 
-#integrantes .filtro-inputs .fieldset_view {
+.filtro-inputs .fieldset_view {
     width: 100%;
     margin-bottom: 0;
     margin-top: 4px;
 }
 
-#integrantes .filtro-inputs .fieldset_view .fieldset {
+.filtro-inputs .fieldset_view .fieldset {
     margin-bottom: -5px;
     justify-content: left;
     width: 100%;
@@ -50,7 +48,7 @@ h3 {
     margin-top: 6px;
 }
 
-#integrantes .filtro-inputs .fieldset_view .fieldset input {
+.filtro-inputs .fieldset_view .fieldset input {
     margin-left: -294px;
     width: 95%;
     position: absolute;
@@ -61,7 +59,7 @@ h3 {
     /* background-color: #fa5e00; */
 }
 
-#integrantes .filtro-inputs .fieldset_view .fieldset input:focus {
+.filtro-inputs .fieldset_view .fieldset input:focus {
     margin-left: -294px;
     width: 95%;
     position: absolute;
@@ -72,22 +70,28 @@ h3 {
 }
 
 
-#integrantes .filtro-inputs {
+.filtro-inputs {
     display: flex;
     justify-content: left;
     align-items: end;
 }
 
 
-#integrantes .filtro-inputs .buscador {
+.filtro-inputs .buscador {
     width: 100%;
     display: flex;
     justify-content: left;
     align-items: center;
 }
 
-#integrantes .filtro-inputs .buscador button,
-#integrantes .filtro-inputs .buscador a {
+.filtro-inputs .buscador .col-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtro-inputs .buscador button,
+.filtro-inputs .buscador a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,111 +102,28 @@ h3 {
     margin: 10px 10px 0 0;
 }
 
-#integrantes .filtro-inputs .buscador button:hover,
-#integrantes .filtro-inputs .buscador a:hover {
+.filtro-inputs .buscador button:hover,
+.filtro-inputs .buscador a:hover {
     background-color: var(--principal);
     filter: brightness(1);
 }
 
+h4.errorFiltro  {
+    width: 95%;
+    margin: 0 auto;
+    font-size: 80%;
+}
 
 /* Cards */
-#integrantes h3.texto {
+/* h3.texto {
     width: 95%;
     margin: 0 auto;
     padding-top: 50px;
     text-align: left;
     text-transform: capitalize;
-}
+} */
 
-.card-usu {
-    background-color: var(--blanco);
-    padding: 10px;
-    border-radius: 20px;
-    text-align: center;
-    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
-    box-shadow: 4px 6px 7px 0px #d6d6d6;
-}
-
-#integrantes .card-usu.Inactivo {
-    filter: brightness(0.9);
-}
-
-#integrantes .card-usu .iconos {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
-#integrantes .card-usu .iconos img {
-    width: 30px;
-}
-
-#integrantes .card-usu .fotoUsu {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#integrantes .card-usu .fotoUsu img {
-    width: 50%;
-    border-radius: 50%;
-    border: 5px solid var(--principal);
-}
-
-#integrantes h4 {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-#integrantes .card-usu h5 {
-    height: 28px;
-    margin: 10px auto;
-    font-weight: 700;
-    font-size: 100%;
-}
-
-#integrantes .card-usu .card-body p.card-text,
-#integrantes .card-usu .card-body .card-text a {
-    height: 28px;
-    font-size: 100%;
-    margin-bottom: 10px;
-    color: var(--negro);
-    font-weight: 300;
-}
-
-
-#integrantes .card-usu a button {
-    width: 80%;
-    margin: 15px auto 0 auto;
-    font-weight: 700;
-    background-color: var(--principal);
-    border: 1px solid var(--principal);
-    padding: 10px;
-    border-radius: 20px;
-}
-
-/* Hover Cards */
-#integrantes .card-usu:hover {
-    background-color: var(--principal);
-}
-
-
-#integrantes .card-usu:hover .fotoUsu img {
-    border: 5px solid var(--blanco);
-}
-
-#integrantes .card-usu:hover h5 {
-    color: var(--blanco);
-}
-
-#integrantes .card-usu:hover a button {
-    background-color: var(--grisClaro);
-    border: 1px solid var(--grisClaro);
-}
+/*  */
 
 /* Fin Estilos INTEGRANTES  */
 
@@ -216,6 +137,8 @@ h3 {
     text-align: left;
     font-size: 14px;
     position: relative;
+    border-radius: 20px;
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
 }
 
 #observador .card-usu::before {
@@ -231,10 +154,15 @@ h3 {
 
 #observador .card-usu .card-body {
     margin-left: 10px;
+    padding: 22px;
 }
 
 #observador .card-usu h5 {
     font-weight: 700;
+}
+
+#observador .card-usu p {
+    font-size: 14px;
 }
 
 #observador .card-usu hr {
@@ -291,18 +219,18 @@ h3 {
 
 
 /* TD - "Estado" */
-.tablas tbody tr td:nth-child(5) p {
+.tablas tbody tr td.estado p {
     margin-left: 18px;
     margin-bottom: 0;
 }
 
 /* Pendiente - rojo */
-.tablas tbody tr td.pendiente:nth-child(5) {
+.tablas tbody tr td.estado.pendiente {
     position: relative;
     text-transform: capitalize;
 }
 
-.tablas tbody tr td.pendiente:nth-child(5)::after {
+.tablas tbody tr td.estado.pendiente::after {
     content: "";
     position: absolute;
     top: 45%;
@@ -314,12 +242,12 @@ h3 {
 }
 
 /* Entregada - verde */
-.tablas tbody tr td.entregada:nth-child(5) {
+.tablas tbody tr td.estado.entregada {
     position: relative;
     text-transform: capitalize;
 }
 
-.tablas tbody tr td.entregada:nth-child(5)::after {
+.tablas tbody tr td.estado.entregada::after {
     content: "";
     position: absolute;
     top: 45%;
@@ -332,16 +260,19 @@ h3 {
 
 
 /* TD "Ver más" */
-.tablas tbody tr td img#verMas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+.tablas tbody tr td img.verMas {
+    width: 25px;
+    margin: 0 10px;
     background-color: var(--grisClaro);
     transform: rotate(90deg);
     opacity: 0.5;
     border-radius: 10px;
 }
+
+/* TD "Calificacion" */
+/* .tablas tbody tr td.calificacion {
+    text-align: center;
+} */
 
 /* Hover */
 .tablas .table-hover tbody tr {
@@ -351,18 +282,83 @@ h3 {
     border-radius: 21px;
 }
 
+.tablas .table-hover tbody tr.Inactivo {
+    background-color: var(--grisClaro);
+    filter: brightness(0.9);
+}
+
+
 .tablas .table-hover tbody tr:hover td {
     background-color: var(--principal);
     /* box-shadow: 0px 2px 0 0  #fa5e00; */
-    box-shadow:   4px 6px 0px 0px  #fa5e00;
+    box-shadow: 4px 6px 0px 0px #fa5e00;
     font-weight: 700;
     filter: saturate(105%);
+}
+
+/* Compañeros */
+.tablas tbody tr td img {
+    width: 60px;
+    border-radius: 50%;
+    border-radius: 50%;
+}
+
+
+/* Estilos Generales Tareas */
+
+.centrado{
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.card-tareas{
+    width: 70%;
+    background: var(--blanco);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 5px var(--gris);
+    margin: 20px 0;
+    font-size: 12px;
+}
+
+.cont-fechas{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.cont-fechas p{
+    margin: 0 10px 0 0;
+    color: #868686;
+}
+
+.cont-archivo{
+    margin: 10px 10px 10px 0;
+    width: 100%;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #F9F9F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-principal{
+    width: 100%;
+    background-color: var(--principal);
+    border-radius: 20px;
+    margin-top: 10px;
 }
 
 /* Media Queries */
 /* Phone */
 @media screen and (min-width: 300px) and (max-width: 768px) {
-    .tablas tbody tr td .row .imgDoc  {
+    .tablas tbody tr td .row .imgDoc {
         text-align: center;
     }
 
@@ -374,6 +370,3 @@ h3 {
         margin: 0 auto;
     }
 }
-
-
-

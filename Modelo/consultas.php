@@ -1683,7 +1683,7 @@
             return $f;
         }
 
-        public function insertarComunDoc($idUsuario, $idCurso, $titulo, $descripcion, $archivo) {
+        public function insertarComunDoc($idUsuario, $idCurso, $titulo, $descripcion, $archivo, $idClase) {
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -1700,7 +1700,7 @@
             $consulta->execute();
 
             echo '<script>alert("Comunicado subido correcamente")</script>';
-            echo "<script>location.href='../Vista/html/Docente/docComunRegistrar.php'</script>";         
+            echo '<script>location.href="../Vista/html/Docente/docComun.php?idClase='.$idClase.'"</script>';         
 
         }
 

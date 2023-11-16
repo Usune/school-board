@@ -201,6 +201,23 @@ CREATE TABLE entrega(
 INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fechaEntrega)
 VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
 
+
+CREATE TABLE calificacion(
+    idCalificacion INT AUTO_INCREMENT,
+    idEstudiante INT,
+    idTarea INT,
+    fechaEntregaEst DATETIME,
+    fechaVencimiento DATETIME,
+    archivosTarea VARCHAR(400),
+    notaTarea INT,
+    PRIMARY KEY (idCalificacion),
+    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+    FOREIGN KEY (idTarea) REFERENCES tarea(idTarea),
+    FOREIGN KEY (fechaEntregaEst) REFERENCES entrega(idEntrega),
+    FOREIGN KEY (fechaVencimiento) REFERENCES tarea(idTarea),
+    FOREIGN KEY (archivosTarea) REFERENCES tarea(idTarea),
+)
+
 -- Cnsulta ?
 -- SELECT * FROM entrega
 -- WHERE idEstudiante = "1023163094"

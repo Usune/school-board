@@ -32,7 +32,7 @@ require_once ('../../../Controlador/mostrarComunDoc.php');
             <nav class="nav-main">
                 <a href="homeDoc.php">Clases</a>                            
                 <?php
-                    echo '<a href="docObser.php?idClase='.$_GET['idClase'].'"> / Comunicados</a> ';
+                    echo '<a href="docComun.php?idClase='.$_GET['idClase'].'"> / Comunicados</a> ';
                 ?>            
             </nav> 
         
@@ -48,7 +48,7 @@ require_once ('../../../Controlador/mostrarComunDoc.php');
         
                     <form action="../../../Controlador/registrarComunDoc.php" method="post" enctype="multipart/form-data" id="formulario">
 
-                            <div class="fieldset">
+                            <div class="fieldset"> 
                                 <fieldset>
                                     <legend id="tit">Título</legend>
                                 </fieldset>
@@ -66,7 +66,8 @@ require_once ('../../../Controlador/mostrarComunDoc.php');
                             </div>
 
                             <?php
-                               traerCursoID();                            
+                               traerCursoID();    
+                               echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';
                             ?>
         
                             <p id="texto"></p>

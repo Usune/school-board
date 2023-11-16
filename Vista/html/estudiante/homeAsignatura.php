@@ -30,15 +30,9 @@
 
         
 
-    <?php
-        $idAsignatura = $_GET['idAsignatura'];
-        $nombreAsignatura = $_GET['nombreAsignatura'];
-    ?>
-
         <!-- breadcrumb -->
         <nav class="nav-main">
-            <a href="homeEstu.php">Home</a>
-            <a href="homeAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>"> / <?php echo $nombreAsignatura;?></a>
+            <?php navAsignatura(); ?>
         </nav>
 
 

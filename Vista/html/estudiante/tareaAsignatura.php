@@ -42,19 +42,8 @@
 
         <!-- breadcrumb -->
         <nav class="nav-main">
-            <a href="homeEstu.php">Home</a>
-
-            <a
-                href="homeAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>">
-                /
-                <?php echo $nombreAsignatura;?>
-            </a>
-
-            <a
-                href="tareaAsignatura.php?idAsignatura=<?php echo $idAsignatura; ?>&nombreAsignatura=<?php echo $nombreAsignatura?>&tarea=<?php echo $nombreTarea?>&idTarea=<?php echo $idTarea?>">
-                /
-                <?php echo $nombreTarea ?>
-            </a>
+            <?php navAsignatura(); ?>
+            <?php navTarea(); ?>
         </nav>
 
 
@@ -64,12 +53,11 @@
             <h2>Principal de EnviarTareaExample</h2>
             <?php habilitarEntregaTareas(); ?>
 
-            <div class="card-formulario">
+            <!-- <div class="card-formulario">
                 <div class="formulario">
                     <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data"
                     id="formulario">
 
-                    <!-- hidden -->
                         <input type="number" placeholder="idEstudiante"  name="idEstudiante" value="1023163094" hidden >
                         <input type="number" placeholder="idTarea"   name="idTarea" value="4" hidden>
 
@@ -87,7 +75,7 @@
                         <button type="submit" class="enviar">Entregar Tarea</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
 
 

@@ -1,6 +1,34 @@
 <?php
    session_start();
 
+    //    ASIGNATURAS - TAREAS  
+
+    function navAsignatura(){
+        $idEstudiante = $_SESSION['id'];
+        $idAsignatura = $_GET['idAsignatura'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarClase($idEstudiante, $idAsignatura);
+
+        foreach ($filas as $f) {
+            echo '
+                <a href="homeEstu.php">Home</a>
+                <a href="homeAsignatura.php?idAsignatura='.$f['idAsignatura'].'"> / '.$f['asignaturaNombre'].'</a>
+            ';
+        }
+    }
+
+    function navTarea(){
+        $idTarea = $_GET['idTarea'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTareaNav($idTarea);
+
+        foreach ($filas as $f) {
+            echo '
+                <a href="TareaAsignatura.php?idAsignatura='.$f['idTarea'].'"> / '.$f['titulo'].'</a>
+            ';
+        }
+    }
+
     // Mostrar solo asignaturas a los estudiantes en el aside  
     function mostrarAsignaturasEstudiante(){
         $idEstudiante = $_SESSION['id'];
@@ -10,7 +38,7 @@
         foreach ($filas as $fila) {
             echo '
                 <li>
-                    <a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'&nombreAsignatura='.$fila['asignaturaNombre'].'">
+                    <a href="homeAsignatura.php?idAsignatura='.$fila['idAsignatura'].'">
                         '.$fila['asignaturaNombre'].'
                     </a>
                 </li>
@@ -42,74 +70,10 @@
 
         foreach($filas as $f){
 
-            // Operación para traer la fecha en este formato Sep 2, 2023
-            // Capturar la fecha desde la DB 
-            $fechaDB = $f['fecha_vencimiento'];
-            // Convertirla en el tipo de dato que se encuentra en la DB, ya que antes de este momento pasa como string (Verificar con  echo gettype($fechaDB); )
-            $fechaDBDateTime = new DateTime($fechaDB);
-            // Colocar en el formato Sep 2, 2023
-            $fechaFormato = $fechaDBDateTime->format('M j, Y');
-
-
-            // Operación para indicar el color de vencimiento de la fecha (Vencida, Proxima y Con Tiempo)
-            // Capturar fecha actual
-            $fechaActual = date("Y-m-d H:i:s");
-            // Convertirla en DateTime
-            $fechaActualDateTime = new DateTime($fechaActual);
-            // Restar las dos fechas, para definir estado
-            $fechaDiferencia = $fechaActualDateTime->diff($fechaDBDateTime);
-
-            // El signo %r devuelve el signo (+ o -) de la diferencia y %a es el numero
-            $fechaEstado = $fechaDiferencia->format('%r%a');
-
-            // Condicional para aplicar estilos en css
-            if ($fechaEstado < 1) {
-                $fechaEstado = "vencida"; // La tarea esta vencida o vence ese dia
-            } elseif ($fechaEstado >= 1 && $fechaEstado <=4) {
-                $fechaEstado = "proximo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
-            } else {
-                $fechaEstado = "conTiempo"; // La tarea tiene un plazo de más de 4 dias para ser entregada
-            }
-
             // Formatear la fecha
             $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
             $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
             
-
-            // echo '
-            //     <div class="card-tarea">
-            //         <div class="card-header">
-            //             <div class="info-user fila">
-            //                 <img src="'.$f['foto'].'" alt="foto perfil Docente">
-            //                 <p>
-            //                     '.$f['nombres'].' <br>
-            //                     '.$f['apellidos'].'
-            //                 </p>
-            //             </div>
-            //             <div class="fechas" id="'.$fechaEstado.'">
-            //                 <p>
-            //                     '.$fechaFormato.'
-            //                 </p>
-            //             </div>
-            //         </div>
-            //         <hr>
-            //         <div class="card-header">
-            //             <div class="card-info">
-            //                 <img src="../../img/descripcion.png" alt="">
-            //                 <div class="info">
-            //                     <h3>'.$f['tarea'].'</h3>
-            //                     <p>
-            //                         '.$f['descripcion'].'
-            //                     </p>
-            //                 </div>
-            //             </div>
-            //             <div class="boton">
-            //                 <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignatura'].'&tarea='.$f['tarea'].'&idTarea='.$f['idTarea'].'">Ver más</a>
-            //             </div>
-            //         </div>
-            //     </div>
-            // ';
-
             echo '
             <tr>
                 <td>'.$f['titulo'].' </td>
@@ -136,9 +100,10 @@
 
     // Mostrar la tarea y habilitar la entrega
     function habilitarEntregaTareas(){
+        $idEstudiante = $_SESSION['id'];
         $idTarea = $_GET['idTarea'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarTarea($idTarea);
+        $filas = $objConsultas->cargarTareaConEntregas($idTarea, $idEstudiante);
 
         foreach($filas as $f){
 
@@ -173,7 +138,7 @@
 
 
             // manejo de archivos 
-            $archivos = explode(",", $f['archivos']);
+            $archivos = explode(",", $f['tareaArchivos']);
 
 
             echo '
@@ -194,7 +159,7 @@
                             <div class="info">
                                 <h3>'.$f['titulo'].'</h3>
                                 <p>
-                                    '.$f['descripcion'].'
+                                    '.$f['tareaDescripcion'].'
                                 </p>
                             </div>
                         </div>
@@ -247,27 +212,28 @@
                 </div>
                 <hr>
                 <div class="card-formulario">
-                    <div class="formulario">
-                        <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data" id="formulario">
+                <div class="formulario">
+                    <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data"
+                    id="formulario">
 
-                            <input type="number" placeholder="idEstudiante"  name="idEstudiante" value="1023163094" hidden >
-                            <input type="number" placeholder="idTarea"   name="idTarea" value="4" hidden>
+                        <input type="number" placeholder="idEstudiante"  name="idEstudiante" value="'.$idEstudiante.'" hidden >
+                        <input type="number" placeholder="idTarea"   name="idTarea" value="'.$f['idTarea'].'" hidden>
 
-                            <div class="textarea">
-                                <label for="descripcion">Descripción</label>
-                                <textarea id="descripcion" cols="30" rows="10"
-                                    name="descripcion">Ingrese una descripción</textarea>
-                            </div>
+                        <div class="textarea">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" cols="30" rows="10"
+                                name="descripcion">Ingrese una descripción</textarea>
+                        </div>
 
-                            <div class="file">
-                                <label for="archivo">Seleccione un archivo</label>
-                                <input type="file" accept=".pdf" name="archivos[]" multiple>
-                            </div>
+                        <div class="file">
+                            <label for="archivo">Seleccione un archivo</label>
+                            <input type="file" accept=".pdf" name="archivos[]" multiple>
+                        </div>
 
-                            <button type="submit" class="enviar">Entregar Tarea</button>
-                        </form>
-                    </div>
+                        <button type="submit" class="enviar">Entregar Tarea</button>
+                    </form>
                 </div>
+            </div>
             </div>
             </div>
                   

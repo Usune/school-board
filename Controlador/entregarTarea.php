@@ -30,7 +30,7 @@
         
 
         $objConsultas = new Consultas();
-        $filas = $objConsultas->insertarEntregaTarea($idEstudiante, $idTarea,$fechaEntrega, $descripcion, $archivos_str);
+        $filas = $objConsultas->insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str);
 
     }else{
         echo '<script>alert("Por favor complete todos los campos")</script>';

@@ -26,7 +26,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
-                <a href="homeAdmin.php">Clases</a>
+                <a href="homeDoc.php">Clases</a>
                 <a href="adminUsu.php"> / Única-PRIMERO</a>
                 <a href="adminUsuConsu.php"> / Asistencia</a>
             </nav>
@@ -120,7 +120,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
 
                                 if( isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
                                         
-                                    filtrarUsuarios($_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
+                                    // filtrarUsuarios($_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
                                   
                                 }else {
 

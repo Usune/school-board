@@ -75,7 +75,7 @@ function menuIncludeDoc() {
         <li id="liRol">Docente</li>
         <li><a href="homeDoc.php?idClase='.$clase.'"><img src="../../img/curso.svg" alt="logo">Clases</a></li>
         <li><a href="tareasDoc.php?idClase='.$clase.'"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
-        <li><a href="docCalif.php?idClase='.$clase.'"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
+        <li><a href="docCalificaciones.php?idClase='.$clase.'"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
         <li><a href="docObser.php?idClase='.$clase.'"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
         <li><a href="docComun.php?idClase='.$clase.'"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
         <li><a href="docAsistencia.php?idClase='.$clase.'"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>

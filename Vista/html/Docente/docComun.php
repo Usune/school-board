@@ -33,10 +33,12 @@
             </nav> 
             <section>
                 <h2>Comunicados</h2>
+           
                 <?php
 
                     cargarComunicados();
                 ?>
+         
                  <div class="contenedor">
                     <div class="fila-cont">
                         <?php

@@ -1059,6 +1059,27 @@
 
         }
 
+
+        public function actualizarComunDoc($titulo, $fecha, $descripcion, $archivo, $idComunicado, $idCurso, $idClase){
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'UPDATE comunicado SET titulo=:titulo, fecha=:fecha, descripcion=:descripcion WHERE idComunicado=:idComunicado AND idCurso=:idCurso';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':titulo', $titulo);
+            $consulta->bindParam(':fecha', $fecha);
+            $consulta->bindParam(':descripcion', $descripcion);            
+            $consulta->bindParam(':idComunicado', $idComunicado);     
+            $consulta->bindParam(':idCurso', $idCurso);     
+
+            $consulta->execute();
+            
+            echo '<script>alert("Comunicado actualizado correcamente")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docComun.php?idClase='.$idClase.'"</script>'; 
+        }
+        
+
         // CONSULTAS PARA ESTUDIANTES 
 
         // Funcion para cargar las asignaturas correspondientes al estudiante
@@ -1504,7 +1525,7 @@
 
         }
 
-        public function ActualizarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase) {
+        public function TarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase) {
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -1861,4 +1882,4 @@
 
     }
 
-?> 
+?>

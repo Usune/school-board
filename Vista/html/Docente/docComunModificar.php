@@ -18,7 +18,7 @@ require_once ('../../../Controlador/mostrarComunDoc.php');
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-    <title>Observaciones </title>
+    <title>Modificar </title>
 </head> 
 <body>
     
@@ -38,11 +38,13 @@ require_once ('../../../Controlador/mostrarComunDoc.php');
             </nav>
         
             <section> 
+            <h2>Administración de comunicados</h2>
+                
                 <?php
                     cargarComunEditar();
                 ?>
                  
-            
+             
 
             </section>
 

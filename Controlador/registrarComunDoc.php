@@ -13,7 +13,7 @@
     $titulo = $_POST['titulo'];
     $descripcion = $_POST['descripcion'];
     $idCurso = $_POST['curso'];
-    $idClase = $_GET['idClase'];
+    $idClase = $_POST['idClase'];    
 
     if (strlen($titulo)>0 && strlen($descripcion)>0 && strlen($idUsuario)>0 && strlen($idCurso)>0) {
 

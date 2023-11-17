@@ -1,4 +1,3 @@
-
 <?php
     require_once ('../../../Modelo/conexion.php');
     require_once ('../../../Modelo/consultas.php');
@@ -22,95 +21,103 @@
 </head>
 
 <body>
-    
+
     <?php
         include("menu-include.php");
     ?>
-        <main>
+    <main>
 
-            <!-- breadcrumb -->  
-            <nav class="nav-main">
-                <a href="homeAdmin.php">Home</a>
-                <a href="adminCurso.php"> / Cursos</a>
-                <a href="adminCurConsu.php"> / Consultar</a>
-            </nav>
-        
-            <section>
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <a href="homeAdmin.php">Home</a>
+            <a href="adminCurso.php"> / Cursos</a>
+            <a href="adminCurConsu.php"> / Consultar</a>
+        </nav>
 
-                <h2>Administración de cursos</h2>
-                <h3>Consultar cursos</h3>
+        <section>
 
-                <div class="tabla">
+            <h2>Administración de cursos</h2>
+            <h3>Consultar cursos</h3>
 
-                    <div class="opciones">
-                        <a href="reportesCurAdmin.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
-                        
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                    </div>
+            <div class="tabla">
 
-                    <div id="filtro">
+                <div class="opciones">
+                    <a href="reportesCurAdmin.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
 
-                        <form method="get">
+                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
+                            alt="filtro">Filtrar</button>
+                </div>
 
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="nom">Nombre</legend>
-                                    </fieldset>
-                                    <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
-                                </div>
+                <div id="filtro">
 
-                            <div class="fila-cont">
+                    <form method="get">
 
-                                <div class="radio">
-                                    <p>Jornada</p>
-                                    <input type="radio" name="jornada" value="nada" checked hidden>
-                                    <input type="radio" name="jornada" id="unica" value="unica">
-                                    <label for="unica">Única</label><br>
-                                    <input type="radio" name="jornada" id="manana" value="mañana">
-                                    <label for="manana">Mañana</label><br>
-                                    <input type="radio" name="jornada" id="tarde" value="tarde">
-                                    <label for="tarde">Tarde</label><br>
-                                </div>
-                                <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminCurConsu.php" class="filtrar">Limpiar</a>
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="nom">Nombre</legend>
+                            </fieldset>
+                            <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
+                        </div>
 
+                        <div class="fila-cont">
+
+                            <div class="radio">
+                                <p>Jornada</p>
+                                <input type="radio" name="jornada" value="nada" checked hidden>
+                                <input type="radio" name="jornada" id="unica" value="unica">
+                                <label for="unica">Única</label><br>
+                                <input type="radio" name="jornada" id="manana" value="mañana">
+                                <label for="manana">Mañana</label><br>
+                                <input type="radio" name="jornada" id="tarde" value="tarde">
+                                <label for="tarde">Tarde</label><br>
                             </div>
-                            
+                            <button type="submit" class="filtrar">Filtrar</button>
+                            <a href="adminCurConsu.php" class="filtrar">Limpiar</a>
 
-                        </form>
-                        
-                    </div>
-                    
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+
+                <div class="tablas">
                     <table>
                         <caption>
                             Lista de cursos registrados
                         </caption>
-                        <tr>
-                            <th>Curso</th>
-                            <th>Jornada</th>
-                            <th>Opciones</th>
-                            <!-- <th colspan="2">Opciones</th> -->
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Curso</th>
+                                <th>Jornada</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
 
-                            <?php
 
-                                if(isset($_GET['jornada']) || isset($_GET['nombre']) ){
-                                        
-                                    filtrarCursos($_GET['jornada'], $_GET['nombre']);
-                                  
-                                }else {
-
-                                    cargarCursos();
-
-                                }
-                            ?>
+                        <?php
+    
+                                    if(isset($_GET['jornada']) || isset($_GET['nombre']) ){
+                                            
+                                        filtrarCursos($_GET['jornada'], $_GET['nombre']);
+                                      
+                                    }else {
+    
+                                        cargarCursos();
+    
+                                    }
+                                ?>
 
                     </table>
                 </div>
 
-            </section>
-        
-        </main>
+            </div>
+
+        </section>
+
+    </main>
 
     </div>
 

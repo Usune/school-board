@@ -19,7 +19,7 @@
                     <td>'.$f['nombre'].'</td>
                     <td>'.$f['jornada'].'</td>
 
-                    <td><a href="adminCurModificar.php?id='.$f['idCurso'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
+                    <td class="ultimo"><a href="adminCurModificar.php?id='.$f['idCurso'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
                 </tr>
                 ';
@@ -48,7 +48,7 @@
                     <td>'.$f['nombre'].'</td>
                     <td>'.$f['jornada'].'</td>
 
-                    <td><a href="adminCurModificar.php?id='.$f['idCurso'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
+                    <td class="ultimo"><a href="adminCurModificar.php?id='.$f['idCurso'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
                 </tr>
                 ';

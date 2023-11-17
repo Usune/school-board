@@ -7,7 +7,8 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 require_once ('../../../Controlador/mostrarAsisDoc.php');
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,29 +17,30 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
 </head>
+
 <body>
-<?php
+    <?php
         include('menu-include.php');
     ?>
 
-    
-<main>
-            
-            <!-- breadcrumb -->  
-            <nav class="nav-main">
-                <a href="homeDoc.php">Clases</a>
-                <a href="adminUsu.php"> / Única-PRIMERO</a>
-                <a href="adminUsuConsu.php"> / Asistencia</a>
-            </nav>
-        
-            <section>
-                <h2>Asistencia Estudiantes</h2>
 
-                <!-- <h3>Consultar usuarios</h3> -->
+    <main>
 
-                <div class="tabla">
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <a href="homeDoc.php">Clases</a>
+            <a href="adminUsu.php"> / Única-PRIMERO</a>
+            <a href="adminUsuConsu.php"> / Asistencia</a>
+        </nav>
 
-                    <div class="opciones">
+        <section>
+            <h2>Asistencia Estudiantes</h2>
+
+            <!-- <h3>Consultar usuarios</h3> -->
+
+            <div class="tabla">
+
+                <div class="opciones">
 
                     <?php
 
@@ -52,92 +54,101 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
 
                         }
                     ?>
-                        
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                    </div>
 
-                    <div id="filtro">
+                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
+                            alt="filtro">Filtrar</button>
+                </div>
 
-                        <form method="get">
+                <div id="filtro">
 
-                            <div class="fila-cont">
+                    <form method="get">
 
-                    
+                        <div class="fila-cont">
+
+
+                        </div>
+
+                        <div class="fila-cont">
+
+                            <div class="fieldset">
+                                <fieldset>
+                                    <legend id="nom">Nombre</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
                             </div>
 
-                            <div class="fila-cont">
-
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="nom">Nombre</legend>
-                                    </fieldset>
-                                    <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
-                                </div>
-                                
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="ape">Apellido</legend>
-                                    </fieldset>
-                                    <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
-                                </div>
-
+                            <div class="fieldset">
+                                <fieldset>
+                                    <legend id="ape">Apellido</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
                             </div>
 
-                            <div class="fila-cont">
+                        </div>
 
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="doc">Documento</legend>
-                                    </fieldset>
-                                    <input type="number" placeholder="Documento" legend="#doc" name="documento">
-                                </div>
-                            
-                                <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+                        <div class="fila-cont">
 
+                            <div class="fieldset">
+                                <fieldset>
+                                    <legend id="doc">Documento</legend>
+                                </fieldset>
+                                <input type="number" placeholder="Documento" legend="#doc" name="documento">
                             </div>
 
-                        </form>
-                        
-                    </div>
-                    
+                            <button type="submit" class="filtrar">Filtrar</button>
+                            <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="tablas">
                     <table>
                         <caption>
                             Lista de usuarios registrados
                         </caption>
-                        <tr>
-                            <th>Tipo Documento</th>
-                            <th>Documento</th>
-                            <th>Apellidos</th>
-                            <th>Nombres</th>
-                            <th>Fecha</th>
-                            <th>Asistencia</th>
-                            <!-- <th colspan="2">Opciones</th> -->
+                        <thead>
+                            <tr>
+                                <th>Tipo Documento</th>
+                                <th>Documento</th>
+                                <th>Apellidos</th>
+                                <th>Nombres</th>
+                                <th>Fecha</th>
+                                <th class="ultimo">Asistencia</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php cargarAsistencia(); ?>
-                        </tr>
-
-                      <?php
-
-                                if( isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
+                        </tbody>
+                       
+                        <?php
+    
+                                    if( isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
+                                            
+                                        // filtrarUsuarios($_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
+                                      
+                                    }else {
+    
                                         
-                                    // filtrarUsuarios($_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
-                                  
-                                }else {
+    
+                                    }
+                                ?>
 
-                                    
 
-                                }
-                            ?>
-
-                    
 
                     </table>
                 </div>
-            </section>
+
+            </div>
+        </section>
 
 
-            
-        </main>
+
+    </main>
 
 </body>
+
 </html>

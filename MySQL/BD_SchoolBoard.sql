@@ -1,4 +1,4 @@
---Tablas 
+-- Tablas 
 
 -- school.board.company@gmail.com
 -- 75920sb-
@@ -25,10 +25,19 @@ CREATE TABLE usuario (
 
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
-(2, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+(2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
-(12345, MD5('12345'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
-(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole', 'Benavides', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg');
+(4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+(1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
+
+(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole@gmail.com', '../../Uploads/Usuario/userNicole.jpg'),
+(1023163095, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', 'favian@gmail.com', '../../Uploads/Usuario/userFavian.jpg'),
+(1023163096, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Darwin', 'Urbina Lopez', 'darwin@gmail.com', '../../Uploads/Usuario/userDarwin.jpg'),
+
+(1023163097, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Camila Dayana', 'Benavides Alfonso', 'Camila@gmail.com', '../../Uploads/Usuario/userCamila.jpg'),
+(1023163098, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Camilo Andres', 'Mancilla Angulo', 'Camilo@gmail.com', '../../Uploads/Usuario/userCamilo.jpg'),
+(1023163099, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Camilin', 'Urbina Lopez', 'Camilin@gmail.com', '../../Uploads/Usuario/userCamilin.jpg');
+
 
 CREATE TABLE asignatura (
     idAsignatura INT AUTO_INCREMENT,
@@ -38,11 +47,20 @@ CREATE TABLE asignatura (
 
 INSERT INTO asignatura (nombre) VALUES 
 ('Matemáticas'),
-('Español'),
-('Ciencias'),
+('Calculo'),
+
 ('Sociales'),
+('Religión'),
+('Catedra para la paz'),
+
+('Ciencias'),
+('Quimica'),
 ('Fisica'),
-('Ciencias prueba');
+
+('Español'),
+('Ingles'),
+('Ed.Fisica'),
+('Informatica');
 
 CREATE TABLE curso (
     idCurso INT AUTO_INCREMENT,
@@ -52,9 +70,12 @@ CREATE TABLE curso (
 );
 
 INSERT INTO curso (jornada, nombre) VALUES 
-('unica', 'PRIMERO'),
-('unica', 'SEGUNDO'),
-('unica', 'TERCERO');
+('unica', 'SEXTO'),
+('unica', 'SEPTIMO'),
+('unica', 'OCTAVO'),
+('unica', 'NOVENO'),
+('unica', 'DECIMO'),
+('unica', 'ONCE');
 
 CREATE TABLE aula (
     idAula INT AUTO_INCREMENT,
@@ -63,8 +84,8 @@ CREATE TABLE aula (
 );
 
 INSERT INTO aula(nombre) VALUES 
-('Laboratorio 102'),
 ('119 Torre oriental'),
+('101  Festo'),
 ('301 Torre occidental');
 
 CREATE TABLE observador (
@@ -114,8 +135,8 @@ CREATE TABLE clase (
 );
 
 INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
-(1, 2, 2, 1),
-(2, 1, 2, 2);
+(1, 1, 2, 1),
+(3, 7, 1023163093, 2);
 
 
 CREATE TABLE acudiente (
@@ -148,7 +169,13 @@ CREATE TABLE estudianteCurso (
 
 INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES 
 (1, 1023163094),
-(1, 3);
+(1, 1023163095),
+(1, 1023163096),
+(3, 1023163097),
+(3, 1023163098),
+(3, 1023163099);
+
+
 
 CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,
@@ -165,6 +192,7 @@ INSERT INTO asistencia (idAsistencia,idClase, idEstudiante, fecha, estado) VALUE
 (1, 1, 1,'2023-09-05 13:12:13','Asiste'),
 (2, 1, 1,'2023-09-05 13:12:13', 'Falta'),
 (3, 1, 1,'2023-09-05 13:12:13', 'Retardo');
+
 
 CREATE TABLE tarea (
     idTarea INT AUTO_INCREMENT,
@@ -186,11 +214,13 @@ INSERT INTO tarea (idClase,idDocente, titulo, descripcion, fecha_creacion, fecha
 (1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL),
 (1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
 
-CREATE TABLE entrega(
+
+
+CREATE TABLE entrega (
     idEntrega INT AUTO_INCREMENT,
     idEstudiante INT,
-    idTarea INT ,
-    fecha_entrega DATETIME,
+    idTarea INT,
+    fecha_entrega_est DATETIME DEFAULT NOW(),
     descripcion VARCHAR(200),
     archivos VARCHAR(400),
     PRIMARY KEY (idEntrega),
@@ -198,54 +228,42 @@ CREATE TABLE entrega(
     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
 );
 
+INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea) VALUES 
+('Entrega Nicole', NULL, 1023163094, 1);
 
-INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea, fecha_entrega)
-VALUES ('Entrega Nicole', NULL, 1023163094, 1, NOW());
 
-
--- CREATE TABLE calificacion(
---     idCalificacion INT AUTO_INCREMENT,
---     idEstudiante INT,
---     idTarea INT, 
---     fecha_Entrega_Est DATETIME,
---     fecha_Vencimiento DATETIME,
---     archivos_Tarea VARCHAR(400),
---     notaTarea FLOAT,
---     PRIMARY KEY (idCalificacion),
---     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
---     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea),
---     FOREIGN KEY (fechaEntregaEst) REFERENCES entrega(idEntrega),
---     FOREIGN KEY (fechaVencimiento) REFERENCES tarea(idTarea),
---     FOREIGN KEY (archivosTarea) REFERENCES tarea(idTarea),
--- )
-
--- Cnsulta ?
-CREATE TABLE calificacion (
+CREATE TABLE calificacion(
     idCalificacion INT AUTO_INCREMENT,
-    idEstudiante INT,
-    idEntrega INT,
-    calificacion FLOAT,
-    fecha_calificacion DATETIME DEFAULT NOW(),
+    idEntrega INT ,
+    fecha_calificacion  DATETIME DEFAULT NOW(),
+    nota FLOAT,
     PRIMARY KEY (idCalificacion),
-    FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
     FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)
 );
 
-INSERT INTO calificacion (idEstudiante, idEntrega, calificacion) VALUES 
-(1023163094, 1, 4.5);
+
+INSERT INTO calificacion (idEntrega, nota) VALUES 
+(1, '4.5');
 
 
+-- Consulta para mostrar todas las entregas de los estudiantes para una tarea específica:
+-- SELECT e.idEntrega, e.idEstudiante, u.nombres, u.apellidos, e.fecha_entrega_est, e.descripcion, e.archivos, c.nota
+-- FROM entrega e
+-- JOIN usuario u ON e.idEstudiante = u.documento
+-- LEFT JOIN calificacion c ON e.idEntrega = c.idEntrega
+-- WHERE e.idTarea = {id_tarea_deseada};
 
--- Consulta para traer todas las entregas realizadas sobre una tarea 
--- SELECT * FROM entrega
--- INNER JOIN calificacion
--- ON calificacion.idEntrega = entrega.idEntrega
--- WHERE entrega.idTarea = "1" and calificacion.idEstudiante = "1023163094";
 
--- Consulta para traer calificaciones que tiene un estudiante
--- SELECT * FROM entrega
--- INNER JOIN calificacion
--- ON calificacion.idEntrega = entrega.idEntrega
--- INNER JOIN tarea
--- ON tarea.idTarea = entrega.idTarea
--- WHERE calificacion.idEstudiante = "1023163094";
+-- Consulta para obtener todas las entregas y agregar un campo para indicar si está entregada o pendiente:
+-- SELECT e.idEntrega, e.idEstudiante, u.nombres, u.apellidos, e.fecha_entrega_est, e.descripcion, e.archivos,
+--        IF(c.idCalificacion IS NOT NULL, 'Entregada', 'Pendiente') AS estado_entrega, c.nota
+-- FROM entrega e
+-- JOIN usuario u ON e.idEstudiante = u.documento
+-- LEFT JOIN calificacion c ON e.idEntrega = c.idEntrega
+-- WHERE e.idTarea = {id_tarea_deseada};
+
+
+-- Consulta para que el docente pueda calificar una entrega en específico:
+-- UPDATE calificacion
+-- SET nota = {nueva_nota}
+-- WHERE idEntrega = {id_entrega_a_calificar};

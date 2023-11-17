@@ -23,7 +23,7 @@
                     <td>'.$f['estado'].'</td>
                     <td>'.$f['rol'].'</td>
 
-                    <td><a href="adminUsuModificar.php?id='.$f['documento'].'" alt="Modificar">Modificar<img src="../../img/edit.svg" alt="Eliminar"></a></td>
+                    <td class="ultimo"><a href="adminUsuModificar.php?id='.$f['documento'].'" alt="Modificar">Modificar<img src="../../img/edit.svg" alt="Eliminar"></a></td>
 
                     <!-- <td><a href="../../../Controlador/eliminarUsuAdmin.php?id='.$f['documento'].'">Eliminar<img src="../../img/eliminar.svg" alt="Eliminar"></a></td> -->
                 </tr>
@@ -202,7 +202,7 @@
                     <td>'.$f['estado'].'</td>
                     <td>'.$f['rol'].'</td>
 
-                    <td><a href="adminUsuModificar.php?id='.$f['documento'].'" alt="Modificar">Modificar<img src="../../img/edit.svg" alt="Eliminar"></a></td>
+                    <td class="ultimo"><a href="adminUsuModificar.php?id='.$f['documento'].'" alt="Modificar">Modificar<img src="../../img/edit.svg" alt="Eliminar"></a></td>
 
                     <!-- <td><a href="../../../Controlador/eliminarUsuAdmin.php?id='.$f['documento'].'">Eliminar<img src="../../img/eliminar.svg" alt="Eliminar"></a></td> -->
                 </tr>

@@ -18,7 +18,7 @@
                 <tr>
                     <td>'.$f['nombre'].'</td>
 
-                    <td><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
+                    <td class="ultimo"><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
                 </tr>
                 ';
@@ -46,7 +46,7 @@
                 <tr>
                     <td>'.$f['nombre'].'</td>
 
-                    <td><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
+                    <td class="ultimo"><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
                 </tr>
                 ';

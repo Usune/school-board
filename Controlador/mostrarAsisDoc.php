@@ -16,14 +16,14 @@
             foreach($consultas as $f) {
 
                 echo '
-                <tr>
-                    <td>'.$f['tipoDoc'].'</td>
-                    <td>'.$f['documento'].'</td>
-                    <td>'.$f['apellidos'].'</td>
-                    <td>'.$f['nombres'].'</td>
-                    <td>'.$f['Fecha'].'</td>       
-                    <td><input type="checkbox" id="chkAsiste" name="chkAsiste" value="1"></td>                                            
-                </tr>
+                    <tr>
+                        <td>'.$f['tipoDoc'].'</td>
+                        <td>'.$f['documento'].'</td>
+                        <td>'.$f['apellidos'].'</td>
+                        <td>'.$f['nombres'].'</td>
+                        <td>'.$f['Fecha'].'</td>       
+                        <td class="ultimo"><input type="checkbox" id="chkAsiste" name="chkAsiste" value="1"></td>                                            
+                    </tr>
                 ';
 
             }

@@ -358,14 +358,14 @@ body {
 /* Estilo general de tablas */
 .tabla {
     width: 70vw;
-    overflow: scroll;
+    /* overflow: auto; */
     background-color: transparent;
     padding: 10px;
     text-align: start;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 500px;
+    /* min-width: 500px; */
 }
 
 .opciones {
@@ -418,7 +418,7 @@ a img {
 }
 
 /* border-collapse: collapse; Significa que no habrá espacio ni separación entre los bordes de las celdas adyacentes */
-.tabla table {
+/* .tabla table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -461,7 +461,7 @@ a img {
     justify-content: start;
     text-decoration: none;
     color: var(--negro);
-}
+} */
 
 /*Fin estilo general de tablas */
 
@@ -718,6 +718,7 @@ main {
     margin: 0px 15px 15px 15px;
     background-color: var(--grisClaro);
     overflow-y: auto;
+    overflow-x: hidden;
     /* border: 3px solid var(--principal); */
 }
 
@@ -797,6 +798,8 @@ hr {
         height: 80vh;
         border-radius: 20px;
         margin: 0px 15px 0px 15px;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     footer {
@@ -1337,6 +1340,17 @@ hr#fechas {
 */
 
 /* Espacio entre filas */
+.tablas  {
+    /* display: flex; */
+    padding: 0 0 0 20px;
+    width: 70vw;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    overflow: auto;
+    background-color: transparent;
+}
+
 .tablas table {
     width: 95%;
     margin: 0 auto;

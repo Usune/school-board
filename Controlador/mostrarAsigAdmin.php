@@ -19,7 +19,7 @@
                     <td>'.$n.'</td>
                     <td>'.$f['nombre'].'</td>
 
-                    <td><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
+                    <td class="ultimo"><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
                 </tr>
                 ';
@@ -48,7 +48,7 @@
                     <td>'.$n.'</td>
                     <td>'.$f['nombre'].'</td>
 
-                    <td><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
+                    <td class="ultimo"><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
                 </tr>
                 ';

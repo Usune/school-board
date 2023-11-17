@@ -1,4 +1,3 @@
-
 <?php
     require_once ('../../../Modelo/conexion.php');
     require_once ('../../../Modelo/consultas.php');
@@ -22,83 +21,90 @@
 </head>
 
 <body>
-    
+
     <?php
         include("menu-include.php");
     ?>
-        <main>
+    <main>
 
-            <!-- breadcrumb -->  
-            <nav class="nav-main">
-                <a href="homeAdmin.php">Home</a>
-                <a href="adminAula.php"> / Aulas</a>
-                <a href="adminAulaConsu.php"> / Consultar</a>
-            </nav>
-        
-            <section>
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <a href="homeAdmin.php">Home</a>
+            <a href="adminAula.php"> / Aulas</a>
+            <a href="adminAulaConsu.php"> / Consultar</a>
+        </nav>
 
-                <h2>Administración de aulas</h2>
-                <h3>Consultar aulas</h3>
+        <section>
 
-                <div class="tabla">
+            <h2>Administración de aulas</h2>
+            <h3>Consultar aulas</h3>
 
-                    <div class="opciones">
-                        <a href="adminUsuReportes.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
-                        
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                    </div>
+            <div class="tabla">
 
-                    <div id="filtro">
+                <div class="opciones">
+                    <a href="adminUsuReportes.php"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>
 
-                        <form method="get">
+                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
+                            alt="filtro">Filtrar</button>
+                </div>
 
-                            <div class="fieldset"> 
-                                <fieldset>
-                                    <legend id="nom">Nombre</legend>
-                                </fieldset>
-                                <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
-                            </div>
+                <div id="filtro">
 
-                            <div class="fila-cont">
-                            
-                                <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminAulaConsu.php" class="filtrar">Limpiar</a>
+                    <form method="get">
 
-                            </div>
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="nom">Nombre</legend>
+                            </fieldset>
+                            <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
+                        </div>
 
-                        </form>
-                        
-                    </div>
-                    
+                        <div class="fila-cont">
+
+                            <button type="submit" class="filtrar">Filtrar</button>
+                            <a href="adminAulaConsu.php" class="filtrar">Limpiar</a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="tablas">
                     <table>
                         <caption>
                             Lista de aulas creadas
                         </caption>
-                        <tr>
-                            <th>Aula</th>
-                            <th>Opciones</th>
-                            <!-- <th colspan="2">Opciones</th> -->
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Aula</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
 
-                            <?php
 
-                                if(isset($_GET['nombre']) ){
-                                        
-                                    filtrarAulas($_GET['nombre']);
-                                  
-                                }else {
-
-                                    cargarAulas();
-
-                                }
-                            ?>
+                        <?php
+    
+                                    if(isset($_GET['nombre']) ){
+                                            
+                                        filtrarAulas($_GET['nombre']);
+                                      
+                                    }else {
+    
+                                        cargarAulas();
+    
+                                    }
+                                ?>
 
                     </table>
                 </div>
 
-            </section>
-        
-        </main>
+            </div>
+
+        </section>
+
+    </main>
 
     </div>
 

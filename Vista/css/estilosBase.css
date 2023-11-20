@@ -219,7 +219,8 @@ body {
 }
 
 #formulario .file input[type="file"]::-webkit-file-upload-button {
-    background-color: var(--gris);
+    /* background-color: var(--gris); */
+    background-color: #00E640;
     padding: 10px;
     border: 1px solid #ccc;
     cursor: pointer;

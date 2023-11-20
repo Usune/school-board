@@ -2,7 +2,8 @@
     --principal: #FFA269;
 }
 
-* {
+*,
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,6 +18,222 @@ h2,
 h3 {
     font-weight: 700;
 }
+
+/* Estilos Registros Primera Vez */
+
+.decoracion {
+    width: 100%;
+    position: relative;
+}
+
+.decoracion img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* Ajusta esta propiedad según sea necesario */
+    z-index: -99;
+}
+
+legend {
+    float: none;
+    width: auto;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    font-size: calc(1.275rem + .3vw);
+}
+
+
+.registro h1 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.registro p {
+    width: 80%;
+    margin: 10px 0;
+}
+
+.registro {
+    padding: 5% 8% 8% 8%;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+
+
+
+.oculto {
+    display: none;
+}
+
+
+footer {
+    padding-left: 0;
+}
+
+
+
+.formImg {
+    margin-top: 50%;
+}
+
+
+
+/* Inputs */
+.fieldset {
+    position: relative;
+    width: 100%;
+    margin-bottom: -5px;
+    justify-content: left;
+    margin-top: 6px;
+}
+
+.fieldset input {
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.fieldset input:focus {
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border: 1px solid transparent;
+}
+
+
+
+.fieldset label {
+    color: var(--grisOscuro);
+    margin-left: -294px;
+    width: 95%;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transition: top 0.3s ease;
+}
+
+/* Inputs tipo file */
+
+.fieldset label.fileLabel{
+    position: absolute;
+    top: 0;
+    left: 15px;
+    background-color: var(--beige);
+}
+
+.fieldset  input.fileInput {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    font-size: 15px;
+}
+
+
+.fieldset label.valid {
+    display: none;
+} 
+
+input[type="file"]{
+    height: 50%;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+
+
+/* input[type="file"]{
+    height: 50%;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+} */
+
+
+
+
+
+
+
+.btnPrincipal {
+    text-align: center;
+    padding: 5px 20px;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    margin: 20px 0;
+    background-color: var(--principal);
+} 
+
+.btnAtras {
+    padding: 5px 20px;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    margin: 20px 0;
+    background-color: transparent;
+}
+
+.btnPrincipal:hover {
+    text-align: center;
+    padding: 5px 20px;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    margin: 20px 0;
+    background-color: var(--principal);
+    box-shadow: 4px 6px 0px 0px #fa5e00;
+    /* filter: brightness(0.9); */
+}
+
+
+
+
+
+
+/* Fin Estilos Registros Primera Vez */
+/* #file-input {
+    opacity: 0;
+}
+
+#file-input:active {
+    opacity: 1;
+    background-color: var(--grisOscuro);
+}
+
+#file-input:focus {
+    opacity: 1;
+    background-color: var(--grisOscuro);
+} */
+
+/* #custom-button {
+    border-radius: 20px;
+    height: 80%;
+    width: 100%;
+    border: var(--grisOscuro) 2px solid;
+    background-color: transparent;
+    padding-left: 25px;
+} */
+
 
 
 
@@ -108,7 +325,7 @@ h3 {
     filter: brightness(1);
 }
 
-h4.errorFiltro  {
+h4.errorFiltro {
     width: 95%;
     margin: 0 auto;
     font-size: 80%;
@@ -306,7 +523,7 @@ h4.errorFiltro  {
 
 /* Estilos Generales Tareas */
 
-.centrado{
+.centrado {
     width: 95%;
     margin: 0 auto;
     display: flex;
@@ -315,7 +532,7 @@ h4.errorFiltro  {
     margin-top: 20px;
 }
 
-.card-tareas{
+.card-tareas {
     width: 70%;
     background: var(--blanco);
     padding: 20px;
@@ -325,19 +542,19 @@ h4.errorFiltro  {
     font-size: 12px;
 }
 
-.cont-fechas{
+.cont-fechas {
     display: flex;
     justify-content: left;
     align-items: center;
     padding: 5px 0;
 }
 
-.cont-fechas p{
+.cont-fechas p {
     margin: 0 10px 0 0;
     color: #868686;
 }
 
-.cont-archivo{
+.cont-archivo {
     margin: 10px 10px 10px 0;
     width: 100%;
     height: 50px;
@@ -348,16 +565,22 @@ h4.errorFiltro  {
     align-items: center;
 }
 
-.btn-principal{
+.btn-principal {
     width: 100%;
     background-color: var(--principal);
     border-radius: 20px;
     margin-top: 10px;
 }
 
+
+
+
+
 /* Media Queries */
 /* Phone */
-@media screen and (min-width: 300px) and (max-width: 768px) {
+@media screen and (min-width: 300px) and (max-width: 800px) {
+
+    /* Estilos tablas */
     .tablas tbody tr td .row .imgDoc {
         text-align: center;
     }
@@ -369,4 +592,22 @@ h4.errorFiltro  {
         text-align: center;
         margin: 0 auto;
     }
+
+    /* Estilos Registros Primera Vez */
+
+    .fieldset input,
+    .fieldset select,
+    .fieldset textarea {
+        width: 100%;
+    }
+
+    .registro p {
+        width: 100%;
+    }
+
+    .formImg {
+        margin-top: 0;
+    }
+
+
 }

@@ -2040,8 +2040,14 @@
                                     echo "<script>location.href='../Vista/html/Docente/registroPrimero.php?id=".$f['documento']."'</script>";
                                 }
                             case "Estudiante":
-                                echo '<script>alert("Bienvenido rol estudiante")</script>';
-                                echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
+                                if($f['correo']){
+                                    echo '<script>alert("Bienvenido rol Estudiante")</script>';
+                                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
+                                }else{
+                                    echo '<script>alert("Bienvenido rol Estudiante, registro primera vez")</script>';
+                                    echo "<script>location.href='../Vista/html/Estudiante/registroPrimero.php?id=".$f['documento']."'</script>";
+                                }
+                                
                             break;
 
                         }
@@ -2131,11 +2137,59 @@
                 case "Docente":
                     echo "<script>location.href='../Vista/html/Docente/registroPrimero.php?id=".$documento."'</script>";
                 break;
-                case "Estudiante":
-                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php?id=".$documento."'</script>";
-                break;
-
             }
+        }
+
+        // Consulta para actualizar por primera vez de Estudiante
+        public function primeraActualizacionEst($rol, $telefono, $direccion, $correo, $documento, $fotoM, $claveMD, $nomAcu, $apeAcu, $docAcu, $celAcu, $corAcu) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'UPDATE usuario SET clave=:claveMD, telefono=:telefono, direccion=:direccion, correo=:correo, foto=:foto WHERE documento=:documento';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':claveMD', $claveMD);
+            $consulta->bindParam(':documento', $documento);
+            $consulta->bindParam(':telefono', $telefono);
+            $consulta->bindParam(':direccion', $direccion);
+            $consulta->bindParam(':correo', $correo);
+            $consulta->bindParam(':foto', $foto);
+
+            $consulta->execute();
+
+            $sqlAcudiente = "INSERT INTO acudiente (documento, nombres, apellidos, telefono, correo) VALUES (:docAcu, :nomAcu, :apeAcu, :celAcu, :corAcu) ";
+
+            $consulta = $conexion->prepare($sqlAcudiente);
+            
+            $consulta->bindParam(':docAcu', $docAcu);
+            $consulta->bindParam(':nomAcu', $nomAcu);
+            $consulta->bindParam(':apeAcu', $apeAcu);
+            $consulta->bindParam(':celAcu', $celAcu);
+            $consulta->bindParam(':corAcu', $corAcu);
+
+            $consulta->execute();
+
+            $sqlEstAcu = "INSERT INTO estudianteacudiente (idAcudiente, idEstudiante) VALUES (:docAcu, :documento) ";
+
+            $consulta = $conexion->prepare($sqlEstAcu);
+            
+            $consulta->bindParam(':docAcu', $docAcu);
+            $consulta->bindParam(':documento', $documento);
+
+            $consulta->execute();
+
+            echo '<script>alert("Información actualizada con exito")</script>';
+
+            switch ($rol){
+
+                case "Estudiante":
+                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
+                break;
+            }
+
+            // echo "<script>location.href='../Vista/html/estudiante/homeEstu.php</script>";
+
         }
 
     }

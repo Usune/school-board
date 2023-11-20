@@ -1,6 +1,82 @@
 <?php
    session_start();
 
+   function primeraActualizacionEst(){
+
+    $id = $_GET['id'];
+
+    $objConsultas = new ConsultasUsuario();
+    $consulta = $objConsultas->buscarUsuario($id);
+
+    foreach($consulta as $f){
+
+        if(strlen($f['correo'])>0){
+
+            switch ($f['rol']){
+
+                case "Administrador":
+                    echo "<script>location.href='homeAdmin.php?id=".$f['documento']."'</script>";
+                break;
+                case "Docente":
+                    echo "<script>location.href='homeDoc.php?id=".$f['documento']."'</script>";
+                break;
+                case "Estudiante":
+                    echo "<script>location.href='homeEstu.php?id=".$f['documento']."'</script>";
+                break;
+
+            }
+
+        }else {
+
+            echo '
+                <div class="col-md-6">
+                    <div class="fieldset">
+                        <fieldset>
+                            <legend id="nom">Nombres</legend>
+                        </fieldset>
+                        <input type="text" value="'.$f['nombres'].'" placeholder="Nombres" required
+                            legend="#nom" name="nombres" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="fieldset">
+                        <fieldset>
+                            <legend id="ape">Apellidos</legend>
+                        </fieldset>
+                        <input type="text" value="'.$f['apellidos'].'" placeholder="Apellidos" required
+                            legend="#ape" name="apellidos" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="fieldset">
+                        <fieldset>
+                            <legend id="tipo">Tipo de documento</legend>
+                        </fieldset>
+                        <input type="text" value="'.$f['tipoDoc'].'" placeholder="Tipo de documento" required
+                            legend="#tipo" name="tipoDoc" readonly>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="fieldset">
+                        <fieldset>
+                            <legend id="usu">Documento</legend>
+                        </fieldset>
+                        <input type="number" value="'.$f['documento'].'" placeholder="Documento" required
+                            legend="#usu" name="documento" readonly>
+                    </div>
+
+                    <input type="text" value="'.$f['rol'].'" required name="rol" hidden>
+                </div>
+            ';
+
+        }
+    }
+
+}
+
     //    ASIGNATURAS - TAREAS  
 
     function navAsignatura(){

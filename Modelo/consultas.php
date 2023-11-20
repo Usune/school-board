@@ -1734,6 +1734,55 @@
             echo '<script>location.href="../Vista/html/Docente/tareasDoc.php?idClase='.$idClase.'"</script>';
             
         }
+
+        public function ActualizarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT*FROM tarea WHERE titulo = :titulo AND descripcion = :descripcion AND fecha_creacion = :fecha_C AND fecha_vencimiento = :fecha_V AND idTarea = :id AND idClase = idClase';
+
+            $consulta = $conexion->prepare($sql);
+            
+                            
+            $consulta->bindParam(':titulo', $titulo);
+            $consulta->bindParam(':descripcion', $descripcion);
+            $consulta->bindParam(':fecha_C', $fecha_creacion);
+            $consulta->bindParam(':fecha_V', $fecha_vencimiento);
+            $consulta->bindParam(':id', $id);
+
+            $consulta->execute();
+
+            $f = $consulta->fetch();
+
+            if($f){
+
+                echo '<script>alert("No se pudo realizar la actualización, debe actualizar al menos un campo")</script>';
+                echo '<script>location.href="../Vista/html/Docente/docTareaModificar.php?idClase='.$idClase.'"</script>';
+                
+            }else {
+                
+                $sql = 'UPDATE tarea SET titulo=:titulo, descripcion=:descripcion, fecha_creacion=:fecha_C, fecha_vencimiento=:fecha_V WHERE idTarea=:id';
+                
+                $consulta = $conexion->prepare($sql);
+                
+                $consulta->bindParam(':titulo', $titulo);
+                $consulta->bindParam(':descripcion', $descripcion);
+                $consulta->bindParam(':fecha_C', $fecha_creacion);
+                $consulta->bindParam(':fecha_V', $fecha_vencimiento);
+                $consulta->bindParam(':id', $id);
+                $consulta->execute();
+    
+                echo '<script>alert("Tarea actualizado con exito</script>';
+                echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idClase='.$idClase.'"</script>';
+
+            }
+            
+
+            
+            
+        }
+
       
         public function consultarTareasDoc($docente, $clase){
 
@@ -1981,6 +2030,54 @@
             echo '<script>alert("Comunicado subido correcamente")</script>';
             echo '<script>location.href="../Vista/html/Docente/docComun.php?idClase='.$idClase.'"</script>';         
 
+        }
+
+        public function mostrarEntregasCalificacion($idClase, $idTarea) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto ncdunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT entrega.idEntrega, CONCAT(usuario.nombres, ' ', usuario.apellidos) AS Estudiante, tarea.titulo, entrega.descripcion, 
+                    entrega.fecha_entrega_est, tarea.fecha_vencimiento, entrega.archivos, calificacion.nota
+            FROM tarea INNER JOIN
+                entrega on entrega.idTarea=tarea.idTarea INNER JOIN
+                usuario on usuario.documento=entrega.idEstudiante LEFT JOIN
+                calificacion on calificacion.idEntrega=entrega.idEntrega
+            WHERE idClase = :idClase AND entrega.idTarea = :idTarea";
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idClase', $idClase);
+            $consulta->bindParam(':idTarea', $idTarea);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+            return $f;
+        }
+
+        public function insertarNotaDoc($idEntrega, $fecha_calificacion, $nota, $observacion, $idClase, $idTarea) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO calificacion (idEntrega, fecha_calificacion, nota, observacion) VALUES (:idEntrega, :fecha_calificacion, :nota, :observacion)';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':idEntrega',$idEntrega);
+            $consulta->bindParam(':fecha_calificacion',$fecha_calificacion);
+            $consulta->bindParam(':nota',$nota);
+            $consulta->bindParam(':observacion',$observacion);
+
+            $consulta->execute();
+
+            echo '<script>alert("Entrega calificada")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docCalificacionEntrega.php?idTarea='.$idTarea.'&idClase='.$idClase.'"</script>';
         }
 
 

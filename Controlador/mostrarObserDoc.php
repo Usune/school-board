@@ -63,8 +63,8 @@
     
                 echo '
                 <h2>Observador del estudiante</h2>
-                <div class="datosCabecera">
-                    <a href="docObserRegistro.php?documento='.$f['documento'].'&idClase='.$_GET['idClase'].'"><img src="../../img/agregar.svg">Nueva</a>
+                <div class="datosCabecera ">
+                    <a  class="enviar boton" href="docObserRegistro.php?documento='.$f['documento'].'&idClase='.$_GET['idClase'].'"><img src="../../img/agregar.svg">Nueva observación</a>
                     <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
                     <p>'.$f['tipoDoc'].' - '.$f['documento'].'</p>
                 </div>

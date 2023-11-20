@@ -144,7 +144,55 @@ function formRegistroTarDoc(){
 
     ';
 
+}
 
+function cargaTareasCalificaciones(){
+    $docente = $_SESSION['id'];
+    $clase = $_GET['idClase'];
+
+    $objConsulta = new Consultas();
+    $consulta = $objConsulta->consultarTareasDoc($docente, $clase);
+
+    if (!isset($consulta)){
+        echo'<h2>El docente no tiene tareas creadas.</h2>';
+
+    }else{
+        foreach($consulta as $f){
+            echo'
+            <div class="card-tarea">
+            <div class="card-header">
+                <div class="info-user fila">
+                    <img src="'.$f['fotoUsu'].'" alt="foto perfil Docente">
+                    <p>
+                        '.$f['nombreUsu'].' <br>
+                        '.$f['apellidoUsu'].'
+                    </p>
+                </div>
+                <div class="fecha">
+                    <p>
+                        '.$f['fecha_C'].'
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card-header">
+                <div class="card-info">
+                    <img src="../../img/tareas.svg" alt="">
+                    <div class="info">
+                        <h3>'.$f['titulo'].'</h3>
+                        <p>
+                            '.$f['descripcion'].'
+                        </p>
+                    </div>
+                </div>                
+                <div class="boton">
+                    <a href="docCalificacionEntrega.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Calificar</a>
+                </div>
+            </div>
+        </div>
+            ';
+        }
+    }
 }
 
 

@@ -237,6 +237,7 @@ CREATE TABLE calificacion(
     idCalificacion INT AUTO_INCREMENT,
     idEntrega INT ,
     fecha_calificacion  DATETIME DEFAULT NOW(),
+    observacion VARCHAR(200),
     nota FLOAT,
     PRIMARY KEY (idCalificacion),
     FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)

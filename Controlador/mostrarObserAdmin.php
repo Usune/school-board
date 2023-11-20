@@ -54,7 +54,7 @@
             foreach($consultas as $f) {
     
                 echo '
-                <h2>Observador del estudiante</h2>
+                <h2>Observador del estudiante</h2> 
                 <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#obser">
                         <img src="../../img/agregar.svg" alt="Agregar" modal="#obser">Nueva

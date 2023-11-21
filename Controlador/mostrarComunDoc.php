@@ -19,7 +19,7 @@ function cargarComunicados() {
         $consultas = $objConsultas->mostrarComunicadosAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay comunucados registrados con el nombre ingresado</h2>';
+            echo '<h2> No hay comunicados registrados con el nombre ingresado</h2>';
         } else {
 
             foreach($consultas as $f) {

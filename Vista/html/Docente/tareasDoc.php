@@ -1,124 +1,142 @@
 <?php
-require_once ('../../../Modelo/conexion.php');
-require_once ('../../../Modelo/consultas.php');
+require_once('../../../Modelo/conexion.php');
+require_once('../../../Modelo/consultas.php');
 require_once('../../../Modelo/seguridadDoc.php');
-require_once ('../../../Controlador/mostrarPerfil.php');
-require_once ('../../../Controlador/mostrarTareasDoc.php');
-require_once ('../../../Controlador/mostrarCursosDoc.php');
+require_once('../../../Controlador/mostrarPerfil.php');
+require_once('../../../Controlador/mostrarTareasDoc.php');
+require_once('../../../Controlador/mostrarCursosDoc.php');
 // require_once ('../../../Controlador/eliminarTarDoc.php');
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/logo.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
     <title>Consultar usuarios</title>
 </head>
+
 <body>
 
     <?php
-        include('menu-include.php');
+    include('menu-include.php');
     ?>
-    
-        <main>
-            
-            <!-- breadcrumb -->  
-            <nav class="nav-main">
-                <a href="homeDoc.php">Clases</a> 
-                <?php
 
-                navMainDoc();
+    <main>
 
-                ?>
-                <a href="tareasDoc.php"> / Tareas</a> 
-                <!-- <a href="tareasDoc.php"> / Consultar</a> -->
-            </nav>
-        
-            <section>
-            
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <a href="homeDoc.php">Clases</a>
+            <?php
 
-                <h2>Consultar tareas</h2>
+            navMainDoc();
 
-                <div class="tabla">
+            ?>
+            <a href="tareasDoc.php"> / Tareas</a>
+            <!-- <a href="tareasDoc.php"> / Consultar</a> -->
+        </nav>
 
-                    <div class="opciones">               
+        <section>
+
+
+            <h2>Consultar tareas</h2>
+
+            <div class="tabla card">
+                <div class="row g-0">
+                    <div class="col-md-1">
+                        <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <div class="opciones">
+
+                                <?php
+                                registroTareaDoc();
+                                ?>
+                                <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
+
+                            </div>
+
+                            <div id="filtro">
+
+                                <form method="get">
+
+                                    <div class="fila-cont">
+
+                                        <div class="radio">
+                                            <p>Fecha</p>
+                                            <label for="fechaInicio">Fecha de creación:</label>
+                                            <input type="date" id="fechaInicio" name="fechaInicio">
+
+                                            <label for="fechaFin">Fecha de vencimiento:</label>
+                                            <input type="date" id="fechaFin" name="fechaFin">
+
+
+                                        </div>
+
+                                        <div class="radio">
+                                            <p>Estado</p>
+                                            <input type="radio" name="estado" value="nada" checked hidden>
+                                            <input type="radio" name="estado" id="activo" value="activo">
+                                            <label for="activo">Activo</label><br>
+                                            <input type="radio" name="estado" id="vencido" value="vencido">
+                                            <label for="inactivo">Vencido</label><br>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="fila-cont">
+
+                                        <div class="fieldset">
+                                            <fieldset>
+                                                <legend id="tarea">Tarea</legend>
+                                            </fieldset>
+                                            <input type="text" placeholder="Tarea" legend="#tarea" name="tarea">
+                                        </div>
+
+
+                                        <button type="submit" class="filtrar">Filtrar</button>
+                                        <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+
 
                         <?php
-                        registroTareaDoc();
+                        cargarTareas();
                         ?>
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                        
+
+
                     </div>
-
-                    <div id="filtro">
-
-                        <form method="get">
-
-                            <div class="fila-cont">
-
-                                <div class="radio">
-                                    <p>Fecha</p>
-                                    <label for="fechaInicio">Fecha de creación:</label>
-                                    <input type="date" id="fechaInicio" name="fechaInicio">
-                                    
-                                    <label for="fechaFin">Fecha de vencimiento:</label>
-                                    <input type="date" id="fechaFin" name="fechaFin">
-                                    
-
-                                </div>
-
-                                <div class="radio">
-                                    <p>Estado</p>
-                                    <input type="radio" name="estado" value="nada" checked hidden>
-                                    <input type="radio" name="estado" id="activo" value="activo">
-                                    <label for="activo">Activo</label><br>
-                                    <input type="radio" name="estado" id="vencido" value="vencido">
-                                    <label for="inactivo">Vencido</label><br>
-                                </div>
-
-                            </div>
-
-                            <div class="fila-cont">
-
-                                <div class="fieldset"> 
-                                    <fieldset>
-                                        <legend id="tarea">Tarea</legend>
-                                    </fieldset>
-                                    <input type="text" placeholder="Tarea" legend="#tarea" name="tarea">
-                                </div>
-                                
-                            
-                                <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
-
-                            </div>
-
-                        </form>
-                        
-                    </div>
-
                 </div>
-
-                
-                    
-                <?php
-                    cargarTareas();  
-                ?>
-
-                
-               
-            </section>
+            </div>
+            </div>
 
 
-            
-        </main>
+
+
+
+
+
+        </section>
+
+
+
+    </main>
 
     </div>
 
@@ -133,4 +151,5 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
     </footer>
 
 </body>
+
 </html>

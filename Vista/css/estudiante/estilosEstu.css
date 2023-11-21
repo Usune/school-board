@@ -2,6 +2,7 @@
     --principal: #FFA269;
 }
 
+
 *,
 body {
     margin: 0;
@@ -9,6 +10,10 @@ body {
     box-sizing: border-box;
 }
 
+
+html{
+    overflow-x: hidden;
+}
 
 p {
     margin-bottom: 0;
@@ -127,9 +132,10 @@ footer {
 
 .fieldset label.fileLabel{
     position: absolute;
-    top: 0;
-    left: 15px;
+    top: 2px;
+    left: 17px;
     background-color: var(--beige);
+    font-size: 15px;
 }
 
 .fieldset  input.fileInput {
@@ -205,36 +211,17 @@ input[type="file"]::-webkit-file-upload-button {
     /* filter: brightness(0.9); */
 }
 
+.filaIntegrantes{
+    width: 97%;
+    margin: 0 auto;
+}
+
 
 
 
 
 
 /* Fin Estilos Registros Primera Vez */
-/* #file-input {
-    opacity: 0;
-}
-
-#file-input:active {
-    opacity: 1;
-    background-color: var(--grisOscuro);
-}
-
-#file-input:focus {
-    opacity: 1;
-    background-color: var(--grisOscuro);
-} */
-
-/* #custom-button {
-    border-radius: 20px;
-    height: 80%;
-    width: 100%;
-    border: var(--grisOscuro) 2px solid;
-    background-color: transparent;
-    padding-left: 25px;
-} */
-
-
 
 
 /* Estilos INTEGRANTES  */
@@ -246,7 +233,7 @@ input[type="file"]::-webkit-file-upload-button {
     justify-content: center;
     align-items: center;
     background-color: #F9F9F9;
-    border-radius: 20px;
+    border-radius: 50px;
     padding: 5px 0 15px 10px;
     margin-top: 20px;
 }
@@ -332,13 +319,109 @@ h4.errorFiltro {
 }
 
 /* Cards */
-/* h3.texto {
+h3.texto {
     width: 95%;
     margin: 0 auto;
     padding-top: 50px;
     text-align: left;
     text-transform: capitalize;
-} */
+}
+
+
+#integrantes .card-usu {
+    background-color: var(--blanco);
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    /* box-shadow: 4px 6px 7px 0px #8a8a8a; */
+    box-shadow: 4px 6px 7px 0px #d6d6d6;
+    margin: 10px 0;
+}
+
+#integrantes .card-usu.Inactivo {
+    filter: brightness(0.9);
+}
+
+#integrantes .card-usu .iconos {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#integrantes .card-usu .iconos img {
+    width: 30px;
+}
+
+#integrantes .card-usu .fotoUsu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#integrantes .card-usu .fotoUsu img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid var(--principal);
+}
+
+#integrantes h4 {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#integrantes .card-usu h5 {
+    height: 28px;
+    margin: 10px auto;
+    font-weight: 700;
+    font-size: 100%;
+}
+
+#integrantes .card-usu .card-body p.card-text,
+#integrantes .card-usu .card-body .card-text a {
+    height: 28px;
+    font-size: 100%;
+    margin-bottom: 10px;
+    color: var(--negro);
+    font-weight: 300;
+    margin: 20px 0;
+}
+
+
+#integrantes .card-usu a button {
+    width: 80%;
+    margin: 15px auto 0 auto;
+    font-weight: 700;
+    background-color: var(--principal);
+    border: 1px solid var(--principal);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/* Hover Cards */
+#integrantes .card-usu:hover {
+    background-color: var(--principal);
+}
+
+
+#integrantes .card-usu:hover .fotoUsu img {
+    border: 5px solid var(--blanco);
+}
+
+#integrantes .card-usu:hover h5 {
+    color: var(--blanco);
+}
+
+#integrantes .card-usu:hover a button {
+    background-color: var(--grisClaro);
+    border: 1px solid var(--grisClaro);
+}
+
+/* Fin Estilos INTEGRANTES  */
 
 /*  */
 

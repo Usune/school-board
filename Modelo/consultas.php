@@ -1228,42 +1228,21 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT 
-            t.*,
-            c.*,
-            a.*,
-            uDocente.*,
-            e.*,
-            cal.*,
-            a.nombre as asignaturaNombre,
-            CASE 
-                WHEN e.idEntrega IS NOT NULL THEN 'entregada'
-                ELSE 'pendiente' 
-            END AS estadoTarea
-            FROM tarea t
-            JOIN clase c ON t.idClase = c.idClase
-            JOIN asignatura a ON c.idAsignatura = a.idAsignatura
-            JOIN usuario uDocente ON c.idDocente = uDocente.documento
-            LEFT JOIN (
-                SELECT 
-                    e1.idTarea,
-                    e1.idEstudiante,
-                    e1.idEntrega,
-                    e1.fecha_entrega,
-                    e1.descripcion,
-                    e1.archivos
-                FROM entrega e1
-                JOIN (
-                    SELECT 
-                        idTarea,
-                        idEstudiante,
-                        MAX(fecha_entrega) AS max_fecha_entrega
-                    FROM entrega
-                    GROUP BY idTarea, idEstudiante
-                ) e2 ON e1.idTarea = e2.idTarea AND e1.idEstudiante = e2.idEstudiante AND e1.fecha_entrega = e2.max_fecha_entrega
-            ) e ON t.idTarea = e.idTarea AND e.idEstudiante = :idEstudiante
-            LEFT JOIN calificacion cal ON e.idEntrega = cal.idEntrega AND cal.idEstudiante = :idEstudiante
-            WHERE a.idAsignatura = :idAsignatura";
+            $sql = "SELECT *,
+            asignatura.nombre as asignaturaNombre,
+                CASE 
+                    WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                    ELSE 'pendiente' 
+                END AS estadoTarea
+            FROM clase
+            LEFT JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+            LEFT JOIN tarea ON tarea.idClase = clase.idClase
+            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+            INNER JOIN curso ON curso.idCurso = clase.idCurso
+            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            INNER JOIN usuario ON usuario.documento = estudiantecurso.idEstudiante
+            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+            WHERE asignatura.idAsignatura = :idAsignatura AND usuario.documento = :idEstudiante";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
@@ -1286,42 +1265,22 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT 
-            t.*,
-            c.*,
-            a.*,
-            uDocente.*,
-            e.*,
-            cal.*,
-            a.nombre as asignaturaNombre,
-            uDocente.foto as fotoDoc,
-            CASE 
-                WHEN e.idEntrega IS NOT NULL THEN 'entregada'
-                ELSE 'pendiente' 
-            END AS estadoTarea
-            FROM tarea t
-            JOIN clase c ON t.idClase = c.idClase
-            JOIN asignatura a ON c.idAsignatura = a.idAsignatura
-            JOIN usuario uDocente ON c.idDocente = uDocente.documento  -- Nueva JOIN
-            LEFT JOIN (
-                SELECT 
-                    e1.idTarea,
-                    e1.idEstudiante,
-                    e1.idEntrega,
-                    e1.fecha_entrega,
-                    e1.descripcion,
-                    e1.archivos
-                FROM entrega e1
-                JOIN (
-                    SELECT 
-                        idTarea,
-                        idEstudiante,
-                        MAX(fecha_entrega) AS max_fecha_entrega
-                    FROM entrega
-                    GROUP BY idTarea, idEstudiante
-                ) e2 ON e1.idTarea = e2.idTarea AND e1.idEstudiante = e2.idEstudiante AND e1.fecha_entrega = e2.max_fecha_entrega
-            ) e ON t.idTarea = e.idTarea AND e.idEstudiante = :idEstudiante
-            LEFT JOIN calificacion cal ON e.idEntrega = cal.idEntrega AND cal.idEstudiante = :idEstudiante";
+            $sql = "SELECT *,
+            asignatura.nombre as asignaturaNombre,
+            usuario.foto as fotoDoc,
+                CASE 
+                    WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                    ELSE 'pendiente' 
+                END AS estadoTarea
+            FROM clase
+            INNER JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+            INNER JOIN usuario ON usuario.documento = clase.idDocente
+            INNER JOIN curso ON curso.idCurso = clase.idCurso
+            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            INNER JOIN tarea ON tarea.idClase = clase.idClase
+            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+            WHERE estudiantecurso.idEstudiante = :idEstudiante";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
@@ -1390,6 +1349,33 @@
 
         }
 
+        // Funcion para mostrar info sobre las observaciones de un estudiante
+        public function cargarTodasObservaciones($idEstudiante){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT a.* , o.*
+            FROM observador o
+            INNER JOIN usuario a ON o.idAutor = a.documento
+            INNER JOIN usuario e ON o.idEstudiante = e.documento
+            WHERE o.idEstudiante =:idEstudiante";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+            while($resultado = $statement->fetch()){
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+
+        }
+
+
+        // FUNCIONES MOSTRAR USUARIOS
         //  Función para mostrar todos los usuarios (Integrantes)
         public function cargarTodosUsuarios() {
             $rows = null;
@@ -2139,7 +2125,7 @@
                             case "Estudiante":
                                 if($f['correo']){
                                     echo '<script>alert("Bienvenido rol Estudiante")</script>';
-                                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php'</script>";
+                                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php?id=".$f['documento']."'</script>";
                                 }else{
                                     echo '<script>alert("Bienvenido rol Estudiante, registro primera vez")</script>';
                                     echo "<script>location.href='../Vista/html/Estudiante/registroPrimero.php?id=".$f['documento']."'</script>";

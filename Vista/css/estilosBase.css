@@ -7,6 +7,12 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+
+html {
+    overflow-x: hidden;
+}
+
+
 :root {
     --blanco: #fff;
     --beige: #FFFAF4;
@@ -219,8 +225,7 @@ body {
 }
 
 #formulario .file input[type="file"]::-webkit-file-upload-button {
-    /* background-color: var(--gris); */
-    background-color: #00E640;
+    background-color: var(--gris);
     padding: 10px;
     border: 1px solid #ccc;
     cursor: pointer;
@@ -1060,7 +1065,7 @@ hr {
     cursor: pointer;
 }
 
-.cabecera{
+.cabecera {
     position: relative;
     width: 70%;
     padding-top: 20px;
@@ -1341,7 +1346,7 @@ hr#fechas {
 */
 
 /* Espacio entre filas */
-.tablas  {
+.tablas {
     /* display: flex; */
     padding: 0 0 0 20px;
     width: 70vw;
@@ -1368,7 +1373,7 @@ hr#fechas {
     padding: 10px 15px;
 }
 
-.tablas thead tr th{
+.tablas thead tr th {
     padding: 10px 15px;
     background-color: transparent;
 }
@@ -1381,7 +1386,7 @@ hr#fechas {
     transition: background-color 0.3s ease;
 }
 
-.tablas tbody tr td{
+.tablas tbody tr td {
     padding: 10px 15px;
     background-color: transparent;
     border: 1px solid transparent;
@@ -1428,5 +1433,3 @@ hr#fechas {
 
 
 /* Fin Estilos TABLAS */
-
-

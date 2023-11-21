@@ -1,9 +1,3 @@
-<?php
-    require_once("../../../Modelo/conexion.php");
-    require_once("../../../Modelo/consultas.php");
-    require_once("../../../Controlador/mostrarInfoEstudiante.php");
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 

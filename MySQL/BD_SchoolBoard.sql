@@ -30,7 +30,7 @@ INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos,
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
 
-(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, NULL),
+(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', NULL),
 -- (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, '../../Uploads/Usuario/userNicole.jpg'),
 (1023163095, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', 'favian@gmail.com', '../../Uploads/Usuario/userFavian.jpg'),
 (1023163096, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Darwin', 'Urbina Lopez', 'darwin@gmail.com', '../../Uploads/Usuario/userDarwin.jpg'),
@@ -102,7 +102,9 @@ CREATE TABLE observador (
 
 INSERT INTO observador(idEstudiante, idAutor, observacion) VALUES 
 (3, 1,'El estudiante no cumple con el uniforme de la institución'),
-(3, 1,'El estudiante no presta atención en clase y distrae a sus compañeros');
+(3, 1,'El estudiante no presta atención en clase y distrae a sus compañeros'),
+(1023163094, 2,'El estudiante, ha fallado 3 veces seguidas sin presentar excusa.');
+
 
 CREATE TABLE comunicado (
     idComunicado INT AUTO_INCREMENT,
@@ -218,9 +220,9 @@ CREATE TABLE tarea (
 );
 
 INSERT INTO tarea (idClase,idDocente, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
-(1, 2, 'Ensayo sobre Tecnologia1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
-(2, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
-(1, 2, 'Ensayo sobre Tecnologia3', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL),
+(1, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
+(2, 2, 'Ensayo sobre Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
+(1, 2, 'Algoritmia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL),
 (1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
 
 

@@ -1,5 +1,5 @@
 <?php
-   session_start();
+//    session_start();
 
    function primeraActualizacionEst(){
 
@@ -161,7 +161,7 @@
                         '.$f['estadoTarea'].'
                     </p>
                 </td>
-                <td class="calificacion">'.($f["calificacion"] !== null ? $f["calificacion"] : "-").'</td>
+                <td class="calificacion">'.($f["nota"] !== null ? $f["nota"] : "-").'</td>
                 <td class="ultimo">
                     <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
                 </td>
@@ -397,7 +397,7 @@
                     <td>
                         '.($f["fecha_calificacion"] !== null ? $formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento : "No se ha calificado" ).' 
                     </td>
-                    <td class="calificacion">'.($f["calificacion"] !== null ? $f["calificacion"] : "-").'</td>
+                    <td class="calificacion">'.($f["nota"] !== null ? $f["nota"] : "-").'</td>
                     <td class="ultimo">
                         <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
                     </td>
@@ -406,7 +406,51 @@
         }
     }
 
+    // Mostrar todas las observaciones
+    function mostrarTodasObservaciones(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarTodasObservaciones($idEstudiante);
 
+        foreach ($filas as $f) {
+
+            // Formatear la fecha
+            $formattedFecha = date('M j, Y', strtotime($f['fecha']));
+
+            echo '
+            <div class="card mb-3 card-usu">
+
+              <div class="row g-0 ">
+
+                <div class="col-md-12 ">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      '.$formattedFecha.'
+                    </h5>
+                    <p class="card-text">
+                        '.$f['observacion'].'
+                    </p>
+                    <hr>
+                    <div class="usuario">
+                      <img src="'.$f['foto'].'" alt="">
+                      <p class="card-text">
+                        <small class="text-body-secondary">
+                            '.$f['nombres'].' '.$f['apellidos'].'
+                        </small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            ';
+        }
+    }
+
+
+
+    // FUNCIONES MOSTRAR USUARIOS
     // Mostrar todos los usuarios
     function mostrarTodosUsuarios(){
         $objConsultas = new Consultas();
@@ -519,17 +563,40 @@
 
         foreach ($filas as $f) {
 
+            $rol = $f['rol'];
+            if($rol === 'Administrador'){
+                $imagen = '../../img/escritorio.png';
+            }elseif ($rol === 'Docente') {
+                $imagen = '../../img/pizarron.png';
+            }elseif ($rol === 'Estudiante') {
+                $imagen = '../../img/gorra.png';
+            }
+
             echo '
-            <tr class="'.$f['estado'].'">
-                <td>
-                    <img src="'.$f['foto'].'" alt="img perfil">
-                </td>
-                <td>'.$f['apellidos'].' </td>
-                <td>'.$f['nombres'].' </td>
-                <td>'.$f['correo'].' </td>
-                <td class="ultimo">'.$f['estado'].' </td>
-            </tr>
+                <div class="col">
+                    <div class="card h-100 card-usu '.$f['estado'].'">
+                        <div class="iconos">
+                            ' . (isset($imagen) ? '<img src="'.$imagen.'" alt="">' : '<img src="placeholder.jpg" alt="Placeholder">') . '
+                        </div>
+                        <div class="fotoUsu">
+                            ' . (isset($f['foto']) ? '<img src="'.$f['foto'].'" class="card-img-top" alt="...">' : '<img src="placeholder.jpg" class="card-img-top" alt="Placeholder">') . '
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                ' . (isset($f['rol']) ? $f['rol'] : 'Rol no disponible') . '
+                            </p>
+                            <h5 class="card-title">
+                                ' . (isset($f['nombres']) && isset($f['apellidos']) ? $f['nombres'] . ' ' . $f['apellidos'] : 'Nombres y apellidos no disponibles') .'
+                            </h5>
+                            <p class="card-text">
+                                ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
+                            </p>
+                            <a href=""><button>Contactar</button></a>
+                        </div>
+                    </div>
+                </div>
             ';
+
         }
     }
 
@@ -541,16 +608,38 @@
 
         foreach ($filas as $f) {
 
+            $rol = $f['rol'];
+            if($rol === 'Administrador'){
+                $imagen = '../../img/escritorio.png';
+            }elseif ($rol === 'Docente') {
+                $imagen = '../../img/pizarron.png';
+            }elseif ($rol === 'Estudiante') {
+                $imagen = '../../img/gorra.png';
+            }
+
             echo '
-                <tr class="'.$f['estado'].'">
-                    <td>
-                        <img src="'.$f['foto'].'" alt="img perfil">
-                    </td>
-                    <td>'.$f['apellidos'].' </td>
-                    <td>'.$f['nombres'].' </td>
-                    <td>'.$f['correo'].' </td>
-                    <td class="ultimo">'.$f['estado'].' </td>
-                </tr>
+                <div class="col">
+                    <div class="card h-100 card-usu '.$f['estado'].'">
+                        <div class="iconos">
+                            ' . (isset($imagen) ? '<img src="'.$imagen.'" alt="">' : '<img src="placeholder.jpg" alt="Placeholder">') . '
+                        </div>
+                        <div class="fotoUsu">
+                            ' . (isset($f['foto']) ? '<img src="'.$f['foto'].'" class="card-img-top" alt="...">' : '<img src="placeholder.jpg" class="card-img-top" alt="Placeholder">') . '
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                ' . (isset($f['rol']) ? $f['rol'] : 'Rol no disponible') . '
+                            </p>
+                            <h5 class="card-title">
+                                ' . (isset($f['nombres']) && isset($f['apellidos']) ? $f['nombres'] . ' ' . $f['apellidos'] : 'Nombres y apellidos no disponibles') .'
+                            </h5>
+                            <p class="card-text">
+                                ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
+                            </p>
+                            <a href=""><button>Contactar</button></a>
+                        </div>
+                    </div>
+                </div>
             ';
         }
     }
@@ -576,16 +665,31 @@
 
             foreach($consulta as $f) {
 
+                $imagen = '../../img/gorra.png';
+
                 echo '
-                    <tr class="'.$f['estado'].'">
-                        <td>
-                            <img src="'.$f['foto'].'" alt="img perfil">
-                        </td>
-                        <td>'.$f['apellidos'].' </td>
-                        <td>'.$f['nombres'].' </td>
-                        <td>'.$f['correo'].' </td>
-                        <td class="ultimo">'.$f['estado'].' </td>
-                    </tr>
+                    <div class="col">
+                        <div class="card h-100 card-usu '.$f['estado'].'">
+                            <div class="iconos">
+                                ' . (isset($imagen) ? '<img src="'.$imagen.'" alt="">' : '<img src="placeholder.jpg" alt="Placeholder">') . '
+                            </div>
+                            <div class="fotoUsu">
+                                ' . (isset($f['foto']) ? '<img src="'.$f['foto'].'" class="card-img-top" alt="...">' : '<img src="placeholder.jpg" class="card-img-top" alt="Placeholder">') . '
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    ' . (isset($f['rol']) ? $f['rol'] : 'Rol no disponible') . '
+                                </p>
+                                <h5 class="card-title">
+                                    ' . (isset($f['nombres']) && isset($f['apellidos']) ? $f['nombres'] . ' ' . $f['apellidos'] : 'Nombres y apellidos no disponibles') .'
+                                </h5>
+                                <p class="card-text">
+                                    ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
+                                </p>
+                                <a href=""><button>Contactar</button></a>
+                            </div>
+                        </div>
+                    </div>
                 ';
             }
 
@@ -614,16 +718,32 @@
 
             foreach($consulta as $f) {
 
+                $imagen = '../../img/pizarron.png';
+
+
                 echo '
-                    <tr class="'.$f['estado'].'">
-                        <td>
-                            <img src="'.$f['foto'].'" alt="img perfil">
-                        </td>
-                        <td>'.$f['apellidos'].' </td>
-                        <td>'.$f['nombres'].' </td>
-                        <td>'.$f['correo'].' </td>
-                        <td class="ultimo">'.$f['estado'].' </td>
-                    </tr>
+                    <div class="col">
+                        <div class="card h-100 card-usu '.$f['estado'].'">
+                            <div class="iconos">
+                                ' . (isset($imagen) ? '<img src="'.$imagen.'" alt="">' : '<img src="placeholder.jpg" alt="Placeholder">') . '
+                            </div>
+                            <div class="fotoUsu">
+                                ' . (isset($f['foto']) ? '<img src="'.$f['foto'].'" class="card-img-top" alt="...">' : '<img src="placeholder.jpg" class="card-img-top" alt="Placeholder">') . '
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    ' . (isset($f['rol']) ? $f['rol'] : 'Rol no disponible') . '
+                                </p>
+                                <h5 class="card-title">
+                                    ' . (isset($f['nombres']) && isset($f['apellidos']) ? $f['nombres'] . ' ' . $f['apellidos'] : 'Nombres y apellidos no disponibles') .'
+                                </h5>
+                                <p class="card-text">
+                                    ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
+                                </p>
+                                <a href=""><button>Contactar</button></a>
+                            </div>
+                        </div>
+                    </div>
                 ';
             }
 

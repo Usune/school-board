@@ -83,18 +83,18 @@
                             <div class="col-md-6">
                                 <div class="fieldset">
                                     <fieldset>
-                                        <legend id="celAcu">Celular Acudiente</legend>
+                                        <legend id="celAcu">Número de celular</legend>
                                     </fieldset>
-                                    <input type="text" placeholder="Celular" required legend="#celAcu" name="celAcu">
+                                    <input type="text" placeholder="Número de celular" required legend="#celAcu" name="celAcu">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="fieldset">
                                     <fieldset>
-                                        <legend id="corAcu">Correo Acudiente</legend>
+                                        <legend id="corAcu">Correo electrónico </legend>
                                     </fieldset>
-                                    <input type="email" placeholder="Correo" required legend="#corAcu" name="corAcu">
+                                    <input type="email" placeholder="Correo electrónico " required legend="#corAcu" name="corAcu">
                                 </div>
                             </div>
 
@@ -200,7 +200,7 @@
                             <div class="col-md-6">
                                 <div class="fieldset">
                                     <fieldset>
-                                        <legend id="cla1Est">Clave nueva Estudiante</legend>
+                                        <legend id="cla1Est">Clave nueva</legend>
                                     </fieldset>
                                     <input type="password" placeholder="Clave nueva" required legend="#cla1Est"
                                         id="campo1Est" name="clave">
@@ -210,7 +210,7 @@
                             <div class="col-md-6">
                                 <div class="fieldset">
                                     <fieldset>
-                                        <legend id="cla2Est">Verificar clave nueva Estudiante</legend>
+                                        <legend id="cla2Est">Verificar clave nueva</legend>
                                     </fieldset>
                                     <input type="password" placeholder="Verificar clave nueva" required
                                         legend="#cla2Est" id="verifyEst" verify="#campo1Est">

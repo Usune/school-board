@@ -37,68 +37,12 @@
       <div class="container-fluid" >
         <h2>Observador</h2>
         <div class="row" id="observador">
-          <!-- columna -card -->
-          <div class="col-md-12 col-xl-6">
-
-            <div class="card mb-3 card-usu">
-
-              <div class="row g-0 ">
-
-                <div class="col-md-12 ">
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      Septiembre 7, 2023
-                    </h5>
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.
-                    </p>
-                    <hr>
-                    <div class="usuario">
-                      <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="">
-                      <p class="card-text">
-                        <small class="text-body-secondary">
-                          Docente Prueba
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
 
           <!-- columna -card -->
           <div class="col-md-12 col-xl-6">
 
-            <div class="card mb-3 card-usu">
-
-              <div class="row g-0 ">
-
-                <div class="col-md-12 ">
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      Septiembre 7, 2023
-                    </h5>
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.
-                    </p>
-                    <hr>
-                    <div class="usuario">
-                      <img src="../../Uploads/Usuario/fotoUsuario.jpg" alt="">
-                      <p class="card-text">
-                        <small class="text-body-secondary">
-                          Docente Prueba
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
+            <?php mostrarTodasObservaciones(); ?>
+            
           </div>
 
         </div>

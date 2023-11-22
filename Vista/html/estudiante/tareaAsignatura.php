@@ -33,17 +33,10 @@
         </nav> -->
 
 
-        <?php
-            $idAsignatura = $_GET['idAsignatura'];
-            $nombreAsignatura = $_GET['nombreAsignatura'];
-            $idTarea = $_GET['idTarea'];
-            $nombreTarea = $_GET['tarea'];
-        ?>
 
         <!-- breadcrumb -->
         <nav class="nav-main">
-            <?php navAsignatura(); ?>
-            <?php navTarea(); ?>
+            <?php navAsignatura() . navTarea(); ?>
         </nav>
 
 

@@ -1301,18 +1301,17 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT 
-            tarea.*,
-            entrega.*,
-            calificacion.*,
-            usuario.*,
-            tarea.descripcion as tareaDescripcion,
+            $sql = "SELECT *,
             tarea.archivos as tareaArchivos,
-                 ROW_NUMBER() OVER (PARTITION BY tarea.idTarea, entrega.idEstudiante ORDER BY entrega.fecha_entrega DESC) AS intento
+            tarea.descripcion as tareaDescripcion,
+            e.nombres as eNombres,
+            e.apellidos as eApellidos,
+            e.foto as eFoto
             FROM tarea
-            LEFT JOIN entrega ON tarea.idTarea = entrega.idTarea
-            LEFT JOIN calificacion ON entrega.idEntrega = calificacion.idEntrega
-            INNER JOIN usuario on usuario.documento = tarea.idDocente
+            INNER JOIN entrega ON entrega.idTarea = tarea.idTarea
+            INNER  JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+            INNER JOIN usuario e ON e.documento = entrega.idEstudiante
+            INNER JOIN usuario d ON d.documento = tarea.idDocente
             WHERE tarea.idTarea = :idTarea
             AND entrega.idEstudiante = :idEstudiante";
 
@@ -1330,11 +1329,11 @@
         }
 
         // Función para entregar actividades
-        public function insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str){
+        public function insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str, $idAsignatura){
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "INSERT INTO entrega (idEstudiante, idTarea, fecha_entrega, descripcion, archivos) VALUES (:idEstudiante, :idTarea, :fechaEntrega, :descripcion, :archivos_str)";
+            $sql = "INSERT INTO entrega (idEstudiante, idTarea, fecha_entrega_est, descripcion, archivos) VALUES (:idEstudiante, :idTarea, :fechaEntrega, :descripcion, :archivos_str)";
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
             $statement->bindParam(':idTarea' , $idTarea);
@@ -1345,8 +1344,8 @@
             
 
             echo '<script>alert("Entrega exitosa")</script>';
-            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php?idAsignatura='.$idAsignatura.'&idTarea='.$idTarea.'&nombreAsignatura='.$nombreAsignatura.'&tarea='.$nombreTarea.'"</script>';
 
+            echo '<script>location.href="../Vista/html/Estudiante/tareaAsignatura.php?idAsignatura='.$idAsignatura.'&idTarea='.$idTarea.'&nombreAsignatura='.$nombreAsignatura.'&tarea='.$nombreTarea.'"</script>';
         }
 
         // Funcion para mostrar info sobre las observaciones de un estudiante

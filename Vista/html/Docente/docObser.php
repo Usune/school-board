@@ -39,6 +39,10 @@ require_once ('../../../Controlador/mostrarObserDoc.php');
         
             <section> 
 
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
+                    <form class="d-flex" role="search">
+
             <?php
                 if(isset($_GET['documento']) && isset($_GET['idClase'])){
                     cargarObservador();
@@ -46,6 +50,11 @@ require_once ('../../../Controlador/mostrarObserDoc.php');
                     mostrarObserForm();
                 }
             ?>
+
+
+</form>
+            </div>
+            </nav>
 
             </section>
     

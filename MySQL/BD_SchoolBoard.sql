@@ -139,6 +139,11 @@ CREATE TABLE clase (
 
 INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
 (1, 1, 2, 1),
+(2 , 1, 2, 1),
+(1, 1, 2, 1),
+(2, 1, 2, 1),
+(3, 1, 2, 1),
+(1, 1, 2, 1),
 (3, 7, 1023163093, 2);
 
 
@@ -174,6 +179,9 @@ INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES
 (1, 1023163094),
 (1, 1023163095),
 (1, 1023163096),
+(2, 1023163096),
+(2, 1023163096),
+(2, 1023163096),
 (3, 1023163097),
 (3, 1023163098),
 (3, 1023163099);
@@ -232,7 +240,10 @@ CREATE TABLE entrega (
 );
 
 INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea) VALUES 
-('Entrega Nicole', NULL, 1023163094, 1);
+('Entrega Nicole', NULL, 1023163094, 1),
+('Entrega Erika', NULL, 1023163095, 1),
+('Entrega Tatiana', NULL, 1023163096, 1),
+('Entrega Estefani', NULL, 1023163097, 1);
 
 
 CREATE TABLE calificacion(

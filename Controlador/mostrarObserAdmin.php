@@ -15,6 +15,8 @@
         
         echo '
 
+
+          
         <div class="formulario">
             
             <h2>Observador</h2>

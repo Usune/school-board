@@ -127,9 +127,6 @@
 
                 <div class="tablas">
                     <table>
-                        <caption>
-                            Lista de usuarios registrados
-                        </caption>
                         <thead>
                             <tr>
                                 <th>Tipo Documento</th>

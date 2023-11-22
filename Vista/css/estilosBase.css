@@ -155,6 +155,51 @@ body {
     color: var(--principal);
 }
 
+/* Estilos para input file */
+#formulario .file {
+    height: 50px;
+    width: 300px;
+}
+
+#formulario .file label {
+    color: var(--grisOscuro);
+    background-color: var(--grisClaro);
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#formulario .file label:has(~ textarea:focus) {
+    color: var(--principal);
+}
+
+.formulario input[type="file"]{
+    border: 2px solid var(--grisOscuro);
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+    padding: 0px;
+}
+
+#formulario input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--gris);
+    border: 1px solid var(--gris);
+    padding: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+#formulario input[type="file"]::-webkit-textfield-decoration-container {
+    color: var(--principal);
+}
+
+#formulario input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: var(--principal);
+    border: 1px solid var(--principal);
+}
+
+
+/* Estilos para input textarea */
 #formulario .textarea {
     display: flex;
     flex-direction: column;
@@ -209,33 +254,6 @@ body {
     border-radius: 50px;
 }
 
-#formulario .file {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0px;
-}
-
-.fila-cont .file {
-    margin: 10px !important;
-}
-
-#formulario .file label {
-    color: var(--grisOscuro);
-    padding-left: 10px;
-}
-
-#formulario .file input[type="file"]::-webkit-file-upload-button {
-    background-color: var(--gris);
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 20px;
-}
-
-#formulario .file input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: var(--principal);
-}
-
 .formulario a {
     margin: 20px;
     text-decoration: none;
@@ -267,7 +285,7 @@ body {
 }
 
 .cont-filtro {
-    background-color: var(--beige);
+    background-color: var(--blanco);
     width: 650px;
     border-radius: 30px;
     position: relative;
@@ -279,7 +297,7 @@ body {
 .cont-filtro::after {
     content: "";
     position: absolute;
-    background-color: var(--beige);
+    background-color: var(--blanco);
     width: 30px;
     height: 30px;
     transform: rotate(45deg);
@@ -936,6 +954,17 @@ hr {
     padding: 50px;
 }
 
+.cont-regisPrimero .formulario{
+    width: 600px !important;
+}
+
+/* .form-regisPrimero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+} */
+
 /* Fin Estilos ACTUALIZAR DATOS PRIMERA VEZ */
 
 /* Estilos PERFIL USUARIO */
@@ -1039,6 +1068,7 @@ hr {
 }
 
 /* Fin Estilos PERFIL USUARIO */
+
 
 /* ESTILOS CABECERA */
 .btn-cabecera {
@@ -1196,16 +1226,6 @@ hr {
     font-size: 12px;
     margin-top: 5px;
 }
-
-
-
-
-
-
-
-
-
-/* Revisar */
 
 .card-tarea .card-info .fechas {
     padding: 8px;

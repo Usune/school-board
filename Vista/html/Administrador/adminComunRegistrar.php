@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="file">
-                                <label for="archivo">Seleccione un archivo</label>
+                                <label for="archivo">Archivo</label>
                                 <input type="file" accept=".pdf" name="archivo">
                             </div>
         

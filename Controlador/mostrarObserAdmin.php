@@ -15,8 +15,6 @@
         
         echo '
 
-
-          
         <div class="formulario">
             
             <h2>Observador</h2>
@@ -247,72 +245,40 @@
     function cargarObserEditar(){
 
         // Aterrizamos la PK enviada desde la tabla
-        $id = $_POST['id']; 
+        $id = $_POST['id'];
 
         // Eviamos la PK a una función de la clase consultas
         $objConsultas = new Consultas();
-        $consulta = $objConsultas->mostrarComunicadoAdmin($id);
+        $consulta = $objConsultas->mostrarObservacionAdmin($id);
 
-        // Pintamos la información consultada en el artefacto (formulario)
-        foreach ($consulta as $f) {
-
+        foreach($fetch as $f) {
             echo '
-                    
-                <form action="../../../Controlador/actualizarComunAdmin.php" method="post" enctype="multipart/form-data" id="formulario">
+                <h3>Crear Observación</h3>
 
-                        <div class="fieldset">
-                            <fieldset>
-                                <legend id="tit">Título</legend>
-                            </fieldset>
-                            <input type="text" value="'.$f['titulo'].'" placeholder="Título" required legend="#tit" name="titulo">
-                        </div>
-        
-                        <div class="textarea">
-                            <label for="descripcion">Descripción</label>
-                            <textarea id="descripcion" cols="30" rows="10" name="descripcion"> '.$f['descripcion'].' </textarea>
-                        </div> 
+                <p class="recordatorio">Antes de subir la observación, asegurese de que todos los campos son correctos.</p>
 
-                        <div class="fieldset_view">
-                            <label for="rol">Curso</label>
-                            <select class="veriSelect" required name="curso">
-            ';
+                <form action="../../../Controlador/registrarObserAdmin.php?id='.$f['documento'].'" method="post" id="formulario">
 
-            if($f['curso'] == 'Todos'){
+                    <div class="fieldset">
+                        <fieldset>
+                            <legend id="estu">Estudiante</legend>
+                        </fieldset>
+                        <input type="text" value="'.$f['nombres'].' '.$f['apellidos'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
+                    </div>
 
-                echo '
-                            <option value="'.$f['idCurso'].'" selected>'.$f['curso'].'</option>
-                            <option value="1">Todos</option> 
-                ';
+                    <div class="textarea">
+                        <label for="obser">Observación</label>
+                        <textarea id="obser" cols="30" rows="10" name="observacion">Ingrese la observación</textarea>
+                    </div>
 
-            }else {
-
-                echo '
-                            <option value="'.$f['idCurso'].'" selected>'.$f['curso'].' - Jornada: '.$f['jornada'].'</option>
-                            <option value="1">Todos</option> 
-                ';
-
-            }
-                cargarCursosRegistro();
-
-            echo '            
-                            </select>
-                        </div>
-
-                        <div class="file">
-                            <label for="archivo">Seleccione un archivo</label>
-                            <input type="file" accept=".pdf" name="archivo">
-                        </div>
-
-                        <p id="texto"></p>
-                    
-                    <button type="submit" class="enviar">Subir comunicado</button>
+                    <p id="texto"></p>
+                
+                    <button type="submit" class="enviar">Subir Observación</button>
                 </form>
             ';
         }
 
     }
-
-
 
 
 ?>

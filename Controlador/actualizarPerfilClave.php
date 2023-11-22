@@ -18,27 +18,63 @@
             $clavedb = $f['clave'];
         }
         
-        if($clavedb == MD5($claveActual)) {
+        if(strlen($clave) >= 8){
+            if($clavedb == MD5($claveActual)) {
 
-            if($claveNueva == $claveNueva2){
-    
-                $claveMD = MD5($claveNueva);
-                $objConsultas = new Consultas();
-                $result = $objConsultas->actualizarClave($documento ,$claveMD);
+                if($claveNueva == $claveNueva2){
         
-            }else {
-    
-                echo '<script>alert("Las claves no coninciden, intentelo nuevamente")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminPerfilClave.php?id='.$documento.'"</script>';
-    
+                    $claveMD = MD5($claveNueva);
+                    $objConsultas = new Consultas();
+                    $result = $objConsultas->actualizarClave($documento ,$claveMD);
+            
+                }else {
+                    echo '<script>alert("Las claves no coninciden, intentelo nuevamente")</script>';
+                    if($_SESSION['rol'] == 'Administrador') {
+                        echo '<script>location.href="../Vista/html/Administrador/perfilClave.php?id='.$documento.'"</script>';
+                    }
+            
+                    if($_SESSION['rol'] == 'Docente') {
+                        echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'"</script>';
+                    }
+            
+                    if($_SESSION['rol'] == 'Estudiante') {
+                        echo '<script>location.href="../Vista/html/Estudiante/perfilClave.php?id='.$documento.'"</script>';
+                    }
+                }
+            }else{
+                echo '<script>alert("La clave actual ingresada no es correcta, intentelo nuevamente")</script>';
+                if($_SESSION['rol'] == 'Administrador') {
+                    echo '<script>location.href="../Vista/html/Administrador/perfilClave.php?id='.$documento.'"</script>';
+                }
+        
+                if($_SESSION['rol'] == 'Docente') {
+                    echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'"</script>';
+                }
+        
+                if($_SESSION['rol'] == 'Estudiante') {
+                    echo '<script>location.href="../Vista/html/Estudiante/perfilClave.php?id='.$documento.'"</script>';
+                }
             }
 
-        } else {
-    
-            echo '<script>alert("La clave actual ingresada no es correcta, intentelo nuevamente")</script>';
-            echo '<script>location.href="../Vista/html/Administrador/adminPerfilClave.php?id='.$documento.'"</script>';
+        }else {
 
+            echo '<script>alert("Recuerde que la clave debe tener mínimo 8 carácteres")</script>';
+            if($_SESSION['rol'] == 'Administrador') {
+                echo '<script>location.href="../Vista/html/Administrador/perfilClave.php?id='.$documento.'"</script>';
+            }
+    
+            if($_SESSION['rol'] == 'Docente') {
+                echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'"</script>';
+            }
+    
+            if($_SESSION['rol'] == 'Estudiante') {
+                echo '<script>location.href="../Vista/html/Estudiante/perfilClave.php?id='.$documento.'"</script>';
+            }
         }
+
+        
+
+        
     }
 
 

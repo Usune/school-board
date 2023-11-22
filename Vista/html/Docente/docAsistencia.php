@@ -16,7 +16,6 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-    
 </head>
 
 <body>

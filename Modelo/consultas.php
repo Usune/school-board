@@ -786,36 +786,11 @@
             
             while ($resultado = $consulta->fetch()) {
 
-                $fetch[] = $resultado;
+                $f[] = $resultado;
 
             }
 
-            foreach($fetch as $f) {
-                return '
-                    <h3>Crear Observación</h3>
-
-                    <p class="recordatorio">Antes de subir la observación, asegurese de que todos los campos son correctos.</p>
-
-                    <form action="../../../Controlador/registrarObserAdmin.php?id='.$f['documento'].'" method="post" id="formulario">
-
-                        <div class="fieldset">
-                            <fieldset>
-                                <legend id="estu">Estudiante</legend>
-                            </fieldset>
-                            <input type="text" value="'.$f['nombres'].' '.$f['apellidos'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
-                        </div>
-
-                        <div class="textarea">
-                            <label for="obser">Observación</label>
-                            <textarea id="obser" cols="30" rows="10" name="observacion">Ingrese la observación</textarea>
-                        </div>
-
-                        <p id="texto"></p>
-                    
-                        <button type="submit" class="enviar">Subir Observación</button>
-                    </form>
-                ';
-            }
+            return $f;
 
         }
 

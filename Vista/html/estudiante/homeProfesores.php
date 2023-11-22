@@ -1,11 +1,3 @@
-<?php
-    require_once ('../../../Modelo/conexion.php');
-    require_once ('../../../Modelo/consultas.php');
-    require_once ('../../../Controlador/mostrarPerfil.php');
-    require_once ('../../../Controlador/mostrarUsuAdmin.php');
-    require_once ('../../../Controlador/mostrarInfoEstudiante.php');
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -101,7 +93,7 @@
         </div>
 
         <!-- Listado - Cards -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 g-4 filaIntegrantes">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 g-4 filaIntegrantes">
         <?php
 
           if(isset($_GET['estado']) || isset($_GET['nombres'])){

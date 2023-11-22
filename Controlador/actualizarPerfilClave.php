@@ -4,10 +4,15 @@
     require_once("../Modelo/conexion.php");
     require_once("../Modelo/consultas.php");
 
+    session_start();
+
+    $rol = $_SESSION['rol'];
+
     $documento = $_POST['documento'];
     $claveActual = $_POST['claveActual'];
     $claveNueva = $_POST['claveNueva'];
     $claveNueva2 = $_POST['claveNueva2'];
+
 
     if (strlen($documento)>0 && strlen($claveActual)>0 && strlen($claveNueva)>0 && strlen($claveNueva2)>0) {
 
@@ -55,6 +60,7 @@
                     echo '<script>location.href="../Vista/html/Estudiante/perfilClave.php?id='.$documento.'"</script>';
                 }
             }
+        }
 
         }else {
 

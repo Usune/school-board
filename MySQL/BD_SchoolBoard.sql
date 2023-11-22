@@ -30,7 +30,7 @@ INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos,
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
 
-(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', NULL),
+(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', '../../Uploads/Usuario/userNicole.jpg'),
 -- (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, '../../Uploads/Usuario/userNicole.jpg'),
 (1023163095, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', 'favian@gmail.com', '../../Uploads/Usuario/userFavian.jpg'),
 (1023163096, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Darwin', 'Urbina Lopez', 'darwin@gmail.com', '../../Uploads/Usuario/userDarwin.jpg'),

@@ -2,6 +2,8 @@
 
     require_once('../Modelo/conexion.php');
     require_once('../Modelo/consultas.php');
+
+    $idAsignatura = $_GET['idAsignatura'];
     
     $descripcion = $_POST['descripcion'];
     $idEstudiante = $_POST['idEstudiante'];
@@ -30,7 +32,7 @@
         
 
         $objConsultas = new Consultas();
-        $filas = $objConsultas->insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str);
+        $filas = $objConsultas->insertarEntregaTarea($idEstudiante, $idTarea, $fechaEntrega, $descripcion, $archivos_str, $idAsignatura);
 
     }else{
         echo '<script>alert("Por favor complete todos los campos")</script>';

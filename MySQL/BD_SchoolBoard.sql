@@ -186,7 +186,6 @@ INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES
 (3, 1023163098),
 (3, 1023163099);
 
-
 CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,
     idClase INT,

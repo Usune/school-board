@@ -284,7 +284,7 @@
         foreach ($filas as $f) {
             echo '
                 <a href="homeEstu.php">Home</a>
-                <a href="homeAsignatura.php?idAsignatura='.$f['idAsignatura'].'"> / '.$f['asignaturaNombre'].'</a>
+                <a href="#" onclick="irAtras()"> / '.$f['asignaturaNombre'].'</a>
             ';
         }
     }
@@ -296,7 +296,9 @@
 
         foreach ($filas as $f) {
             echo '
-                <a href="TareaAsignatura.php?idTarea='.$f['idTarea'].'"> / '.$f['titulo'].'</a>
+                <a href="homeEstu.php">Home</a>
+                <a href="#" onclick="irAtras()"> / '.$f['asignaturaNombre'].'</a>
+                <a href="#"> / '.$f['titulo'].'</a>
             ';
         }
     }
@@ -340,6 +342,13 @@
         $objConsultas = new Consultas();
         $filas = $objConsultas->cargarTareasAsignatura($idEstudiante, $idAsignatura);
 
+
+        // Verificar si no hay tareas
+        if(empty($filas)){
+            echo '<p>No hay tareas</p>';
+            return; // Detener la ejecución si no hay tareas
+        }
+
         foreach($filas as $f){
 
             // Formatear la fecha
@@ -347,22 +356,24 @@
             $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
             
             echo '
-            <tr>
-                <td>'.$f['titulo'].' </td>
-                <td>
-                    '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
-                </td>
-                <td class="estado '.$f['estadoTarea'].'">
-                    <p>
-                        '.$f['estadoTarea'].'
-                    </p>
-                </td>
-                <td class="calificacion">'.($f["nota"] !== null ? $f["nota"] : "-").'</td>
-                <td class="ultimo">
-                    <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
-                </td>
-            </tr>
-        ';
+                <tr>
+                    <td>'.$f['titulo'].' </td>
+                    <td>
+                        '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
+                    </td>
+                    <td class="estado '.$f['estadoTarea'].'">
+                        <p>
+                            '.$f['estadoTarea'].'
+                        </p>
+                    </td>
+                    <td class="calificacion">'.($f["nota"] !== null ? $f["nota"] : "-").'</td>
+                    <td class="ultimo">
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idTarea='.$f['idTarea'].'">
+                            <img src="../../img/flecha-arriba.svg" alt="" class="verMas">
+                        </a>
+                    </td>
+                </tr>
+            ';
 
 
         };
@@ -371,7 +382,7 @@
     }
 
     // Mostrar la tarea y habilitar la entrega
-    function habilitarEntregaTareas(){
+    function mostrarTareaConEntrega(){
         $idEstudiante = $_SESSION['id'];
         $idTarea = $_GET['idTarea'];
         $objConsultas = new Consultas();
@@ -379,16 +390,20 @@
 
         foreach($filas as $f){
 
-            // Operación para traer la fecha en este formato Sep 2, 2023
+            // MANEJO DE FECHAS
+
             // Capturar la fecha desde la DB 
             $fechaDB = $f['fecha_vencimiento'];
+
+            // Formatear la fecha para aspecto visual - 15/10/2023
+            $fechaFormateada = date('d/m/Y', strtotime($fechaDB));
+
             // Convertirla en el tipo de dato que se encuentra en la DB, ya que antes de este momento pasa como string (Verificar con  echo gettype($fechaDB); )
             $fechaDBDateTime = new DateTime($fechaDB);
-            // Colocar en el formato Sep 2, 2023
-            $fechaFormato = $fechaDBDateTime->format('M j, Y');
 
 
             // Operación para indicar el color de vencimiento de la fecha (Vencida, Proxima y Con Tiempo)
+
             // Capturar fecha actual
             $fechaActual = date("Y-m-d H:i:s");
             // Convertirla en DateTime
@@ -401,124 +416,385 @@
 
             // Condicional para aplicar estilos en css
             if ($fechaEstado < 1) {
-                $fechaEstado = "vencida"; // La tarea esta vencida o vence ese dia
+                $fechaEstado = "rojo"; // La tarea esta vencida o vence ese dia
             } elseif ($fechaEstado >= 1 && $fechaEstado <=3) {
-                $fechaEstado = "proximo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
+                $fechaEstado = "amarillo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
             } else {
-                $fechaEstado = "conTiempo"; // La tarea tiene un plazo de más de 4 dias para ser entregada
+                $fechaEstado = "verde"; // La tarea tiene un plazo de más de 4 dias para ser entregada
             }
 
 
-            // manejo de archivos 
+            $notaEstado = $f['nota'];
+
+            // Condicional para aplicar estilos en css a la nota
+            if ($notaEstado < 1) {
+                $notaEstado = "rojo"; // La tarea esta vencida o vence ese dia
+            } elseif ($notaEstado >= 1 && $notaEstado <=3) {
+                $notaEstado = "amarillo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
+            } else {
+                $notaEstado = "verde"; // La tarea tiene un plazo de más de 4 dias para ser entregada
+            }
+
+
+            // Manejo de archivos 
             $archivos = explode(",", $f['tareaArchivos']);
+            $archivosEntrega = explode(",", $f['entregaArchivos']);
 
 
-            echo '
-                <div class="card-tarea">
-                    <div class="card-header">
-                        <div class="info-user fila">
-                            <img src="'.$f['foto'].'" alt="imagen" enlace="#op1">
-                            <p>
-                                '.$f['nombres'].' <br>
-                                '.$f['apellidos'].'
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-cont">
-                        <div class="card-info">
-                            <img src="../../img/descripcion.png" alt="">
-                            <div class="info">
-                                <h3>'.$f['titulo'].'</h3>
-                                <p>
-                                    '.$f['tareaDescripcion'].'
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <img src="'.$f['foto'].'" alt="">
-                            <div class="fila">
-                                <div class="fechas">
-                                    <p>
-                                        '.$f['fecha_creacion'].'
-                                        03 / 09 / 2023
-                                    </p>
-                                </div>
-                                <hr id="fechas">
-                                <div class="fechas" id="vencida">
-                                    <p>
-                                        '.$fechaEstado.'
-                                        03 / 09 / 2023
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <img src="../../img/archivos.png" alt="">
-            ';
+            $estadoEntrega = $f['estadoTarea'];
 
-                            foreach($archivos as $archivo){
-                                echo '
-                                    <div class="card-archivos">
-                                        <div class="archivos">
-                                            <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">ARCHIVITOS</a>
+            
+
+            switch ($estadoEntrega) {
+                case 'entregada':
+                    echo '
+                        <!-- Card Tarea Sola -->
+                        <div class="row centrado">
+                            <div class="card mb-3 card-tareas">
+                                <div class="card-body">
+                                <div class="row contEtiquetas">
+                    
+                                    <div class="col-md-6">
+                                    <div class="row infoDoc">
+                                        <div class="col-md-2">
+                                        <img src="'.$f['foto'].'" alt="">
+                                        </div>
+                                        <div class="col-md-10">
+                                        <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
                                         </div>
                                     </div>
-                                ';
-                            }
+                                    </div>
+                    
+                                    <div class="col-md-6 fechasCont">
+                                    <p class="'.$fechaEstado.'">'.$fechaFormateada.'</p>
+                                    </div>
+                    
+                                </div>
+                    
+                                <h5 class="card-title card-titulo">
+                                    '.$f['titulo'].'
+                                </h5>
+                    
+                    
+                                <p class="card-text card-texto">
+                                    '.$f['tareaDescripcion'].'
+                                </p>
+                    
+                                <div class="row">';
+
+                                if ((strlen(trim($archivos[0])) == 0) ) {
+                                    echo '
+                                    <div class="col-md-4">
+                                        <div class="cont-archivo-null">
+                                            <p>Sin archivos</p>
+                                        </div>
+                                    </div>
+                                    ';
+                                }else{
+                                
+                                
+                                    foreach ($archivos as $archivo) {
+                                        echo '
+                                        <div class="col-md-4">
+                                            <div class="cont-archivo">
+                                                <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                            </div>
+                                        </div>
+                                        ';
+                                    };
+                                }
+
+                                    echo '
+                                    <div class="row">
+                                
+                                </div>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    ';
+
+                    echo '
+                        <!-- Card Entrega -->
+                        <h2>Entrega</h2>
+                            <div class="card mb-3 card-tareas">
+                                <div class="card-body">
+                                <div class="row contEtiquetas">
+                    
+                                    <div class="col-md-6">
+                                    <div class="row infoDoc">
+                                        <div class="col-md-2">
+                                        <img src="'.$f['eFoto'].'" alt="">
+                                        </div>
+                                        <div class="col-md-10">
+                                        <p>Estudiante '.$f['eNombres'].' '.$f['eApellidos'].'</p>
+                                        </div>
+                                    </div>
+                                    </div>
+                    
+                                    <div class="col-md-6 fechasCont">
+                                    <p class="'.($notaEstado !== null ? $notaEstado : ' ').'">'.($f['nota'] !== null ? $f['nota'] : "Sin calificación").'</p>
+                                    </div>
+                    
+                                </div>
+                    
+                                <p class="card-text card-texto">
+                                    '.$f['descripcion'].'
+                                </p>
+                    
+                                <div class="row">';
+
+                                
+                                if ((strlen(trim($archivosEntrega[0])) == 0) ) {
+                                        echo '
+                                        <div class="col-md-4">
+                                            <div class="cont-archivo-null">
+                                                <p>Sin archivos</p>
+                                            </div>
+                                        </div>
+                                        ';
+                                }else{
+
+                                    foreach ($archivosEntrega as $archivo) {
+
+
+                                        echo '
+                                        <div class="col-md-4">
+                                            <div class="cont-archivo">
+                                                <a href="../../Uploads/Entregas/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                            </div>
+                                        </div>
+                                        ';
+                                    }
+
+                               
+                                };
+                                
+
+
+                                    echo '
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                    <button type="button" class="btn btnPrincipal" data-bs-toggle="modal" data-bs-target="#modalEntregaModificar">
+                                        Modificar
+                                    </button>
+                                    </div>
+                                </div>
+                    
+                                </div>
+                            </div>
+                    ';
+                break;
+
+                case 'pendiente':
+                    echo '
+                        <!-- Card Tarea Sola -->
+                        <div class="row centrado">
+                            <div class="card mb-3 card-tareas">
+                                <div class="card-body">
+                                    <div class="row contEtiquetas">
+                        
+                                        <div class="col-md-6">
+                                        <div class="row infoDoc">
+                                            <div class="col-md-2">
+                                            <img src="'.$f['foto'].'" alt="">
+                                            </div>
+                                            <div class="col-md-10">
+                                            <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                        
+                                        <div class="col-md-6 fechasCont">
+                                        <p class="'.$fechaEstado.'">'.$fechaFormateada.'</p>
+                                        </div>
+                        
+                                    </div>
+                    
+                                    <h5 class="card-title card-titulo">
+                                        '.$f['titulo'].'
+                                    </h5>
+                    
+                    
+                                    <p class="card-text card-texto">
+                                        '.$f['tareaDescripcion'].'
+                                    </p>
+                    
+                                    <div class="row">';
+
+                                    if ((strlen(trim($archivos[0])) == 0) ) {
+                                        echo '
+                                        <div class="col-md-4">
+                                            <div class="cont-archivo-null">
+                                                <p>Sin archivos</p>
+                                            </div>
+                                        </div>
+                                        ';
+                                    }else{
+
+                                        foreach ($archivos as $archivo) {
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo">
+                                                    <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                                </div>
+                                            </div>
+                                            ';
+                                        };
+                                    }
+
+                                        echo '
+                                        <div class="row">
+                                            <button type="button" class="btn btnPrincipal" data-bs-toggle="modal" data-bs-target="#modalEntrega">
+                                                Entregar
+                                            </button>
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    ';
+                break;
+            }
 
             echo '
+            <!-- Modal Entregar-->
+            <div class="modal fade" id="modalEntrega" tabindex="-1" aria-labelledby="modalEntrega" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEntrega">Entrega</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+
+                        <form action="../../../Controlador/registrarEntrega.php" method="post" enctype="multipart/form-data">
+
+                            <input type="number" name="idTarea" value="'.$idTarea.'" hidden>
+
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="name">Descripción:</label>
+                                        <textarea class="form-control" name="descripcion" rows="10" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="fieldset">
+                                            <fieldset>
+                                                <legend id="fileLegen">Adjunta Archivos</legend>
+                                            </fieldset>
+                                            <input type="file" id="fileInput" class="fileInput"
+                                                accept=".jpg, .jpeg, .png, .pdf" name="archivos[]" onchange="checkFile()"
+                                                legend="#fileLegen" multiple>
+                                            <label for="fileInput" class="fileLabel">Adjunta Archivos</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row modal-footer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btnAtras" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <img src="../../img/volver.svg" alt="volver">
+                                            Atrás
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btnPrincipal">Entregar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
                     </div>
                 </div>
-            
-                <div class="card-tarea">
-                <div class="card-header">
-                    <div class="info-user fila">
-                        <img src="'.$f['eFoto'].'" alt="imagen" enlace="#op1">
-                        <p>
-                            '.$f['eNombres'].' <br>
-                            '.$f['eApellidos'].'
-                        </p>
+            </div>
+
+
+            <!-- Modal Modificar -->
+            <div class="modal fade" id="modalEntregaModificar" tabindex="-1" aria-labelledby="modalEntregaModificar" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalEntregaModificar">Modificar Entrega</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <form action="../../../Controlador/actualizarEntrega.php" method="post" enctype="multipart/form-data">
+
+                            <input type="number" name="idTarea" value="'.$idTarea.'" hidden>
+
+                            <div class="modal-body">
+
+                            <p class="rojo">¡Hola Estudiante!
+
+                            Recuerda subir todos tus documentos necesarios. Los datos anteriores se borrarán pronto. ¡Gracias por tu cooperación y éxito en tus estudios!</p>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="name">Descripción:</label>
+                                        <textarea class="form-control" name="descripcion" rows="10" required >'.$f['entregaDescripcion'].'</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="fieldset">
+                                            <fieldset>
+                                                <legend id="fileLegen">Adjunta Archivos</legend>
+                                            </fieldset>
+                                            <input type="file" id="fileInput" class="fileInput"
+                                                accept=".jpg, .jpeg, .png, .pdf" name="archivos[]" onchange="checkFile()"
+                                                legend="#fileLegen" multiple>
+                                            <label for="fileInput" class="fileLabel">Adjunta Archivos</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row modal-footer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btnAtras" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <img src="../../img/volver.svg" alt="volver">
+                                            Atrás
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btnPrincipal">Modificar Entrega</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
                     </div>
                 </div>
-                <hr>
-                <div class="card-formulario">
-                <div class="formulario">
-                    <form action="../../../Controlador/entregarTarea.php" method="post" enctype="multipart/form-data"
-                    id="formulario">
-
-                        <input type="number" placeholder="idEstudiante"  name="idEstudiante" value="'.$idEstudiante.'" hidden >
-                        <input type="number" placeholder="idTarea"   name="idTarea" value="'.$f['idTarea'].'" hidden>
-
-                        <div class="textarea">
-                            <label for="descripcion">Descripción</label>
-                            <textarea id="descripcion" cols="30" rows="10"
-                                name="descripcion">Ingrese una descripción</textarea>
-                        </div>
-
-                        <div class="file">
-                            <label for="archivo">Archivos</label>
-                            <input type="file" accept=".pdf" name="archivos[]" multiple>
-                        </div>
-
-
-                        <button type="submit" class="enviar">Entregar Tarea</button>
-                    </form>
-                </div>
             </div>
-            </div>
-            </div>
-                  
-            ';
+        ';
 
-
-
-            
         };
 
 
     }
+
+
+ 
+
+
+
 
     // Mostrar todas las tareas
     function mostrarTodasTareas(){

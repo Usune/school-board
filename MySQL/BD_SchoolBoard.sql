@@ -27,6 +27,7 @@ INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos,
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
 
@@ -138,12 +139,14 @@ CREATE TABLE clase (
 );
 
 INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
+-- Sexto, - Matematicas - Felipe - 119 
 (1, 1, 2, 1),
+-- Sexto, - Sociales - Angelica - festo 
+(1, 3, 1023163093, 2),
+-- Septimo - Matematicas - Felipe - 119
 (2 , 1, 2, 1),
-(1, 1, 2, 1),
 (2, 1, 2, 1),
 (3, 1, 2, 1),
-(1, 1, 2, 1),
 (3, 7, 1023163093, 2);
 
 
@@ -233,7 +236,7 @@ CREATE TABLE entrega (
     idTarea INT,
     fecha_entrega_est DATETIME DEFAULT NOW(),
     descripcion VARCHAR(200),
-    archivos VARCHAR(400),
+    archivos VARCHAR(400) DEFAULT NULL,
     PRIMARY KEY (idEntrega),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
@@ -242,8 +245,7 @@ CREATE TABLE entrega (
 INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea) VALUES 
 ('Entrega Nicole', NULL, 1023163094, 1),
 ('Entrega Erika', NULL, 1023163095, 1),
-('Entrega Tatiana', NULL, 1023163096, 1),
-('Entrega Estefani', NULL, 1023163097, 1);
+('Entrega Tatiana', NULL, 1023163096, 1);
 
 
 CREATE TABLE calificacion(

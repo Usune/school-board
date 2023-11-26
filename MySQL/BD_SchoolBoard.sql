@@ -81,13 +81,14 @@ INSERT INTO curso (jornada, nombre) VALUES
 CREATE TABLE aula (
     idAula INT AUTO_INCREMENT,
     nombre VARCHAR(50),
+    capacidad VARCHAR(3),
     PRIMARY KEY (idAula)
 );
 
-INSERT INTO aula(nombre) VALUES 
-('119 Torre oriental'),
-('101  Festo'),
-('301 Torre occidental');
+INSERT INTO aula(nombre, capacidad) VALUES 
+('119 Torre oriental', '20'),
+('101  Festo', '30'),
+('301 Torre occidental', '25');
 
 CREATE TABLE observador (
     idObservador INT AUTO_INCREMENT,
@@ -146,7 +147,6 @@ INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
 (1, 1, 2, 1),
 (3, 7, 1023163093, 2);
 
-
 CREATE TABLE acudiente (
     documento INT,
     nombres VARCHAR(100),
@@ -185,7 +185,6 @@ INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES
 (3, 1023163097),
 (3, 1023163098),
 (3, 1023163099);
-
 
 
 CREATE TABLE asistencia (

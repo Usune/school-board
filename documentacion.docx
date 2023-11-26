@@ -21,7 +21,7 @@ COMANDOS BÁSICOS DE GIT
     - Agregar todos los archivos al staging area: git add . 
     - Pasar del staging area al repository: git commit -m "Mensaje"
     - Traer los cambios subidos por un colaborador: git pull origin main
-    - Subir los cambios al GitHub: git push
+    - Subir los cambios al GitHub: git push origin main
 
 
 FUNCION QUEPERMITE CREAR UN ARRAY DESDE UN STRING

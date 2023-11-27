@@ -11,13 +11,15 @@
         if (!isset($consultas)) {
             echo '<h2> No hay cursos registrados </h2>';
         } else {
-
+            $n = 0;
             foreach($consultas as $f) {
-
+                $n += 1;
                 echo '
                 <tr>
+                    <td>'.$n.'</td>
                     <td>'.$f['nombre'].'</td>
                     <td>'.$f['jornada'].'</td>
+                    <td>'.$f['cantidadEstudiantes'].'</td>
 
                     <td class="ultimo"><a href="adminCurModificar.php?id='.$f['idCurso'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
@@ -40,13 +42,15 @@
             echo '<h3>NO HAY CURSOS REGISTRADOS CON LAS CARACTERISTICAS SELECCIONADAS</h3>';
 
         }else {
-
+            $n = 0;
             foreach($consulta as $f) {
-
+                $n += 1;
                 echo '
                 <tr>
+                    <td>'.$n.'</td>
                     <td>'.$f['nombre'].'</td>
                     <td>'.$f['jornada'].'</td>
+                    <td>'.$f['cantidadEstudiantes'].'</td>
 
                     <td class="ultimo"><a href="adminCurModificar.php?id='.$f['idCurso'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
@@ -55,9 +59,7 @@
 
             }
 
-
         }
-
 
     }
 
@@ -136,7 +138,6 @@
             ';
         }
 
-
     }
 
     function cargarCursosReportes() {
@@ -153,7 +154,35 @@
                 echo '
                 <tr>
                     <td>'.$f['nombre'].'</td>
-                    <td>'.$f['jornada'].'</td>                    
+                    <td>'.$f['jornada'].'</td>
+                    <td>'.$f['cantidadEstudiantes'].'</td>             
+                </tr>
+                ';
+
+            }
+
+        }
+
+    }
+
+    function cargarCursosReportesFiltro($jornada, $nombre) {
+
+        $objConsultas = new Consultas();
+        $consulta = $objConsultas->filtrarCursos($jornada, $nombre);
+
+        if(!isset($consulta)){
+
+            echo '<h3>NO HAY CURSOS REGISTRADOS CON LAS CARACTERISTICAS SELECCIONADAS</h3>';
+
+        }else {
+
+            foreach($consulta as $f) {
+
+                echo '
+                <tr>
+                    <td>'.$f['nombre'].'</td>
+                    <td>'.$f['jornada'].'</td>
+                    <td>'.$f['cantidadEstudiantes'].'</td>
                 </tr>
                 ';
 

@@ -2,8 +2,7 @@
 
     class Consultas{
 
-        // CONSULTAS PARA ADMINISTRADORES
-
+        // CONSULTAS PARA ROL ADMINISTRADOR
         public function insertarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $claveMd, $estado, $idCurso){
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -21,7 +20,7 @@
             if ($f) {
 
                 echo '<script>alert("Ya existe un usuario en el sistema con el número de documento ingresado")</script>';
-                echo "<script>location.href='../Vista/html/Administrador/adminUsuRegistro.php'</script>";
+                echo "<script>location.href='../Vista/html/Administrador/adminUsu.php'</script>";
 
             } else {
             
@@ -62,7 +61,7 @@
 
                 }
 
-                echo "<script>location.href='../Vista/html/Administrador/adminUsuRegistro.php'</script>";
+                echo "<script>location.href='../Vista/html/Administrador/adminUsu.php'</script>";
 
             }
 
@@ -85,7 +84,7 @@
             if($f){
 
                 echo '<script>alert("El nombre del curso ingresado ya existe en la jornada seleccionada")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurso.php"</script>';
                 
             }else {
 
@@ -97,7 +96,7 @@
                 $resultado->execute();
     
                 echo '<script>alert("El curso fue registrado")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCurso.php"</script>';
 
             }
 
@@ -126,7 +125,7 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'SELECT * FROM curso WHERE nombre = :nombre';
+            $sql = 'SELECT * FROM asignatura WHERE nombre = :nombre';
 
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':nombre', $nombre);
@@ -137,7 +136,7 @@
             if($f){
 
                 echo '<script>alert("Ya existe una asignatura con el nombre ingresado")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminAsigRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAsig.php"</script>';
                 
             }else {
 
@@ -148,7 +147,7 @@
                 $resultado->execute();
     
                 echo '<script>alert("La asignatura fue creada correctamente")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminAsigRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAsig.php"</script>';
 
             }
 
@@ -170,7 +169,7 @@
             if($f){
 
                 echo '<script>alert("Ya existe un aula con el nombre ingresado")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminAulaRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAula.php"</script>';
                 
             }else {
 
@@ -181,7 +180,7 @@
                 $resultado->execute();
     
                 echo '<script>alert("El aula fue creada correctamente")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminAulaRegistro.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAula.php"</script>';
 
             }
 
@@ -204,7 +203,7 @@
             $consulta->execute();
 
             echo '<script>alert("Comunicado subido correctamente")</script>';
-            echo "<script>location.href='../Vista/html/Administrador/adminComunRegistrar.php'</script>";         
+            echo "<script>location.href='../Vista/html/Administrador/adminComun.php'</script>";         
 
         }
 
@@ -327,8 +326,6 @@
                 foreach ($f as $f1) {
     
                     if (strlen($f1['correo'])>0) {
-                        
-                        echo '<script>alert('.$f1['correo'].')</script>';
     
                         $sql = 'UPDATE usuario SET documento=:documento, rol=:rol, estado=:estado, tipoDoc=:tipoDoc, nombres=:nombres, apellidos=:apellidos WHERE documento=:id';
                         $consulta = $conexion->prepare($sql);
@@ -381,7 +378,7 @@
                 
             }
             
-            echo "<script>location.href='../Vista/html/Administrador/adminUsuConsu.php'</script>";
+            echo "<script>location.href='../Vista/html/Administrador/adminUsu.php'</script>";
 
         }
 
@@ -417,7 +414,7 @@
                 $consulta->execute();
     
                 echo '<script>alert("El curso fue actualizado correctamente")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminCurConsu.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminCur.php"</script>';
 
             }
         }
@@ -452,7 +449,7 @@
                 $consulta->execute();
     
                 echo '<script>alert("La asignatura fue actualizada correctamente")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminAsigConsu.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAsig.php"</script>';
 
             }
         }
@@ -487,9 +484,58 @@
                 $consulta->execute();
     
                 echo '<script>alert("El aula fue actualizada correctamente")</script>';
-                echo '<script>location.href="../Vista/html/Administrador/adminAulaConsu.php"</script>';
+                echo '<script>location.href="../Vista/html/Administrador/adminAula.php"</script>';
 
             }
+        }
+
+        public function actualizarObserAdmin($observacion, $idObservacion, $idEstudiante){
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+                
+            $sql = 'UPDATE observador SET observacion=:observacion WHERE idObservador=:idObservacion';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':observacion', $observacion);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+
+            $consulta->execute();
+
+            echo '<script>alert("Observación modificada con exito")</script>';
+            echo '<script>location.href="../Vista/html/Administrador/adminObser.php?id='.$idEstudiante.'"</script>';
+
+        }
+
+        public function actualizarComunAdmin($titulo, $descripcion, $archivo, $idCurso, $idComunicado, $idAutor){
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+                
+            $sql = 'UPDATE comunicado SET titulo=:titulo, descripcion=:descripcion, jornada=:jornada, jornada=:jornada  WHERE idObservador=:idObservacion';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':observacion', $observacion);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+
+            $consulta->execute();
+
+            $sql = 'UPDATE usuario SET foto=:foto WHERE documento=:documento';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':documento', $documento);
+            $consulta->bindParam(':foto', $foto);
+
+            $consulta->execute();
+            
+            echo '<script>alert("Foto actualizada con exito")</script>';
+
+            echo '<script>alert("Observación modificada con exito")</script>';
+            echo '<script>location.href="../Vista/html/Administrador/adminComun.php"</script>';
+
         }
 
         public function actualizarPerfil($telefono, $direccion, $correo, $documento){
@@ -638,7 +684,17 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM curso WHERE idCurso != '1' ORDER BY idCurso  DESC";
+            $sql = "SELECT
+            c.idCurso,
+            c.nombre,
+            c.jornada,
+            COUNT(ec.idEstudiante) AS cantidadEstudiantes
+            FROM curso c
+            LEFT JOIN estudianteCurso ec ON c.idCurso = ec.idCurso
+            GROUP BY c.idCurso, c.nombre, c.jornada
+            ORDER BY c.idCurso DESC
+            ";
+
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -659,7 +715,15 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM asignatura ORDER BY idAsignatura  DESC";
+            $sql = "SELECT 
+            a.idAsignatura, a.nombre AS nombreAsig,
+            COUNT(c.idCurso) AS cursos
+            FROM asignatura a 
+            LEFT JOIN clase cl ON a.idAsignatura = cl.idAsignatura
+            LEFT JOIN curso c ON cl.idCurso = c.idCurso
+            GROUP BY a.idAsignatura, a.nombre
+            ORDER BY a.idAsignatura DESC";
+
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -680,7 +744,14 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT * FROM aula ORDER BY idAula  DESC";
+            $sql = "SELECT 
+            a.idAula, a.nombre AS nombreAula,
+            COUNT(cl.idClase) AS clases
+            FROM aula a
+            LEFT JOIN clase cl ON a.idAula = cl.idAula
+            GROUP BY  a.idAula, a.nombre
+            ORDER BY a.idAula DESC";
+
             $consulta = $conexion->prepare($sql);
             $consulta->execute();
             
@@ -733,10 +804,10 @@
 
             $sql = 
             "SELECT 
-            o.observacion AS Observacion, o.idObservador,
-            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
+            o.observacion AS Observacion, o.idObservador AS idObservacion,
+            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor, a.documento AS idAutor,
             CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
-            CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
+            e.tipoDoc, e.documento AS idEstudiante,
             o.fecha AS FechaObservacion
             FROM 
             observador o
@@ -760,7 +831,7 @@
         }
         
         // Trae la observación de un estudiante
-        public function mostrarObservacionAdmin($documento, $idObservacion) {
+        public function mostrarObservacionAdmin($idEstudiante, $idObservacion) {
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -769,10 +840,10 @@
 
             $sql = 
             "SELECT 
-            o.observacion AS Observacion, o.idObservador,
-            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
-            CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
-            CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
+            o.observacion AS observacion, o.idObservador,
+            CONCAT(a.nombres, ' ', a.apellidos) AS nombreAutor, a.foto AS fotoAutor, a.documento AS idAutor,
+            CONCAT(e.nombres, ' ', e.apellidos) AS nombreEstudiante,
+            e.tipoDoc, e.documento AS idEstudiante,
             o.fecha AS FechaObservacion
             FROM observador o
             INNER JOIN usuario a ON o.idAutor = a.documento
@@ -780,7 +851,7 @@
             WHERE o.idEstudiante = :documento AND o.idObservador = :idObservacion";
 
             $consulta = $conexion->prepare($sql);
-            $consulta->bindParam(':documento', $documento);
+            $consulta->bindParam(':documento', $idEstudiante);
             $consulta->bindParam(':idObservacion', $idObservacion);
             $consulta->execute();
             
@@ -966,7 +1037,15 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'SELECT * FROM curso WHERE 1=1';
+            $sql = 'SELECT
+            c.idCurso,
+            c.nombre,
+            c.jornada,
+            COUNT(ec.idEstudiante) AS cantidadEstudiantes
+            FROM curso c
+            LEFT JOIN estudianteCurso ec ON c.idCurso = ec.idCurso
+            WHERE 1 = 1             
+            ';
             
             if (!empty($jornada) && $jornada != 'nada') {
                 $sql .= " AND jornada LIKE :jornada";
@@ -975,6 +1054,11 @@
             if (!empty($nombre)) {
                 $sql .= " AND nombre LIKE :nombre";
             }
+
+            $sql .= "
+            GROUP BY c.idCurso, c.nombre, c.jornada
+            ORDER BY c.idCurso DESC
+            ";
             
             $consulta = $conexion->prepare($sql);
             
@@ -1007,7 +1091,16 @@
             $conexion = $objConexion->get_conexion();
 
             $nombre = '%'.$nombre.'%';
-            $sql = 'SELECT * FROM asignatura WHERE nombre LIKE :nombre';
+            $sql = 'SELECT 
+            a.idAsignatura, a.nombre AS nombreAsig,
+            COUNT(c.idCurso) AS cursos
+            FROM asignatura a 
+            LEFT JOIN clase cl ON a.idAsignatura = cl.idAsignatura
+            LEFT JOIN curso c ON cl.idCurso = c.idCurso
+            WHERE a.nombre LIKE :nombre
+            GROUP BY a.idAsignatura, a.nombre
+            ';
+
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':nombre', $nombre);
             $consulta->execute();
@@ -1029,7 +1122,13 @@
             $conexion = $objConexion->get_conexion();
 
             $nombre = '%'.$nombre.'%';
-            $sql = 'SELECT * FROM aula WHERE nombre LIKE :nombre';
+            $sql = 'SELECT 
+            a.idAula, a.nombre AS nombreAula,
+            COUNT(cl.idClase) AS clases
+            FROM aula a
+            LEFT JOIN clase cl ON a.idAula = cl.idAula
+            WHERE a.nombre LIKE :nombre
+            GROUP BY  a.idAula, a.nombre';
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':nombre', $nombre);
             $consulta->execute();
@@ -1079,41 +1178,6 @@
 
             return $f2;
 
-        }
-
-        public function eliminarUsuAdmin($id) {
-            
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            $sql = 'DELETE FROM usuario WHERE documento = :id';
-            $consulta = $conexion->prepare($sql);
-            $consulta->bindParam(':id', $id);
-            $consulta->execute();
-            
-            echo '<script>alert("El usuario a sido eliminado.")</script>';
-            echo "<script>location.href='../Vista/html/administrador/adminUsuConsu.php'</script>";
-
-        }
-
-
-        public function actualizarComunDoc($titulo, $fecha, $descripcion, $archivo, $idComunicado, $idCurso, $idClase){
-            $objConexion = new Conexion();
-            $conexion = $objConexion->get_conexion();
-
-            $sql = 'UPDATE comunicado SET titulo=:titulo, fecha=:fecha, descripcion=:descripcion WHERE idComunicado=:idComunicado AND idCurso=:idCurso';
-            $consulta = $conexion->prepare($sql);
-            
-            $consulta->bindParam(':titulo', $titulo);
-            $consulta->bindParam(':fecha', $fecha);
-            $consulta->bindParam(':descripcion', $descripcion);            
-            $consulta->bindParam(':idComunicado', $idComunicado);     
-            $consulta->bindParam(':idCurso', $idCurso);     
-
-            $consulta->execute();
-            
-            echo '<script>alert("Comunicado actualizado correcamente")</script>';
-            echo '<script>location.href="../Vista/html/Docente/docComun.php?idClase='.$idClase.'"</script>'; 
         }
         
 
@@ -1693,6 +1757,25 @@
             echo '<script>alert("Tarea registrada exitosamente")</script>';
             echo '<script>location.href="../Vista/html/Docente/tareasDoc.php?idClase='.$idClase.'"</script>';
             
+        }
+
+        public function actualizarComunDoc($titulo, $fecha, $descripcion, $archivo, $idComunicado, $idCurso, $idClase){
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'UPDATE comunicado SET titulo=:titulo, fecha=:fecha, descripcion=:descripcion WHERE idComunicado=:idComunicado AND idCurso=:idCurso';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':titulo', $titulo);
+            $consulta->bindParam(':fecha', $fecha);
+            $consulta->bindParam(':descripcion', $descripcion);            
+            $consulta->bindParam(':idComunicado', $idComunicado);     
+            $consulta->bindParam(':idCurso', $idCurso);     
+
+            $consulta->execute();
+            
+            echo '<script>alert("Comunicado actualizado correcamente")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docComun.php?idClase='.$idClase.'"</script>'; 
         }
 
         public function ActualizarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase) {

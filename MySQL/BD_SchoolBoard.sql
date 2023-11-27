@@ -258,6 +258,19 @@ CREATE TABLE calificacion(
 INSERT INTO calificacion (idEntrega, nota) VALUES 
 (1, '4.5');
 
+-- Funcion para contar los estudiantes de un curso
+delimiter//
+create function contarestudiantescurso ()
+returns int deterministic
+begin
+declare cantidad int;
+select count(*) into cantidad from estudiante where idCurso = 801;
+return cantidad;
+end//
+delimiter ;
+select SB.contarestudiantescurso() as 'Cantidad Estudiantes del 801';
+
+
 
 -- Consulta para mostrar todas las entregas de los estudiantes para una tarea específica:
 -- SELECT e.idEntrega, e.idEstudiante, u.nombres, u.apellidos, e.fecha_entrega_est, e.descripcion, e.archivos, c.nota

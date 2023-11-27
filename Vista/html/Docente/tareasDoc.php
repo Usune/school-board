@@ -96,7 +96,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                                 
                             
                                 <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+                                <a href="adminUsu.php" class="filtrar">Limpiar</a>
 
                             </div>
 

@@ -3,6 +3,7 @@
     require_once ('../../../Modelo/consultas.php');
     require_once ('../../../Modelo/seguridadAdmin.php');
     require_once ('../../../Controlador/mostrarPerfil.php');
+    require_once ('../../../Controlador/mostrarAulaAdmin.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <script src="../../js/controlGeneral.js"></script>
     <title>Aulas Admin</title>
-</head>
+</head> 
 <body>
     
     <?php
@@ -33,21 +34,103 @@
             <section>
 
                 <h2>Administración de aulas</h2>
-                
-                <div class="contenedor">
-                    <div class="fila-cont">
-                        <a href="adminAulaRegistro.php">
-                            <img src="../../img/agregar.svg" alt="logo">
-                            <p>Crear Aulas</p>
-                        </a>
-
-                        <a href="adminAulaConsu.php">
-                            <img src="../../img/lupa.svg" alt="logo">
-                            <p>Consultar Aulas</p>
-                        </a>
-                    </div>
-
+                <div class="cabecera">
+                    <button type="button" class="desplegarModal btn-cabecera" modal="#modAula">
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modAula">Registrar
+                    </button>
                 </div>
+                
+                <div class="modal" id="modAula">
+
+                    <div class="modal_container">
+                        <button type="button" class="desplegarModal btn-cerrar" modal="#modAula"><img src="../../img/x.svg" alt="Salir" modal="#modAula"></button>
+                        <div class="formulario">
+                    
+                            <h3>Crear Aula</h3>
+
+                            <p class="recordatorio">Antes de registrar el aula, asegurese de que todos los campos son correctos.</p>
+                
+                            <form action="../../../Controlador/registrarAulaAdmin.php" method="post" id="formulario">
+
+                                <div class="fieldset">
+                                    <fieldset>
+                                        <legend id="nom">Nombre</legend>
+                                    </fieldset>
+                                    <input type="text" placeholder="Nombre" required legend="#nom"  id="campo1" name="nombre">
+                                </div>
+                
+                                <div class="fieldset">
+                                    <fieldset>
+                                        <legend id="veri">Verificación nombre</legend>
+                                    </fieldset>
+                                    <input type="text" placeholder="Verificación nombre" required legend="#veri" id="verify" verify="#campo1">
+                                </div>
+                
+                                <p id="texto"></p>
+                                
+                                <button type="submit" class="enviar">Registrar Aula</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Consultar aulas</h3>
+
+                <div class="opciones">
+                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
+                            alt="filtro">Filtrar</button>
+                </div>
+
+                <div id="filtro">
+                    <div class="cont-filtro">
+
+                        <form method="get">
+
+                            <div class="fieldset">
+                                <fieldset>
+                                    <legend id="nom">Nombre</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Nombre" legend="#nom" name="nombre">
+                            </div>
+
+                            <div class="fila-cont">
+                                <button type="submit" class="filtrar">Filtrar</button>
+                                <a href="adminAula.php" class="filtrar">Limpiar</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="tablas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Aula</th>
+                                <th>Clases</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
+
+                        <?php
+
+                            if(isset($_GET['nombre']) ){
+                                    
+                                filtrarAulas($_GET['nombre']);
+                                
+                            }else {
+
+                                cargarAulas();
+
+                            }
+                        ?>
+
+                    </table>
+                </div>
+
+                
         
             </section>
         </main>
@@ -64,5 +147,43 @@
         </div>
     </footer>
     
+    <script>
+
+        // Para que funcione se deben tener dos input, el input1 debe tener 'id="campo1"' y el input2 debe tener 'id="verify" verify="#campo1"'
+        // Y los select deben tener la clase 'veriSelect'
+        const formularioRegistroAdmin = (event) => {
+
+            event.preventDefault();
+            const form = event.target;
+            const text = document.getElementById('texto');
+
+            // Validamos que los campos del documento son iguales
+            let idcampo1 = document.getElementById('verify').getAttribute('verify');
+            let campo1 = document.querySelector(idcampo1).value;
+            let campo2 = document.getElementById('verify').value;
+
+            if (campo1 === campo2) {
+
+                    form.submit();
+                    return;
+
+            }else {
+
+                text.innerText = 'Verifique el nombre, los datos ingresados no son iguales';
+                document.getElementById('texto').style.visibility = 'visible';
+                return;
+
+            }
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+        // Se agrega la función verificar a todos los elementos con el 'id=formulario' que y se activa al intentar hacer un submit.
+        document.getElementById('formulario').addEventListener('submit', formularioRegistroAdmin);
+
+        });        
+
+    </script>
 </body>
 </html>

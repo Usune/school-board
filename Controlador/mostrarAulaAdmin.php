@@ -11,12 +11,14 @@
         if (!isset($consultas)) {
             echo '<h2> No hay aulas registradas con el nombre ingresado</h2>';
         } else {
-
+            $n = 0;
             foreach($consultas as $f) {
-
+                $n += 1;
                 echo '
                 <tr>
-                    <td>'.$f['nombre'].'</td>
+                    <td>'.$n.'</td>
+                    <td>'.$f['nombreAula'].'</td>
+                    <td>'.$f['clases'].'</td>
 
                     <td class="ultimo"><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
@@ -39,12 +41,14 @@
             echo '<h3>NO HAY AULAS EN EL SISTEMA CON EL NOMBRE INGRESADO</h3>';
 
         }else {
-
+            $n = 0;
             foreach($consulta as $f) {
-
+                $n += 1;
                 echo '
                 <tr>
-                    <td>'.$f['nombre'].'</td>
+                    <td>'.$n.'</td>
+                    <td>'.$f['nombreAula'].'</td>
+                    <td>'.$f['clases'].'</td>
 
                     <td class="ultimo"><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     

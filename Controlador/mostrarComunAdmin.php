@@ -63,36 +63,6 @@
 
     }
 
-    function filtrarAulas($nombre) {
-
-        $objConsultas = new Consultas();
-        $consulta = $objConsultas->filtrarAulas($nombre);
-
-        if(!isset($consulta)){
-
-            echo '<h3>NO HAY AULAS EN EL SISTEMA CON EL NOMBRE INGRESADO</h3>';
-
-        }else {
-
-            foreach($consulta as $f) {
-
-                echo '
-                <tr>
-                    <td>'.$f['nombre'].'</td>
-
-                    <td><a href="adminAulaModificar.php?id='.$f['idAula'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
-                    
-                </tr>
-                ';
-
-            }
-
-
-        }
-
-
-    }
-
     function cargarComunEditar(){
 
         // Aterrizamos la PK enviada desde la tabla
@@ -151,6 +121,8 @@
                             <label for="archivo">Seleccione un archivo</label>
                             <input type="file" accept=".pdf" name="archivo">
                         </div>
+
+                        <input type="text" value="'.$f['idComunicado'].'" required hidden name="idComunicado">
 
                         <p id="texto"></p>
                     

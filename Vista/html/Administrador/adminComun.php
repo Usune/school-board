@@ -4,6 +4,7 @@
     require_once ('../../../Modelo/seguridadAdmin.php');
     require_once ('../../../Controlador/mostrarPerfil.php');
     require_once ('../../../Controlador/mostrarComunAdmin.php');
+    require_once ('../../../Controlador/mostrarCurAdmin.php');
 ?>
 
 
@@ -35,6 +36,64 @@
         
             <section>
 
+                <h2>Administración de comunicados</h2>
+                <div class="cabecera">
+                    <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Crear
+                    </button>
+                </div>
+                
+                <div class="modal" id="modComun">
+
+                    <div class="modal_container">
+                        <button type="button" class="desplegarModal btn-cerrar" modal="#modComun"><img src="../../img/x.svg" alt="Salir" modal="#modComun"></button>
+                        <div class="formulario">
+                    
+                            <h3>Subir comunicado</h3>
+
+                            <p class="recordatorio">Antes de subir el comunicado, asegurese de que todos los campos son correctos.</p>
+                
+                            <form action="../../../Controlador/registrarComunAdmin.php" method="post" enctype="multipart/form-data" id="formulario">
+
+                                    <div class="fieldset">
+                                        <fieldset>
+                                            <legend id="tit">Título</legend>
+                                        </fieldset>
+                                        <input type="text" placeholder="Título" required legend="#tit" name="titulo">
+                                    </div>
+                    
+                                    <div class="textarea">
+                                        <label for="descripcion">Descripción</label>
+                                        <textarea id="descripcion" cols="30" rows="10" name="descripcion">Ingrese una descripción</textarea>
+                                    </div> 
+
+                                    <div class="fieldset_view">
+                                        <label for="rol">Curso</label>
+                                        <select class="veriSelect" required name="curso">
+                                            <option value="Seleccione" selected disabled>Seleccione una opción</option>
+                                            <option value="1">Todos</option>
+                                            
+                                            <?php
+                                                cargarCursosRegistro();
+                                            ?>
+                                    
+                                        </select>
+                                    </div>
+
+                                    <div class="file">
+                                        <label for="archivo">Archivo</label>
+                                        <input type="file" accept=".pdf" name="archivo">
+                                    </div>
+                
+                                    <p id="texto"></p>
+                                
+                                <button type="submit" class="enviar">Subir comunicado</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
                 <h2>Comunicados</h2>
 
                 <?php
@@ -42,16 +101,6 @@
                     cargarComunicados();
 
                 ?>
-                
-                <div class="contenedor">
-                    <div class="fila-cont">
-                        <a href="adminComunRegistrar.php">
-                            <img src="../../img/agregar.svg" alt="logo">
-                            <p>Subir<br> comunicado</p>
-                        </a>
-                    </div>
-
-                </div>
         
             </section>
         </main>

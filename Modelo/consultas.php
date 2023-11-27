@@ -1403,6 +1403,100 @@
 
         }
 
+        // Trae todos los comunicados registrados al curso del estudiante
+        public function cargarComunicadosEstu($idEstudiante) {
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql ="SELECT comunicado.*, u.*
+            FROM comunicado 
+            INNER JOIN curso ON curso.idCurso = comunicado.idCurso
+            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            INNER JOIN usuario e ON e.documento = estudiantecurso.idEstudiante
+            INNER JOIN usuario u ON u.documento = comunicado.idUsuario
+            WHERE e.documento = :idEstudiante";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $rows[] = $resultado;
+
+            }
+
+            return $rows;
+        }
+
+        // Funcion para mostrar info sobre el acudiente un estudiante
+        public function cargarAcudienteEstu($idEstudiante) {
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql ="SELECT acudiente.*
+            FROM acudiente
+            INNER JOIN estudianteacudiente ON estudianteacudiente.idAcudiente = acudiente.documento
+            INNER JOIN usuario ON usuario.documento = estudianteacudiente.idEstudiante
+            WHERE usuario.documento = :idEstudiante";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $rows[] = $resultado;
+
+            }
+
+            return $rows;
+        }
+
+
+        // Funcion para modificar info sobre el acudiente un estudiante
+        public function actualizacionAcudienteEst($idEstudiante, $nomAcu, $apeAcu, $docAcu, $celAcu, $corAcu) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $eliminarEstudianteAcudiente = "DELETE FROM estudianteAcudiente WHERE idAcudiente = :docAcu";
+            $statement = $conexion->prepare($eliminarEstudianteAcudiente);
+            $statement->bindParam(':docAcu', $docAcu); 
+            $statement->execute();
+
+            $sqlAcudiente = "UPDATE acudiente SET nombres=:nomAcu, apellidos=:apeAcu, documento=:docAcu, telefono=:celAcu, correo=:corAcu WHERE documento=:docAcu";
+
+            $statement = $conexion->prepare($sqlAcudiente);
+            $statement->bindParam(':nomAcu' , $nomAcu);
+            $statement->bindParam(':apeAcu' , $apeAcu);
+            $statement->bindParam(':docAcu' , $docAcu);
+            $statement->bindParam(':celAcu' , $celAcu);
+            $statement->bindParam(':corAcu' , $corAcu);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+
+            $sql = "INSERT INTO estudianteAcudiente (idAcudiente, idEstudiante) VALUES (:docAcu, :idEstudiante)";
+
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':docAcu' , $docAcu);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+          
+
+            echo '<script>alert("Actualización exitosa")</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/homeAcudiente.php"</script>';
+
+
+    
+        }
+
 
         // FUNCIONES MOSTRAR USUARIOS
         //  Función para mostrar todos los usuarios (Integrantes)

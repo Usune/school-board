@@ -33,10 +33,20 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
+      <a href="homeComunicados.php"> / Comunicados</a>
     </nav>
 
     <section>
-      
+
+      <h2>Comunicados</h2>
+      <div class="row centrado">
+
+        <?php mostrarComunicados(); ?>
+
+      </div>
+
+
+
 
     </section>
 

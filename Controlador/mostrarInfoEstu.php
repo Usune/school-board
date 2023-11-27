@@ -921,6 +921,131 @@
         }
     }
 
+    // Mostrar el acudiente
+    function mostrarAcudienteEst(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarAcudienteEstu($idEstudiante);
+
+        foreach ($filas as $f) {
+            echo '
+                <form action="../../../Controlador/actualizarAcudienteEst.php" method="post">
+
+                    <!-- general -->
+                    <div class="row g-0 card-usu">
+
+                    <div class="col-md-12 ">
+                        <div class="card-body">
+                        <h5 class="card-title">
+                            Información General
+                        </h5>
+                        <hr>
+                        <div class="row">
+                            <p class="card-text">
+                            Para garantizar una experiencia segura y efectiva, te animamos a ingresar información precisa
+                            sobre tu acudiente. La exactitud de estos datos es crucial para cualquier comunicación futura.
+                            </p>
+
+                            <div class="row g-2">
+                            <div class="col-md-6">
+                                <div class="fieldset">
+                                <fieldset>
+                                    <legend id="nomAcu">Nombres</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Nombres" required legend="#nomAcu" name="nomAcu" value="'.$f['nombres'].'">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="fieldset">
+                                <fieldset>
+                                    <legend id="apeAcu">Apellidos</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Apellidos" required legend="#apeAcu" name="apeAcu" value="'.$f['apellidos'].'">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="fieldset">
+                                <fieldset>
+                                    <legend id="docAcu">Documento</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Documento" required legend="#docAcu" name="docAcu" value="'.$f['documento'].'">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="fieldset">
+                                <fieldset>
+                                    <legend id="celAcu">Número de celular</legend>
+                                </fieldset>
+                                <input type="text" placeholder="Número de celular" required legend="#celAcu" name="celAcu" value="'.$f['telefono'].'">
+                                </div>
+                            </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+
+                    <br>
+
+                    <!-- correo -->
+                    <div class="row g-0 card-usu">
+
+                    <div class="col-md-12 ">
+                        <div class="card-body">
+                        <h5 class="card-title">
+                            Correo
+                        </h5>
+                        <hr>
+                        <div class="row">
+                            <p class="card-text">
+                            La dirección de correo es fundamental para que tu acudiente realice un seguimiento adecuado. Te
+                            instamos a ingresar esta información con precisión, ya que nos permite mantener una comunicación
+                            efectiva y garantizar el mejor soporte posible.
+                            </p>
+
+                            <div class="row g-2">
+
+                            <div class="col-md-12">
+                                <div class="fieldset">
+                                <fieldset>
+                                    <legend id="corAcu">Correo electrónico </legend>
+                                </fieldset>
+                                <input type="email" placeholder="Correo electrónico " required legend="#corAcu"
+                                    name="corAcu" value="'.$f['correo'].'">
+                                </div>
+                            </div>
+
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row botones">
+                        <div class="col-md-4">
+                        <button type="button" class="btnAtras" data-bs-dismiss="modal" aria-label="Close">
+                            <img src="../../img/volver.svg" alt="volver">
+                            Atrás
+                        </button>
+                        </div>
+                        <div class="col-md-8">
+                        <button type="submit" class="btnPrincipal">Modificar</button>
+                        </div>
+                    </div>
+
+                    </div>
+
+                </form>
+            ';
+        }
+    }
+
 
 
     // FUNCIONES MOSTRAR USUARIOS
@@ -1224,6 +1349,71 @@
         }
 
     }
+
+    // Mostrar todos los comunicados 
+    function mostrarComunicados(){
+        $idEstudiante = $_SESSION['id'];
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarComunicadosEstu($idEstudiante);
+
+        if(!isset($filas)){
+            echo '<h4 class="errorFiltro">No se encontraron comunicados registrados</h4>';
+        }else {
+
+            foreach($filas as $f) {
+
+                $fechaDB = $f['fecha'];
+                $fechaFormateada = date('M d, Y', strtotime($fechaDB));
+
+                echo '
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card card-comu">
+                        <div class="card-body ">
+                            <div class="row">
+                            <div class="col-md-12 card-icono">
+                                <img src="../../img/megafonoEst.svg" alt="Icono de Megafono">
+                            </div>
+                            </div>
+                            <div class="row infoUsu">
+                            <div class="col-md-2 ">
+                                <img src="'.$f['foto'].'" alt="Foto Usuario">
+                            </div>
+                            <div class="col-md-10 ">
+                                <p>
+                                <strong>
+                                    '.$f['nombres'].' '.$f['apellidos'].', <br>
+                                    Comunica :
+                                </strong>
+                                </p>
+                            </div>
+                            </div>
+                            <h5 class="card-title">
+                                '.$f['titulo'].'
+                            </h5>
+                            <p class="card-text">
+                            Estimada comunidad educativa,
+                            <br>
+                                '.$f['descripcion'].'
+                            </p>
+                            <div class="cont-archivo">
+                                <a href="../../Uploads/Comunicados/">Descargar</a>
+                            </div>
+                            <div class="fechaComu">
+                                <p>'.$fechaFormateada.'</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                ';
+
+             
+            }
+
+
+        }
+
+    }
+
 
   
 

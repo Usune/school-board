@@ -782,6 +782,95 @@ h3.texto {
     border-top: 1px solid var(--grisClaro);
 }
 
+
+/* Estilos Comunicados */
+.card-comu{
+    position: relative;
+    padding-top: 13%;
+    margin: 50px 0;
+    border-radius: 28px 0 28px 0;
+}
+
+.card-icono{
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.card-icono img {
+    width: 30%;
+}
+
+.infoUsu{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.infoUsu img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0  0 0 20px;
+}
+
+.card-comu h5{
+    padding: 20px 0 0 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+.card-comu p{
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.card-comu .cont-archivo{
+    width: 85%;
+    margin: 10px auto;
+    margin-bottom: 60px;
+}
+
+.card-comu .cont-archivo:hover{
+    width: 85%;
+    margin: 10px auto;
+    font-weight: 700;
+    background-color: var(--principal);
+    margin-bottom: 60px;
+}
+
+
+.fechaComu{
+    width: 35%;
+    background-color: var(--principal);
+    border-radius: 28px 0 28px 0 ;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+.acudiente .card-usu{
+    background-color: var(--blanco);
+    padding: 0 8px 30px 8px;
+}
+
+.acudiente .botones {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+/* Fin Estilos Comunicados */
+
 /* Media Queries */
 /* Phone */
 @media screen and (min-width: 300px) and (max-width: 800px) {
@@ -823,6 +912,11 @@ h3.texto {
         justify-content: left;
         align-items: center;
         padding: 10px;
+    }
+
+    /* fecha en card comunicados */
+    .fechaComu{
+        width: 50%;
     }
 
 

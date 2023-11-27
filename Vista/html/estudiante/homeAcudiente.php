@@ -7,16 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estudiante</title>
   <link rel="shortcut icon" href="../../img/logo.svg">
-
-
-
   <!-- link bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
-
-  <link rel="stylesheet" type="text/css" href="../../css/estudiante/estilosEstu.css">
+  <link rel="stylesheet" href="../../css/estudiante/estilosEstu.css">
+  <link rel="stylesheet" href="../../css/hola.css">
   <script src="../../js/controlGeneral.js"></script>
 
 
@@ -33,15 +30,30 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
+      <a href="homeObservador.php"> / Observador</a>
     </nav>
 
-    <section>
-      
+    <section class="acudiente">
+      <div class="container-fluid">
+        <h2>Acudiente</h2>
+        <div class="row" id="observador">
 
+          <!-- columna -card -->
+          <div class="col-md-12 ">
+
+          <?php mostrarAcudienteEst(); ?>
+
+            
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+      </div>
     </section>
-
-
-
 
   </main>
 

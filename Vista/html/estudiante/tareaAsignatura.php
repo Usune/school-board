@@ -53,12 +53,8 @@
 
 
 
-        <section>
+        <section class="tareaEntrega">
             <h2>Tarea</h2>
-            <p>
-                ¡Hola estudiante!. Recuerda subir tu tarea antes de la fecha límite. Es vital para tu evaluación.
-                ¡Gracias por tu colaboración!
-            </p>
 
             <!-- Card- Tarea -->
             <?php mostrarTareaConEntrega(); ?>

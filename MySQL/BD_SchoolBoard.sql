@@ -121,9 +121,12 @@ CREATE TABLE comunicado (
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
 );
 
-INSERT INTO comunicado(titulo, descripcion, archivos) VALUES 
-('Cancelación de clase', 'El día de mañana no habrá clase en porque se suspenderá el agua en el colegio','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
-('Entrega de boletines', 'La entrega de voletines se hará el día 20/11/2024 desde las 8:00a.m. En los proximos días el director de cada uno de los cursos estará comunicando la hora exacta de la reunión para cada estudiante.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf');
+INSERT INTO comunicado(idUsuario, idCurso, fecha, titulo, descripcion, archivos) VALUES
+(1023163093, 1, '2023-11-26 20:21:51', 'Innovación y Crecimiento', 'Estimada comunidad educativa, Nos complace compartir una emocionante noticia: el lanzamiento de nuestro nuevo programa, "Innovación y Crecimiento". Este proyecto refleja nuestro compromiso continuo con la excelencia académica y el desarrollo integral de nuestros estudiantes. Estamos emocionados por incorporar nuevas tecnologías y actividades que promuevan habilidades esenciales para el siglo XXI.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
+
+
+(NULL, NULL, NULL, 'Cancelación de clase', 'El día de mañana no habrá clase en porque se suspenderá el agua en el colegio','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
+(NULL, NULL, NULL, 'Entrega de boletines', 'La entrega de voletines se hará el día 20/11/2024 desde las 8:00a.m. En los proximos días el director de cada uno de los cursos estará comunicando la hora exacta de la reunión para cada estudiante.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf');
 
 CREATE TABLE clase (
     idClase INT AUTO_INCREMENT,
@@ -158,6 +161,8 @@ CREATE TABLE acudiente (
     correo VARCHAR(100),
     PRIMARY KEY (documento)
 );
+INSERT INTO acudiente (documento, nombres, apellidos, telefono, correo) VALUES
+(1024163098, 'Lilia', 'Alfonso', 3102274510, 'lilia@gmail.com');
 
 CREATE TABLE estudianteAcudiente (
     idEstudianteAcudiente INT AUTO_INCREMENT,
@@ -167,6 +172,8 @@ CREATE TABLE estudianteAcudiente (
     FOREIGN KEY (idAcudiente) REFERENCES acudiente(documento),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
 );
+INSERT INTO estudianteAcudiente (idAcudiente, idEstudiante) VALUES
+(1024163098, 1023163094);
 
 CREATE TABLE estudianteCurso (
     idestudianteCurso INT AUTO_INCREMENT,

@@ -59,5 +59,7 @@
             <!-- <li><a href="homeIntegrantes2.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li> -->
             <li><a href="homeObservador.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
             <li><a href="homeIntegrantes.php"><img src="../../img/profesores.svg" alt="logo">Integrantes</a></li>
+            <li><a href="homeComunicados.php"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
+            <li><a href="homeAcudiente.php"><img src="../../img/user.svg" alt="logo">Acudiente</a></li>
         </ul>
     </aside>

@@ -1,11 +1,3 @@
-<?php
-    require_once ('../../../Modelo/conexion.php');
-    require_once ('../../../Modelo/consultas.php');
-    require_once ('../../../Controlador/mostrarPerfil.php');
-    require_once ('../../../Controlador/mostrarUsuAdmin.php');
-    require_once ('../../../Controlador/mostrarInfoEstu.php');
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,6 +13,7 @@
 
   <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
   <link rel="stylesheet" href="../../css/estudiante/estilosEstu.css">
+  <link rel="stylesheet" href="../../css/hola.css">
   <script src="../../js/controlGeneral.js"></script>
 
 
@@ -37,30 +30,32 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeIntegrantes.php"> / Usuarios</a>
+      <a href="homeObservador.php"> / Observador</a>
     </nav>
 
-    <section>
+    <section class="acudiente">
+      <div class="container-fluid">
+        <h2>Acudiente</h2>
+        <div class="row" id="observador">
 
-      <h2>Administración de usuarios</h2>
+          <!-- columna -card -->
+          <div class="col-md-12 ">
 
-      <div class="contenedor">
-        <div class="fila-cont">
-          <a href="homeCompañeros.php">
-            <img src="../../img/lupa.svg" alt="lupa">
-            <p>Consultar Compañeros</p>
-          </a>
+          <?php mostrarAcudienteEst(); ?>
 
-          <a href="homeProfesores.php">
-            <img src="../../img/lupa.svg" alt="lupa">
-            <p>Consultar Profesores</p>
-          </a>
+            
+          </div>
+
+
+
         </div>
+
       </div>
 
+      </div>
     </section>
-  </main>
 
+  </main>
 
 
   </div>

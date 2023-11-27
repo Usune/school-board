@@ -3,7 +3,7 @@
     require_once ('../../../Modelo/consultas.php');
     require_once ('../../../Controlador/mostrarPerfil.php');
     require_once ('../../../Controlador/mostrarUsuAdmin.php');
-    require_once ('../../../Controlador/mostrarInfoEstudiante.php');
+    require_once ('../../../Controlador/mostrarInfoEstu.php');
 ?>
 
 <!DOCTYPE html>

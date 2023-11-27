@@ -128,7 +128,7 @@ function cargarComunicados() {
             echo
                        '<div class="file">
                             <label for="archivo">Seleccione un archivo</label>
-                            <input type="file" accept=".pdf" name="archivo">
+                            <input type="file" accept=".pdf, .docx" name="archivo">
                         </div>
 
                         <input style="display: none;" id="idClase" name="idClase" type="text" value="'.$idClase.'">

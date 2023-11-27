@@ -1,11 +1,3 @@
-<?php
-    require_once ('../../../Modelo/conexion.php');
-    require_once ('../../../Modelo/consultas.php');
-    require_once ('../../../Controlador/mostrarPerfil.php');
-    require_once ('../../../Controlador/mostrarUsuAdmin.php');
-    require_once ('../../../Controlador/mostrarInfoEstu.php');
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,12 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estudiante</title>
   <link rel="shortcut icon" href="../../img/logo.svg">
+
+
+
   <!-- link bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
-  <link rel="stylesheet" href="../../css/estudiante/estilosEstu.css">
+
+  <link rel="stylesheet" type="text/css" href="../../css/estudiante/estilosEstu.css">
   <script src="../../js/controlGeneral.js"></script>
 
 
@@ -37,30 +33,27 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeIntegrantes.php"> / Usuarios</a>
+      <a href="homeComunicados.php"> / Comunicados</a>
     </nav>
 
     <section>
 
-      <h2>Administración de usuarios</h2>
+      <h2>Comunicados</h2>
+      <div class="row centrado">
 
-      <div class="contenedor">
-        <div class="fila-cont">
-          <a href="homeCompañeros.php">
-            <img src="../../img/lupa.svg" alt="lupa">
-            <p>Consultar Compañeros</p>
-          </a>
+        <?php mostrarComunicados(); ?>
 
-          <a href="homeProfesores.php">
-            <img src="../../img/lupa.svg" alt="lupa">
-            <p>Consultar Profesores</p>
-          </a>
-        </div>
       </div>
 
-    </section>
-  </main>
 
+
+
+    </section>
+
+
+
+
+  </main>
 
 
   </div>

@@ -72,6 +72,8 @@
                                 </fieldset>
                                 <input type="text" placeholder="Nombre" required legend="#nom" name="nombre">
                             </div>
+                
+                            <p id="texto"></p>
                             
                             <button type="submit" class="enviar">Registrar curso</button>
                         </form>
@@ -197,6 +199,45 @@
             <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
         </div>
     </footer>
+
+    <script>
+
+        // Función para verificar que dos campos son iguales en un formulario y en caso de serlo no se envia el formulario, también que no se envien los select si una opción.
+        // Para que funcione se deben tener dos input, el input1 debe tener 'id="campo1"' y el input2 debe tener 'id="verify" verify="#campo1"'
+        // Y los select deben tener la clase 'veriSelect'
+        const formularioRegistroAdmin = (event) => {
+
+            event.preventDefault();
+            const form = event.target;
+            const text = document.getElementById('texto');        
+
+            // Validamos que los select estén seleccionados
+            let select2 = document.getElementsByName('jornada');
+            select2 = select2[0].value;
+
+            if (select2 !== 'Seleccione') {
+
+                form.submit();
+                return;
+
+            }else{
+
+                text.innerText = 'Seleccione una opción';
+                document.getElementById('texto').style.visibility = 'visible';
+                return;
+
+            }
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Se agrega la función verificar a todos los elementos con el 'id=formulario' que y se activa al intentar hacer un submit.
+            document.getElementById('formulario').addEventListener('submit', formularioRegistroAdmin);
+
+        });        
+
+    </script>
 
 </body>
 

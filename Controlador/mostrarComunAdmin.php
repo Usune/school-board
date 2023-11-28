@@ -46,11 +46,18 @@
                                     '.$f['descripcion'].'
                                 </p>
                             </div>
-                        </div>
+                        </div>';
+                        
+                        if ($f['archivo'] != '../../Uploads/Comunicados/'){
+                            echo'
                         <div class="boton">
                             <a href="'.$f['archivo'].'" download="comunicado"><img src="../../img/descargar.svg">Descargar</a>
-                        </div>
-                        <div class="boton">
+                        </div>   
+                            ';
+                        }
+                        
+                        echo
+                        '<div class="boton">
                             <a href="adminComunModificar.php?id='.$f['idComunicado'].'"><img src="../../img/edit.svg">Modificar</a>
                         </div>
                     </div>
@@ -126,7 +133,7 @@
 
                         <p id="texto"></p>
                     
-                    <button type="submit" class="enviar">Subir comunicado</button>
+                    <button type="submit" class="enviar">Modificar comunicado</button>
                 </form>
             ';
         }

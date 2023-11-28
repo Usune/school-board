@@ -15,7 +15,7 @@
     } else{
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/adminAsigRegistro.php"</script>';
+        echo '<script>location.href="../Vista/html/Administrador/adminAsig.php"</script>';
 
     }
 

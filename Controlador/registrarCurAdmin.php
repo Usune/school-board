@@ -16,7 +16,7 @@
     } else{
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/adminCurRegistro.php"</script>';
+        echo '<script>location.href="../Vista/html/Administrador/adminCurso.php"</script>';
 
     }
 

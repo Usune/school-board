@@ -14,6 +14,8 @@
     $descripcion = $_POST['descripcion'];
     $idCurso = $_POST['curso'];
 
+    echo $idCurso;
+
     if (strlen($titulo)>0 && strlen($descripcion)>0 && strlen($idUsuario)>0 && strlen($idCurso)>0) {
 
         // SE CREA LA VARIALE QUE GUARDA LA DIRECCIÓN DEL ARCHIVO DONDE QUEDA LA IMAGEN
@@ -31,7 +33,7 @@
     } else{
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/adminComunRegistrar.php"</script>';
+        echo '<script>location.href="../Vista/html/Administrador/adminComun.php"</script>';
 
     }
 

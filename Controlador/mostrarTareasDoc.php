@@ -154,7 +154,7 @@ function cargaTareasCalificaciones(){
     $consulta = $objConsulta->consultarTareasDoc($docente, $clase);
 
     if (!isset($consulta)){
-        echo'<h2>El docente no tiene tareas creadas.</h2>';
+        echo'<h2>Aun no hay entregas para calificar.</h2>';
 
     }else{
         foreach($consulta as $f){
@@ -187,7 +187,7 @@ function cargaTareasCalificaciones(){
                 </div>                
                 <div class="boton">
                     <a href="docCalificacionEntrega.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Calificar</a>
-                </div>
+                </div>               
             </div>
         </div>
             ';

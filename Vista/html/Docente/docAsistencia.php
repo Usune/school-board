@@ -13,9 +13,16 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profesor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
+    <style>
+        .isEmpty {
+            background: lightpink;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -103,45 +110,30 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                     </form>
 
                 </div>
-
-                <div class="tablas">
-                    <table>
-                        <caption>
-                            Lista de usuarios registrados
-                        </caption>
-                        <thead>
-                            <tr>
-                                <th>Tipo Documento</th>
-                                <th>Documento</th>
-                                <th>Apellidos</th>
-                                <th>Nombres</th>
-                                <th>Fecha</th>
-                                <th class="ultimo">Asistencia</th>
-                                <!-- <th colspan="2">Opciones</th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php cargarAsistencia(); ?>
-                        </tbody>
-                       
-                        <?php
-    
-                                    if( isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
-                                            
-                                        // filtrarUsuarios($_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
-                                      
-                                    }else {
-    
-                                        
-    
-                                    }
-                                ?>
-
-
-
-                    </table>
-                </div>
-
+                <form action="../../../Controlador/registrarAsistDoc.php" method="POST"> 
+                    <button type="submit" onclick="return CrearArray();"> registrar </button>                       
+                    <div class="tablas">
+                        <table id="tblAsistencia">
+                            <caption>
+                                Lista de usuarios registrados
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th>Tipo Documento</th>
+                                    <th>Documento</th>
+                                    <th>Apellidos</th>
+                                    <th>Nombres</th>  
+                                    <th class="ultimo">Asistencia</th>                                                                                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php cargarAsistencia(); ?>
+                            </tbody>                            
+                        </table>
+                    </div>
+                    <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
+                    <input type="text" style="display: none;" id="txtArray" name="txtArray">
+                </form>                
             </div>
         </section>
 
@@ -150,5 +142,37 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
     </main>
 
 </body>
+<script>
+    function CrearArray(){
+        var table = document.getElementById("tblAsistencia");
+        var nFilas = table.rows.length;
+        var datosAsistenciaArray = "";
+
+        for (var i = 1; i < nFilas; i++) {
+            datosAsistenciaArray += table.rows[i].children[1].innerText + ",";
+
+            var opciones = document.getElementsByName('rdblAsistencia' + i);
+            var valorSeleccionado = null;
+            
+            for (var j = 0; j < opciones.length; j++) {
+                if (opciones[j].checked) {
+                    datosAsistenciaArray += opciones[j].value + "|";   
+                    valorSeleccionado = opciones[j].value;                
+                }
+            }             
+            
+            if (valorSeleccionado == null) {
+                alert('Debe seleccionar una opción');
+                opciones[0].parentNode.parentNode.classList.add('isEmpty');
+                return false;
+            }
+            else{
+                opciones[0].parentNode.parentNode.classList.remove('isEmpty');
+            }        
+        }
+
+        document.getElementById("txtArray").value = datosAsistenciaArray.slice(0, -1);        
+    }
+</script>
 
 </html>

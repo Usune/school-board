@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/logo.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/administrador/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
@@ -23,13 +24,21 @@
 <body>
     
     <section class="registroPrimero">
-        <div class="cont-regisPrimero">
+    <div>
+    
+    
+
+        <div class="container-fluid registro"> 
+            <form class="row" action="../../../Controlador/actualizarPrimeraVez.php" method="post"
+                enctype="multipart/form-data" id="formularioGeneral">
+                        
+                <div class="cont-regisPrimero">
 
             <h2>Bienvenido a School Board</h2>
             
             <div class="formulario">
                 
-                <h3>Actualizar información personal</h3>
+                <h3 style="text-aling: center">Actualizar información personal</h3>
 
                 <p class="recordatorio">La clave nueva que debe ingresar debe tener como mínimo 8 caracteres.<br><br> Antes de actualizar sus datos, asegurese de que todos los campos son correctos.</p>
                 <!--  enctype="multipart/form-data" -->
@@ -95,13 +104,31 @@
                     </div>
 
                     <p id="texto"></p>
-                    
+                    <button type="button" class="btnAtras" onclick="btnToggle()"><img src="../../img/volver.svg" alt="volver">Atrás</button>
                     <button type="submit" class="enviar">Actualizar datos</button>
+                    
+        </div>
+        <div class="decoracion1">
+            <img src="../../img/mancha.svg" alt="decoración">
+        </div>
                 </form>
                 
             </div>
 
         </div>
+
+
+                    
+        </div>
+
+
+            </form>
+        </div>
+
+
+
+
+        
     </section>
 
     <hr>
@@ -114,8 +141,10 @@
         </div>
     </footer>
 
-    <script>
-        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+
+     
+
         // Función para verificar que dos campos son iguales en un formulario y en caso de serlo no se envia el formulario, también que no se envien los select si una opción.
         // Para que funcione se deben tener dos input, el input1 debe tener 'id="campo1"' y el input2 debe tener 'id="verify" verify="#campo1"'
         // Y los select deben tener la clase 'veriSelect'

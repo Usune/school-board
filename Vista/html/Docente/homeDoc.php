@@ -60,16 +60,39 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
             </nav>
 
             <section>
-                <h2>Clases</h2>
+                <!-- <h2>Clases</h2> -->
 
-                <div class="contenedor Doc">
-                    <div class="fila-cont">
-                        <?php
-                        traerCursos(); 
-                        ?>
-                    </div> 
+        <!-- breadcrumb -->
+        <nav class="nav-main">
+            <!-- <a href="homeDoc.php">Clases </a> -->
+        </nav>
+
+        <section>
+            <h2>Clases</h2>
+
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-sm-12 col-md-6">
+                        <!-- <div class="card"> -->
+                            <!-- <div class="card-body"> -->
+                                <div class="contenedor Doc">
+                            <div class="fila-cont">
+                                <?php
+                                traerCursos();
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- </div> -->
                 </div>
-            </section>
+            
+            </div>
+
+            </div>
+        </section>
+
+    </main>
+    </div>
 
         </main>
 </div>
@@ -84,6 +107,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
             <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

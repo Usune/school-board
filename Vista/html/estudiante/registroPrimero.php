@@ -35,7 +35,7 @@
             <img src="../../img/mancha.svg" alt="decoración">
         </div>
 
-        <div class="container-fluid registro">
+        <div class="container-fluid registro"> 
             <form class="row" action="../../../Controlador/actualizarPrimeraVezEst.php" method="post"
                 enctype="multipart/form-data" id="formularioGeneral">
 

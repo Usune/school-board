@@ -5,18 +5,30 @@
     require_once("../Modelo/consultas.php");
 
     // Aterrizamos en variables los datos ingresados por el usuario, los cuales viajan a traves del metodo POST y los name de los campos
-    $nombre = $_POST['nombre'];
+    $clase= $_POST['idClase'];    
+    $documento = "";
+    $asiste = "";
+    $datosArray = $_POST['txtArray'];
 
-    if (strlen($nombre)>0) {
+    $array_resultante = explode("|", $datosArray);
+    $longitud = count($array_resultante);
 
-        $objConsultas = new Consultas();
-        $result = $objConsultas->insertarAulaAdmin($nombre);
+    for ($i = 0; $i < $longitud; $i++) {
+        $arrayDatos = explode(",", $array_resultante[$i]);
+        $documento = $arrayDatos[0];
+        $asiste = $arrayDatos[1];
 
-    } else{
+        if (strlen($asiste)>0) {
 
-        echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/adminAulaRegistro.php"</script>';
-
+            $objConsultas = new Consultas();
+            $result = $objConsultas->registrarAsistencia($asiste, $clase, $documento);
+    
+        } else{
+    
+            echo '<script>alert("Por favor complete todos los campos")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docAsistencia.php?idClase='.$clase.'"</script>';
+    
+        }        
     }
-
+    return false;        
 ?>

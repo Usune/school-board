@@ -57,7 +57,7 @@ INSERT INTO asignatura (nombre) VALUES
 
 ('Ciencias'),
 ('Quimica'),
-('Fisica'),
+('Fisica'),                                                                                                                                                                         
 
 ('Español'),
 ('Ingles'),

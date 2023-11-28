@@ -82,7 +82,7 @@
 
                     if (isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
                             
-                        filtrarUsuariosReporte( $_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
+                        // filtrarUsuariosReporte( $_GET['nombres'], $_GET['apellidos'], $_GET['documento']);
                         
                     }else {
 

@@ -88,3 +88,11 @@
 
 
 } */
+
+.decoracion1 {
+    align-content: flex-start;
+}
+
+.registroPrimero {
+    height: none !important;
+}

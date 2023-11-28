@@ -18,6 +18,7 @@
     <script src="../../js/controlGeneral.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -39,7 +40,7 @@
         <section> 
             <h2>Calificar entregas</h2>
             <div class="tabla">
-                <div class="opciones">
+                
                     <div class="tablas">
                         <table>
                             <thead>
@@ -61,7 +62,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                
             </div>   
             
             <?php
@@ -101,7 +102,41 @@
                         </form>                 
                     </div>
                 </div>
-            </div>            
+            </div> 
+            
+             <!-- The Modal -->
+             <div class="modal" id="modalEditarCalificacion">
+                <div class="modal-dialog">
+                    <div class="modal-content">     
+                        <form action="../../../Controlador/actualizarNotaDoc.php" method="post" enctype="multipart/form-data" id="formulario">                           
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4 class="modal-title">Editar de calificación</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>                    
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Observacion:</label>
+                                    <textarea id="editarObservacion" name="editarObservacion" rows="4" cols="50" class="form-control" style="width: 100%;"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Calificación:</label>
+                                    <input type="text" class="form-control" id="editarCalificacion" name="editarCalificacion">
+                                </div>                              
+                                <input type="text" style="display: none;" id="idCalificacionEditar" name="idCalificacionEditar">
+                                <input type="text" style="display: none;" id="idTareaEditar" name="idTareaEditar">
+                                <input type="text" style="display: none;" id="idClaseEditar" name="idClaseEditar">
+                            </div>                    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button  type="submit" class="btn btn-light">Editar calificación</button>
+                                <button  type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                            </div>   
+                        </form>                 
+                    </div>
+                </div>
+            </div> 
             </div>
         </section>    
     </main>   
@@ -122,6 +157,15 @@
             document.getElementById("idTareaG").value = document.getElementById("idTarea").value;
             document.getElementById("idClaseG").value = document.getElementById("idClase").value;
         }
+
+        function cargaDatosCalificacion(fila, boton){
+            document.getElementById("idCalificacionEditar").value = boton.parentElement.children[2].innerText;
+            document.getElementById("editarObservacion").value = boton.parentElement.children[1].innerText;
+            document.getElementById("editarCalificacion").value = boton.parentElement.children[0].innerText;
+            document.getElementById("idTareaEditar").value = document.getElementById("idTarea").value;
+            document.getElementById("idClaseEditar").value = document.getElementById("idClase").value;
+        }
     </script>
+    
 </body>
 </html>

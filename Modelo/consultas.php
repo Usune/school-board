@@ -2027,7 +2027,7 @@
 
             $sql = 
             "SELECT entrega.idEntrega, CONCAT(usuario.nombres, ' ', usuario.apellidos) AS Estudiante, tarea.titulo, entrega.descripcion, 
-                    entrega.fecha_entrega_est, tarea.fecha_vencimiento, entrega.archivos, calificacion.nota
+                    entrega.fecha_entrega_est, tarea.fecha_vencimiento, entrega.archivos, calificacion.nota, calificacion.observacion, calificacion.idCalificacion
             FROM tarea INNER JOIN
                 entrega on entrega.idTarea=tarea.idTarea INNER JOIN
                 usuario on usuario.documento=entrega.idEstudiante LEFT JOIN
@@ -2064,6 +2064,43 @@
 
             echo '<script>alert("Entrega calificada")</script>';
             echo '<script>location.href="../Vista/html/Docente/docCalificacionEntrega.php?idTarea='.$idTarea.'&idClase='.$idClase.'"</script>';
+        }
+
+        public function editarNotaDoc($idCalificacion, $fecha_calificacion, $nota, $observacion, $idClase, $idTarea) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();           
+            
+            $sql = 'UPDATE calificacion SET fecha_calificacion=:fecha_calificacion, nota=:nota, observacion=:observacion WHERE idCalificacion=:idCalificacion';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':idCalificacion',$idCalificacion);
+            $consulta->bindParam(':fecha_calificacion',$fecha_calificacion);
+            $consulta->bindParam(':nota',$nota);
+            $consulta->bindParam(':observacion',$observacion);
+
+            $consulta->execute();
+
+            echo '<script>alert("Calificación modificada")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docCalificacionEntrega.php?idTarea='.$idTarea.'&idClase='.$idClase.'"</script>';
+        }
+
+        public function registrarAsistencia($Asistencia, $clase, $documento) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO asistencia (idClase, idEstudiante, estado) VALUES (:clase, :documento, :Asistencia)';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':Asistencia',$Asistencia);
+            $consulta->bindParam(':clase',$clase);
+            $consulta->bindParam(':documento',$documento);
+
+            $consulta->execute();
+
+            echo '<script>alert("Entrega asistencia registrada")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docAsistencia.php?idClase='.$clase.'"</script>';
         }
 
 

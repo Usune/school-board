@@ -25,8 +25,13 @@
                     '</td>
                     <td class="ultimo">' 
                     .
-                    ($f['nota'] != "" ? $f['nota'] :
-                    '<button onclick="cargaDatosEntrega(this.parentNode.parentNode)" type="button" class="btn btn-light" data-toggle="modal" data-target="#modalCalificación">Calificar</button>')
+                    ($f['nota'] != "" ? '<label>' . $f['nota'] . '</label>' . '<label style="display:none">' . $f['observacion'] .  '</label>'
+                    . '<label style="display:none">' . $f['idCalificacion'] .  '</label> 
+                    <button onclick="cargaDatosCalificacion(this.parentNode.parentNode, this)"  type="button" class="btn btn-light" title="Editar" data-toggle="modal" data-target="#modalEditarCalificacion">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>':
+                    '<button onclick="cargaDatosEntrega(this.parentNode.parentNode)" type="button" class="btn btn-light" data-toggle="modal" data-target="#modalCalificación">Calificar</button>                    
+                    ')
                     .                                                            
                     '</td>
                 </tr>';

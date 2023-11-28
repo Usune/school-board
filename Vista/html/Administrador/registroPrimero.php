@@ -88,9 +88,9 @@
                         </div>
 
                         <div class="file">
-                            <label for="archivo">Seleccione una foto</label>
-                            <input type="file" accept=".jpg, .jpeg, .png, .gif" name="foto" >
-                        </div>
+                            <label for="foto">Foto</label>
+                            <input type="file" accept=".jpg, .jpeg, .png, .gif" name="foto" legend="foto">
+                        </div>                        
 
                     </div>
 

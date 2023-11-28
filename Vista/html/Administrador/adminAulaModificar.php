@@ -33,7 +33,7 @@
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminAula.php"> / Aula</a>
-                <a href="adminAulaModificar.php"> / Modificar</a>
+                <a href=""> / Modificar</a>
             </nav>
 
             <section>

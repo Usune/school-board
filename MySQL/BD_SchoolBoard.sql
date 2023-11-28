@@ -27,10 +27,11 @@ INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos,
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
 
-(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', NULL),
+(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', '../../Uploads/Usuario/userNicole.jpg'),
 -- (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, '../../Uploads/Usuario/userNicole.jpg'),
 (1023163095, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', 'favian@gmail.com', '../../Uploads/Usuario/userFavian.jpg'),
 (1023163096, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Darwin', 'Urbina Lopez', 'darwin@gmail.com', '../../Uploads/Usuario/userDarwin.jpg'),
@@ -81,13 +82,14 @@ INSERT INTO curso (jornada, nombre) VALUES
 CREATE TABLE aula (
     idAula INT AUTO_INCREMENT,
     nombre VARCHAR(50),
+    capacidad VARCHAR(3),
     PRIMARY KEY (idAula)
 );
 
-INSERT INTO aula(nombre) VALUES 
-('119 Torre oriental'),
-('101  Festo'),
-('301 Torre occidental');
+INSERT INTO aula(nombre, capacidad) VALUES 
+('119 Torre oriental', '20'),
+('101  Festo', '30'),
+('301 Torre occidental', '25');
 
 CREATE TABLE observador (
     idObservador INT AUTO_INCREMENT,
@@ -119,9 +121,12 @@ CREATE TABLE comunicado (
     FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
 );
 
-INSERT INTO comunicado(titulo, descripcion, archivos) VALUES 
-('Cancelación de clase', 'El día de mañana no habrá clase en porque se suspenderá el agua en el colegio','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
-('Entrega de boletines', 'La entrega de voletines se hará el día 20/11/2024 desde las 8:00a.m. En los proximos días el director de cada uno de los cursos estará comunicando la hora exacta de la reunión para cada estudiante.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf');
+INSERT INTO comunicado(idUsuario, idCurso, fecha, titulo, descripcion, archivos) VALUES
+(1023163093, 1, '2023-11-26 20:21:51', 'Innovación y Crecimiento', 'Estimada comunidad educativa, Nos complace compartir una emocionante noticia: el lanzamiento de nuestro nuevo programa, "Innovación y Crecimiento". Este proyecto refleja nuestro compromiso continuo con la excelencia académica y el desarrollo integral de nuestros estudiantes. Estamos emocionados por incorporar nuevas tecnologías y actividades que promuevan habilidades esenciales para el siglo XXI.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
+
+
+(NULL, NULL, NULL, 'Cancelación de clase', 'El día de mañana no habrá clase en porque se suspenderá el agua en el colegio','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
+(NULL, NULL, NULL, 'Entrega de boletines', 'La entrega de voletines se hará el día 20/11/2024 desde las 8:00a.m. En los proximos días el director de cada uno de los cursos estará comunicando la hora exacta de la reunión para cada estudiante.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf');
 
 CREATE TABLE clase (
     idClase INT AUTO_INCREMENT,
@@ -138,14 +143,15 @@ CREATE TABLE clase (
 );
 
 INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula) VALUES
+-- Sexto, - Matematicas - Felipe - 119 
 (1, 1, 2, 1),
+-- Sexto, - Sociales - Angelica - festo 
+(1, 3, 1023163093, 2),
+-- Septimo - Matematicas - Felipe - 119
 (2 , 1, 2, 1),
-(1, 1, 2, 1),
 (2, 1, 2, 1),
 (3, 1, 2, 1),
-(1, 1, 2, 1),
 (3, 7, 1023163093, 2);
-
 
 CREATE TABLE acudiente (
     documento INT,
@@ -155,6 +161,8 @@ CREATE TABLE acudiente (
     correo VARCHAR(100),
     PRIMARY KEY (documento)
 );
+INSERT INTO acudiente (documento, nombres, apellidos, telefono, correo) VALUES
+(1024163098, 'Lilia', 'Alfonso', 3102274510, 'lilia@gmail.com');
 
 CREATE TABLE estudianteAcudiente (
     idEstudianteAcudiente INT AUTO_INCREMENT,
@@ -164,6 +172,8 @@ CREATE TABLE estudianteAcudiente (
     FOREIGN KEY (idAcudiente) REFERENCES acudiente(documento),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
 );
+INSERT INTO estudianteAcudiente (idAcudiente, idEstudiante) VALUES
+(1024163098, 1023163094);
 
 CREATE TABLE estudianteCurso (
     idestudianteCurso INT AUTO_INCREMENT,
@@ -185,8 +195,6 @@ INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES
 (3, 1023163097),
 (3, 1023163098),
 (3, 1023163099);
-
-
 
 CREATE TABLE asistencia (
     idAsistencia INT AUTO_INCREMENT,
@@ -233,7 +241,7 @@ CREATE TABLE entrega (
     idTarea INT,
     fecha_entrega_est DATETIME DEFAULT NOW(),
     descripcion VARCHAR(200),
-    archivos VARCHAR(400),
+    archivos VARCHAR(400) DEFAULT NULL,
     PRIMARY KEY (idEntrega),
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
@@ -242,8 +250,7 @@ CREATE TABLE entrega (
 INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea) VALUES 
 ('Entrega Nicole', NULL, 1023163094, 1),
 ('Entrega Erika', NULL, 1023163095, 1),
-('Entrega Tatiana', NULL, 1023163096, 1),
-('Entrega Estefani', NULL, 1023163097, 1);
+('Entrega Tatiana', NULL, 1023163096, 1);
 
 
 CREATE TABLE calificacion(
@@ -259,6 +266,19 @@ CREATE TABLE calificacion(
 
 INSERT INTO calificacion (idEntrega, nota) VALUES 
 (1, '4.5');
+
+-- Funcion para contar los estudiantes de un curso
+delimiter//
+create function contarestudiantescurso ()
+returns int deterministic
+begin
+declare cantidad int;
+select count(*) into cantidad from estudiante where idCurso = 801;
+return cantidad;
+end//
+delimiter ;
+select SB.contarestudiantescurso() as 'Cantidad Estudiantes del 801';
+
 
 
 -- Consulta para mostrar todas las entregas de los estudiantes para una tarea específica:

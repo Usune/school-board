@@ -3,21 +3,33 @@
     //  require_once() para enlazar las dependencias necesarias
     require_once("../Modelo/conexion.php");
     require_once("../Modelo/consultas.php");
+    require_once('../Modelo/seguridadAdmin.php');
 
     // Aterrizamos en variables los datos ingresados por el usuario, los cuales viajan a traves del metodo POST y los name de los campos
-    $nombre = $_POST['nombre'];
-    $jornada = $_POST['jornada'];
-    $idCurso = $_POST['idCurso'];
+    $observacion = $_POST['observacion'];
+    $idObservacion = $_POST['idObservacion'];
+    $idEstudiante = $_POST['idEstudiante'];
+    $idAutor = $_POST['idAutor'];
+    session_start();
 
-    if (strlen($nombre)>0 && strlen($jornada)>0 && strlen($idCurso)>0) {
+    if (strlen($observacion)>0 && strlen($idObservacion)>0 && strlen($idEstudiante)>0) {
 
-        $objConsultas = new Consultas();
-        $result = $objConsultas->actualizarCurAdmin($nombre, $jornada, $idCurso);
+        if ($idAutor == $_SESSION['id']){
+
+            $objConsultas = new Consultas();
+            $result = $objConsultas->actualizarObserAdmin($observacion, $idObservacion, $idEstudiante);
+
+        } else{
+
+            echo '<script>alert("No es posible modificar observaciones que no son de su autoria")</script>';
+            echo '<script>location.href="../Vista/html/Administrador/adminObser.php?id='.$idEstudiante.'"</script>';
+
+        }
 
     } else{
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/adminCurModificar.php?id='.$idCurso.'"</script>';
+        echo '<script>location.href="../Vista/html/Administrador/adminObserModificar.php?idObservacion='.$idObservacion.'&idEstudiante='.$idEstudiante.'"</script>';
 
     }
 

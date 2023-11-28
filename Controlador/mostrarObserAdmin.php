@@ -1,13 +1,6 @@
 <?php
 
-    // Condicional para la función consultarInfoObservacion() en el documento controlGeneral.js
-    if (isset($_GET['funcion']) && $_GET['funcion'] == 'cargarObserEditar'){
-        $idObservacion = $_POST['idObser'];
-        $resultado = cargarObserEditar($idObservacion);
-        echo $resultado;
-    }
-
-    // SE RECIBEN TODAS LAS CONSULTAS PARA MOSTRAR ASIGNATURAS
+    // SE RECIBEN TODAS LAS CONSULTAS PARA MOSTRAR OBSERVADOR
 
     // ESTA FUNCIÓN ES LA QUE SE LLAMA EN LA VISTA
 
@@ -15,8 +8,6 @@
         
         echo '
 
-
-          
         <div class="formulario">
             
             <h2>Observador</h2>
@@ -43,9 +34,9 @@
     }
     
     function cargarObservador() {
-
-        $documento = $_GET['id'];
         
+        $documento = $_GET['id'];
+        $idSesion = $_SESSION['id'];
         $objConsultas = new Consultas();
         $consultas = $objConsultas->mostrarUsuarioAdmin($documento);
 
@@ -105,7 +96,7 @@
             }
 
             $consultas = $objConsultas->mostrarObservadorAdmin($documento);
-    
+            
             if (!isset($consultas)) {
                 echo '<h3>El estudiante no tiene observaciones</h3>';
             } else {
@@ -137,12 +128,19 @@
                                         '.$f['Observacion'].'
                                     </p>
                                 </div>
-                            </div>
-                            <div class="boton">
-                                <button type="button" class="desplegarModal" modal="#modificar" data-id="'.$f['idObservador'].'">
-                                    <img src="../../img/edit.svg" alt="Agregar" modal="#modificar">Modificar
-                                </button>
-                            </div>
+                            </div>';
+
+                            if($idSesion == $f['idAutor']){
+                                echo'
+                                <div class="boton">
+                                    <a href="adminObserModificar.php?idObservacion='.$f['idObservacion'].'&idEstudiante='.$f['idEstudiante'].'">
+                                        <img src="../../img/edit.svg" alt="Modificar">Modificar
+                                    </a>
+                                </div>                                
+                                ';
+                            }
+
+                            echo '
                         </div>
                     </div>
 
@@ -247,72 +245,56 @@
     function cargarObserEditar(){
 
         // Aterrizamos la PK enviada desde la tabla
-        $id = $_POST['id']; 
+        $idEstudiante = $_GET['idEstudiante'];
+        $idObservacion = $_GET['idObservacion'];
 
         // Eviamos la PK a una función de la clase consultas
         $objConsultas = new Consultas();
-        $consulta = $objConsultas->mostrarComunicadoAdmin($id);
+        $consulta = $objConsultas->mostrarObservacionAdmin($idEstudiante, $idObservacion);
 
-        // Pintamos la información consultada en el artefacto (formulario)
-        foreach ($consulta as $f) {
-
+        foreach($consulta as $f) {
             echo '
-                    
-                <form action="../../../Controlador/actualizarComunAdmin.php" method="post" enctype="multipart/form-data" id="formulario">
+            <!-- breadcrumb -->  
+            <nav class="nav-main">
+                <a href="homeAdmin.php">Home</a>
+                <a href="adminObser.php"> / Observador</a>
+                <a href="adminObserModificar.php?idObservacion='.$idObservacion.'&idEstudiante='.$idEstudiante.'"> / Modificar</a>
+            </nav>
+        
+            <section>
+
+                <h2>Modificar observación</h2>
+                
+                <div class="formulario">
+
+                    <p class="recordatorio">Antes de modificar la observación, asegurese de que todos los campos son correctos.</p>
+                    <form action="../../../Controlador/actualizarObserAdmin.php" method="post" id="formulario">
 
                         <div class="fieldset">
                             <fieldset>
-                                <legend id="tit">Título</legend>
+                                <legend id="estu">Estudiante</legend>
                             </fieldset>
-                            <input type="text" value="'.$f['titulo'].'" placeholder="Título" required legend="#tit" name="titulo">
+                            <input type="text" value="'.$f['nombreEstudiante'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
                         </div>
-        
+
                         <div class="textarea">
-                            <label for="descripcion">Descripción</label>
-                            <textarea id="descripcion" cols="30" rows="10" name="descripcion"> '.$f['descripcion'].' </textarea>
-                        </div> 
-
-                        <div class="fieldset_view">
-                            <label for="rol">Curso</label>
-                            <select class="veriSelect" required name="curso">
-            ';
-
-            if($f['curso'] == 'Todos'){
-
-                echo '
-                            <option value="'.$f['idCurso'].'" selected>'.$f['curso'].'</option>
-                            <option value="1">Todos</option> 
-                ';
-
-            }else {
-
-                echo '
-                            <option value="'.$f['idCurso'].'" selected>'.$f['curso'].' - Jornada: '.$f['jornada'].'</option>
-                            <option value="1">Todos</option> 
-                ';
-
-            }
-                cargarCursosRegistro();
-
-            echo '            
-                            </select>
+                            <label for="obser">Observación</label>
+                            <textarea id="obser" cols="30" rows="10" name="observacion">'.$f['observacion'].'</textarea>
                         </div>
 
-                        <div class="file">
-                            <label for="archivo">Seleccione un archivo</label>
-                            <input type="file" accept=".pdf" name="archivo">
-                        </div>
+                        <input type="number" hidden value="'.$f['idObservador'].'" name="idObservacion">
 
-                        <p id="texto"></p>
+                        <input type="number" hidden value="'.$f['idEstudiante'].'" name="idEstudiante">
+
+                        <input type="number" hidden value="'.$f['idAutor'].'" name="idAutor">
                     
-                    <button type="submit" class="enviar">Subir comunicado</button>
-                </form>
+                        <button type="submit" class="enviar">Modificar Observación</button>
+                    </form>
+                </div>
             ';
         }
 
     }
-
-
 
 
 ?>

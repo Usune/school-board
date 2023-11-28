@@ -17,7 +17,8 @@
                 echo '
                 <tr>
                     <td>'.$n.'</td>
-                    <td>'.$f['nombre'].'</td>
+                    <td>'.$f['nombreAsig'].'</td>
+                    <td>'.$f['cursos'].'</td>
 
                     <td class="ultimo"><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     
@@ -46,7 +47,8 @@
                 echo '
                 <tr>
                     <td>'.$n.'</td>
-                    <td>'.$f['nombre'].'</td>
+                    <td>'.$f['nombreAsig'].'</td>
+                    <td>'.$f['cursos'].'</td>
 
                     <td class="ultimo"><a href="adminAsigModificar.php?id='.$f['idAsignatura'].'">Modificar<img src="../../img/edit.svg" alt="Modificar"></a></td>
                     

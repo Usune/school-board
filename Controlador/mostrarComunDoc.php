@@ -19,7 +19,7 @@ function cargarComunicados() {
         $consultas = $objConsultas->mostrarComunicadosAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay comunicados registrados con el nombre ingresado</h2>';
+            echo '<h2> No hay comunucados registrados con el nombre ingresado</h2>';
         } else {
 
             foreach($consultas as $f) {
@@ -128,7 +128,7 @@ function cargarComunicados() {
             echo
                        '<div class="file">
                             <label for="archivo">Seleccione un archivo</label>
-                            <input type="file" accept=".pdf" name="archivo">
+                            <input type="file" accept=".pdf, .docx" name="archivo">
                         </div>
 
                         <input style="display: none;" id="idClase" name="idClase" type="text" value="'.$idClase.'">

@@ -48,7 +48,7 @@
     }else {
 
         echo '<script>alert("Por favor complete todos los campos")</script>';
-        echo '<script>location.href="../Vista/html/Administrador/homDoc.php?id='.$documento.'"</script>';
+        echo '<script>location.href="../Vista/html/Estudiante/registroPrimero"</script>';
 
     }
 

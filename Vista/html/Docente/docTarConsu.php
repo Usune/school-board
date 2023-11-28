@@ -100,7 +100,7 @@ require_once ('../../../Controlador/mostrarTareasDoc.php');
                                 </div>
                             
                                 <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+                                <a href="adminUsu.php" class="filtrar">Limpiar</a>
 
                             </div>
 

@@ -1,7 +1,7 @@
 <?php
     include_once "../Modelo/conexion.php"; 
     include_once "../Modelo/consultas.php"; 
-    include_once "./mostrarInfoEstudiante.php"; 
+    include_once "./mostrarInfoEstu.php"; 
 
 
     // header("Content-Type: application/vnd.ms-excel; charset=UTF-8");

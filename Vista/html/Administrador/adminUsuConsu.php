@@ -32,7 +32,7 @@
         <nav class="nav-main">
             <a href="homeAdmin.php">Home</a>
             <a href="adminUsu.php"> / Usuarios</a>
-            <a href="adminUsuConsu.php"> / Consultar</a>
+            <a href="adminUsu.php"> / Consultar</a>
         </nav>
 
         <section>
@@ -113,7 +113,7 @@
                             </div>
 
                             <button type="submit" class="filtrar">Filtrar</button>
-                            <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+                            <a href="adminUsu.php" class="filtrar">Limpiar</a>
 
                         </div>
 
@@ -127,9 +127,6 @@
 
                 <div class="tablas">
                     <table>
-                        <caption>
-                            Lista de usuarios registrados
-                        </caption>
                         <thead>
                             <tr>
                                 <th>Tipo Documento</th>

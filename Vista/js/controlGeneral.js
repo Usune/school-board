@@ -17,34 +17,34 @@ const mostrarModal = (event) => {
 }
 
 // Función para mostrar el formulario de una observación a modificar
-const consultarInfoObservacion = (event) => {
+// const consultarInfoObservacion = (event) => {
 
-    let idObser = document.querySelector(event.target.getAttribute('data-id'));
+//     let idObser = document.querySelector(event.target.getAttribute('data-id'));
 
-    if (idObser !== null){
-        fetch('mostrarObserAdmin.php?funcion=' + cargarObserEditar, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'id=' + idObser,
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Mostrar el resultado en el modal
-            document.getElementById("resultadoConsulta").innerHTML = data;
-            document.getElementById("modificar").style.display = "block";
-        })
-        .catch(error => {
-            console.error('Error al realizar la solicitud:', error);
-        });
-    }
-}
+//     if (idObser !== null){
+//         fetch('mostrarObserAdmin.php?funcion=' + cargarObserEditar, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded',
+//             },
+//             body: 'id=' + idObser,
+//         })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Error en la respuesta del servidor');
+//             }
+//             return response.text();
+//         })
+//         .then(data => {
+//             // Mostrar el resultado en el modal
+//             document.getElementById("resultadoConsulta").innerHTML = data;
+//             document.getElementById("modificar").style.display = "block";
+//         })
+//         .catch(error => {
+//             console.error('Error al realizar la solicitud:', error);
+//         });
+//     }
+// }
 
 // Funciones para mostrar y quitar el legend de un input especifico al dar click en el input, para que eso funcione el input debe tener el atributo legend y dentro el id del legend al que está asociado, así mismo el legend debe tener el id especifico que tiene el atributo legend.
 const onFocus = (event) => {

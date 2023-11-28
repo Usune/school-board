@@ -74,13 +74,14 @@
             <tr>
                 <th>Curso</th>
                 <th>Jornada</th>
+                <th>Estudiantes</th>
             </tr>
 
                 <?php
 
                     if(isset($_GET['jornada']) || isset($_GET['nombre']) ){
                             
-                        filtrarCursos($_GET['jornada'], $_GET['nombre']);
+                        cargarCursosReportesFiltro($_GET['jornada'], $_GET['nombre']);
                         
                     }else {
 
@@ -122,7 +123,7 @@
     $dompdf->render();
 
     // ('Attachment' => false)  PARA QUE SE ABRA EN EL NAVEGADOR Y NO SE DESCARGUE
-    $dompdf->stream("reporteCursosRegistrados.pdf", array('Attachment' => false));
+    $dompdf->stream("reporteCursosRegistrados.pdf", array('Attachment' => true));
 
 
 ?>

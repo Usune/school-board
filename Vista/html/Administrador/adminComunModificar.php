@@ -32,8 +32,8 @@
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminUsu.php"> / Comunicados</a>
-                <a href="adminComunModifiar.php"> / Modificar</a>
+                <a href="adminComun.php"> / Comunicados</a>
+                <a href=""> / Modificar</a>
             </nav>
         
             <section>

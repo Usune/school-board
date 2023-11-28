@@ -20,6 +20,9 @@
     <title>Administrar usuarios</title>
 </head>
 <body>
+    <?php
+        include("menu-include.php");
+    ?>
     
     
         <main>

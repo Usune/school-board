@@ -37,7 +37,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
         <nav class="nav-main">
             <a href="homeDoc.php">Clases</a>
             <a href="adminUsu.php"> / Única-PRIMERO</a>
-            <a href="adminUsuConsu.php"> / Asistencia</a>
+            <a href="adminUsu.php"> / Asistencia</a>
         </nav>
 
         <section>
@@ -103,7 +103,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                             </div>
 
                             <button type="submit" class="filtrar">Filtrar</button>
-                            <a href="adminUsuConsu.php" class="filtrar">Limpiar</a>
+                            <a href="adminUsu.php" class="filtrar">Limpiar</a>
 
                         </div>
 

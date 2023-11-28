@@ -155,6 +155,51 @@ body {
     color: var(--principal);
 }
 
+/* Estilos para input file */
+#formulario .file {
+    height: 50px;
+    width: 300px;
+}
+
+#formulario .file label {
+    color: var(--grisOscuro);
+    background-color: var(--grisClaro);
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+#formulario .file label:has(~ textarea:focus) {
+    color: var(--principal);
+}
+
+.formulario input[type="file"]{
+    border: 2px solid var(--grisOscuro);
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+    padding: 0px;
+}
+
+#formulario input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--gris);
+    border: 1px solid var(--gris);
+    padding: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+#formulario input[type="file"]::-webkit-textfield-decoration-container {
+    color: var(--principal);
+}
+
+#formulario input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: var(--principal);
+    border: 1px solid var(--principal);
+}
+
+
+/* Estilos para input textarea */
 #formulario .textarea {
     display: flex;
     flex-direction: column;
@@ -209,33 +254,6 @@ body {
     border-radius: 50px;
 }
 
-#formulario .file {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0px;
-}
-
-.fila-cont .file {
-    margin: 10px !important;
-}
-
-#formulario .file label {
-    color: var(--grisOscuro);
-    padding-left: 10px;
-}
-
-#formulario .file input[type="file"]::-webkit-file-upload-button {
-    background-color: var(--gris);
-    padding: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 20px;
-}
-
-#formulario .file input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: var(--principal);
-}
-
 .formulario a {
     margin: 20px;
     text-decoration: none;
@@ -267,11 +285,11 @@ body {
 }
 
 .cont-filtro {
-    background-color: var(--beige);
+    background-color: var(--blanco);
     width: 650px;
     border-radius: 30px;
     position: relative;
-    z-index: 100;
+    z-index: 90;
     padding: 20px;
     box-shadow: 0 0 10px 5px var(--gris);
 }
@@ -279,7 +297,7 @@ body {
 .cont-filtro::after {
     content: "";
     position: absolute;
-    background-color: var(--beige);
+    background-color: var(--blanco);
     width: 30px;
     height: 30px;
     transform: rotate(45deg);
@@ -361,115 +379,6 @@ body {
 
 /* Fin estilo general para formularios */
 
-/* Estilo general de tablas */
-.tabla {
-    width: 70vw;
-    /* overflow: auto; */
-    background-color: transparent;
-    padding: 10px;
-    text-align: start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* min-width: 500px; */
-}
-
-.opciones {
-    width: 70vw;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.opciones a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: var(--negro);
-    padding: 5px 10px;
-    border-radius: 10px;
-}
-
-.opciones a img {
-    width: 30px;
-}
-
-.opciones a:hover {
-    background-color: var(--principal);
-}
-
-.opciones button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 10px;
-}
-
-.opciones button:hover {
-    background-color: var(--principal);
-}
-
-.opciones button img {
-    width: 30px;
-}
-
-a img {
-    width: 20px
-}
-
-/* border-collapse: collapse; Significa que no habrá espacio ni separación entre los bordes de las celdas adyacentes */
-/* .tabla table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.tabla table caption {
-    font-size: 18px;
-    padding: 10px;
-    font-weight: bold;
-}
-
-.tabla table tr:nth-child(odd) {
-    background-color: var(--grisClaro);
-}
-
-.tabla table tr:nth-child(even) {
-    background-color: var(--gris);
-}
-
-.tabla table tr th {
-    font-size: 16px;
-    padding: 10px;
-    max-width: 200px;
-    border: none;
-    background-color: var(--principal);
-    filter: brightness(0.9);
-    text-align: start;
-}
-
-.tabla tr td {
-    font-size: 15px;
-    padding: 10px;
-    max-width: 200px;
-    min-width: 100px;
-    border: none;
-}
-
-.tabla tr td a {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    text-decoration: none;
-    color: var(--negro);
-} */
-
-/*Fin estilo general de tablas */
 
 /* Estilos barra de navegación principal (.nav-pri)*/
 .nav-pri {
@@ -936,6 +845,17 @@ hr {
     padding: 50px;
 }
 
+.cont-regisPrimero .formulario{
+    width: 600px !important;
+}
+
+/* .form-regisPrimero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+} */
+
 /* Fin Estilos ACTUALIZAR DATOS PRIMERA VEZ */
 
 /* Estilos PERFIL USUARIO */
@@ -1039,6 +959,7 @@ hr {
 }
 
 /* Fin Estilos PERFIL USUARIO */
+
 
 /* ESTILOS CABECERA */
 .btn-cabecera {
@@ -1197,16 +1118,6 @@ hr {
     margin-top: 5px;
 }
 
-
-
-
-
-
-
-
-
-/* Revisar */
-
 .card-tarea .card-info .fechas {
     padding: 8px;
     border-radius: 10px;
@@ -1346,10 +1257,11 @@ hr#fechas {
 */
 
 /* Espacio entre filas */
+
 .tablas {
     /* display: flex; */
-    padding: 0 0 0 20px;
-    width: 70vw;
+    /* padding: 0 0 0 20px; */
+    width: 100%;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
@@ -1431,5 +1343,57 @@ hr#fechas {
     background-color: var(--principal);
 }
 
-
 /* Fin Estilos TABLAS */
+
+/* Estuilos opciones del main */
+
+.opciones {
+    width: 70vw;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.opciones a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--negro);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.opciones a img {
+    width: 30px;
+}
+
+.opciones a:hover {
+    background-color: var(--principal);
+}
+
+.opciones button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.opciones button:hover {
+    background-color: var(--principal);
+}
+
+.opciones button img {
+    width: 30px;
+}
+
+a img {
+    width: 20px
+}
+
+/* Fin estilos opciones del main */

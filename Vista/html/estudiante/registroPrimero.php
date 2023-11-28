@@ -3,7 +3,7 @@
     require_once('../../../Modelo/conexion.php');
     require_once('../../../Modelo/consultas.php');
     require_once('../../../Controlador/mostrarPerfil.php');
-    require_once('../../../Controlador/mostrarInfoEstudiante.php');
+    require_once('../../../Controlador/mostrarInfoEstu.php');
 ?>
 
 <!DOCTYPE html>
@@ -178,7 +178,7 @@
                                         <legend id="fileLegen">Foto de perfil</legend>
                                     </fieldset>
                                     <input type="file" id="fileInput" class="fileInput" accept=".jpg, .jpeg, .png, .gif"
-                                        name="foto" onchange="checkFile()"  legend="#fileLegen" placeholder="hola">
+                                        name="foto" onchange="checkFile()"  legend="#fileLegen" >
                                     <label for="fileInput" class="fileLabel">Foto de perfil</label>
                                 </div>
                             </div>

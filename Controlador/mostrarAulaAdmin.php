@@ -3,7 +3,7 @@
     // SE RECIBEN TODAS LAS CONSULTAS PARA MOSTRAR AULAS
 
     // ESTA FUNCIÓN ES LA QUE SE LLAMA EN LA VISTA
-    function cargarAulas() {
+    function cargarAulas() { 
         
         $objConsultas = new Consultas();
         $consultas = $objConsultas->mostrarAulasAdmin();
@@ -100,6 +100,27 @@
 
                 </form>
             ';
+        }
+
+    }
+
+    function cargarAulasRegistro(){
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->mostrarAulasAdmin();
+
+        if (!isset($consultas)) {
+            echo '<option value="">Sin registros</option>';
+        } else {
+
+            foreach($consultas as $f) {
+
+                echo '
+                    <option value="'.$f['idAula'].'">'.$f['nombreAula'].'</option>
+                ';
+
+            }
+
         }
 
     }

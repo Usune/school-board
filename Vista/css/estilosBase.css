@@ -157,8 +157,9 @@ body {
 
 /* Estilos para input file */
 #formulario .file {
-    height: 50px;
+    height: 60px;
     width: 300px;
+    margin-bottom: 10px;
 }
 
 #formulario .file label {
@@ -281,7 +282,7 @@ body {
     display: none;
     margin-bottom: 20px;
     transition: 1s;
-    width: 70vw;
+    width: 95%;
 }
 
 .cont-filtro {
@@ -962,10 +963,14 @@ hr {
 
 
 /* ESTILOS CABECERA */
+.cabecera {
+    position: relative;
+    width: 95%;
+    border: none;
+}
+
 .btn-cabecera {
-    position: absolute;
-    top: 25px;
-    right: 0;
+    float: right;
     text-decoration: none;
     color: var(--negro);
     background-color: var(--principal);
@@ -984,16 +989,6 @@ hr {
 .cabecera button {
     border: none;
     cursor: pointer;
-}
-
-.cabecera {
-    position: relative;
-    width: 70%;
-    padding-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    border: none;
 }
 
 .cabecera p {
@@ -1207,6 +1202,7 @@ hr#fechas {
     left: 0;
     background-color: #111111bd;
     display: none;
+    z-index: 200;
 }
 
 .modal_container {
@@ -1224,21 +1220,17 @@ hr#fechas {
     text-decoration: none;
     color: var(--negro);
     background-color: transparent;
-    border: 1px solid var(--negro);
-    border-radius: 20px;
     font-size: 14px;
     width: 25px;
     height: 25px;
     margin-left: 580px;
     margin-top: 20px;
-    transition: 0.3s;
     cursor: pointer;
+    border: none;
 }
 
 .btn-cerrar:hover {
     filter: brightness(1);
-    background-color: var(--rojo);
-    border: 1px solid var(--rojo);
 }
 
 .show_modal {
@@ -1348,8 +1340,8 @@ hr#fechas {
 /* Estuilos opciones del main */
 
 .opciones {
-    width: 70vw;
-    margin-bottom: 20px;
+    width: 95%;
+    margin: 20px 0;
     display: flex;
     justify-content: space-between;
 }
@@ -1397,3 +1389,116 @@ a img {
 }
 
 /* Fin estilos opciones del main */
+
+/* ESTILOS TARJETAS CLASES ADMINISTRADOR */
+.contClases{
+    width: 1100px;
+    text-align: right;
+}
+
+.cardClases{
+    border: 2px solid var(--blanco);
+    width: 322px;
+    background-color: var(--blanco);
+    box-shadow: 0px 0px 10px 5px var(--gris);
+    margin: 20px;
+}
+
+.cardClasesImg{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cardClasesImg img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.cardClasesImg p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.cardClasesInfo {
+    margin: 20px;
+}
+
+.cardClasesInfo p{
+    text-align: start;
+}
+
+.infoClase {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.infoImg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--gris);
+    opacity: 0.7;
+    margin-right: 20px;
+}
+
+.infoImg img{
+    width: 30px;
+}
+
+.infoTexto .tipo{
+    font-size: 15px;
+    color: var(--grisOscuro);
+    text-align: start;
+}
+
+.cardClasesOpciones{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.cardClasesOpciones a{
+    background-color: var(--gris);
+    padding: 10px;
+    margin: 0 30px;
+    text-decoration: none;
+    color: var(--negro);
+    border: 1px solid var(--gris);
+    border-radius: 20px;
+}
+
+.cardClasesOpciones a img{
+    vertical-align: bottom;
+}
+
+.cardClasesOpciones a:hover{
+    background-color: var(--principal);
+    border: 1px solid var(--principal);
+    filter: brightness(0.9);
+}
+
+.filaClases {
+    display: flex;
+    align-items: end;
+}
+
+@media (max-width: 1370px) {
+    .filaClases {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+
+/* FIN ESTILOS TARJETAS CLASES ADMINISTRADOR */

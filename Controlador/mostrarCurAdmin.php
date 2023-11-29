@@ -111,7 +111,7 @@
         $consultas = $objConsultas->mostrarCursosAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay cursos registrados </h2>';
+            echo '<option value="">Sin registros</option>';
         } else {
 
             foreach($consultas as $f) {

@@ -78,7 +78,7 @@
                 
                                 <div class="textarea">
                                     <label for="obser">Observación</label>
-                                    <textarea id="obser" cols="30" rows="10" name="observacion">Ingrese la observación</textarea>
+                                    <textarea id="obser" cols="30" rows="10" name="observacion" placeholder="Ingrese la observación"></textarea>
                                 </div>
             
                                 <p id="texto"></p>

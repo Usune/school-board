@@ -64,6 +64,12 @@
                             <p>Comunicados</p>            
                         </a>
                     </div>
+                    <div class="fila-cont">
+                        <a href="adminObser.php">                
+                            <img src="../../img/observador.svg" alt="logo">
+                            <p>Observador</p>
+                        </a>
+                    </div>
                 </div>
             </section>
         </main>

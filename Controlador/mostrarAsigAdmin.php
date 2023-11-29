@@ -3,7 +3,7 @@
     // SE RECIBEN TODAS LAS CONSULTAS PARA MOSTRAR ASIGNATURAS
 
     // ESTA FUNCIÓN ES LA QUE SE LLAMA EN LA VISTA
-    function cargarAsignaturas() {
+    function cargarAsignaturas() { 
         
         $objConsultas = new Consultas();
         $consultas = $objConsultas->mostrarAsignaturasAdmin();
@@ -100,6 +100,27 @@
 
                 </form>
             ';
+        }
+
+    }
+
+    function cargarAsignaturasRegistro(){
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->mostrarAsignaturasAdmin();
+
+        if (!isset($consultas)) {
+            echo '<option value="">Sin registros</option>';
+        } else {
+
+            foreach($consultas as $f) {
+
+                echo '
+                    <option value="'.$f['idAsignatura'].'">'.$f['nombreAsig'].'</option>
+                ';
+
+            }
+
         }
 
     }

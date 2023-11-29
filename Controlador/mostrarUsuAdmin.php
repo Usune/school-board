@@ -274,5 +274,26 @@
 
     }
 
+    function cargarDocentesRegistro(){
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->mostrarDocentesAdmin();
+
+        if (!isset($consultas)) {
+            echo '<option value="">Sin registros</option>';
+        } else {
+
+            foreach($consultas as $f) {
+
+                echo '
+                    <option value="'.$f['documento'].'">'.$f['nombres'].' '.$f['apellidos'].'</option>
+                ';
+
+            }
+
+        }
+
+    }
+
 
 ?>

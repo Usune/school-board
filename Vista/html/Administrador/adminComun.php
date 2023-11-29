@@ -52,6 +52,7 @@
                             <h3>Subir comunicado</h3>
 
                             <p class="recordatorio">Antes de subir el comunicado, asegurese de que todos los campos son correctos.</p>
+                            <p class="recordatorio">Recuerde que el sistema solo acepta archivos PDF.</p>
                 
                             <form action="../../../Controlador/registrarComunAdmin.php" method="post" enctype="multipart/form-data" id="formulario">
 
@@ -64,7 +65,7 @@
                     
                                     <div class="textarea">
                                         <label for="descripcion">Descripción</label>
-                                        <textarea id="descripcion" cols="30" rows="10" name="descripcion">Ingrese una descripción</textarea>
+                                        <textarea id="descripcion" cols="30" rows="10" name="descripcion" placeholder="Ingrese una descripción"></textarea>
                                     </div> 
 
                                     <div class="fieldset_view">
@@ -116,6 +117,44 @@
             <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
         </div>
     </footer>
-    
+
+    <script>
+
+        // Función para verificar que dos campos son iguales en un formulario y en caso de serlo no se envia el formulario, también que no se envien los select si una opción.
+        // Para que funcione se deben tener dos input, el input1 debe tener 'id="campo1"' y el input2 debe tener 'id="verify" verify="#campo1"'
+        // Y los select deben tener la clase 'veriSelect'
+        const formularioRegistroAdmin = (event) => {
+
+            event.preventDefault();
+            const form = event.target;
+            const text = document.getElementById('texto');        
+
+            // Validamos que los select estén seleccionados
+            let select2 = document.getElementsByName('curso');
+            select2 = select2[0].value;
+
+            if (select2 !== 'Seleccione') {
+
+                form.submit();
+                return;
+
+            }else{
+
+                text.innerText = 'Seleccione una opción';
+                document.getElementById('texto').style.visibility = 'visible';
+                return;
+
+            }
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Se agrega la función verificar a todos los elementos con el 'id=formulario' que y se activa al intentar hacer un submit.
+            document.getElementById('formulario').addEventListener('submit', formularioRegistroAdmin);
+
+        });
+    </script>
+        
 </body>
 </html>

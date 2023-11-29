@@ -227,6 +227,27 @@
 
         }
 
+        public function insertarClaseAdmin($idCurso, $idAsignatura, $idDocente, $idAula, $descripcion) {
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'INSERT INTO clase (idCurso, idAsignatura, idDocente, idAula, descripción) VALUES (:idCurso, :idAsignatura, :idDocente, :idAula, :descripcion)';
+            $consulta = $conexion->prepare($sql);
+
+            $consulta->bindParam(':idCurso',$idCurso);
+            $consulta->bindParam(':idAsignatura',$idAsignatura);
+            $consulta->bindParam(':idDocente',$idDocente);
+            $consulta->bindParam(':idAula',$idAula);
+            $consulta->bindParam(':descripcion',$descripcion);
+
+            $consulta->execute();
+
+            echo '<script>alert("Clase creada correctamente")</script>';
+            echo '<script>location.href="../Vista/html/Administrador/adminClase.php"</script>';
+
+        }
+
         public function actualizarUsuAdmin($nombres, $apellidos, $rol, $tipoDoc, $documento, $estado, $claveMD, $id, $idCurso){
             $f = null;
 
@@ -511,29 +532,40 @@
             
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
+            // Se evalua que se haya enviado un archivo para saber si se debe modificar o no.
+            if ($archivo == "../../Uploads/Comunicados/"){
                 
-            $sql = 'UPDATE comunicado SET titulo=:titulo, descripcion=:descripcion, jornada=:jornada, jornada=:jornada  WHERE idObservador=:idObservacion';
-            $consulta = $conexion->prepare($sql);
+                $sql = 'UPDATE comunicado SET idUsuario=:idUsuario, idCurso=:idCurso, titulo=:titulo, descripcion=:descripcion WHERE idComunicado=:idComunicado';
+
+                $consulta = $conexion->prepare($sql);
+    
+                $consulta->bindParam(':idUsuario', $idAutor);
+                $consulta->bindParam(':idCurso', $idCurso);
+                $consulta->bindParam(':titulo', $titulo);
+                $consulta->bindParam(':descripcion', $descripcion);
+                $consulta->bindParam(':idComunicado', $idComunicado);
+    
+                $consulta->execute();
+                echo '<script>alert("Comunicado modificado con exito(Sin archivo)")</script>';
+
+            } else{
+                
+                $sql = 'UPDATE comunicado SET idUsuario=:idUsuario, idCurso=:idCurso, titulo=:titulo, descripcion=:descripcion, archivos=:archivo WHERE idComunicado=:idComunicado';
+
+                $consulta = $conexion->prepare($sql);
+    
+                $consulta->bindParam(':idUsuario', $idAutor);
+                $consulta->bindParam(':idCurso', $idCurso);
+                $consulta->bindParam(':titulo', $titulo);
+                $consulta->bindParam(':descripcion', $descripcion);
+                $consulta->bindParam(':archivo', $archivo);
+                $consulta->bindParam(':idComunicado', $idComunicado);
+    
+                $consulta->execute();
+                echo '<script>alert("Comunicado modificado con exito (Con archivo)")</script>';
+
+            }
             
-            $consulta->bindParam(':observacion', $observacion);
-            $consulta->bindParam(':idObservacion', $idObservacion);
-            $consulta->bindParam(':idObservacion', $idObservacion);
-            $consulta->bindParam(':idObservacion', $idObservacion);
-            $consulta->bindParam(':idObservacion', $idObservacion);
-
-            $consulta->execute();
-
-            $sql = 'UPDATE usuario SET foto=:foto WHERE documento=:documento';
-            $consulta = $conexion->prepare($sql);
-            
-            $consulta->bindParam(':documento', $documento);
-            $consulta->bindParam(':foto', $foto);
-
-            $consulta->execute();
-            
-            echo '<script>alert("Foto actualizada con exito")</script>';
-
-            echo '<script>alert("Observación modificada con exito")</script>';
             echo '<script>location.href="../Vista/html/Administrador/adminComun.php"</script>';
 
         }
@@ -676,6 +708,28 @@
 
         }
 
+        // Trae todos los usuarios con rol docente registrados
+        public function mostrarDocentesAdmin() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM usuario WHERE rol = 'Docente' ORDER BY fechaCreacion DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
         // Trae todos los cursos registrados
         public function mostrarCursosAdmin() {
             $f = null;
@@ -691,6 +745,7 @@
             COUNT(ec.idEstudiante) AS cantidadEstudiantes
             FROM curso c
             LEFT JOIN estudianteCurso ec ON c.idCurso = ec.idCurso
+            WHERE c.idCurso != 1
             GROUP BY c.idCurso, c.nombre, c.jornada
             ORDER BY c.idCurso DESC
             ";
@@ -762,6 +817,42 @@
             }
 
             return $f;
+        }
+
+        public function mostrarClasesAdmin() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT
+            cl.idClase,
+            u.nombres AS nombreDocente, u.foto,
+            cl.descripción AS nombreClase,
+            a.nombre AS nombreAula,
+            asig.nombre AS nombreAsignatura,
+            curso.nombre AS nombreCurso,
+            COUNT(ec.idEstudiante) AS cantidadEstudiantes
+            FROM clase cl
+            JOIN usuario u ON cl.idDocente = u.documento
+            JOIN aula a ON cl.idAula = a.idAula
+            JOIN asignatura asig ON cl.idAsignatura = asig.idAsignatura
+            JOIN curso ON cl.idCurso = curso.idCurso
+            LEFT JOIN estudianteCurso ec ON cl.idCurso = ec.idCurso
+            GROUP BY cl.idClase, u.nombres, u.foto, cl.descripción, a.nombre, asig.nombre, curso.nombre
+            ORDER BY cl.idClase DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
         }
 
         // Trae todos los comunicados registrados

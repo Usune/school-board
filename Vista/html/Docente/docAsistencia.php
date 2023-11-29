@@ -110,8 +110,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                     </form>
 
                 </div>
-                <form action="../../../Controlador/registrarAsistDoc.php" method="POST"> 
-                    <button type="submit" onclick="return CrearArray();"> registrar </button>                       
+                <form action="../../../Controlador/registrarAsistDoc.php" method="POST">                                       
                     <div class="tablas">
                         <table id="tblAsistencia">
                             <caption>
@@ -133,6 +132,9 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                     </div>
                     <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
                     <input type="text" style="display: none;" id="txtArray" name="txtArray">
+                    <div style="float:right">
+                        <button type="submit" class="btn btn-info" onclick="return CrearArray();"> registrar </button>    
+                    </div>
                 </form>                
             </div>
         </section>

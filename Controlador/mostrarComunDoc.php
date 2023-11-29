@@ -58,13 +58,13 @@ function cargarComunicados() {
                         </div>
                         <div class="boton">
                             <a href="'.$f['archivo'].'" download="comunicado"><img src="../../img/descargar.svg">Descargar</a>
-                        </div>
-                        <div class="boton">
+                        </div>' .                        
+                        ($f['idUsuario'] == $_SESSION['id'] ?
+                        '<div class="boton">
                             <a href="docComunModificar.php?id='.$f['idComunicado'].'&idClase='.$_GET['idClase'].'"><img src="../../img/edit.svg">Modificar</a>
-                        </div>
-                    </div>
-                </div>
-           
+                        </div>' : '') .
+                    '</div>
+                </div>           
                 ';
             }
         }

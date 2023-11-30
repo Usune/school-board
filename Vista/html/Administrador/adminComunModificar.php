@@ -27,18 +27,15 @@
     <?php
         include("menu-include.php");
     ?>
-        <main>
 
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminComun.php"> / Comunicados</a>
-                <a href=""> / Modificar</a>
+                <a href="" id="actual" actual="#comunicados"> / Modificar</a>
             </nav>
         
             <section>
-
-                <h2>Administración de comunicados</h2>
                 
                 <div class="formulario">
                     
@@ -56,16 +53,6 @@
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
         

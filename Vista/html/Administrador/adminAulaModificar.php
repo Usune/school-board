@@ -27,22 +27,18 @@
         include("menu-include.php");
     ?>
 
-        <main>
-
             <!-- breadcrumb -->    
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminAula.php"> / Aula</a>
-                <a href=""> / Modificar</a>
+                <a href="" id="actual" actual="#aulas"> / Modificar</a>
             </nav>
 
             <section>
-
-                <h2>Administración de aulas</h2>
                 
                 <div class="formulario">
                     
-                    <h3>Modificar aula</h3>
+                    <h3>Modificar Aula</h3>
 
                     <p class="recordatorio">Recuerde no dejar campos vacios y asegurese de que todos los campos son correctos.</p>
         
@@ -55,16 +51,6 @@
 
         </main> 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
 

@@ -29,21 +29,17 @@
     <?php
         include("menu-include.php");
     ?>
-
-        <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminClase.php"> / Clases</a>
+                <a href="adminClase.php" id="actual" actual="#clases"> / Clases</a>
             </nav>
         
             <section>
-
-                <h2>Administración de clases</h2>
                 <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#modClase">
-                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modClase"> Crear
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modClase">Nueva clase
                     </button>
                 </div>
                 
@@ -53,7 +49,7 @@
                         <button type="button" class="desplegarModal btn-cerrar" modal="#modClase"><img src="../../img/x.svg" alt="Salir" modal="#modClase"></button>
                         <div class="formulario">
                     
-                            <h3>Crear clase</h3>
+                            <h3>Crear Clase</h3>
 
                             <p class="recordatorio">Antes de crear la clase, asegurese de que todos los campos son correctos.</p>
                             <p class="recordatorio">Recuerde que ya deben estar registrados los campo curso, asignatura, docente y aula en el sistema.</p>
@@ -122,7 +118,6 @@
                     </div>
                 </div>
 
-                <h2>Clases</h2>
                 <div class="contClases">
                 <?php
 
@@ -257,16 +252,6 @@
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
 

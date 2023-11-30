@@ -27,22 +27,18 @@
         include("menu-include.php");
     ?>
 
-        <main>
-
             <!-- breadcrumb -->    
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminAsig.php"> / Asignatura</a>
-                <a href=""> / Modificar</a>
+                <a href="" id="actual" actual="#asignaturas"> / Modificar</a>
             </nav>
 
             <section>
-
-                <h2>Administración de asignaturas</h2>
                 
                 <div class="formulario">
                     
-                    <h3>Modificar asignatura</h3>
+                    <h3>Modificar Asignatura</h3>
 
                     <p class="recordatorio">Recuerde no dejar campos vacios y asegurese de que todos los campos son correctos.</p>
         
@@ -55,16 +51,6 @@
 
         </main> 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
 

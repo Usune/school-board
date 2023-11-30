@@ -19,7 +19,6 @@ require_once('../../../Controlador/mostrarCursosDoc.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profesor</title>
     <link rel="shortcut icon" href="../../img/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
@@ -31,23 +30,30 @@ require_once('../../../Controlador/mostrarCursosDoc.php');
     ?>
     <!-- Barra de navegación principal -->
     
-
-   
-
         <main>
 
-            <!-- breadcrumb -->
+            <!-- breadcrumb -->  
             <nav class="nav-main">
-                <a href="homeDoc.php">Cursos </a>
-                <!-- <a href="tareasDoc.php"> / Tareas</a>  -->
+                <a href="homeDoc.php">Clases</a> 
+                <?php
+                    traerCurso();
+                    echo'
+                        <a href="tareasDoc.php?idClase='.$_GET['idClase'].'" id="actual" actual="#tareas"> / Tareas</a>
+                    ';
+                ?>
+                <a href=""> / Modificar</a>
             </nav>
 
             <section>
-                <h2>Tareas</h2>
 
                 <!-- Formulario para subir tareas (No borrar) -->
 
                 <div class="formulario">
+                    
+                    <h3>Modificar Tarea</h3>
+
+                    <p class="recordatorio">Modifique los campos necesarios sin dejarlos en blanco.</p>
+        
                 <?php
                     cargarTareaEditarDoc(); 
                 ?>
@@ -63,15 +69,6 @@ require_once('../../../Controlador/mostrarCursosDoc.php');
 
     </div>
 
-    <hr>
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

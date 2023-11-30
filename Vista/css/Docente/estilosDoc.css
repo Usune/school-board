@@ -1,22 +1,28 @@
 :root {
     --principal: #7DCFFF;
+    --principalOpaco: #7dcfff94;
+}
+
+.cardClasesImg img{
+    width: 100px !important;
+    height: 100px !important;
 }
 
 /* TABLAS HOVER */
-.tablas tbody tr:hover {
+/* .tablas tbody tr:hover { */
     /* Cambiar el box-shadow por el color principal pero mas oscuro */
-    box-shadow: 4px 6px 0px 0px #2e99d6; 
-}
+    /* box-shadow: 4px 6px 0px 0px #2e99d6; 
+} */
 
 
-
+/* 
 .home {
     width: 99% !important;
 }
 
 .Doc a {
     width: 180px !important;
-}
+} */
 /* 
 .doc .textarea #titulo{
     
@@ -53,25 +59,25 @@
     padding-left: 43px
 } */
 
-.doc {
+/* .doc {
     width: 53%;
-}
+} */
 
 
 /* .doc #descripcion{
     width: 80%;
 } */
 
-.doc .file {
+/* .doc .file {
     align-items: center;
 
-}
+} */
 
-.doc .enviar{
+/* .doc .enviar{
     margin-left: 330px;
-}
+} */
 
-
+/* 
 @media (max-width:1100px) {
     .doc .enviar{
         margin-left: 122px;
@@ -82,17 +88,17 @@
    
       width: 0;
     }
-}
+} */
 
 /* .doc #formulario .textarea label{
 
 
 } */
 
-.decoracion1 {
+/* .decoracion1 {
     align-content: flex-start;
 }
 
 .registroPrimero {
     height: none !important;
-}
+} */

@@ -16,35 +16,14 @@ const mostrarModal = (event) => {
     }
 }
 
-// Función para mostrar el formulario de una observación a modificar
-// const consultarInfoObservacion = (event) => {
-
-//     let idObser = document.querySelector(event.target.getAttribute('data-id'));
-
-//     if (idObser !== null){
-//         fetch('mostrarObserAdmin.php?funcion=' + cargarObserEditar, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/x-www-form-urlencoded',
-//             },
-//             body: 'id=' + idObser,
-//         })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Error en la respuesta del servidor');
-//             }
-//             return response.text();
-//         })
-//         .then(data => {
-//             // Mostrar el resultado en el modal
-//             document.getElementById("resultadoConsulta").innerHTML = data;
-//             document.getElementById("modificar").style.display = "block";
-//         })
-//         .catch(error => {
-//             console.error('Error al realizar la solicitud:', error);
-//         });
-//     }
-// }
+// Función para asignar la clase "activeA" para que quede seleccionada la sección del aside actual. Para que funcione el breadcrumb debe tener el atributo 'actual' y su valor debe corresponder al id especifico de la sección del aside, ejemplo: "#usuario". Adicional a esto, el breadcrumb también debe tener el id='actual'.
+const activeAside = () => {
+    const actual = document.getElementById('actual').getAttribute('actual');
+    if(actual != '#home'){
+        const seccion = document.querySelector(actual);
+        seccion.classList.add('activeA');
+    }
+}
 
 // Funciones para mostrar y quitar el legend de un input especifico al dar click en el input, para que eso funcione el input debe tener el atributo legend y dentro el id del legend al que está asociado, así mismo el legend debe tener el id especifico que tiene el atributo legend.
 const onFocus = (event) => {
@@ -80,11 +59,12 @@ const onBlur = (event) => {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    
     // En esta línea traemos todos los elementos con la clase 'desplegar' y le vamos a agregar el evento 'click', que ejecuta la función 'mostrar', esto lo hacemos con la función forEach() o tambien se puede hacer usando bucle 'for'
     document.querySelectorAll('.desplegar').forEach(function (element) {
         element.addEventListener('click', mostrar);
     });
+
     // En esta línea traemos todos los elementos con la clase 'desplegarModal' y le vamos a agregar el evento 'click', que ejecuta la función 'mostrarModal', esto lo hacemos con la función forEach() o tambien se puede hacer usando bucle 'for'
     document.querySelectorAll('.desplegarModal').forEach(function (element) {
         element.addEventListener('click', mostrarModal);
@@ -120,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    activeAside();
 
 });
 

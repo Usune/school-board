@@ -24,13 +24,11 @@
     <?php
         include("menu-include.php");
     ?>
-
-        <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminObser.php"> / Observador</a>
+                <a href="adminObser.php" id="actual" actual="#observador"> / Observador</a>
             </nav>
         
             <section>
@@ -48,16 +46,6 @@
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
     
 </body>
 </html>

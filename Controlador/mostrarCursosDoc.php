@@ -12,15 +12,100 @@ function traerCursos() {
         echo'<h2>El docente no tiene cursos asignados.</h2>';
 
     }else{
+        $n=0;
+        $m=0;
         foreach($consultas as $f){
-            echo'
-            <a href="docCurso.php?idClase='.$f['idClase'].'">
-                <img src="../../img/curso.svg" alt="logo">
-                <p>Jornada: '.$f['curJor'].'</p>
-                <p>Curso: '.$f['nomCur'].'</p>
-                <p>Asignarura: '.$f['asigNom'].'</p>
-            </a>
-            ';
+            if($n%3 == 0){
+                $m += 1;
+                echo'
+                <div class="filaClases">
+                    <div class="cardClases">
+                        <div class="cardClasesImg">
+                            <img src="../../img/clases.svg" alt="Clase">
+                        </div>
+                        <div class="cardClasesInfo">
+                            <div class="infoClase">
+                                <div class="infoImg">
+                                    <img src="../../img/curso.svg" alt="curso">
+                                </div>
+                                <div class="infoTexto">
+                                    <p class="tipo">Curso</p>
+                                    <p>'.$f['nombreCurso'].'-'.$f['jornadaCurso'].'</p>
+                                </div>
+                            </div>
+                            <div class="infoClase">
+                                <div class="infoImg">
+                                    <img src="../../img/asignaturas.svg" alt="asignatura">
+                                </div>
+                                <div class="infoTexto">
+                                    <p class="tipo">Asignatura</p>
+                                    <p>'.$f['nombreAsignatura'].'</p>
+                                </div>
+                            </div>
+                            <div class="infoClase">
+                                <div class="infoImg">
+                                    <img src="../../img/aulas.svg" alt="aula">
+                                </div>
+                                <div class="infoTexto">
+                                    <p class="tipo">Aula</p>
+                                    <p>'.$f['nombreAula'].'</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cardClasesOpciones">
+                            <a href="docCurso.php?idClase='.$f['idClase'].'">Ingresar</a>
+                        </div>
+                    </div>
+                ';
+            }else{
+                $m += 1;
+                echo '
+                    <div class="cardClases">
+                        <div class="cardClasesImg">
+                            <img src="../../img/clases.svg" alt="Clase">
+                        </div>
+                        <div class="cardClasesInfo">
+                            <div class="infoClase">
+                                <div class="infoImg">
+                                    <img src="../../img/curso.svg" alt="curso">
+                                </div>
+                                <div class="infoTexto">
+                                    <p class="tipo">Curso</p>
+                                    <p>'.$f['nombreCurso'].'-'.$f['jornadaCurso'].'</p>
+                                </div>
+                            </div>
+                            <div class="infoClase">
+                                <div class="infoImg">
+                                    <img src="../../img/asignaturas.svg" alt="asignatura">
+                                </div>
+                                <div class="infoTexto">
+                                    <p class="tipo">Asignatura</p>
+                                    <p>'.$f['nombreAsignatura'].'</p>
+                                </div>
+                            </div>
+                            <div class="infoClase">
+                                <div class="infoImg">
+                                    <img src="../../img/aulas.svg" alt="aula">
+                                </div>
+                                <div class="infoTexto">
+                                    <p class="tipo">Aula</p>
+                                    <p>'.$f['nombreAula'].'</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cardClasesOpciones">
+                            <a href="docCurso.php?idClase='.$f['idClase'].'">Ingresar</a>
+                        </div>
+                    </div>
+                ';
+            }
+            if($m%3 == 0){
+                echo'
+                </div>
+                ';
+                $m = 0;
+            }
+            $n += 1; 
         }
     }
 
@@ -41,29 +126,10 @@ function traerCurso() {
     foreach($consultas as $f){
         echo'
         <a href="docCurso.php?idClase='.$_GLOBALS['idClase'].'"> / '.$f['jornada'].'-'.$f['nombre'].' </a>
-            </nav>  
-
-            <section>
-                <h2>Jornada: '.$f['jornada'].'<br> Curso: '.$f['nombre'].'</h2>
+             
         ';
     }
  
-
-}
-
-function navMainDoc() {
-    
-    $idClase = $_GET['idClase'];
-
-    $objConsultas = new Consultas();
-    $consultas = $objConsultas->mostrarCurDoc($idClase);
-
-    foreach($consultas as $f){
-        echo'
-        <a href="docCurso.php?idClase='.$idClase.'"> / '.$f['jornada'].'-'.$f['nombre'].' </a>
-        ';
-    }
-
 
 }
 
@@ -72,40 +138,35 @@ function menuIncludeDoc() {
     $clase = $_GET['idClase'];
     // $tarea =$_GET['idTarea'];
     echo'
-        <li id="liRol">Docente</li>
-        <li><a href="homeDoc.php?idClase='.$clase.'"><img src="../../img/curso.svg" alt="logo">Clases</a></li>
-        <li><a href="tareasDoc.php?idClase='.$clase.'"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
-        <li><a href="docCalificaciones.php?idClase='.$clase.'"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
-        <li><a href="docObser.php?idClase='.$clase.'"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
-        <li><a href="docComun.php?idClase='.$clase.'"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
-        <li><a href="docAsistencia.php?idClase='.$clase.'"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>
-        <li><a href="docAcuConsu.php?idClase='.$clase.'"><img src="../../img/asistencia.svg" alt="logo">Lista de estudiantes</a></li>
+        <li><a href="homeDoc.php"><img src="../../img/curso.svg" alt="logo">Clases</a></li>
+        <li><a href="tareasDoc.php?idClase='.$clase.'" id="tareas"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
+        <li><a href="docCalificaciones.php?idClase='.$clase.'" id="calificaciones"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
+        <li><a href="docObser.php?idClase='.$clase.'" id="observador"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
+        <li><a href="docComun.php?idClase='.$clase.'" id="comunicados"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
+        <li><a href="docAsistencia.php?idClase='.$clase.'" id="asistencia"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>
 
     ';
  
 }
 
+function traerCursoID() {
+    $idClase = $_GET['idClase'];
 
+    $objConsultas = new Consultas();
+    $consultas = $objConsultas->mostrarCurDoc($idClase);
 
-function registroTareaDoc() {
-
-    $clase = $_GET['idClase'];
-    echo'
-    <a href="docTareaRegistro.php?idClase='.$clase.'" class="btn_crear"><img src="../../img/agregar.svg" alt="filtro">Crear Tarea</a>
-    ';
-
+    foreach($consultas as $f){
+        echo'
+            <input type="text" id="curso"  value="'.$f['idCurso'].'" hidden name="curso">
+        ';
+    }
 }
-
 
 function tarjetasInicioDoc() {
 
     $clase = $_GET['idClase'];
     echo'
-    <div class="fila-cont">                        
-        <a href="homeDoc.php?idClase='.$clase.'">            
-            <img src="../../img/curso.svg" alt="logo">
-            <p>Clases</p>
-        </a>
+    <div class="fila-cont">
         <a href="tareasDoc.php?idClase='.$clase.'">                
             <img src="../../img/tareas.svg" alt="logo">
             <p>Tareas</p>            
@@ -114,25 +175,20 @@ function tarjetasInicioDoc() {
             <img src="../../img/calificaciones.svg" alt="logo">
             <p>Calificaciones</p>
         </a>
-    </div>
-    <div class="fila-cont">
         <a href="docObser.php?idClase='.$clase.'">                
             <img src="../../img/observador.svg" alt="logo">
-            <p>Observador</p>            
+            <p>Observador</p>        
         </a>
+    </div>
+    <div class="fila-cont">
         <a href="docComun.php?idClase='.$clase.'">                
             <img src="../../img/comunicados.svg" alt="logo">
             <p>Comunicados</p>            
         </a>
         <a href="docAsistencia.php?idClase='.$clase.'">                
-        <img src="../../img/asistencia.svg" alt="logo">
-        <p>Asistencia</p>            
-        </a>
-        <a href="docListaEstu.php?idClase='.$clase.'">                
-        <img src="../../img/user.svg" alt="logo">
-        <p>Acudientes</p>            
-</a>
-        
+            <img src="../../img/asistencia.svg" alt="logo">
+            <p>Asistencia</p>            
+        </a>   
     </div>
     ';
 

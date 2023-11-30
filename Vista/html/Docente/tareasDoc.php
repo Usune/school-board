@@ -5,7 +5,6 @@ require_once('../../../Modelo/seguridadDoc.php');
 require_once ('../../../Controlador/mostrarPerfil.php');
 require_once ('../../../Controlador/mostrarTareasDoc.php');
 require_once ('../../../Controlador/mostrarCursosDoc.php');
-// require_once ('../../../Controlador/eliminarTarDoc.php');
 
 ?>
 
@@ -26,40 +25,75 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
     <?php
         include('menu-include.php');
     ?>
-    
-        <main>
-            
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeDoc.php">Clases</a> 
                 <?php
-
-                navMainDoc();
-
+                    traerCurso();
                 ?>
-                <a href="tareasDoc.php"> / Tareas</a> 
-                <!-- <a href="tareasDoc.php"> / Consultar</a> -->
+                <a href="" id="actual" actual="#tareas"> / Tareas</a>
             </nav>
         
             <section>
-            
 
-                <h2>Consultar tareas</h2>
+                <div class="cabecegit ra">
+                    <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nueva tarea
+                    </button>
+                </div>
 
-                <div class="tabla">
+                <div class="modal" id="modComun">
 
-                    <div class="opciones">               
+                    <div class="modal_container">
+                        <button type="button" class="desplegarModal btn-cerrar" modal="#modComun"><img src="../../img/x.svg" alt="Salir" modal="#modComun"></button>
 
-                        <?php
-                        registroTareaDoc();
-                        ?>
-                        <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
-                        
+                        <div class="formulario">
+                    
+                            <h3>Subir Tarea</h3>
+                            
+                            <form action="../../../Controlador/registrarTareasDoc.php" method="post" enctype="multipart/form-data" id="formulario">
+
+                                <div class="fieldset">
+                                    <fieldset>
+                                        <legend id="tit">Título</legend>
+                                    </fieldset>
+                                    <input type="text" placeholder="Título" required legend="#tit" name="titulo">
+                                </div>
+                                <div class="textarea">
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea id="descripcion" cols="30" rows="10" name="descripcion" placeholder="Ingrese una descripción"></textarea>
+                                </div>
+
+                                <div class="select">
+                                    <label for="fecha_V">Fecha limite de entrega </label>
+                                    <input type="date" name="fecha_V">
+                                </div>
+
+                                <div class="file">
+                                    <label for="archivo">Seleccione un archivo</label>
+                                    <input type="file" accept=".pdf" name="archivos" multiple>
+                                </div>
+
+                                <?php
+                                    traerCursoID();
+                                ?>
+
+                                <button type="submit" class="enviar">Entregar Tarea</button>
+                            </form>
+
+                        </div>
+
                     </div>
+                </div>
 
-                    <div id="filtro">
+                <div class="opciones">
+                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
+                </div>
 
-                        <form method="get">
+                <div id="filtro">
+
+                    <form method="get">
+                        <div class="cont-filtro">
 
                             <div class="fila-cont">
 
@@ -67,10 +101,9 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                                     <p>Fecha</p>
                                     <label for="fechaInicio">Fecha de creación:</label>
                                     <input type="date" id="fechaInicio" name="fechaInicio">
-                                    
+                                    <br>
                                     <label for="fechaFin">Fecha de vencimiento:</label>
-                                    <input type="date" id="fechaFin" name="fechaFin">
-                                    
+                                    <input type="date" id="fechaFin" name="fechaFin">                  
 
                                 </div>
 
@@ -100,20 +133,16 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
                             </div>
 
-                        </form>
-                        
-                    </div>
+                        </div>
 
+                    </form>
+                    
                 </div>
 
-                
-                    
                 <?php
                     cargarTareas();  
                 ?>
-
                 
-               
             </section>
 
 

@@ -26,18 +26,15 @@
     <?php
         include("menu-include.php");
     ?>
-        <main>
 
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
                 <a href="adminUsu.php"> / Usuarios</a>
-                <a href="adminUsuRegistro.php"> / Registrar</a>
+                <a href="adminUsuRegistro.php" id="actual" actual="#usuarios"> / Registrar</a>
             </nav>
         
             <section>
-
-                <h2>Administración de usuarios</h2>
                 
                 <div class="formulario">
                     
@@ -129,11 +126,11 @@
                                             ';    
                                         cargarCursosRegistro();
                                         
-                                        echo '</select>';
-
+                                        echo '</select>
+                                        </div>';
+                                        
                                     }            
                                 ?>
-                        </div>
 
                         <!-- Input clave temporal    -->
                         <input id="clatem" type="text" hidden name="clave">
@@ -141,24 +138,16 @@
                         <p id="texto"></p>
                         
                         <button type="submit" class="enviar">Registrar usuario</button>
+                    
                     </form>
 
                 </div>
+
             </section>
         
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
         

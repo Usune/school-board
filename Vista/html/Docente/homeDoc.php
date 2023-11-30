@@ -56,7 +56,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
             <!-- breadcrumb -->
             <nav class="nav-main">
-                <a href="homeDoc.php">Clases </a>
+                <!-- <a href="homeDoc.php">Clases </a> -->
             </nav>
 
             <section>
@@ -67,7 +67,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
             <!-- <a href="homeDoc.php">Clases </a> -->
         </nav>
 
-        <section>
+        <!-- <section> -->
             <h2>Clases</h2>
 
             <div class="container">

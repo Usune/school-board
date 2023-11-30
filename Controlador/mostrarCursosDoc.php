@@ -79,6 +79,7 @@ function menuIncludeDoc() {
         <li><a href="docObser.php?idClase='.$clase.'"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
         <li><a href="docComun.php?idClase='.$clase.'"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
         <li><a href="docAsistencia.php?idClase='.$clase.'"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>
+        <li><a href="docAcuConsu.php?idClase='.$clase.'"><img src="../../img/asistencia.svg" alt="logo">Lista de estudiantes</a></li>
 
     ';
  
@@ -109,13 +110,13 @@ function tarjetasInicioDoc() {
             <img src="../../img/tareas.svg" alt="logo">
             <p>Tareas</p>            
         </a>
-        <a href="docCalif.php?idClase='.$clase.'">
+        <a href="docCalificaciones.php?idClase='.$clase.'">
             <img src="../../img/calificaciones.svg" alt="logo">
             <p>Calificaciones</p>
         </a>
     </div>
     <div class="fila-cont">
-        <a href="docObser.php">                
+        <a href="docObser.php?idClase='.$clase.'">                
             <img src="../../img/observador.svg" alt="logo">
             <p>Observador</p>            
         </a>
@@ -126,7 +127,11 @@ function tarjetasInicioDoc() {
         <a href="docAsistencia.php?idClase='.$clase.'">                
         <img src="../../img/asistencia.svg" alt="logo">
         <p>Asistencia</p>            
-    </a>
+        </a>
+        <a href="docListaEstu.php?idClase='.$clase.'">                
+        <img src="../../img/user.svg" alt="logo">
+        <p>Acudientes</p>            
+</a>
         
     </div>
     ';

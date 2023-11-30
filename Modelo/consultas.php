@@ -865,7 +865,7 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = 
-            "SELECT usuario.nombres as nombre, usuario.apellidos as apellido, usuario.foto  as foto, 
+            "SELECT comunicado.idUsuario, usuario.nombres as nombre, usuario.apellidos as apellido, usuario.foto  as foto, 
             comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.fecha  as fecha, comunicado.descripcion  as descripcion,  comunicado.archivos  as archivo,
             curso.nombre as curso, curso.jornada as jornada
             
@@ -2202,7 +2202,7 @@
 
             $sql = 
             "SELECT 
-            o.observacion AS Observacion, o.idObservador,
+            o.observacion AS Observacion, o.idObservador, idAutor,
             CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
             CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
             CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
@@ -2392,6 +2392,27 @@
 
             echo '<script>alert("Calificación modificada")</script>';
             echo '<script>location.href="../Vista/html/Docente/docCalificacionEntrega.php?idTarea='.$idTarea.'&idClase='.$idClase.'"</script>';
+        }
+
+        public function validaExistenciaDeAsistencia($idClase) { 
+            $f = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 'SELECT * FROM asistencia WHERE DATE(fecha) = DATE(CURDATE()) AND idClase = :idClase';
+            $consulta = $conexion->prepare($sql);
+                                    
+            $consulta->bindParam(':idClase',$idClase);
+
+            $consulta->execute();
+
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+            return $f;
         }
 
         public function registrarAsistencia($Asistencia, $clase, $documento) {

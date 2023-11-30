@@ -144,13 +144,12 @@
                                         '.$f['Observacion'].'
                                     </p>
                                 </div>
-                            </div>
-                            <div class="boton">
+                            </div>' . ($f['idAutor'] == $_SESSION['id'] ? 
+                            '<div class="boton">
                                 <a href="adminObserModificar.php?id='.$f['idObservador'].'"><img src="../../img/edit.svg">Modificar</a>
-                            </div>
+                            </div>' : '') . '
                         </div>
-                    </div>
-                    ';
+                    </div>';
     
                 }
     

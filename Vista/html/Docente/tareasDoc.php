@@ -36,7 +36,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
         
             <section>
 
-                <div class="cabecera">
+                <div class="cabecegit ra">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
                         <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nueva tarea
                     </button>

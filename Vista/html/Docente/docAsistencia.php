@@ -124,7 +124,6 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                     <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
                     <input type="text" style="display: none;" id="txtArray" name="txtArray">
                      
-                           
                 </form>                
             </div>
         </section>

@@ -22,7 +22,6 @@
     <?php
         include("menu-include.php");
     ?>
-        <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
@@ -32,7 +31,6 @@
         
             <section>
 
-                <h2>Perfil</h2>
                 <div class="perfil">
                 
                     <?php
@@ -45,16 +43,6 @@
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
     
 </body>
 </html>

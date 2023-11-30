@@ -25,21 +25,18 @@
     <?php
         include("menu-include.php");
     ?>
-
-        <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminComun.php"> / Comunicados</a>
+                <a href="adminComun.php" id="actual" actual="#comunicados"> / Comunicados</a>
             </nav>
         
             <section>
 
-                <h2>Administración de comunicados</h2>
                 <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
-                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Crear
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nuevo comunicado
                     </button>
                 </div>
                 
@@ -49,7 +46,7 @@
                         <button type="button" class="desplegarModal btn-cerrar" modal="#modComun"><img src="../../img/x.svg" alt="Salir" modal="#modComun"></button>
                         <div class="formulario">
                     
-                            <h3>Subir comunicado</h3>
+                            <h3>Subir Comunicado</h3>
 
                             <p class="recordatorio">Antes de subir el comunicado, asegurese de que todos los campos son correctos.</p>
                             <p class="recordatorio">Recuerde que el sistema solo acepta archivos PDF.</p>
@@ -95,8 +92,6 @@
                     </div>
                 </div>
 
-                <h2>Comunicados</h2>
-
                 <?php
 
                     cargarComunicados();
@@ -107,16 +102,6 @@
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
 

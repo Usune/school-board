@@ -62,11 +62,49 @@
             foreach($consultas as $f) {
     
                 echo '
-                <h2>Observador del estudiante</h2>
-                <div class="datosCabecera ">
-                    <a  class="enviar boton" href="docObserRegistro.php?documento='.$f['documento'].'&idClase='.$_GET['idClase'].'"><img src="../../img/agregar.svg">Nueva observación</a>
-                    <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
-                    <p>'.$f['tipoDoc'].' - '.$f['documento'].'</p>
+                <div class="cabecera">
+                    <button type="button" class="desplegarModal btn-cabecera" modal="#obser">
+                        <img src="../../img/agregar.svg" alt="Agregar" modal="#obser"> Nueva observación
+                    </button>
+                    <h2>'.$f['nombres'].' '.$f['apellidos'].'</h2>
+                    <h2>'.$f['tipoDoc'].' - '.$f['documento'].'</h2>
+                </div>
+                <div class="modal" id="obser">
+
+                    <div class="modal_container">
+                        <button type="button" class="desplegarModal btn-cerrar" modal="#obser"><img src="../../img/x.svg" alt="Salir" modal="#obser"></button>
+                    
+                        <div class="formulario">
+                            
+                            <h3>Crear Observación</h3>
+
+                            <p class="recordatorio">Antes de subir la observación, asegurese de que todos los campos son correctos.</p>
+                
+                            <form action="../../../Controlador/registrarObserDoc.php?idClase='.$_GET['idClase'].'" method="post" id="formulario">
+
+                                <div class="fieldset">
+                                    <fieldset>
+                                        <legend id="estu">Estudiante</legend>
+                                    </fieldset>
+                                    <input type="text" value="'.$f['nombres'].' '.$f['apellidos'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
+                                </div>
+                
+                                <div class="textarea">
+                                    <label for="obser">Observación</label>
+                                    <textarea id="obser" cols="30" rows="10" name="observacion" placeholder="Ingrese la observación"></textarea>
+                                </div>
+
+                                <input type="text" value="'.$f['documento'].'" hidden name="id">
+            
+                                <p id="texto"></p>
+                            
+                                <button type="submit" class="enviar">Subir Observación</button>
+                            </form>
+                            
+                        </div>
+
+                    </div>
+                    
                 </div>
                 ';
 

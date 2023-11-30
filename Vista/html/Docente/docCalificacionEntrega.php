@@ -16,29 +16,25 @@
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <title>Calificación entregas</title>
 </head> 
 <body>    
     <?php
         include("menu-include.php");
-    ?>
-    <main>            
-            <!-- breadcrumb -->  
+    ?>           
+        <!-- breadcrumb -->  
         <nav class="nav-main">
-            <a href="homeDoc.php">Clases</a>                            
+            <a href="homeDoc.php">Clases</a> 
             <?php
-                 echo '<a href="docComun.php?idClase='.$_GET['idClase'].'"> / Comunicados</a> ';
-            ?>            
-        </nav>         
-        <section> 
-            <h2>Calificar entregas</h2>
+                traerCurso();
+                echo'
+                    <a href="tareasDoc.php?idClase='.$_GET['idClase'].'" id="actual" actual="#tareas"> / Tareas</a>
+                ';
+            ?>     
+            <a href="" id="actual" actual="#tareas"> / Calificar</a>      
+        </nav>
+
+        <section>
             <div class="tabla">
                 
                     <div class="tablas">
@@ -136,36 +132,27 @@
                         </form>                 
                     </div>
                 </div>
-            </div> 
-            </div>
         </section>    
     </main>   
-    </div>
-    <hr>
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>    
-    <script>
-        function cargaDatosEntrega(fila){
-            document.getElementById("idEntrega").value = fila.cells[1].innerText;
-            document.getElementById("observacion").value = "";
-            document.getElementById("calificacion").value = "";
-            document.getElementById("idTareaG").value = document.getElementById("idTarea").value;
-            document.getElementById("idClaseG").value = document.getElementById("idClase").value;
-        }
+</div>
+      
+<script>
+    function cargaDatosEntrega(fila){
+        document.getElementById("idEntrega").value = fila.cells[1].innerText;
+        document.getElementById("observacion").value = "";
+        document.getElementById("calificacion").value = "";
+        document.getElementById("idTareaG").value = document.getElementById("idTarea").value;
+        document.getElementById("idClaseG").value = document.getElementById("idClase").value;
+    }
 
-        function cargaDatosCalificacion(fila, boton){
-            document.getElementById("idCalificacionEditar").value = boton.parentElement.children[2].innerText;
-            document.getElementById("editarObservacion").value = boton.parentElement.children[1].innerText;
-            document.getElementById("editarCalificacion").value = boton.parentElement.children[0].innerText;
-            document.getElementById("idTareaEditar").value = document.getElementById("idTarea").value;
-            document.getElementById("idClaseEditar").value = document.getElementById("idClase").value;
-        }
-    </script>
+    function cargaDatosCalificacion(fila, boton){
+        document.getElementById("idCalificacionEditar").value = boton.parentElement.children[2].innerText;
+        document.getElementById("editarObservacion").value = boton.parentElement.children[1].innerText;
+        document.getElementById("editarCalificacion").value = boton.parentElement.children[0].innerText;
+        document.getElementById("idTareaEditar").value = document.getElementById("idTarea").value;
+        document.getElementById("idClaseEditar").value = document.getElementById("idClase").value;
+    }
+</script>
     
 </body>
 </html>

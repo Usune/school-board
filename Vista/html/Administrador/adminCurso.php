@@ -25,21 +25,17 @@
     <?php
         include("menu-include.php");
     ?>
-    <main>
-
         <!-- breadcrumb -->
         <nav class="nav-main">
             <a href="homeAdmin.php">Home</a>
-            <a href="adminCurso.php"> / Cursos</a>
+            <a href="adminCurso.php" id="actual" actual="#cursos"> / Cursos</a>
         </nav>
 
         <section>
 
-            <h2>Administración de cursos</h2> 
-
             <div class="cabecera">
                 <button type="button" class="desplegarModal btn-cabecera" modal="#usuario">
-                    <img src="../../img/agregar.svg" alt="Registrar" modal="#usuario">Registrar
+                    <img src="../../img/agregar.svg" alt="Registrar" modal="#usuario"> Registrar curso
                 </button>
             </div>
             
@@ -50,7 +46,7 @@
                 
                     <div class="formulario">
                     
-                        <h3>Crear curso</h3>
+                        <h3>Crear Curso</h3>
 
                         <p class="recordatorio">Antes de crear el curso, asegurese de que todos los campos son correctos.</p>
             
@@ -80,8 +76,6 @@
                     </div>
                 </div>
             </div>
-
-            <h3>Consultar cursos</h3>
 
             <div class="opciones">
                 <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
@@ -189,16 +183,6 @@
     </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
 

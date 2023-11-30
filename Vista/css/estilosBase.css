@@ -28,7 +28,7 @@ html {
 }
 
 body {
-    background-color: var(--beige);
+    background-color: var(--blanco);
 }
 
 
@@ -37,8 +37,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
     margin-bottom: 30px;
+    background-color: var(--blanco);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .formulario h3 {
@@ -164,7 +166,6 @@ body {
 
 #formulario .file label {
     color: var(--grisOscuro);
-    background-color: var(--grisClaro);
     font-size: 15px;
     padding-left: 10px;
 }
@@ -384,8 +385,8 @@ body {
 /* Estilos barra de navegación principal (.nav-pri)*/
 .nav-pri {
     display: flex;
-    margin: 10px;
     justify-content: space-between;
+    margin: 20px;
 }
 
 .nav-pri .menu {
@@ -408,19 +409,32 @@ body {
     background-color: var(--principal);
 }
 
-.nav-pri .logo {
+#menu .logo {
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
-.nav-pri .logo img {
-    width: 50px;
+#menu .logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    width: 100%;
 }
 
-.nav-pri .logo h1 {
+#menu .logo img {
+    width: 40px;
+}
+
+#menu .logo h1 {
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 16px;
+    color: var(--negro);
+    text-align: center;
 }
 
 .nav-pri .buscar {
@@ -471,35 +485,38 @@ body {
     height: 50px;
     border-radius: 20px;
     padding: 5px;
-    background-color: var(--grisClaro);
-    border: var(--grisClaro) solid 2px;
+    background-color: var(--blanco);
+    border: var(--blanco) solid 2px;
     font-size: 15px;
     cursor: pointer;
-    /* border: 3px solid var(--principal); */
+    box-shadow: 0px 0px 10px 5px var(--gris);
+    transition: 0.3s;
 }
 
 .nav-pri .user button:hover {
     background-color: var(--principal);
+    border: var(--principal) solid 2px;
 }
 
-.nav-pri .user button h2 {
-    font-size: 16px;
+.nav-pri .user button p {
+    font-size: 14px;
 }
 
 .nav-pri .user button img {
-    margin-left: 10px;
-    width: 40px;
-    height: 40px;
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
     border-radius: 20px;
 }
 
 .nav-pri #op1 {
     display: none;
     position: absolute;
-    top: 70px;
-    background-color: var(--beige);
+    top: 80px;
+    background-color: var(--blanco);
     border-radius: 20px;
     z-index: 999;
+    width: 200px;
 }
 
 .nav-pri #op1 ul {
@@ -508,11 +525,16 @@ body {
 
 .nav-pri #op1 ul li {
     display: flex;
-    width: 160px;
-    height: 30px;
-    justify-content: center;
+    width: 100%;
+    height: 40px;
+    justify-content: start;
     align-items: center;
     border-radius: 20px;
+    transition: 0.3s;
+}
+
+.nav-pri #op1 ul li img {
+    margin: 5px 20px;
 }
 
 .nav-pri #op1 ul li:hover {
@@ -523,6 +545,12 @@ body {
     text-decoration: none;
     color: var(--negro);
     font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-pri #op1 ul li a img{
+    margin-right: 5px;
 }
 
 /*Fin estilos barra de navegación principal (.nav-pri)*/
@@ -534,23 +562,29 @@ body {
 
 aside {
     display: flex;
-    width: 250px;
-    height: 90vh;
+    width: 280px;
+    height: 99vh;
     min-height: 700px;
-    padding-left: 10px;
-    background-color: var(--grisClaro);
+    background-color: var(--blanco);
     border-radius: 20px;
-    margin-left: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    /* filter: brightness(0.9); */
     /* border: 3px solid var(--principal); */
 }
 
-aside ul {
-    width: 90%;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
+.asideImgAdmin {
+    width: 280px;
+    height: 250px;
+    background-image: url('../img/asideAdmin.svg');
+    background-size: cover;
+}
 
+.asideImgDoc {
+    width: 280px;
+    height: 250px;
+    background-image: url('../img/asideDocente.svg');
+    background-size: cover;
 }
 
 #liRol {
@@ -562,31 +596,47 @@ aside ul {
     font-weight: bold;
 }
 
+aside ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+
+}
+
 aside ul li {
-    margin-top: 15px;
-    width: 90%;
-    height: 30px;
+    width: 100%;
 }
 
 aside ul li a {
     display: flex;
     text-decoration: none;
     color: var(--negro);
-    padding-left: 10px;
     font-size: 15px;
-    width: 90%;
-    height: 30px;
+    width: 99%;
+    height: 50px;
     align-items: center;
-    border-radius: 20px;
+    transition: 0.3s;
 }
 
 aside ul li a:hover {
-    background-color: var(--principal);
+    font-weight: bold;
+    border-right: 6px solid var(--principal);
+    background-color: var(--principalOpaco);
+    transform: scale(1.03);
+}
+
+.activeA {
+    font-weight: bold;
+    border-right: 8px solid var(--principal);
+    background-color: var(--principalOpaco);
 }
 
 aside ul li a img {
     padding-right: 10px;
     width: 30px;
+    margin-left:30px ;
 }
 
 aside ul li button {
@@ -627,11 +677,9 @@ aside ul li button:hover {
 }
 
 main {
-    width: calc(100% - 300px);
-    height: 90vh;
+    width: calc(100% - 280px);
+    height: 99vh;
     min-height: 700px;
-    border-radius: 20px;
-    margin: 0px 15px 15px 15px;
     background-color: var(--grisClaro);
     overflow-y: auto;
     overflow-x: hidden;
@@ -640,7 +688,6 @@ main {
 
 .nav-main {
     padding: 10px 0px;
-    position: absolute;
     background-color: var(--grisClaro);
     margin-left: 20px;
 }
@@ -663,9 +710,11 @@ section {
 }
 
 section h2 {
-    text-align: center;
-    margin: 40px 0px 10px 0px;
-    font-size: 28px;
+    width: 98%;
+    text-align: start;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 20px;
 }
 
 section h3 {
@@ -675,8 +724,6 @@ section h3 {
 }
 
 footer {
-    height: 80px;
-    padding-left: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -694,7 +741,7 @@ hr {
 
 .info-footer p {
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 /* Fin estilos del aside / main / nav-main */
@@ -705,13 +752,15 @@ hr {
     aside {
         display: none;
         position: absolute;
-        background-color: var(--gris);
-        z-index: 100;
+        background-color: var(--blanco);
+        z-index: 1000;
+        margin-top: 70px;
+        height: 90vh;
     }
 
     main {
         width: 100%;
-        height: 80vh;
+        height: 99vh;
         border-radius: 20px;
         margin: 0px 15px 0px 15px;
         overflow-y: auto;
@@ -725,22 +774,22 @@ hr {
     .nav-pri .menu {
         display: flex;
         align-items: center;
-        margin-left: 10px;
+        margin-right: 20px;
     }
 
     .nav-pri .menu button {
         display: flex;
     }
 
-    .nav-pri .logo {
+    /* .logo {
         width: 60px;
-    }
+    } */
 
-    .nav-pri .logo h2 {
+    /* .logo h2 {
         display: none;
-    }
+    } */
 
-    .nav-pri .user button h2 {
+    .nav-pri .user button p {
         display: none;
     }
 
@@ -774,12 +823,14 @@ hr {
     width: 150px;
     padding: 25px;
     margin: 20px;
-    border: var(--principal) 5px solid;
+    border: var(--gris) 5px solid;
     border-radius: 20px;
     text-align: center;
     font-size: 20px;
     cursor: pointer;
-    background-color: transparent;
+    background-color: var(--blanco);
+    box-shadow: 0px 0px 10px 2px var(--gris);
+    transition: 0.3s;
 }
 
 .contenedor a img {
@@ -794,6 +845,7 @@ hr {
 
 .contenedor a:hover {
     background-color: var(--principal);
+    transform: scale(1.1);
 }
 
 .fila-cont {
@@ -861,15 +913,23 @@ hr {
 
 /* Estilos PERFIL USUARIO */
 .perfil {
+    margin-top: 50px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .perfil .fotoNombre {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 0px 40px;
+    background-color: var(--blanco);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 2px var(--gris);
+    margin-right: 30px;
+    height: 440px;
 }
 
 .fotoNombre .texto {
@@ -880,6 +940,7 @@ hr {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    margin-bottom: 30px;
 }
 
 .texto p {
@@ -888,7 +949,7 @@ hr {
 }
 
 .texto h4 {
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .texto h5 {
@@ -896,13 +957,21 @@ hr {
     font-size: 20px;
 }
 
-.perfil .formulario {
-    border: 2px solid var(--gris);
-    padding: 30px 0;
+.perfilDerecha {
+    background-color: var(--blanco);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 2px var(--gris);
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
 }
 
-.perfil .formulario .fieldset {
-    margin-bottom: 20px;
+.perfilDerecha p {
+    margin: 10px 0px 0px 0px;
+    font-size: 12px;
+    width: 300px;
 }
 
 .enlacesPerfil {
@@ -910,21 +979,53 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
 }
 
 .enlacesPerfil a {
     text-decoration: none;
-    color: var(--negro);
-    padding: 10px 62px;
-    border: 2px solid var(--gris);
+    color: var(--grisOscuro);
+    font-weight: bold;
+    padding: 20px 62px;
+    margin: 10px;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
 .enlacesPerfil a:hover {
-    background-color: var(--gris);
+    transform: scale(1.03);
+    color: var(--negro);
+    border-bottom: 2px solid var(--negro);
 }
 
-@media (max-width: 960px) {
+.activeP {
+    color: var(--negro) !important;
+    border-bottom: 2px solid var(--negro);
+}
+
+.perfil .formulario {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.perfil .formulario .fieldset {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1260px) {
+    .perfil {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .perfil .fotoNombre {
+        padding: 40px 0;
+        margin-right: 0px;
+        height: auto;
+        width: 416px;
+        margin-bottom: 20px;
+    }
 
     .fotoNombre img {
         width: 150px;
@@ -1004,7 +1105,7 @@ hr {
 /* Estilos para TARJETAS*/
 .card-tarea {
     width: 70%;
-    background: transparent;
+    background-color: var(--blanco);
     padding: 20px;
     border-radius: 30px;
     box-shadow: 0px 0px 10px 5px var(--gris);
@@ -1207,7 +1308,7 @@ hr#fechas {
 
 .modal_container {
     width: 650px;
-    background-color: var(--grisClaro);
+    background-color: var(--blanco);
     margin: auto;
     border-radius: 20px;
     display: flex;
@@ -1343,7 +1444,7 @@ hr#fechas {
     width: 95%;
     margin: 20px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .opciones a {
@@ -1351,17 +1452,21 @@ hr#fechas {
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    font-size: 14px;
     color: var(--negro);
     padding: 5px 10px;
     border-radius: 10px;
+    background-color: var(--blanco);
+    box-shadow: 0px 0px 10px 5px var(--gris);
+    margin-right: 10px;
 }
 
 .opciones a img {
-    width: 30px;
+    width: 25px;
 }
 
 .opciones a:hover {
-    background-color: var(--principal);
+    background-color: var(--principalOpaco);
 }
 
 .opciones button {
@@ -1369,23 +1474,21 @@ hr#fechas {
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
-    background-color: transparent;
+    background-color: var(--blanco);
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px var(--gris);
+    margin-right: 10px;
 }
 
 .opciones button:hover {
-    background-color: var(--principal);
+    background-color: var(--principalOpaco);
 }
 
 .opciones button img {
-    width: 30px;
-}
-
-a img {
-    width: 20px
+    width: 25px;
 }
 
 /* Fin estilos opciones del main */
@@ -1402,6 +1505,12 @@ a img {
     background-color: var(--blanco);
     box-shadow: 0px 0px 10px 5px var(--gris);
     margin: 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.cardClases:hover{
+    transform: scale(1.03);
 }
 
 .cardClasesImg{
@@ -1413,8 +1522,8 @@ a img {
 }
 
 .cardClasesImg img{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 }
 
@@ -1444,7 +1553,7 @@ a img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--gris);
+    background-color: var(--principalOpaco);
     opacity: 0.7;
     margin-right: 20px;
 }
@@ -1482,7 +1591,7 @@ a img {
 .cardClasesOpciones a:hover{
     background-color: var(--principal);
     border: 1px solid var(--principal);
-    filter: brightness(0.9);
+    /* filter: brightness(0.9); */
 }
 
 .filaClases {
@@ -1497,8 +1606,5 @@ a img {
         justify-content: center;
     }
 }
-
-
-
 
 /* FIN ESTILOS TARJETAS CLASES ADMINISTRADOR */

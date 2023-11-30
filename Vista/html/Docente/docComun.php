@@ -14,58 +14,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/logo.svg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
     <title>Comunicados </title>
 </head>
 <body>
+
     <?php
         include('menu-include.php');
     ?>
-        <main>            
+            
             <!-- breadcrumb -->  
             <nav class="nav-main">
-                <a href="homeDoc.php">Clases</a>                            
+                <a href="homeDoc.php">Clase</a>
                 <?php
-                    echo '<a href="docComun.php?idClase='.$_GET['idClase'].'"> / Comunicados</a> ';
-                ?>            
+                    traerCurso();
+                ?>
+                <a href="" id="actual" actual="#comunicados"> / Comunicados</a>            
             </nav> 
             <section>
-                <h2>Comunicados</h2>
 
+                <div class="cabecera">
+                    <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nuevo comunicado
+                    </button>
+                </div>
                 
+                <div class="modal" id="modComun">
 
-                <div class="contenedor">
-                    <div class="fila-cont boton">
-                        <?php
-                            echo '<a href="docComunRegistrar.php?idClase='.$_GET['idClase'].'">';
-                        ?>                          
-                            <img src="../../img/agregar.svg" alt="logo">
-                            <p>Subir<br> comunicado</p>
-                        </a>
+                    <div class="modal_container">
+                        <button type="button" class="desplegarModal btn-cerrar" modal="#modComun"><img src="../../img/x.svg" alt="Salir" modal="#modComun"></button>
+                        <div class="formulario">
+                    
+                            <h3>Subir Comunicado</h3>
+
+                            <p class="recordatorio">Antes de subir el comunicado, asegurese de que todos los campos son correctos.</p>
+                            <p class="recordatorio">Recuerde que el sistema solo acepta archivos PDF.</p>
+                
+                            <form action="../../../Controlador/registrarComunDoc.php" method="post" enctype="multipart/form-data" id="formulario">
+
+                                    <div class="fieldset">
+                                        <fieldset>
+                                            <legend id="tit">Título</legend>
+                                        </fieldset>
+                                        <input type="text" placeholder="Título" required legend="#tit" name="titulo">
+                                    </div>
+                    
+                                    <div class="textarea">
+                                        <label for="descripcion">Descripción</label>
+                                        <textarea id="descripcion" cols="30" rows="10" name="descripcion" placeholder="Ingrese una descripción"></textarea>
+                                    </div>
+
+                                    <div class="file">
+                                        <label for="archivo">Archivo</label>
+                                        <input type="file" accept=".pdf" name="archivo">
+                                    </div>
+
+                                    <?php
+                                        traerCursoID();
+                                    ?>
+                
+                                    <p id="texto"></p>
+                                
+                                <button type="submit" class="enviar">Subir comunicado</button>
+                            </form>
+
+                        </div>
                     </div>
+                </div>
+
+               <h3>Comunicados</h3>                
            
                 <?php
 
                     cargarComunicados();
+
                 ?>
          
-                 
-                </div>
             </section>            
         </main>
         
     </div>
-    <hr>
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
 </body>
 </html>

@@ -1,18 +1,5 @@
 <?php
 
-function traerCursoID() {
-    $idClase = $_GET['idClase'];
-
-    $objConsultas = new Consultas();
-    $consultas = $objConsultas->mostrarCurDoc($idClase);
-
-    foreach($consultas as $f){
-        echo'
-        <input style="display: none;" id="curso" name="curso" type="text" value="'.$f['idCurso'].'">
-        ';
-    }
-}
-
 function cargarComunicados() {
         
         $objConsultas = new Consultas();

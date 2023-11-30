@@ -23,20 +23,18 @@
     <?php
         include("menu-include.php");
     ?>
-        <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminAula.php"> / Aulas</a>
+                <a href="adminAula.php" id="actual" actual="#aulas"> / Aulas</a>
             </nav>
         
             <section>
 
-                <h2>Administración de aulas</h2>
                 <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#modAula">
-                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modAula">Registrar
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#modAula">Registrar aula
                     </button>
                 </div>
                 
@@ -73,8 +71,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <h3>Consultar aulas</h3>
 
                 <div class="opciones">
                     <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
@@ -137,16 +133,6 @@
 
     </div>
 
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
-    
     <script>
 
         // Para que funcione se deben tener dos input, el input1 debe tener 'id="campo1"' y el input2 debe tener 'id="verify" verify="#campo1"'

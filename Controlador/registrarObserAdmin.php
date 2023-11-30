@@ -11,7 +11,7 @@
 
     // Aterrizamos en variables los datos ingresados por el usuario, los cuales viajan a traves del metodo POST y los name de los campos
     $observacion = $_POST['observacion'];
-    $estudiante = $_GET['id'];
+    $estudiante = $_POST['id'];
 
     if (strlen($observacion)>0 && strlen($estudiante)>0 && strlen($autor)>0) {
         

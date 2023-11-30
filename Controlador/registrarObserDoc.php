@@ -2,18 +2,21 @@
 require_once("../Modelo/consultas.php");
 require_once("../Modelo/conexion.php");
 
+session_start();
 
-$idEstudiante = $_POST['documentoEstudiante'];
-$idAutor = "2";//$_SESSION['id'];
-$fechaLimite = $_POST['fechaLimite'];
-$descripcionObservador = $_POST['descripcionObservador'];
-$idClase = $_POST['idClase'];
-// echo'<script>alert("'.$idEstudiante.' '.$idAutor.' '.$fechaLimite .' '.$descripcionObservador.'")</script>';
-// return;
+$idAutor = $_SESSION['id'];
+$idEstudiante = $_POST['id'];
+$descripcion = $_POST['observacion'];
+$idClase = $_GET['idClase'];
 
-if (strlen($fechaLimite)>0 && strlen($descripcionObservador)>0) {
+if (strlen($idAutor)>0 && strlen($idEstudiante)>0 && strlen($descripcion)>0 && strlen($idClase)>0) {
+
+    $zonaHoraria = new DateTimeZone('America/Bogota');
+    $fecha = new DateTime('now', $zonaHoraria);
+    $fecha = $fecha->format('Y-m-d H:i:s');
+
     $objConsultas = new Consultas();
-    $result = $objConsultas->insertarObserDoc($idEstudiante, $idAutor, $fechaLimite, $descripcionObservador, $idClase);
+    $result = $objConsultas->insertarObserDoc($idEstudiante, $idAutor, $descripcion, $fecha, $idClase);
 }
 else{
     echo '<script>alert("Por favor complete todos los campos")</script>';

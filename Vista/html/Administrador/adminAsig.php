@@ -23,20 +23,18 @@
     <?php
         include("menu-include.php");
     ?>
-        <main>
-            
+
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminAsig.php"> / Asignaturas</a>
+                <a href="adminAsig.php" id="actual" actual="#asignaturas"> / Asignaturas</a>
             </nav>
         
             <section>
 
-                <h2>Administración de asignaturas</h2>
                 <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#asig">
-                        <img src="../../img/agregar.svg" alt="Registrar" modal="#asig">Registrar
+                        <img src="../../img/agregar.svg" alt="Registrar" modal="#asig">Registrar asignatura
                     </button>
                 </div>
                 
@@ -73,15 +71,13 @@
                         </div>
                     </div>
                 </div>
-                
-                <h3>Consultar asignaturas</h3>
 
                 <div class="opciones">
                     <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
                             alt="filtro">Filtrar</button>
                 </div>
 
-                <div id="filtro">
+                <!-- <div id="filtro">
                     <div class="cont-filtro">
 
                         <form method="get">
@@ -103,7 +99,7 @@
                         </form>
 
                     </div>
-                </div>
+                </div> -->
 
                 <div class="tablas">
                     <table>
@@ -137,16 +133,6 @@
         </main>
 
     </div>
-
-    <hr>
-
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <script>
 

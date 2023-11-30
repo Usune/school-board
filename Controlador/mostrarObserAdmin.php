@@ -10,7 +10,7 @@
 
         <div class="formulario">
             
-            <h2>Observador</h2>
+            <h3>Observador</h3>
 
             <p class="recordatorio">Ingrese el documento del estudiante.</p>
 
@@ -47,13 +47,12 @@
             foreach($consultas as $f) {
     
                 echo '
-                <h2>Observador del estudiante</h2> 
                 <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#obser">
-                        <img src="../../img/agregar.svg" alt="Agregar" modal="#obser">Nueva
+                        <img src="../../img/agregar.svg" alt="Agregar" modal="#obser"> Nueva observación
                     </button>
-                    <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
-                    <p>'.$f['tipoDoc'].' - '.$f['documento'].'</p>
+                    <h2>'.$f['nombres'].' '.$f['apellidos'].'</h2>
+                    <h2>'.$f['tipoDoc'].' - '.$f['documento'].'</h2>
                 </div>
 
                 <div class="modal" id="obser">
@@ -262,10 +261,10 @@
             </nav>
         
             <section>
-
-                <h2>Modificar observación</h2>
                 
                 <div class="formulario">
+                
+                    <h3>Modificar Observación</h3>
 
                     <p class="recordatorio">Antes de modificar la observación, asegurese de que todos los campos son correctos.</p>
                     <form action="../../../Controlador/actualizarObserAdmin.php" method="post" id="formulario">

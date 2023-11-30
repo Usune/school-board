@@ -13,7 +13,6 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profesor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
@@ -30,93 +29,83 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
         include('menu-include.php');
     ?>
 
-
-    <main>
-
         <!-- breadcrumb -->
         <nav class="nav-main">
             <a href="homeDoc.php">Clases</a>
             <a href="adminUsu.php"> / Única-PRIMERO</a>
-            <a href="adminUsu.php"> / Asistencia</a>
+            <a href="adminUsu.php" > / Asistencia</a>
         </nav>
 
         <section>
-            <h2>Asistencia Estudiantes</h2>
 
-            <!-- <h3>Consultar usuarios</h3> -->
+            <div class="cabecera">
+                <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
+                    <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nuevo registro
+                </button>
+            </div>
 
-            <div class="tabla">
+            <div class="opciones">
+                <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
 
-                <div class="opciones">
+                <?php
 
-                    <?php
-
-                        if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
-                                
-                            echo'<a href="reportesAsis.php?rol='.$_GET['rol'].'&estado='.$_GET['estado'].'&nombres='.$_GET['nombres'].'&apellidos='.$_GET['apellidos'].'&documento='.$_GET['documento'].'" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
+                    if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
                             
-                        }else {
+                        echo'<a href="reportesAsis.php?rol='.$_GET['rol'].'&estado='.$_GET['estado'].'&nombres='.$_GET['nombres'].'&apellidos='.$_GET['apellidos'].'&documento='.$_GET['documento'].'" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
+                        
+                    }else {
 
-                            echo'<a href="reportesAsis.php" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
+                        echo'<a href="reportesAsis.php" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
 
-                        }
-                    ?>
+                    }
+                ?>
 
-                    <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
-                            alt="filtro">Filtrar</button>
-                </div>
+            </div>
 
-                <div id="filtro">
+            <div id="filtro">
+                <div class="cont-filtro"><form method="get">
 
-                    <form method="get">
+                    <div class="fila-cont">
 
-                        <div class="fila-cont">
-
-
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="nom">Nombre</legend>
+                            </fieldset>
+                            <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
                         </div>
 
-                        <div class="fila-cont">
-
-                            <div class="fieldset">
-                                <fieldset>
-                                    <legend id="nom">Nombre</legend>
-                                </fieldset>
-                                <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
-                            </div>
-
-                            <div class="fieldset">
-                                <fieldset>
-                                    <legend id="ape">Apellido</legend>
-                                </fieldset>
-                                <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
-                            </div>
-
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="ape">Apellido</legend>
+                            </fieldset>
+                            <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
                         </div>
 
-                        <div class="fila-cont">
+                    </div>
 
-                            <div class="fieldset">
-                                <fieldset>
-                                    <legend id="doc">Documento</legend>
-                                </fieldset>
-                                <input type="number" placeholder="Documento" legend="#doc" name="documento">
-                            </div>
+                    <div class="fila-cont">
 
-                            <button type="submit" class="filtrar">Filtrar</button>
-                            <a href="adminUsu.php" class="filtrar">Limpiar</a>
-
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="doc">Documento</legend>
+                            </fieldset>
+                            <input type="number" placeholder="Documento" legend="#doc" name="documento">
                         </div>
+
+                        <button type="submit" class="filtrar">Filtrar</button>
+                        <a href="adminUsu.php" class="filtrar">Limpiar</a>
+
+                    </div>
 
                     </form>
 
                 </div>
-                <form action="../../../Controlador/registrarAsistDoc.php" method="POST"> 
-                    <button type="submit" onclick="return CrearArray();"> registrar </button>                       
+            </div>
+
+            <div class="tablas">
+                <form action="../../../Controlador/registrarAsistDoc.php" method="POST">               
                     <div class="tablas">
                         <table id="tblAsistencia">
-                            <caption>
-                                Lista de usuarios registrados
-                            </caption>
                             <thead>
                                 <tr>
                                     <th>Tipo Documento</th>
@@ -130,9 +119,12 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                                 <?php cargarAsistencia(); ?>
                             </tbody>                            
                         </table>
+                        <button type="submit" class="enviar" onclick="return CrearArray();"> registrar </button> 
                     </div>
                     <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
                     <input type="text" style="display: none;" id="txtArray" name="txtArray">
+                     
+                           
                 </form>                
             </div>
         </section>

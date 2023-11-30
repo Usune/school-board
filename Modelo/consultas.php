@@ -102,7 +102,7 @@
 
         }
 
-        public function insertarObserDoc($idEstudiante, $idAutor, $fecha, $observacion, $idClase)
+        public function insertarObserDoc($idEstudiante, $idAutor, $descripcion, $fecha, $idClase)
         {
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -112,7 +112,7 @@
             $resultado->bindParam(':idEstudiante', $idEstudiante);
             $resultado->bindParam(':idAutor', $idAutor);
             $resultado->bindParam(':fecha', $fecha);
-            $resultado->bindParam(':observacion', $observacion);
+            $resultado->bindParam(':observacion', $descripcion);
 
             $resultado->execute();
             echo '<script>alert("La observación fue registrado")</script>';
@@ -819,6 +819,7 @@
             return $f;
         }
 
+        // Trae todas las clases registradas
         public function mostrarClasesAdmin() {
             $f = null;
 
@@ -1925,13 +1926,24 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT curso.idCurso as idCur, curso.nombre as nomCur, curso.jornada as curJor,asignatura.nombre as asigNom , clase.idClase as idClase
-            
-            FROM clase
-
-            INNER JOIN curso ON clase.idCurso = curso.idCurso
-            INNER JOIN asignatura ON clase.idAsignatura = asignatura.idAsignatura
-            WHERE clase.idDocente = :documento
+            $sql = "SELECT
+            cl.idClase,
+            u.nombres AS nombreDocente, u.foto,
+            cl.descripción AS nombreClase,
+            a.nombre AS nombreAula,
+            asig.nombre AS nombreAsignatura,
+            curso.nombre AS nombreCurso,
+            curso.jornada AS jornadaCurso,
+            COUNT(ec.idEstudiante) AS cantidadEstudiantes
+            FROM clase cl
+            JOIN usuario u ON cl.idDocente = u.documento
+            JOIN aula a ON cl.idAula = a.idAula
+            JOIN asignatura asig ON cl.idAsignatura = asig.idAsignatura
+            JOIN curso ON cl.idCurso = curso.idCurso
+            LEFT JOIN estudianteCurso ec ON cl.idCurso = ec.idCurso
+            WHERE cl.idDocente = :documento
+            GROUP BY cl.idClase, u.nombres, u.foto, cl.descripción, a.nombre, asig.nombre, curso.nombre, curso.jornada
+            ORDER BY cl.idClase DESC
             ";
 
             $result = $conexion->prepare($sql);
@@ -1947,7 +1959,6 @@
             }
 
             return $f;
-
 
         }
 
@@ -2199,7 +2210,8 @@
             FROM observador o
             INNER JOIN usuario a ON o.idAutor = a.documento
             INNER JOIN usuario e ON o.idEstudiante = e.documento
-            WHERE o.idEstudiante = :documento";
+            WHERE o.idEstudiante = :documento
+            ORDER BY o.idObservador DESC";
 
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':documento', $documento);

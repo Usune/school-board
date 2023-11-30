@@ -21,21 +21,20 @@ require_once ('../../../Controlador/mostrarTareasDoc.php');
     <?php
         include('menu-include.php');
     ?>
-    <main>
-        <!-- breadcrumb -->
+        <!-- breadcrumb -->    
         <nav class="nav-main">
-            <a href="homeDoc.php">Clases</a>
-            <a href="adminUsu.php"> / Única-PRIMERO</a>
-            <a href="docCalificaciones.php"> / Calificaciones </a>
+            <a href="homeDoc.php">Clases </a>
+            <?php
+                traerCurso();
+            ?>
+            <a href="" id="actual" actual="#calificaciones"> / Calificaciones </a>
         </nav>
 
-        <section>
-            <h2>Calificaciones</h2>            
-            <?php
-                cargaTareasCalificaciones();  
-            ?>
+        <section>   
+            
+
+        
         </section>
-    </main>   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+    </main>
 </body>
 </html>

@@ -72,7 +72,8 @@ CREATE TABLE curso (
 );
 
 INSERT INTO curso (jornada, nombre) VALUES
-('', 'Todos') --No quitar este registro nunca
+-- No quitar este registro nunca
+('', 'Todos'), 
 ('unica', 'SEXTO'),
 ('unica', 'SEPTIMO'),
 ('unica', 'OCTAVO'),
@@ -187,11 +188,8 @@ CREATE TABLE estudianteCurso (
 );
 
 INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES 
-(4, 1023163094),
-(4, 1023163095),
-(4, 1023163096),
-(2, 1023163096),
-(2, 1023163096),
+(2, 1023163094),
+(2, 1023163095),
 (2, 1023163096),
 (3, 1023163097),
 (3, 1023163098),
@@ -208,10 +206,12 @@ CREATE TABLE asistencia (
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
 );
 
-INSERT INTO asistencia (idAsistencia,idClase, idEstudiante, fecha, estado) VALUES
-(1, 1, 1,'2023-09-05 13:12:13','Asiste'),
-(2, 1, 1,'2023-09-05 13:12:13', 'Falta'),
-(3, 1, 1,'2023-09-05 13:12:13', 'Retardo');
+INSERT INTO asistencia (idClase, idEstudiante, fecha, estado) VALUES
+(1, 1023163094,'2023-09-05 13:12:13','Asiste'),
+(1, 1023163095,'2023-09-05 13:12:13','Asiste'),
+(1, 1023163096,'2023-09-05 13:12:13', 'Falta'),
+(2, 3,'2023-09-05 13:12:13', 'Falta'),
+(1, 1023163094,'2023-09-17 13:12:13', 'Retardo');
 
 
 CREATE TABLE tarea (

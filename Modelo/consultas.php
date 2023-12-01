@@ -1275,6 +1275,73 @@
 
         // CONSULTAS PARA ESTUDIANTES 
 
+        // ESTUDIANTES ASISTENCIA
+
+        // Funcion para cargar info de las clases correspondientes al estudiante
+        public function cargarAsistencia($idEstudiante){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT asistencia.* FROM asistencia
+            INNER JOIN usuario ON usuario.documento = asistencia.idEstudiante
+            WHERE usuario.documento = :idEstudiante
+            ORDER BY asistencia.fecha DESC";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+            while ($resultado = $statement->fetch()) {
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+        }
+
+
+        // ESTUDIANTES CLASES
+        
+        // Trae todas las clases registradas
+        public function cargarClasesEstu($idEstudiante) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT
+            cl.idClase,
+            u.nombres AS nombreDocente,
+            u.apellidos AS apellidosDocente,
+            u.foto,
+            cl.descripción AS nombreClase,
+            a.nombre AS nombreAula,
+            asig.nombre AS nombreAsignatura,
+            curso.nombre AS nombreCurso
+            FROM clase cl
+            JOIN usuario u ON cl.idDocente = u.documento
+            JOIN aula a ON cl.idAula = a.idAula
+            JOIN asignatura asig ON cl.idAsignatura = asig.idAsignatura
+            JOIN curso ON cl.idCurso = curso.idCurso
+            LEFT JOIN estudianteCurso ec ON cl.idCurso = ec.idCurso
+            WHERE ec.idEstudiante = :idEstudiante
+            GROUP BY cl.idClase, u.nombres, u.foto, cl.descripción, a.nombre, asig.nombre, curso.nombre
+            ORDER BY cl.idClase DESC";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
         // Funcion para cargar info de las clases correspondientes al estudiante
         public function cargarAsignaturas($idEstudiante){
             $rows = null;
@@ -1401,21 +1468,24 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT *,
+            tarea.idTarea AS idTarea,
             asignatura.nombre as asignaturaNombre,
             usuario.foto as fotoDoc,
-                CASE 
-                    WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
-                    ELSE 'pendiente' 
-                END AS estadoTarea
-            FROM clase
-            INNER JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
-            INNER JOIN usuario ON usuario.documento = clase.idDocente
-            INNER JOIN curso ON curso.idCurso = clase.idCurso
-            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
-            INNER JOIN tarea ON tarea.idClase = clase.idClase
-            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
-            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
-            WHERE estudiantecurso.idEstudiante = :idEstudiante";
+            CASE 
+                WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+        FROM tarea
+        JOIN clase ON clase.idClase = tarea.idClase
+        JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+        JOIN curso ON curso.idCurso = clase.idCurso
+        JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+        JOIN usuario ON usuario.documento = clase.idDocente
+        LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+        LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+        WHERE estudiantecurso.idEstudiante = :idEstudiante
+        GROUP BY tarea.idTarea;
+        ";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
@@ -1594,7 +1664,12 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql ="SELECT acudiente.*
+            $sql ="SELECT usuario.*,
+            acudiente.documento AS acudienteDocumento,
+            acudiente.nombres AS acudienteNombres,
+            acudiente.apellidos AS acudienteApellidos,
+            acudiente.telefono AS acudienteTelefono,
+            acudiente.correo AS acudienteCorreo
             FROM acudiente
             INNER JOIN estudianteacudiente ON estudianteacudiente.idAcudiente = acudiente.documento
             INNER JOIN usuario ON usuario.documento = estudianteacudiente.idEstudiante
@@ -1647,7 +1722,7 @@
           
 
             echo '<script>alert("Actualización exitosa")</script>';
-            echo '<script>location.href="../Vista/html/Estudiante/homeAcudiente.php"</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/perfilAcudiente.php"</script>';
 
 
     
@@ -2434,6 +2509,41 @@
             echo '<script>alert("Entrega asistencia registrada")</script>';
             echo '<script>location.href="../Vista/html/Docente/docAsistencia.php?idClase='.$clase.'"</script>';
         }
+
+        public function cargarAsistenciaDoc($idClase) {
+            $rows = array();
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT
+                        u.nombres AS  nombres,
+                        a.fecha AS fecha_asistencia,
+                        CASE
+                            WHEN a.estado = 'Asiste' THEN 'Asistió'
+                            WHEN a.estado = 'Falta' THEN 'Falta'
+                            WHEN a.estado = 'Falta Justificada' THEN 'Falta justificada'
+                            WHEN a.estado = 'Retardo' THEN 'Retardo'
+                            ELSE 'No registrado'
+                        END AS estado_asistencia
+                    FROM asistencia a
+                    INNER JOIN usuario u ON a.idEstudiante = u.documento
+                    WHERE a.idClase = :idClase
+                    ORDER BY u.nombres, a.fecha";
+        
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idClase', $idClase);
+            $statement->execute();
+        
+            while ($resultado = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $rows[] = $resultado;
+            }
+        
+            return $rows;
+        }
+        
+        
+        
 
 
     }

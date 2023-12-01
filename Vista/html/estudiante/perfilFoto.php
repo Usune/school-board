@@ -20,38 +20,39 @@
     <?php
         include("menu-include.php");
     ?>
-        <main>
             
             <!-- breadcrumb -->  
             <nav class="nav-main">
-                <a href="homeAdmin.php">Home</a>
-                <a href="adminPerfil.php"> / Perfil</a>
+                <a href="homeEstu.php">Home</a>
+                <a href="#" onclick="irAtras()"> / Perfil</a>
             </nav>
         
-            <section>
+            <section class="container-fluid">
 
-                <h2>Perfil</h2>
-                
-                <div class="perfil">
-                    <?php
-                        actualizarFotoEstu();
-                    ?>
+                <div class="container">
+
+                    <div class="row">
+                        <?php
+                            actualizarFotoEstu();
+                        ?>
+                    </div>
                 </div>
-        
+
             </section>
         </main>
 
     </div>
 
-    <hr>
+      <!-- link bootstrap -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
-    
+
+    <script>
+        function irAtras() {
+            history.go(-1);
+        }
+    </script>
 </body>
 </html>

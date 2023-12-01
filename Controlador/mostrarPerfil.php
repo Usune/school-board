@@ -191,7 +191,7 @@
                     
                     <p style="color: var(--grisOscuro);">Nota.</p>
                     
-                    <p>Para modificar su foto de perfil, presione el botón "Elegit archivo" y seleccione la foto que desea. </br></br>Se recomienda que la foto ya este recortada en forma de cuadrado.</p>
+                    <p>Para modificar su foto de perfil, presione el botón "Seleccionar archivo" y seleccione la foto que desea. </br></br>Se recomienda que la foto ya este recortada en forma de cuadrado.</p>
 
                     <div class="formulario">                    
                         <!--  enctype="multipart/form-data" -->

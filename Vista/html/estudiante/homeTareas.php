@@ -32,12 +32,11 @@
         include("menu-include.php");
     ?>
 
-  <main>
 
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeTareas.php"> / Tareas</a>
+      <a href="homeTareas.php" id="actual" actual="#liTareas"> / Tareas</a>
     </nav>
 
     <section>
@@ -51,13 +50,14 @@
                   <th scope="col">Asignatura</th>
                   <th scope="col">Docente</th>
                   <th scope="col">Titulo</th>
-                  <th scope="col">Fecha de Entrega</th>
                   <th scope="col">Estado</th>
+                  <th scope="col">Fecha de Calificación</th>
+                  <th scope="col">Calificación</th>
                   <th scope="col" class="ultimo">Detalles</th>
                 </tr>
               </thead>
               <tbody>
-                <?php mostrarTodasTareas(); ?>
+                <?php mostrarTodasCalificaciones(); ?>
                 <!-- <tr>
                   <td>Español</td>
                   <td>
@@ -158,14 +158,6 @@
   </div>
 
 
-  <hr>
-  <footer>
-    <div class="info-footer">
-      <p>School Board</p>
-      <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-      <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-    </div>
-  </footer>
 
   <!-- link bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

@@ -78,4 +78,67 @@
         }
 
     } 
+
+
+    function cargarConsultaAsistencia() {
+        $idClase = $_GET['idClase'];
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->cargarAsistenciaDoc($idClase);
+    
+        // Obtén la lista única de fechas y estudiantes
+        $fechas = array_unique(array_column($consultas, 'fecha_asistencia'));
+        $estudiantes = array_unique(array_column($consultas, 'nombres'));
+    
+        echo '<div class="container">
+                <div class="">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Estudiante</th>';
+    
+        // Imprime las fechas en el encabezado
+        foreach ($fechas as $fecha) {
+            echo '<th>' . $fecha . '</th>';
+        }
+    
+        echo '</tr>
+            </thead>
+            <tbody>';
+    
+        // Recorre los estudiantes e imprime
+        foreach ($estudiantes as $estudiante) {
+            echo '<tr>';
+            echo '<td>' . $estudiante . '</td>';
+    
+            // Recorre las fechas y muestra el estado correspondiente
+            foreach ($fechas as $fecha) {
+                $estado = obtenerEstadoAsistencia($consultas, $estudiante, $fecha);
+                echo '<td>' . $estado . '</td>';
+            }
+    
+            echo '</tr>';
+        }
+    
+        echo '</tbody>
+            </table>
+        </div>
+    </div>';
+    }
+    
+    function obtenerEstadoAsistencia($consultas, $estudiante, $fecha) {
+        foreach ($consultas as $fila) {
+            if ($fila['nombres'] == $estudiante && $fila['fecha_asistencia'] == $fecha) {
+                return $fila['estado_asistencia'];
+            }
+        }
+        return '';
+    }
+
+    
+    
+    
+    
+
+    
 ?>

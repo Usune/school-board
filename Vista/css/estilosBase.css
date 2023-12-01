@@ -587,6 +587,15 @@ aside {
     background-size: cover;
 }
 
+
+.asideImgEstu {
+    width: 176px;
+    height: 148px;
+    background-image: url(../img/asideImgEstu.svg);
+    background-size: cover;
+    transform: scaleX(-1);
+}
+
 #liRol {
     margin-top: 15px;
     width: 90%;

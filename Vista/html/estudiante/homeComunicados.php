@@ -32,7 +32,7 @@
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeComunicados.php"> / Comunicados</a>
+      <a href="homeComunicados.php" id="actual" actual="#liComunicados"> / Comunicados</a>
     </nav>
 
     <section>
@@ -58,14 +58,6 @@
   </div>
 
 
-  <hr>
-  <footer>
-    <div class="info-footer">
-      <p>School Board</p>
-      <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-      <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-    </div>
-  </footer>
 
   <!-- link bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

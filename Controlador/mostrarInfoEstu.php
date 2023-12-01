@@ -1,6 +1,68 @@
 <?php
 //    session_start();
 
+    // ASISTENCIA 
+    
+    // Mostrar asistencia del estudiante  
+    function mostrarAsistencia(){
+        $idEstudiante = $_SESSION['id'];
+
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarAsistencia($idEstudiante);
+
+        foreach ($filas as $f) {
+
+            $fechaFormateada = date('M j, Y', strtotime($f['fecha']));
+
+
+            if($f['estado'] == "Asiste"){
+                echo '
+                    <tr>
+                        <td>'.$fechaFormateada.'</td>
+                        <td>Asistio</td>
+                        <td></td>
+                        <td></td>
+                        <td class="ultimo"></td>
+                    </tr>
+                ';
+            }else  if($f['estado'] == "Falta"){
+                echo '
+                    <tr>
+                        <td>'.$fechaFormateada.'</td>
+                        <td></td>
+                        <td>Falta</td>
+                        <td></td>
+                        <td class="ultimo"></td>
+                    </tr>
+                ';
+            }else  if($f['estado'] == "Falta Justificada"){
+                echo '
+                    <tr>
+                        <td>'.$fechaFormateada.'</td>
+                        <td></td>
+                        <td></td>
+                        <td>Falta Justificada</td>
+                        <td class="ultimo"></td>
+                    </tr>
+                ';
+            }else  if($f['estado'] == "Retardo"){
+                echo '
+                    <tr>
+                        <td>'.$fechaFormateada.'</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="ultimo">Retardo</td>
+                    </tr>
+                ';
+            };
+
+
+
+        }
+    }
+
+
 
     //CONSULTAS PERFIL
     function primeraActualizacionEst(){

@@ -29,25 +29,26 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
         include('menu-include.php');
     ?>
 
-        <!-- breadcrumb -->
-        <nav class="nav-main">
-            <a href="homeDoc.php">Clases</a>
-            <a href="adminUsu.php"> / Única-PRIMERO</a>
-            <a href="adminUsu.php" > / Asistencia</a>
-        </nav>
+    <!-- breadcrumb -->
+    <nav class="nav-main">
+        <a href="homeDoc.php">Clases</a>
+        <a href="adminUsu.php"> / Única-PRIMERO</a>
+        <a href="adminUsu.php"> / Asistencia</a>
+    </nav>
 
-        <section>
+    <section>
 
-            <div class="cabecera">
-                <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
-                    <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nuevo registro
-                </button>
-            </div>
+        <div class="cabecera">
+            <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
+                <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nuevo registro
+            </button>
+        </div>
 
-            <div class="opciones">
-                <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
+        <div class="opciones">
+            <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
+                    alt="filtro">Filtrar</button>
 
-                <?php
+            <?php
 
                     if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
                             
@@ -60,10 +61,11 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                     }
                 ?>
 
-            </div>
+        </div>
 
-            <div id="filtro">
-                <div class="cont-filtro"><form method="get">
+        <div id="filtro">
+            <div class="cont-filtro">
+                <form method="get">
 
                     <div class="fila-cont">
 
@@ -97,36 +99,47 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
 
                     </div>
 
-                    </form>
+                </form>
 
+            </div>
+        </div>
+
+        <div class="tablas">
+            <form action="../../../Controlador/registrarAsistDoc.php" method="POST">
+                <div class="tablas">
+                    <table id="tblAsistencia">
+                        <thead>
+                            <tr>
+                                <th>Tipo Documento</th>
+                                <th>Documento</th>
+                                <th>Apellidos</th>
+                                <th>Nombres</th>
+                                <th class="ultimo">Asistencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php cargarAsistencia(); ?>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="enviar" onclick="return CrearArray();"> registrar </button>
                 </div>
-            </div>
+                <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
+                <input type="text" style="display: none;" id="txtArray" name="txtArray">
 
-            <div class="tablas">
-                <form action="../../../Controlador/registrarAsistDoc.php" method="POST">               
-                    <div class="tablas">
-                        <table id="tblAsistencia">
-                            <thead>
-                                <tr>
-                                    <th>Tipo Documento</th>
-                                    <th>Documento</th>
-                                    <th>Apellidos</th>
-                                    <th>Nombres</th>  
-                                    <th class="ultimo">Asistencia</th>                                                                                                
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php cargarAsistencia(); ?>
-                            </tbody>                            
-                        </table>
-                        <button type="submit" class="enviar" onclick="return CrearArray();"> registrar </button> 
-                    </div>
-                    <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
-                    <input type="text" style="display: none;" id="txtArray" name="txtArray">
-                     
-                </form>                
-            </div>
-        </section>
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container-fluid">
+            <h2>Consulta de Asistencia</h2>
+
+            <?php cargarConsultaAsistencia(); ?>
+
+        </div>
+
+    </section>
 
 
 
@@ -134,7 +147,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
 
 </body>
 <script>
-    function CrearArray(){
+    function CrearArray() {
         var table = document.getElementById("tblAsistencia");
         var nFilas = table.rows.length;
         var datosAsistenciaArray = "";
@@ -144,25 +157,25 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
 
             var opciones = document.getElementsByName('rdblAsistencia' + i);
             var valorSeleccionado = null;
-            
+
             for (var j = 0; j < opciones.length; j++) {
                 if (opciones[j].checked) {
-                    datosAsistenciaArray += opciones[j].value + "|";   
-                    valorSeleccionado = opciones[j].value;                
+                    datosAsistenciaArray += opciones[j].value + "|";
+                    valorSeleccionado = opciones[j].value;
                 }
-            }             
-            
+            }
+
             if (valorSeleccionado == null) {
                 alert('Debe seleccionar una opción');
                 opciones[0].parentNode.parentNode.classList.add('isEmpty');
                 return false;
             }
-            else{
+            else {
                 opciones[0].parentNode.parentNode.classList.remove('isEmpty');
-            }        
+            }
         }
 
-        document.getElementById("txtArray").value = datosAsistenciaArray.slice(0, -1);        
+        document.getElementById("txtArray").value = datosAsistenciaArray.slice(0, -1);
     }
 </script>
 

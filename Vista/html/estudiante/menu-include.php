@@ -16,17 +16,18 @@
                     <h1>School Board</h1></a>
                 </div>
                 <ul>
-                    <li><a href="homeClases.php" id="clases"><img src="../../img/clases.svg" alt="logo">Clases</a></li>
-                    <li><a href="homeTareas.php"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
-                    <li><a href="homeCalificaciones.php"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
-                    <li><a href="homeObservador.php"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
-                    <li><a href="homeIntegrantes.php"><img src="../../img/profesores.svg" alt="logo">Integrantes</a></li>
-                    <li><a href="homeComunicados.php"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
+                    <li><a href="homeClases.php" id="liClases"><img src="../../img/clases.svg" alt="logo">Clases</a></li>
+                    <li><a href="homeTareas.php" id="liTareas"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
+                    <li><a href="homeCalificaciones.php" id="liCalificaciones"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
+                    <li><a href="homeObservador.php" id="liObservador"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
+                    <li><a href="homeIntegrantes.php" id="liIntegrantes"><img src="../../img/profesores.svg" alt="logo">Integrantes</a></li>
+                    <li><a href="homeComunicados.php" id="liComunicados"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
+                    <li><a href="homeAsistencia.php" id="liAsistencia"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>
                     <!-- <li><a href="homeAcudiente.php"><img src="../../img/user.svg" alt="logo">Acudiente</a></li> -->
                 </ul>
             </div>
             <div>
-                <div class="asideImgAdmin">
+                <div class="asideImgEstu">
                 </div>
                 <footer>
                     <div class="info-footer">

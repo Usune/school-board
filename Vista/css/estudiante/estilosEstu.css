@@ -27,6 +27,11 @@ h3 {
     font-weight: 700;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+}
+
 /* Estilos Registros Primera Vez */
 
 .decoracion {
@@ -200,12 +205,15 @@ input[type="file"]::-webkit-file-upload-button {
     border: 1px solid transparent;
     border-radius: 25px;
     background-color: var(--principal);
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 
 .btnPrincipal a {
     color: var(--negro);
     text-decoration: none;
+    cursor: pointer;
 }
 
 
@@ -221,6 +229,7 @@ input[type="file"]::-webkit-file-upload-button {
     background-color: var(--principal);
     box-shadow: 4px 6px 0px 0px #fa5e00;
     font-weight: 700;
+    cursor: pointer;
 }
 
 
@@ -675,7 +684,7 @@ h3.texto {
     align-items: center;
 }
 
- p.rojo {
+p.rojo {
     color: var(--rojo);
     background-color: #FEF0F0;
     border: 1px solid var(--rojo);
@@ -686,7 +695,7 @@ h3.texto {
 .fechasCont p.amarillo {
     color: #ffea00;
     background-color: #fefdf0;
-    border: 1px solid  #ffea00;
+    border: 1px solid #ffea00;
     border-radius: 20px;
     padding: 5px 10px;
 }
@@ -694,7 +703,7 @@ h3.texto {
 .fechasCont p.verde {
     color: #00ff33;
     background-color: #f0fef1;
-    border: 1px solid   #00ff33;
+    border: 1px solid #00ff33;
     border-radius: 20px;
     padding: 5px 10px;
 }
@@ -731,7 +740,7 @@ h3.texto {
     padding: 10px;
 }
 
-.cont-archivo-null{
+.cont-archivo-null {
     margin: 0 0 20px 0;
     min-height: 40px;
     border-radius: 20px;
@@ -744,16 +753,19 @@ h3.texto {
     padding: 10px;
 }
 
-.cont-archivo-null p{
+.cont-archivo-null p {
     color: var(--oscuroPrincipal);
 }
 
 .cont-archivo a {
     color: var(--oscuroPrincipal);
     text-decoration: none;
-    white-space: nowrap; /* Evita el salto de línea */
-    overflow: hidden; /* Oculta cualquier desbordamiento */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al final si el texto es demasiado largo */
+    white-space: nowrap;
+    /* Evita el salto de línea */
+    overflow: hidden;
+    /* Oculta cualquier desbordamiento */
+    text-overflow: ellipsis;
+    /* Agrega puntos suspensivos (...) al final si el texto es demasiado largo */
 }
 
 /* Hover */
@@ -777,7 +789,7 @@ h3.texto {
     background-color: var(--blanco);
 }
 
-.modal-footer{
+.modal-footer {
     width: 99%;
     margin: 0 auto;
     border-top: 1px solid var(--grisClaro);
@@ -785,14 +797,14 @@ h3.texto {
 
 
 /* Estilos Comunicados */
-.card-comu{
+.card-comu {
     position: relative;
     padding-top: 13%;
     margin: 50px 0;
     border-radius: 28px 0 28px 0;
 }
 
-.card-icono{
+.card-icono {
     position: absolute;
     top: -50px;
     left: 0;
@@ -805,7 +817,7 @@ h3.texto {
     width: 30%;
 }
 
-.infoUsu{
+.infoUsu {
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -814,32 +826,32 @@ h3.texto {
     padding-top: 5%;
 }
 
-.infoUsu img{
+.infoUsu img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin: 0  0 0 20px;
+    margin: 0 0 0 20px;
 }
 
-.card-comu h5{
+.card-comu h5 {
     padding: 20px 0 0 0;
     font-weight: 700;
     text-align: center;
 }
 
-.card-comu p{
+.card-comu p {
     width: 90%;
     padding: 10px;
     margin: 0 auto;
 }
 
-.card-comu .cont-archivo{
+.card-comu .cont-archivo {
     width: 85%;
     margin: 10px auto;
     margin-bottom: 60px;
 }
 
-.card-comu .cont-archivo:hover{
+.card-comu .cont-archivo:hover {
     width: 85%;
     margin: 10px auto;
     font-weight: 700;
@@ -848,10 +860,10 @@ h3.texto {
 }
 
 
-.fechaComu{
+.fechaComu {
     width: 35%;
     background-color: var(--principal);
-    border-radius: 28px 0 28px 0 ;
+    border-radius: 28px 0 28px 0;
     text-align: right;
     position: absolute;
     bottom: 0;
@@ -859,7 +871,7 @@ h3.texto {
 }
 
 
-.acudiente .card-usu{
+.acudiente .card-usu {
     background-color: var(--blanco);
     padding: 0 8px 30px 8px;
 }
@@ -869,12 +881,96 @@ h3.texto {
     margin: 0 auto;
 }
 
+#formulario .file {
+    position: relative;
+}
+
+.formulario .fieldset {
+    margin-bottom: 0;
+}
+
+/* PERFIL */
+
+.fotoNombre{
+    width: 97%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 40px 40px 40px 80px;
+    background-color: var(--blanco);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 2px var(--gris);
+    height: 100%;
+    min-height: 500px;
+    position: relative;
+}
+
+.fotoNombre::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: var(--principal);
+    border-radius: 20px 0 0 20px;
+}
+
+
+.perfilDerecha {
+    width: 97%;
+    margin: 0 auto;
+    padding: 10px 40px;
+    height: 100%;
+    min-height: 500px;
+}
+
+.enlacesPerfil  {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.enlacesPerfil a {
+    padding: 0;
+    margin: 0;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.perfilDerecha p {
+    font-size: 12px;
+    width: 97%;
+    margin: 0 auto;
+}
+
+
+.formulario  {
+    width: 100%;
+}
+
+
+.formulario form {
+    width: 100%;
+}
+
+
+
+
+h4 {
+    font-weight: 700;
+}
+
+.col-sm-12{
+    margin-bottom: 20px;
+}
+
 
 /* Fin Estilos Comunicados */
 
 /* Media Queries */
 /* Phone */
-@media screen and (min-width: 300px) and (max-width: 800px) {
+@media screen and (min-width: 300px) and (max-width: 1300px) {
 
     /* Estilos tablas */
     .tablas tbody tr td .row .imgDoc {
@@ -916,9 +1012,15 @@ h3.texto {
     }
 
     /* fecha en card comunicados */
-    .fechaComu{
+    .fechaComu {
         width: 50%;
     }
+
+    /* perfil */
+    .fotoNombre{
+        padding: 40px ;
+    }
+    
 
 
 }

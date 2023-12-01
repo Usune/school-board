@@ -8,55 +8,30 @@
   <title>Estudiante</title>
   <link rel="shortcut icon" href="../../img/logo.svg">
 
-
-
   <!-- link bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
-
   <link rel="stylesheet" type="text/css" href="../../css/estudiante/estilosEstu.css">
   <script src="../../js/controlGeneral.js"></script>
-
-
 </head>
 
 <body>
-  <!-- Barra de navegación principal (horizontal) -->
+
   <?php
         include("menu-include.php");
     ?>
+  <!-- breadcrumb -->
+  <nav class="nav-main">
+    <a href="homeEstu.php">Home</a>
+  </nav>
 
-  <main>
+  <section>
 
-    <!-- breadcrumb -->
-    <nav class="nav-main">
-      <a href="homeEstu.php">Home</a>
-    </nav>
-
-    <section>
-      
-
-    </section>
-
-
-
-
+            
+  </section>
   </main>
-
-
-  </div>
-
-
-  <hr>
-  <footer>
-    <div class="info-footer">
-      <p>School Board</p>
-      <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-      <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-    </div>
-  </footer>
 
   <!-- link bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

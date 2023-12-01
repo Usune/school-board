@@ -25,7 +25,6 @@
         include("menu-include.php");
     ?>
 
-  <main>
 
     <!-- breadcrumb -->
     <nav class="nav-main">

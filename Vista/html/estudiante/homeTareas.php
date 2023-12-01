@@ -1,10 +1,4 @@
-<?php
-    require_once ('../../../Modelo/conexion.php');
-    require_once ('../../../Modelo/consultas.php');
-    require_once ('../../../Controlador/mostrarPerfil.php');
-    require_once ('../../../Controlador/mostrarUsuAdmin.php');
-    require_once ('../../../Controlador/mostrarInfoEstu.php');
-?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -29,10 +23,10 @@
 <body>
   <!-- Barra de navegación principal (horizontal) -->
   <?php
-        include("menu-include.php");
-    ?>
+    include("menu-include.php");
+  ?>
 
-  <main>
+
 
     <!-- breadcrumb -->
     <nav class="nav-main">

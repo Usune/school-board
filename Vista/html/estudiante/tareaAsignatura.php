@@ -34,7 +34,6 @@
         include("menu-include.php");
     ?>
 
-    <main>
 
         <!-- breadcrumb -->
         <!-- <nav class="nav-main">
@@ -275,15 +274,6 @@
 
     </div>
 
-
-    <hr>
-    <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
-    </footer>
 
     <!-- link bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

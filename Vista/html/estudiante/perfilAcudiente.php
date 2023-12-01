@@ -36,15 +36,16 @@
 
             <div class="row">
                 <?php
-                    actualizarPerfilEstu();
-                ?>
+                            actualizarPerfilAcudiente();
+                        ?>
             </div>
         </div>
-        
+
     </section>
+
     </main>
 
-
+    </div>
 
     <!-- link bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -57,6 +58,7 @@
             history.go(-1);
         }
     </script>
+
 </body>
 
 </html>

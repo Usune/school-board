@@ -32,7 +32,6 @@
         include("menu-include.php");
     ?>
 
-  <main>
 
     <!-- breadcrumb -->
     <nav class="nav-main">
@@ -42,7 +41,7 @@
 
     <section>
 
-      <h2>Administración de usuarios</h2>
+      <h2>Consulta de usuarios</h2>
 
       <div class="contenedor">
         <div class="fila-cont">

@@ -1594,7 +1594,12 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql ="SELECT acudiente.*
+            $sql ="SELECT usuario.*,
+            acudiente.documento AS acudienteDocumento,
+            acudiente.nombres AS acudienteNombres,
+            acudiente.apellidos AS acudienteApellidos,
+            acudiente.telefono AS acudienteTelefono,
+            acudiente.correo AS acudienteCorreo
             FROM acudiente
             INNER JOIN estudianteacudiente ON estudianteacudiente.idAcudiente = acudiente.documento
             INNER JOIN usuario ON usuario.documento = estudianteacudiente.idEstudiante
@@ -1647,7 +1652,7 @@
           
 
             echo '<script>alert("Actualización exitosa")</script>';
-            echo '<script>location.href="../Vista/html/Estudiante/homeAcudiente.php"</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/perfilAcudiente.php"</script>';
 
 
     

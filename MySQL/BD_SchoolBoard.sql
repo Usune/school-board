@@ -72,7 +72,8 @@ CREATE TABLE curso (
 );
 
 INSERT INTO curso (jornada, nombre) VALUES
-('', 'Todos') --No quitar este registro nunca
+-- No quitar este registro nunca
+('', 'Todos'), 
 ('unica', 'SEXTO'),
 ('unica', 'SEPTIMO'),
 ('unica', 'OCTAVO'),
@@ -187,11 +188,8 @@ CREATE TABLE estudianteCurso (
 );
 
 INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES 
-(4, 1023163094),
-(4, 1023163095),
-(4, 1023163096),
-(2, 1023163096),
-(2, 1023163096),
+(2, 1023163094),
+(2, 1023163095),
 (2, 1023163096),
 (3, 1023163097),
 (3, 1023163098),

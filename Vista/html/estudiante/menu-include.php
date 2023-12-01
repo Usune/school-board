@@ -18,7 +18,6 @@
                 <ul>
                     <li><a href="homeClases.php" id="liClases"><img src="../../img/clases.svg" alt="logo">Clases</a></li>
                     <li><a href="homeTareas.php" id="liTareas"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
-                    <li><a href="homeCalificaciones.php" id="liCalificaciones"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
                     <li><a href="homeObservador.php" id="liObservador"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
                     <li><a href="homeIntegrantes.php" id="liIntegrantes"><img src="../../img/profesores.svg" alt="logo">Integrantes</a></li>
                     <li><a href="homeComunicados.php" id="liComunicados"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>

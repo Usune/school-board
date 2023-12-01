@@ -1,4 +1,10 @@
-
+<?php
+    require_once ('../../../Modelo/conexion.php');
+    require_once ('../../../Modelo/consultas.php');
+    require_once ('../../../Controlador/mostrarPerfil.php');
+    require_once ('../../../Controlador/mostrarUsuAdmin.php');
+    require_once ('../../../Controlador/mostrarInfoEstu.php');
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -23,9 +29,8 @@
 <body>
   <!-- Barra de navegación principal (horizontal) -->
   <?php
-    include("menu-include.php");
-  ?>
-
+        include("menu-include.php");
+    ?>
 
 
     <!-- breadcrumb -->
@@ -45,13 +50,14 @@
                   <th scope="col">Asignatura</th>
                   <th scope="col">Docente</th>
                   <th scope="col">Titulo</th>
-                  <th scope="col">Fecha de Entrega</th>
                   <th scope="col">Estado</th>
+                  <th scope="col">Fecha de Calificación</th>
+                  <th scope="col">Calificación</th>
                   <th scope="col" class="ultimo">Detalles</th>
                 </tr>
               </thead>
               <tbody>
-                <?php mostrarTodasTareas(); ?>
+                <?php mostrarTodasCalificaciones(); ?>
                 <!-- <tr>
                   <td>Español</td>
                   <td>
@@ -154,7 +160,9 @@
 
 
   <!-- link bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

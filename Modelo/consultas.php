@@ -1313,6 +1313,7 @@
             $sql = "SELECT
             cl.idClase,
             u.nombres AS nombreDocente,
+            u.apellidos AS apellidosDocente,
             u.foto,
             cl.descripción AS nombreClase,
             a.nombre AS nombreAula,

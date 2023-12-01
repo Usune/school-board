@@ -85,6 +85,7 @@
                             <div class="cardClasesImg">
                                 <img src="'.$f['foto'].'" alt="docente">
                                 <p>'.$f['nombreDocente'].'</p>
+                                <p>'.$f['apellidosDocente'].'</p>
                             </div>
                             <div class="cardClasesInfo">
                                 <div class="infoClase">
@@ -124,6 +125,7 @@
                             <div class="cardClasesImg">
                                 <img src="'.$f['foto'].'" alt="docente">
                                 <p>'.$f['nombreDocente'].'</p>
+                                <p>'.$f['apellidosDocente'].'</p>
                             </div>
                             <div class="cardClasesInfo">
                                 <div class="infoClase">

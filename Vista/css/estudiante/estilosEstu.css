@@ -986,7 +986,14 @@ aside ul li a {
     padding: 0 0 10px 0;
 }
 
+.cardClasesImg img{
+    margin-bottom: 10px;
+}
 
+
+.cardClasesImg p{
+    margin: 0;
+}
 
 /* Media Queries */
 /* Phone */

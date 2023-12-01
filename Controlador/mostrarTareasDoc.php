@@ -8,7 +8,11 @@ function cargarTareas(){
     $consulta = $objConsulta->consultarTareasDoc($docente, $clase);
 
     if (!isset($consulta)){
-        echo'<h2>El docente no tiene tareas creadas.</h2>';
+        echo'
+        <div class="alert">
+            <p>No se han subido tareas a esta clase</p>
+        </div>
+        ';
 
     }else{
         foreach($consulta as $f){

@@ -38,7 +38,7 @@
             
             <div class="formulario">
                 
-                <h3 style="text-aling: center">Actualizar información personal</h3>
+                <h3 style="text-align: center">Actualizar información personal</h3>
 
                 <p class="recordatorio">La clave nueva que debe ingresar debe tener como mínimo 8 caracteres.<br><br> Antes de actualizar sus datos, asegurese de que todos los campos son correctos.</p>
                 <!--  enctype="multipart/form-data" -->

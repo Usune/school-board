@@ -36,7 +36,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
         
             <section>
 
-                <div class="cabecegit ra">
+                <div class="cabecera">
                     <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
                         <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nueva tarea
                     </button>
@@ -75,7 +75,9 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                                 </div>
 
                                 <?php
-                                    traerCursoID();
+                                    echo '
+                                    <input type="text" id="curso"  value="'.$_GET['idClase'].'" hidden name="idClase">
+                                    ';
                                 ?>
 
                                 <button type="submit" class="enviar">Entregar Tarea</button>

@@ -114,7 +114,11 @@
             $consultas = $objConsultas->mostrarObservadorDoc($documento);
     
             if (!isset($consultas)) {
-                echo '<h3>El estudiante no tiene observaciones</h3>';
+                echo '
+                <div class="alert">
+                    <p>No se han subido entregas en esta tarea</p>
+                </div>
+                ';
             } else {
                 $n = 0;
                 foreach($consultas as $f) {

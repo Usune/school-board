@@ -2335,13 +2335,15 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = 
-            "SELECT entrega.idEntrega, CONCAT(usuario.nombres, ' ', usuario.apellidos) AS Estudiante, tarea.titulo, entrega.descripcion, 
-                    entrega.fecha_entrega_est, tarea.fecha_vencimiento, entrega.archivos, calificacion.nota, calificacion.observacion, calificacion.idCalificacion
-            FROM tarea INNER JOIN
-                entrega on entrega.idTarea=tarea.idTarea INNER JOIN
-                usuario on usuario.documento=entrega.idEstudiante LEFT JOIN
-                calificacion on calificacion.idEntrega=entrega.idEntrega
-            WHERE idClase = :idClase AND entrega.idTarea = :idTarea";
+            "SELECT en.idEntrega, en.fecha_entrega_est, en.archivos,  en.descripcion,
+            CONCAT(u.nombres, ' ', u.apellidos) AS Estudiante, 
+            tarea.titulo, tarea.fecha_vencimiento,
+            cal.nota, cal.observacion, cal.idCalificacion
+            FROM tarea 
+            INNER JOIN entrega en on en.idTarea = tarea.idTarea 
+            INNER JOIN usuario u on u.documento = en.idEstudiante 
+            LEFT JOIN calificacion cal on cal.idEntrega = en.idEntrega
+            WHERE idClase = :idClase AND en.idTarea = :idTarea";
 
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':idClase', $idClase);

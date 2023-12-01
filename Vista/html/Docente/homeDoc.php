@@ -75,7 +75,7 @@
 
             <!-- breadcrumb -->
             <nav class="nav-main">
-                <!-- <a href="homeDoc.php">Clases </a> -->
+                <a href="homeDoc.php">Clases </a>
             </nav>
 
             <section>

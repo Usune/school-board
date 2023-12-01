@@ -3,11 +3,11 @@
     require_once("../Modelo/consultas.php");
     require_once ('../Modelo/seguridadDoc.php');
 
-    $idEntrega = $_POST['idEntrega'];    
+    $idEntrega = $_POST['idEntrega'];  
     $nota = $_POST['calificacion']; 
     $observacion = $_POST['observacion'];
-    $idClase = $_POST['idTareaG']; 
-    $idTarea = $_POST['idTareaG'];
+    $idClase = $_POST['idClase']; 
+    $idTarea = $_POST['idTarea'];
 
     if (strlen($idEntrega)>0 && strlen($nota)>0 && strlen($observacion)>0 && strlen($idClase)>0 && strlen($idTarea)>0) {
         

@@ -628,9 +628,9 @@ aside ul li a:hover {
 }
 
 .activeA {
-    font-weight: bold;
-    border-right: 8px solid var(--principal);
-    background-color: var(--principalOpaco);
+    font-weight: bold !important;
+    border-right: 8px solid var(--principal) !important;
+    background-color: var(--principalOpaco) !important;
 }
 
 aside ul li a img {
@@ -762,7 +762,6 @@ hr {
         width: 100%;
         height: 99vh;
         border-radius: 20px;
-        margin: 0px 15px 0px 15px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -1335,7 +1334,7 @@ hr#fechas {
 }
 
 .show_modal {
-    display: flex;
+    display: flex !important;
 }
 
 /* Fin estilos MODAL */
@@ -1419,6 +1418,24 @@ hr#fechas {
     justify-content: start;
     text-decoration: none;
     color: var(--negro);
+}
+
+.tablas tr td button {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-decoration: none;
+    color: var(--negro);
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.tablas tr td button img{
+    width: 20px;
+    margin-left: 10px;
 }
 
 
@@ -1608,3 +1625,19 @@ hr#fechas {
 }
 
 /* FIN ESTILOS TARJETAS CLASES ADMINISTRADOR */
+
+/* ESTILOS PARA EL TEXTO DE QUE NO HAY NADA */
+
+.alert{
+    width: calc(100% - 280px);
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert p {
+    font-size: 40px;
+    color: var(--grisOscuro);
+    font-weight: bold;
+}

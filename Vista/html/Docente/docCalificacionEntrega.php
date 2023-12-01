@@ -35,69 +35,48 @@
         </nav>
 
         <section>
-            <div class="tabla">
                 
-                    <div class="tablas">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Estudiante</th>
-                                    <th style="display: none;">idEntrega</th>
-                                    <th>Tarea</th>
-                                    <th>Descripción Entrega</th>
-                                    <th>Fecha de Entrega</th>
-                                    <th>Fecha de Vencimiento</th>
-                                    <th>Archivo</th>
-                                    <th class="ultimo">Nota</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    mostrarEntregasCalificacion();
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
                 
-            </div>   
-            
-            <?php
-                echo '<input style="display: none;" id="idTarea" name="idTarea" type="text" value="'.$_GET['idTarea'].'">';
-                echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';
-            ?>    
+                        <?php 
+                            mostrarEntregasCalificacion();
+                        ?>
 
              <!-- The Modal -->
-            <div class="modal" id="modalCalificación">
-                <div class="modal-dialog">
-                    <div class="modal-content">     
-                        <form action="../../../Controlador/registrarNotaDoc.php" method="post" enctype="multipart/form-data" id="formulario">                           
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                            <h4 class="modal-title">Calificación de entrega</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>                    
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Observacion:</label>
-                                    <textarea id="observacion" name="observacion" rows="4" cols="50" class="form-control" style="width: 100%;"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Calificación:</label>
-                                    <input type="text" class="form-control" id="calificacion" name="calificacion">
-                                </div>                              
-                                <input type="text" style="display: none;" id="idEntrega" name="idEntrega">
-                                <input type="text" style="display: none;" id="idTareaG" name="idTareaG">
-                                <input type="text" style="display: none;" id="idClaseG" name="idClaseG">
-                            </div>                    
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button  type="submit" class="btn btn-light">Guardar calificación</button>
-                                <button  type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-                            </div>   
-                        </form>                 
+            <div class="modal" id="modalCalificacion">
+                <div class="modal_container">
+                    <button type="button" class="desplegarModal btn-cerrar" modal="#modalCalificacion"><img src="../../img/x.svg" alt="Salir" modal="#modalCalificacion"></button>                        
+                        
+                        <div class="formulario">
+                    
+                            <h3>Calificar entrega</h3>
+                
+                            <form action="../../../Controlador/registrarNotaDoc.php" method="post" enctype="multipart/form-data" id="formulario">
+                    
+                                <div class="textarea">
+                                    <label for="observacion">Obervación</label>
+                                    <textarea id="observacion" cols="30" rows="10" name="observacion" require placeholder="Ingrese una observación"></textarea>
+                                </div> 
+
+                                <div class="fieldset">
+                                    <fieldset>
+                                        <legend id="nota">Calificación de entrega</legend>
+                                    </fieldset>
+                                    <input type="number" step="any" require placeholder="Ingrese la nota" required legend="#nota" name="calificacion">
+                                </div> 
+            
+                                <?php
+                                    echo '<input hidden id="idTarea" name="idTarea" type="text" value="'.$_GET['idTarea'].'">';
+                                    echo '<input hidden id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';
+                                ?>
+
+                                <input hidden id="idEntrega" name="idEntrega" type="text">
+
+                                <button type="submit" class="enviar">Guardar calificación</button>
+                            </form>
+
+                        </div>
                     </div>
-                </div>
+            
             </div> 
             
              <!-- The Modal -->

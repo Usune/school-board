@@ -1301,6 +1301,45 @@
 
 
         // ESTUDIANTES CLASES
+        
+        // Trae todas las clases registradas
+        public function cargarClasesEstu($idEstudiante) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT
+            cl.idClase,
+            u.nombres AS nombreDocente,
+            u.foto,
+            cl.descripción AS nombreClase,
+            a.nombre AS nombreAula,
+            asig.nombre AS nombreAsignatura,
+            curso.nombre AS nombreCurso
+            FROM clase cl
+            JOIN usuario u ON cl.idDocente = u.documento
+            JOIN aula a ON cl.idAula = a.idAula
+            JOIN asignatura asig ON cl.idAsignatura = asig.idAsignatura
+            JOIN curso ON cl.idCurso = curso.idCurso
+            LEFT JOIN estudianteCurso ec ON cl.idCurso = ec.idCurso
+            WHERE ec.idEstudiante = :idEstudiante
+            GROUP BY cl.idClase, u.nombres, u.foto, cl.descripción, a.nombre, asig.nombre, curso.nombre
+            ORDER BY cl.idClase DESC";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
 
         // Funcion para cargar info de las clases correspondientes al estudiante
         public function cargarAsignaturas($idEstudiante){
@@ -1428,21 +1467,24 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT *,
+            tarea.idTarea AS idTarea,
             asignatura.nombre as asignaturaNombre,
             usuario.foto as fotoDoc,
-                CASE 
-                    WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
-                    ELSE 'pendiente' 
-                END AS estadoTarea
-            FROM clase
-            INNER JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
-            INNER JOIN usuario ON usuario.documento = clase.idDocente
-            INNER JOIN curso ON curso.idCurso = clase.idCurso
-            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
-            INNER JOIN tarea ON tarea.idClase = clase.idClase
-            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
-            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
-            WHERE estudiantecurso.idEstudiante = :idEstudiante";
+            CASE 
+                WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+        FROM tarea
+        JOIN clase ON clase.idClase = tarea.idClase
+        JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+        JOIN curso ON curso.idCurso = clase.idCurso
+        JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+        JOIN usuario ON usuario.documento = clase.idDocente
+        LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+        LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+        WHERE estudiantecurso.idEstudiante = :idEstudiante
+        GROUP BY tarea.idTarea;
+        ";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);

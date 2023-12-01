@@ -62,6 +62,115 @@
         }
     }
 
+    // CLASES
+
+    // Mostrar clases del estudiante  
+    function mostrarClasesEstu() {
+        $idEstudiante =  $_SESSION['id'];
+        
+        $objConsultas = new Consultas();
+        $consultas = $objConsultas->cargarClasesEstu($idEstudiante);
+
+        if (!isset($consultas)) {
+            echo '<h2> No hay se han creado clases</h2>';
+        } else {
+            $n=0;
+            $m=0;
+            foreach($consultas as $f) {
+                if($n%3 == 0){
+                    $m += 1;
+                    echo'
+                    <div class="filaClases">
+                        <div class="cardClases">
+                            <div class="cardClasesImg">
+                                <img src="'.$f['foto'].'" alt="docente">
+                                <p>'.$f['nombreDocente'].'</p>
+                            </div>
+                            <div class="cardClasesInfo">
+                                <div class="infoClase">
+                                    <div class="infoImg">
+                                        <img src="../../img/curso.svg" alt="curso">
+                                    </div>
+                                    <div class="infoTexto">
+                                        <p class="tipo">Curso</p>
+                                        <p>'.$f['nombreCurso'].'</p>
+                                    </div>
+                                </div>
+                                <div class="infoClase">
+                                    <div class="infoImg">
+                                        <img src="../../img/asignaturas.svg" alt="asignatura">
+                                    </div>
+                                    <div class="infoTexto">
+                                        <p class="tipo">Asignatura</p>
+                                        <p>'.$f['nombreAsignatura'].'</p>
+                                    </div>
+                                </div>
+                                <div class="infoClase">
+                                    <div class="infoImg">
+                                        <img src="../../img/aulas.svg" alt="aula">
+                                    </div>
+                                    <div class="infoTexto">
+                                        <p class="tipo">Aula</p>
+                                        <p>'.$f['nombreAula'].'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ';
+                }else{
+                    $m += 1;
+                    echo '
+                        <div class="cardClases">
+                            <div class="cardClasesImg">
+                                <img src="'.$f['foto'].'" alt="docente">
+                                <p>'.$f['nombreDocente'].'</p>
+                            </div>
+                            <div class="cardClasesInfo">
+                                <div class="infoClase">
+                                    <div class="infoImg">
+                                        <img src="../../img/curso.svg" alt="curso">
+                                    </div>
+                                    <div class="infoTexto">
+                                        <p class="tipo">Curso</p>
+                                        <p>'.$f['nombreCurso'].'</p>
+                                    </div>
+                                </div>
+                                <div class="infoClase">
+                                    <div class="infoImg">
+                                        <img src="../../img/asignaturas.svg" alt="asignatura">
+                                    </div>
+                                    <div class="infoTexto">
+                                        <p class="tipo">Asignatura</p>
+                                        <p>'.$f['nombreAsignatura'].'</p>
+                                    </div>
+                                </div>
+                                <div class="infoClase">
+                                    <div class="infoImg">
+                                        <img src="../../img/aulas.svg" alt="aula">
+                                    </div>
+                                    <div class="infoTexto">
+                                        <p class="tipo">Aula</p>
+                                        <p>'.$f['nombreAula'].'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ';
+                }
+                if($m%3 == 0){
+                    echo'
+                    </div>
+                    ';
+                    $m = 0;
+                }
+                $n += 1; 
+            }
+
+        }
+
+    }
+
+
 
 
     //CONSULTAS PERFIL
@@ -554,8 +663,7 @@
                             <div class="row modal-footer">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <button type="button" class="btnAtras" data-bs-dismiss="modal"
-                                            aria-label="Close">
+                                        <button type="button" class="btnAtras" data-bs-dismiss="modal" aria-label="Close">
                                             <img src="../../img/volver.svg" alt="volver">
                                             Atrás
                                         </button>
@@ -564,8 +672,8 @@
                                         <button type="submit" class="btnPrincipal">Entregar</button>
                                     </div>
                                 </div>
-
                             </div>
+
                         </form>
 
                     </div>
@@ -588,9 +696,20 @@
 
                             <div class="modal-body">
 
-                            <p class="rojo">¡Hola Estudiante!
 
-                            Recuerda subir todos tus documentos necesarios. Los datos anteriores se borrarán pronto. ¡Gracias por tu cooperación y éxito en tus estudios!</p>
+                            <p class="notas">
+                            
+                            ¡Hola Estudiante!
+
+                            <br>
+                    
+
+                            Recuerda subir todos tus documentos necesarios. Los datos anteriores se borrarán pronto. ¡Gracias por tu cooperación y éxito en tus estudios!
+
+                            
+                            </p>
+
+                            
 
                                 <div class="row">
                                     <div class="col-md-12">

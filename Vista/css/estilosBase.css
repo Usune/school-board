@@ -1312,7 +1312,7 @@ hr#fechas {
     left: 0;
     background-color: #111111bd;
     display: none;
-    z-index: 200;
+    /* z-index: 1; */
 }
 
 .modal_container {
@@ -1384,7 +1384,8 @@ hr#fechas {
     background-color: #F9F9F9;
     text-align: left;
     vertical-align: middle;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
+    height: 50px;
 }
 
 .tablas thead tr th {

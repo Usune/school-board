@@ -11,7 +11,7 @@
         foreach($consulta as $f){
 
             echo '
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-4 espacio">
                 <div class="row fotoNombre">
                     <div class="col-md-12">
                         <img src="'.$f['foto'].'" alt="fotoPerfil">
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-8">
+            <div class="col-sm-12 col-md-8 espacio">
                 <div class="perfilDerecha">
                     <div class="row enlacesPerfil">
                                 <div class="col-md-3">
@@ -110,7 +110,7 @@
         foreach($consulta as $f){
 
             echo '
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4 espacio">
                     <div class="row fotoNombre">
                         <div class="col-md-12">
                             <img src="'.$f['foto'].'" alt="fotoPerfil">
@@ -130,7 +130,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-8 espacio">
                     <div class="perfilDerecha">
                         <div class="row enlacesPerfil">
                                     <div class="col-md-3">
@@ -189,7 +189,7 @@
         foreach($consulta as $f){
 
             echo '
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4 espacio">
                     <div class="row fotoNombre">
                         <div class="col-md-12">
                             <img src="'.$f['foto'].'" alt="fotoPerfil">
@@ -209,7 +209,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-8 espacio">
                     <div class="perfilDerecha">
                         <div class="row enlacesPerfil">
                                     <div class="col-md-3">
@@ -283,7 +283,7 @@
         foreach($consulta as $f){
 
             echo '
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4 espacio">
                     <div class="row fotoNombre">
                         <div class="col-md-12">
                             <img src="'.$f['foto'].'" alt="fotoPerfil">
@@ -303,7 +303,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-8 espacio">
                     <div class="perfilDerecha">
                         <div class="row enlacesPerfil">
                                     <div class="col-md-3">
@@ -369,60 +369,6 @@
                     </div>
             ';
 
-            // echo '
-            //     <div class="fotoNombre">
-            //         <img src="'.$f['foto'].'" alt="fotoPerfil">
-            //         <div class="texto">
-            //             <h4>'.$f['nombres'].'</h4>
-            //             <h4>'.$f['apellidos'].'</h4>
-            //             <h5>'.$f['tipoDoc'].' '.$f['documento'].'</h5>
-            //             <p>'.$f['rol'].'</p>
-            //         </div>
-            //     </div>
-
-            //     <div class="perfilDerecha">
-            //         <div class="enlacesPerfil">
-            //             <a href="perfil.php?id='.$f['documento'].'" class="activeP">Perfil</a>
-            //             <a href="perfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
-            //             <a href="perfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
-            //             <a href="perfilAcudiente.php?id='.$f['documento'].'"">Perfil Acudiente</a>
-            //         </div>
-            //         <p style="color: var(--grisOscuro);">Nota.</p>
-            //         <p>Reescriba los campos que desea modificar de su Acudiente.<br> Recuerde no dejar ningun campo vacio.</p>
-            //         <div class="formulario">
-            //             <form action="../../../Controlador/actualizarPerfil.php" method="post" enctype="multipart/form-data">
-
-            //                 <div class="fieldset">
-            //                     <fieldset>
-            //                         <legend id="cel">Celular</legend>
-            //                     </fieldset>
-            //                     <input type="number" placeholder="Celular" required legend="#cel" name="telefono" value="'.$f['telefono'].'">
-            //                 </div>
-
-            //                 <div class="fieldset">
-            //                     <fieldset>
-            //                         <legend id="cor">Correo</legend>
-            //                     </fieldset>
-            //                     <input type="email" placeholder="Correo" required legend="#cor" name="correo" value="'.$f['correo'].'">
-            //                 </div>
-
-            //                 <div class="fieldset">
-            //                     <fieldset>
-            //                         <legend id="dir">Dirección</legend>
-            //                     </fieldset>
-            //                     <input type="text" placeholder="Dirección" required legend="#dir" name="direccion" value="'.$f['direccion'].'">
-            //                 </div>
-                            
-            //                 <input type="number" value="'.$f['documento'].'" required name="documento" hidden>
-
-            //                 <button type="submit" class="enviar">Actualizar Datos</button>
-            //             </form>
-            //         </div>
-            //     </div>
-            // ';
-
-
-
         }
 
 
@@ -438,7 +384,7 @@
         foreach ($filas as $f) {
 
             echo '
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4 espacio">
                     <div class="row fotoNombre">
                         <div class="col-md-12">
                             <img src="'.$f['foto'].'" alt="fotoPerfil">
@@ -458,7 +404,7 @@
                     </div>
                 </div>
         
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-8 espacio">
                     <div class="perfilDerecha">
                         <div class="row enlacesPerfil">
                             <div class="col-md-3">

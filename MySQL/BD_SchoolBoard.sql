@@ -26,13 +26,13 @@ CREATE TABLE usuario (
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
-(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
+(8, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
 
-(1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', '../../Uploads/Usuario/userNicole.jpg'),
--- (1023163094, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, '../../Uploads/Usuario/userNicole.jpg'),
+(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', '../../Uploads/Usuario/userNicole.jpg'),
+-- (3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, '../../Uploads/Usuario/userNicole.jpg'),
 (1023163095, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', NULL, '../../Uploads/Usuario/userFavian.jpg'),
 (1023163096, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Darwin', 'Urbina Lopez', 'darwin@gmail.com', '../../Uploads/Usuario/userDarwin.jpg'),
 
@@ -107,7 +107,7 @@ CREATE TABLE observador (
 INSERT INTO observador(idEstudiante, idAutor, observacion) VALUES 
 (3, 1,'El estudiante no cumple con el uniforme de la institución'),
 (3, 1,'El estudiante no presta atención en clase y distrae a sus compañeros'),
-(1023163094, 2,'El estudiante, ha fallado 3 veces seguidas sin presentar excusa.');
+(3, 2,'El estudiante, ha fallado 3 veces seguidas sin presentar excusa.');
 
 
 CREATE TABLE comunicado (
@@ -124,7 +124,7 @@ CREATE TABLE comunicado (
 );
 
 INSERT INTO comunicado(idUsuario, idCurso, fecha, titulo, descripcion, archivos) VALUES
-(1023163093, 2, '2023-11-26 20:21:51', 'Innovación y Crecimiento', 'Estimada comunidad educativa, Nos complace compartir una emocionante noticia: el lanzamiento de nuestro nuevo programa, "Innovación y Crecimiento". Este proyecto refleja nuestro compromiso continuo con la excelencia académica y el desarrollo integral de nuestros estudiantes. Estamos emocionados por incorporar nuevas tecnologías y actividades que promuevan habilidades esenciales para el siglo XXI.','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
+(1023163093, 2, '2023-11-26 20:21:51', 'Innovación y Crecimiento', 'Nos complace compartir una emocionante noticia: el lanzamiento de nuestro nuevo programa, "Innovación y Crecimiento". Este proyecto refleja nuestro compromiso continuo con la excelencia académica y el desarrollo integral de nuestros estudiantes. Estamos emocionados por incorporar nuevas tecnologías y actividades que promuevan habilidades esenciales para el siglo XXI.','../Vista/Uploads/Comunicados/sb.pdf'),
 
 
 (2, 3, NOW(), 'Cancelación de clase', 'El día de mañana no habrá clase en porque se suspenderá el agua en el colegio','../Vista/Uploads/Comunicados/Arte Marcial - Felipe Angarita.pdf'),
@@ -175,7 +175,7 @@ CREATE TABLE estudianteAcudiente (
     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
 );
 INSERT INTO estudianteAcudiente (idAcudiente, idEstudiante) VALUES
-(1024163098, 1023163094);
+(1024163098, 3);
 
 CREATE TABLE estudianteCurso (
     idestudianteCurso INT AUTO_INCREMENT,
@@ -188,7 +188,7 @@ CREATE TABLE estudianteCurso (
 );
 
 INSERT INTO estudianteCurso (idCurso, idEstudiante) VALUES 
-(2, 1023163094),
+(2, 3),
 (2, 1023163095),
 (2, 1023163096),
 (3, 1023163097),
@@ -207,11 +207,11 @@ CREATE TABLE asistencia (
 );
 
 INSERT INTO asistencia (idClase, idEstudiante, fecha, estado) VALUES
-(1, 1023163094,'2023-09-05 13:12:13','Asiste'),
+(1, 3,'2023-09-05 13:12:13','Asiste'),
 (1, 1023163095,'2023-09-05 13:12:13','Asiste'),
 (1, 1023163096,'2023-09-05 13:12:13', 'Falta'),
 (2, 3,'2023-09-05 13:12:13', 'Falta'),
-(1, 1023163094,'2023-09-17 13:12:13', 'Retardo');
+(1, 3,'2023-09-17 13:12:13', 'Retardo');
 
 
 CREATE TABLE tarea (
@@ -229,10 +229,10 @@ CREATE TABLE tarea (
 );
 
 INSERT INTO tarea (idClase,idDocente, titulo, descripcion, fecha_creacion, fecha_vencimiento, archivos) VALUES
-(1, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-13 13:11:05', 'CausanRaiznJR___7164e8ec1f892a8___%20(1).pdf'),
-(2, 2, 'Ensayo sobre Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-09-24 00:48:12', NULL),
-(1, 2, 'Algoritmia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL),
-(1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-05-08 13:11:05', NULL);
+(1, 2, 'Ejercicios Matemáticas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-12-13 13:11:05', 'sb.pdf'),
+(2, 2, 'Ensayo sobre Tecnologia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-12-24 00:48:12', NULL),
+(1, 2, 'Algoritmia', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-12-08 13:11:05', NULL),
+(1, 2, 'Matematicas', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus magnam enim natus explicabo amet beatae saepe iste veniam sed quisquam.', '2023-09-05 13:12:13', '2023-12-08 13:11:05', NULL);
 
 
 
@@ -249,7 +249,7 @@ CREATE TABLE entrega (
 );
 
 INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea) VALUES 
-('Entrega Nicole', NULL, 1023163094, 1),
+('Entrega Nicole', NULL, 3, 1),
 ('Entrega Erika', NULL, 1023163095, 1),
 ('Entrega Tatiana', NULL, 1023163096, 1);
 

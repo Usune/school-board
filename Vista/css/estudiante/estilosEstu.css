@@ -702,9 +702,9 @@ p.rojo {
 }
 
 .fechasCont p.verde {
-    color: #00ff33;
+    color: #05aa26;
     background-color: #f0fef1;
-    border: 1px solid #00ff33;
+    border: 1px solid #05aa26;
     border-radius: 20px;
     padding: 5px 10px;
 }
@@ -719,6 +719,7 @@ p.rojo {
 
 .card-texto {
     margin-bottom: 20px;
+    padding-top: 15px;
 }
 
 
@@ -826,6 +827,17 @@ p.rojo {
     text-align: center;
     padding-top: 5%;
 }
+
+.infoUsu .col-md-2 {
+    text-align: right;
+    width: 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
 
 .infoUsu img {
     width: 40px;

@@ -27,9 +27,69 @@
     <a href="homeEstu.php">Home</a>
   </nav>
 
-  <section>
+  <section id="home">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 fotoPrincipal d-none d-md-block">
+          <img src="../../img/imgHomeEstu.svg" alt="">
+        </div>
+        <div class="col-md-8 cont-card">
+          <div class="row">
+            <!-- nombres -->
+            <div class="col-md-12 card-usu ">
+              <div class="row ">
+                <div class="col-md-4">
+                  <img src="../../Uploads/Usuario/userNicole.jpg" alt="">
+                </div>
+                <div class="col-md-8">
+                  <p>
+                    Nicole Dayana <br>
+                    Benavides Alfonso
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- curso , joranada -->
+            <div class="col-md-12 ">
+              <div class="row">
+                <div class="col-md-6 card-usu card-espacio ">
+                  <p>Curso Sexto</p>
+                  <img src="../../img/librosHome.svg" alt="">
+                </div>
+                <div class="col-md-6 card-usu">
+                  <p>Jornada Única</p>
+                  <img src="../../img/diaHome.svg" alt="">
+                </div>
+              </div>
+            </div>
 
-            
+            <!-- tareas -->
+            <div class="col-md-12 card-usu ">
+              <div class="row ">
+                <div class="col-md-6">
+                  <p>
+                    Tareas Pendientes <br>
+                  </p>
+                  <p class="normal">
+                    A continuación, te presentamos un porcentaje que refleja la cantidad de tareas pendientes que aún tienes por completar. Para obtener información detallada sobre las tareas pendientes y otros detalles relevantes, te invitamos a hacer clic en el botón correspondiente. 
+                  </p>
+                  <button class="btnPrincipal" >
+                    <a href="../estudiante/homeTareas.php" >Ver Tareas</a>
+                  </button>
+                </div>
+                <div class="col-md-6 grafica">
+                  <p>10</p>
+                  <p>/</p>
+                  <p>20</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </section>
   </main>
 

@@ -51,7 +51,7 @@
                   <th scope="col">Docente</th>
                   <th scope="col">Titulo</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Fecha de Calificación</th>
+                  <th scope="col">Fecha de Entrega</th>
                   <th scope="col">Calificación</th>
                   <th scope="col" class="ultimo">Detalles</th>
                 </tr>

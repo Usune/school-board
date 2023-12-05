@@ -819,8 +819,8 @@
 
         foreach ($filas as $f) {
             // Formatear la fecha
-            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_calificacion']));
-            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_calificacion']));
+            $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
+            $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
 
             echo '
                 <tr>
@@ -842,7 +842,7 @@
                         </p>
                     </td>
                     <td>
-                        '.($f["fecha_calificacion"] !== null ? $formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento : "No se ha calificado" ).' 
+                        '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento .' 
                     </td>
                     <td class="calificacion">'.($f["nota"] !== null ? $f["nota"] : "-").'</td>
                     <td class="ultimo">
@@ -1370,7 +1370,7 @@
                                 '.$f['descripcion'].'
                             </p>
                             <div class="cont-archivo">
-                                <a href="../../Uploads/Comunicados/">Descargar</a>
+                                <a href="../../'.$f['archivos'].'" target="_blank">Descargar</a>
                             </div>
                             <div class="fechaComu">
                                 <p>'.$fechaFormateada.'</p>

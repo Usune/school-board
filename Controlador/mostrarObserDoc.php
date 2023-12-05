@@ -51,7 +51,7 @@
     function cargarObservador() {
 
         $documento = $_GET['documento'];
-        
+        $clase = $_GET['idClase'];
         $objConsultas = new Consultas();
         $consultas = $objConsultas->mostrarUsuarioAdmin($documento);
 
@@ -111,7 +111,7 @@
             }
               
             
-            $consultas = $objConsultas->mostrarObservadorDoc($documento);
+            $consultas = $objConsultas->mostrarObservadorDoc($documento, $clase);
     
             if (!isset($consultas)) {
                 echo '
@@ -150,7 +150,7 @@
                                 </div>
                             </div>' . ($f['idAutor'] == $_SESSION['id'] ? 
                             '<div class="boton">
-                                <a href="adminObserModificar.php?id='.$f['idObservador'].'"><img src="../../img/edit.svg">Modificar</a>
+                                <a href="docObserModificar.php?idObservacion='.$f['idObservador'].'&idEstudiante='.$f['idEstudiante'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Modificar</a>
                             </div>' : '') . '
                         </div>
                     </div>';
@@ -159,6 +159,52 @@
     
             }    
 
+        }
+
+    }
+
+    function cargarObserEditar(){
+
+        // Aterrizamos la PK enviada desde la tabla
+        $idEstudiante = $_GET['idEstudiante'];
+        $idObservacion = $_GET['idObservacion'];
+
+        // Eviamos la PK a una función de la clase consultas
+        $objConsultas = new Consultas();
+        $consulta = $objConsultas->mostrarObservacionDoc($idEstudiante, $idObservacion);
+
+        foreach($consulta as $f) {
+            echo '           
+            <section>                
+                <div class="formulario">                
+                    <h3>Modificar Observación</h3>
+                    <p class="recordatorio">Antes de modificar la observación, asegurese de que todos los campos son correctos.</p>
+                    <form action="../../../Controlador/actualizarObserDoc.php" method="post" id="formulario">
+
+                        <div class="fieldset">
+                            <fieldset>
+                                <legend id="estu">Estudiante</legend>
+                            </fieldset>
+                            <input type="text" value="'.$f['nombreEstudiante'].'" placeholder="Estudiante" required legend="#estu" name="estudiante" readonly>
+                        </div>
+
+                        <div class="textarea">
+                            <label for="obser">Observación</label>
+                            <textarea id="obser" cols="30" rows="10" name="observacion">'.$f['observacion'].'</textarea>
+                        </div>
+
+                        <input type="number" hidden value="'.$f['idObservador'].'" name="idObservacion">
+
+                        <input type="number" hidden value="'.$f['idEstudiante'].'" name="idEstudiante">
+
+                        <input type="number" hidden value="'.$f['idAutor'].'" name="idAutor">
+
+                        <input type="number" hidden value="'.$_GET['idClase'].'" name="idClase">
+                    
+                        <button type="submit" class="enviar">Modificar Observación</button>
+                    </form>
+                </div>
+            ';
         }
 
     }

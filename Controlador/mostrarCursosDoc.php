@@ -144,6 +144,7 @@ function menuIncludeDoc() {
         <li><a href="docObser.php?idClase='.$clase.'" id="observador"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
         <li><a href="docComun.php?idClase='.$clase.'" id="comunicados"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
         <li><a href="docAsistencia.php?idClase='.$clase.'" id="asistencia"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>
+        <li><a href="docAcuConsu.php?idClase='.$clase.'" id="Lista"><img src="../../img/user.svg" alt="logo">Lista</a></li>
 
     ';
  

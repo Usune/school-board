@@ -99,6 +99,7 @@
     
         // Imprime las fechas en el encabezado
         foreach ($fechas as $fecha) {
+            $fecha = date('Y-m-d', strtotime($fecha));
             echo '<th>' . $fecha . '</th>';
         }
     

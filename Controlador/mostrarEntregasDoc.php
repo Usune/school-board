@@ -50,9 +50,9 @@
 
                     <td class="ultimo">' 
                     .
-                    ($f['nota'] != "" ? '
-                    <button onclick="cargaDatosCalificacion(this.parentNode.parentNode, this)"  type="button" title="Editar" modal="#modalEditarCalificacion" class="desplegarModal"> '.$nota.'<img src="../../img/edit.svg">
-                    </button>
+                    ($f['nota'] != "" ? '<label style="font-weight: bold;">' . $f['nota'] . '</label>' . '<label style="display:none">' . $f['observacion'] .  '</label>'
+                    . '<label style="display:none">' . $f['idCalificacion'] .  '</label> 
+                    <button onclick="cargaDatosCalificacion(this.parentNode.parentNode, this)" type="button" modal="#modalEditarCalificacion" title="Editar" class="fa fa-lg desplegarModal" style="display: inline-block; font-weight: 100;">&#xf040;</button>
                     ':
 
                     '<button onclick="cargaDatosEntrega(this.parentNode.parentNode)" type="button" modal="#modalCalificacion" class="desplegarModal">Calificar</button>

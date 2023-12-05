@@ -1,12 +1,12 @@
 <?php
 
 function cargarComunicados() {
-        
+        $clase = $_GET['idClase'];
         $objConsultas = new Consultas();
-        $consultas = $objConsultas->mostrarComunicadosAdmin();
+        $consultas = $objConsultas->mostrarComunicadosDoc($clase);
 
         if (!isset($consultas)) {
-            echo '<h2> No hay comunucados registrados con el nombre ingresado</h2>';
+            echo '<h2> No hay comunicados registrados con el nombre ingresado</h2>';
         } else {
 
             foreach($consultas as $f) {
@@ -65,7 +65,7 @@ function cargarComunicados() {
        
         // Eviamos la PK a una función de la clase consultas
         $objConsultas = new Consultas();
-        $consulta = $objConsultas->mostrarComunicadoAdmin($id);
+        $consulta = $objConsultas->mostrarComunicadoDoc($id);
 
         // Pintamos la información consultada en el artefacto (formulario)
         foreach ($consulta as $f) {

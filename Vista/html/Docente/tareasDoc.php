@@ -80,7 +80,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                                     ';
                                 ?>
 
-                                <button type="submit" class="enviar">Entregar Tarea</button>
+                                <button type="submit" class="enviar">Subir Tarea</button>
                             </form>
 
                         </div>
@@ -95,7 +95,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                 <div id="filtro">
 
                     <form method="get">
-                        <div class="cont-filtro">
+                        <!-- <div class="cont-filtro">
 
                             <div class="fila-cont">
 
@@ -131,10 +131,31 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                                 
                             
                                 <button type="submit" class="filtrar">Filtrar</button>
-                                <a href="adminUsu.php" class="filtrar">Limpiar</a>
+                                <a href=".php" class="filtrar">Limpiar</a>
 
-                            </div>
+                              
 
+                            </div> -->
+
+                            <div class="cont-filtro">
+    <form id="filtroForm" method="get" action="tu_script_php.php">
+        <div class="fila-cont">
+            <!-- ... Otros campos de filtro ... -->
+        </div>
+
+        <div class="fila-cont">
+            <div class="fieldset"> 
+                <fieldset>
+                    <legend id="tarea">Tarea</legend>
+                </fieldset>
+                <input type="text" placeholder="Tarea" legend="#tarea" name="tarea">
+            </div>
+
+            <button type="submit" class="filtrar">Filtrar</button>
+            <a href="tu_script_php.php" class="filtrar">Limpiar</a>
+        </div>
+    </form>
+</div>
                         </div>
 
                     </form>

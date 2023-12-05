@@ -6,8 +6,8 @@
     $idEntrega = $_POST['idEntrega'];  
     $nota = $_POST['calificacion']; 
     $observacion = $_POST['observacion'];
-    $idClase = $_POST['idClase']; 
-    $idTarea = $_POST['idTarea'];
+    $idClase = $_POST['idClaseG']; 
+    $idTarea = $_POST['idTareaG'];
 
     if (strlen($idEntrega)>0 && strlen($nota)>0 && strlen($observacion)>0 && strlen($idClase)>0 && strlen($idTarea)>0) {
         

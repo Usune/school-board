@@ -47,11 +47,17 @@ function cargarTareas(){
                     <a href="docTareaModificar.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Modificar</a>
                 </div>
                 <div class="boton">
-                    <a href="../../../Controlador/eliminarTarDoc.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/eliminar.svg">Eliminar</a>
-                </div>
-                <div class="boton">
                     <a href="docCalificacionEntrega.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Calificar</a>
-                </div>
+                </div>' .
+                (
+                    $f['ExisteEntrega'] != '' ?  
+                    '' :
+                    '<div class="boton">
+                        <a href="../../../Controlador/eliminarTarDoc.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/eliminar.svg">Eliminar</a>
+                    </div>'
+                )
+                .
+                '
             </div>
         </div>
             ';

@@ -21,6 +21,10 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
             background: lightpink;
             border-radius: 10px;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -32,79 +36,61 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
     <!-- breadcrumb -->
     <nav class="nav-main">
         <a href="homeDoc.php">Clases</a>
-        <a href="adminUsu.php"> / Única-PRIMERO</a>
-        <a href="adminUsu.php"> / Asistencia</a>
+        <?php
+            traerCurso();
+        ?>
+        <a onclick="OcultarAsistencia();"> / Asistencia</a>
+        <a id="aRegistrarAsistencia" class="hidden"> / Registrar Asistencia</a>
     </nav>
-
     <section>
-
         <div class="cabecera">
-            <button type="button" class="desplegarModal btn-cabecera" modal="#modComun">
-                <img src="../../img/agregar.svg" alt="Registrar" modal="#modComun"> Nuevo registro
+            <button type="button" class="desplegarModal btn-cabecera" onclick="MostarAsistencia();">
+                <img src="../../img/agregar.svg" alt="Registrar"> Nuevo registro
             </button>
         </div>
-
         <div class="opciones">
-            <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
-                    alt="filtro">Filtrar</button>
-
+            <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
             <?php
-
                     if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
                             
-                        echo'<a href="reportesAsis.php?rol='.$_GET['rol'].'&estado='.$_GET['estado'].'&nombres='.$_GET['nombres'].'&apellidos='.$_GET['apellidos'].'&documento='.$_GET['documento'].'" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
-                        
+                        echo'<a href="reportesAsis.php?rol='.$_GET['rol'].'&estado='.$_GET['estado'].'&nombres='.$_GET['nombres'].'&apellidos='.$_GET['apellidos'].'&documento='.$_GET['documento'].'" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';                        
                     }else {
-
                         echo'<a href="reportesAsis.php" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
-
                     }
                 ?>
-
         </div>
 
         <div id="filtro">
             <div class="cont-filtro">
                 <form method="get">
-
                     <div class="fila-cont">
-
                         <div class="fieldset">
                             <fieldset>
                                 <legend id="nom">Nombre</legend>
                             </fieldset>
                             <input type="text" placeholder="Nombre" legend="#nom" name="nombres">
                         </div>
-
                         <div class="fieldset">
                             <fieldset>
                                 <legend id="ape">Apellido</legend>
                             </fieldset>
                             <input type="text" placeholder="Apellido" legend="#ape" name="apellidos">
                         </div>
-
                     </div>
-
                     <div class="fila-cont">
-
                         <div class="fieldset">
                             <fieldset>
                                 <legend id="doc">Documento</legend>
                             </fieldset>
                             <input type="number" placeholder="Documento" legend="#doc" name="documento">
                         </div>
-
                         <button type="submit" class="filtrar">Filtrar</button>
                         <a href="adminUsu.php" class="filtrar">Limpiar</a>
-
                     </div>
-
                 </form>
-
             </div>
         </div>
-
-        <div class="tablas">
+        <div id="divAsistencia" class="tablas hidden">
             <form action="../../../Controlador/registrarAsistDoc.php" method="POST">
                 <div class="tablas">
                     <table id="tblAsistencia">
@@ -125,26 +111,16 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                 </div>
                 <?php echo '<input style="display: none;" id="idClase" name="idClase" type="text" value="'.$_GET['idClase'].'">';  ?>
                 <input type="text" style="display: none;" id="txtArray" name="txtArray">
-
             </form>
         </div>
     </section>
-
-
     <section>
-        <div class="container-fluid">
-            <h2>Consulta de Asistencia</h2>
-
+        <div id="divConsultaAsistencia" class="container-fluid tablas">
+            <div style="display: flex; justify-content: center;"><h2 style="width: 230px;">Consulta de Asistencia</h2></div>
             <?php cargarConsultaAsistencia(); ?>
-
         </div>
-
     </section>
-
-
-
     </main>
-
 </body>
 <script>
     function CrearArray() {
@@ -177,6 +153,29 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
 
         document.getElementById("txtArray").value = datosAsistenciaArray.slice(0, -1);
     }
+
+    function MostarAsistencia(){
+        var div1 = document.getElementById("divAsistencia");
+        div1.classList.remove('hidden');    
+
+        var aRegistrarAsistencia = document.getElementById("aRegistrarAsistencia");
+        aRegistrarAsistencia.classList.remove('hidden');    
+    
+        var div2 = document.getElementById("divConsultaAsistencia");
+        div2.classList.add('hidden');    
+    }
+
+    function OcultarAsistencia(){
+        var div1 = document.getElementById("divAsistencia");
+        div1.classList.add('hidden');    
+
+        var aRegistrarAsistencia = document.getElementById("aRegistrarAsistencia");
+        aRegistrarAsistencia.classList.add('hidden');    
+    
+        var div2 = document.getElementById("divConsultaAsistencia");
+        div2.classList.remove('hidden');        
+    }
+
 </script>
 
 </html>

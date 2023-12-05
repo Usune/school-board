@@ -4,8 +4,7 @@ require_once ('../../../Modelo/consultas.php');
 require_once('../../../Modelo/seguridadDoc.php');
 require_once ('../../../Controlador/mostrarPerfil.php');
 require_once ('../../../Controlador/mostrarCursosDoc.php');
-require_once ('../../../Controlador/mostrarAsisDoc.php');
-require_once ('../../../Controlador/mostrarTareasDoc.php');
+require_once ('../../../Controlador/mostrarCalificacionesDoc.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +30,11 @@ require_once ('../../../Controlador/mostrarTareasDoc.php');
         </nav>
 
         <section>   
-            
-
+            <div class="tablas">
+                <?php 
+                    cargarConsultaCalificaciones();
+                ?>
+            </div>
         
         </section>
     </main>

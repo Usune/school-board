@@ -25,7 +25,7 @@ CREATE TABLE usuario (
 
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
 (1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
-(2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
+(2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/userFelipe.jpg'),
 (8, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
 
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', NULL, '../../Uploads/Usuario/fotoUsuario.jpg'),
@@ -74,12 +74,12 @@ CREATE TABLE curso (
 INSERT INTO curso (jornada, nombre) VALUES
 -- No quitar este registro nunca
 ('', 'Todos'), 
-('unica', 'SEXTO'),
-('unica', 'SEPTIMO'),
-('unica', 'OCTAVO'),
-('unica', 'NOVENO'),
-('unica', 'DECIMO'),
-('unica', 'ONCE');
+('unica', 'Sexto'),
+('unica', 'Septimo'),
+('unica', 'Octavo'),
+('unica', 'Noveno'),
+('unica', 'Decimo'),
+('unica', 'Once');
 
 CREATE TABLE aula (
     idAula INT AUTO_INCREMENT,

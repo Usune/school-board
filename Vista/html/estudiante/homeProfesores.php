@@ -29,12 +29,12 @@
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
       <a href="homeIntegrantes.php"> / Usuarios</a>
-      <a href="homeCompañeros.php"> / Compañeros</a>
+      <a href="homeCompañeros.php"> / Docentes</a>
     </nav>
 
     <section>
       <div class="container-fluid" id="integrantes">
-        <h2>Compañeros</h2>
+        <h2>Docentes</h2>
 
 
         <!-- Filtro funcional -->

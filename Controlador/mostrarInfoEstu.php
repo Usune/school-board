@@ -172,6 +172,26 @@
 
     }
 
+    // CURSOS
+    function mostrarCurso() {
+        $idEstudiante =  $_SESSION['id'];
+        
+        $objConsultas = new Consultas();
+        $filas = $objConsultas->cargarCurso($idEstudiante);
+
+        if (!isset($filas)) {
+            echo '<h2> No ha sido asignado a ningun curso</h2>';
+        } else {
+            foreach($filas as $f) {
+                echo '
+                    <h2 id="liRol">'.$f['rol'].'</h2>
+                    <p>'.$f['cursoNombre'].' - '.$f['jornada'].'</p>
+                ';
+            }
+
+        }
+
+    }
 
 
 
@@ -300,47 +320,77 @@
     }
 
     // Mostrar tareas de la asignatura a los estudiantes en homeAsignatura 
-    function mostrarTareasAsignatura(){
-        $idEstudiante = $_SESSION['id'];
-        $idAsignatura = $_GET['idAsignatura'];
+    function mostrarTareasFiltrados(){
+        $asignatura = $_GET['asignatura'];
         $objConsultas = new Consultas();
-        $filas = $objConsultas->cargarTareasAsignatura($idEstudiante, $idAsignatura);
 
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($asignatura === '') {
+            echo '
+                <tr>
+                    <td>Por favor, limpie la selección y escriba la asignatura.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ultimo"></td>
+                </tr>
+            ';
+            return;
+        }
+
+        $filas = $objConsultas->cargarTareasFiltrados($asignatura);
 
         // Verificar si no hay tareas
         if(empty($filas)){
-            echo '<p>No hay tareas</p>';
+            echo '
+                <tr>
+                    <td>No hay tareas para la asignatura consultada.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ultimo"></td>
+                </tr>
+            ';
             return; // Detener la ejecución si no hay tareas
         }
-
-        foreach($filas as $f){
-
+        foreach ($filas as $f) {
             // Formatear la fecha
             $formattedFechaVencimiento = date('M j, Y', strtotime($f['fecha_vencimiento']));
             $formattedHoraVencimiento = date('h:i A', strtotime($f['fecha_vencimiento']));
-            
+
             echo '
                 <tr>
-                    <td>'.$f['titulo'].' </td>
+                    <td>'.$f['asignaturaNombre'].'</td>
                     <td>
-                        '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento.' 
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6 imgDoc">
+                                <img src="'.$f['fotoDoc'].'" alt="img perfil docente">
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6 textDoc">
+                                <p>'.$f['nombres'].' '.$f['apellidos'].'</p>
+                            </div>
+                        </div>
                     </td>
+                    <td>'.$f['titulo'].' </td>
                     <td class="estado '.$f['estadoTarea'].'">
                         <p>
                             '.$f['estadoTarea'].'
                         </p>
                     </td>
+                    <td>
+                        '.$formattedFechaVencimiento.'<br>'.$formattedHoraVencimiento .' 
+                    </td>
                     <td class="calificacion">'.($f["nota"] !== null ? $f["nota"] : "-").'</td>
                     <td class="ultimo">
-                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idTarea='.$f['idTarea'].'">
-                            <img src="../../img/flecha-arriba.svg" alt="" class="verMas">
-                        </a>
+                        <a href="../../../Vista/html/estudiante/tareaAsignatura.php?idAsignatura='.$f['idAsignatura'].'&idTarea='.$f['idTarea'].'&nombreAsignatura='.$f['asignaturaNombre'].'&tarea='.$f['titulo'].'&idTarea='.$f['idTarea'].'"><img src="../../img/flecha-arriba.svg" alt="" class="verMas"></a>
                     </td>
                 </tr>
             ';
-
-
-        };
+        }
 
 
     }
@@ -816,6 +866,12 @@
         $idEstudiante = $_SESSION['id'];
         $objConsultas = new Consultas();
         $filas = $objConsultas->cargarTodasTareas($idEstudiante);
+
+        // Verificar si no hay tareas
+        if(empty($filas)){
+            echo '<p>No hay tareas</p>';
+            return; // Detener la ejecución si no hay tareas
+        }
 
         foreach ($filas as $f) {
             // Formatear la fecha

@@ -1301,6 +1301,35 @@
 
 
         // ESTUDIANTES CLASES
+
+        // Trae info sobre el curso
+        public function cargarCurso($idEstudiante) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT *,
+            curso.jornada,
+            curso.nombre AS cursoNombre
+            FROM curso
+            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            INNER JOIN usuario ON usuario.documento = estudiantecurso.idEstudiante
+            WHERE estudiantecurso.idEstudiante = :idEstudiante";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
         
         // Trae todas las clases registradas
         public function cargarClasesEstu($idEstudiante) {
@@ -1475,17 +1504,16 @@
                 WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
                 ELSE 'pendiente' 
             END AS estadoTarea
-        FROM tarea
-        JOIN clase ON clase.idClase = tarea.idClase
-        JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
-        JOIN curso ON curso.idCurso = clase.idCurso
-        JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
-        JOIN usuario ON usuario.documento = clase.idDocente
-        LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
-        LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
-        WHERE estudiantecurso.idEstudiante = :idEstudiante
-        GROUP BY tarea.idTarea;
-        ";
+            FROM tarea
+            JOIN clase ON clase.idClase = tarea.idClase
+            JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+            JOIN curso ON curso.idCurso = clase.idCurso
+            JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            JOIN usuario ON usuario.documento = clase.idDocente
+            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+            WHERE estudiantecurso.idEstudiante = :idEstudiante
+            GROUP BY tarea.idTarea";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
@@ -1497,6 +1525,48 @@
 
             return $rows;
 
+        }
+
+        //  Función para filtrar tareas por asignatura 
+        public function cargarTareasFiltrados($asignatura) {
+            $f = null;
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT *,
+            tarea.idTarea AS idTarea,
+            asignatura.nombre as asignaturaNombre,
+            usuario.foto as fotoDoc,
+            CASE 
+                WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+            FROM tarea
+            JOIN clase ON clase.idClase = tarea.idClase
+            JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+            JOIN curso ON curso.idCurso = clase.idCurso
+            JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            JOIN usuario ON usuario.documento = clase.idDocente
+            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+            WHERE estudiantecurso.idEstudiante = 3 AND asignatura.nombre LIKE :asignatura
+            GROUP BY tarea.idTarea";
+
+            $statement = $conexion->prepare($sql);
+
+            if (!empty($asignatura)) {
+                $asignatura = '%' . $asignatura . '%';
+                $statement->bindParam(':asignatura', $asignatura);
+            }
+
+            $statement->execute();
+        
+            while ($resultado = $statement->fetch()) {
+                $f[] = $resultado;
+            }
+        
+            return $f;
         }
 
         // Funcion para mostrar info sobre la tarea 

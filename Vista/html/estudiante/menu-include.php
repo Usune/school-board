@@ -47,7 +47,11 @@
                             <img src="../../img/menu.svg" alt="menu" enlace="#menu">
                         </button>
                     </div>
-                    <h2 id="liRol">Estudiante</h2>
+                    <div class="infoCurso">
+                        <?php mostrarCurso(); ?>
+                        <!-- <h2 id="liRol">Estudiante</h2>
+                        <p>Decimo - Única</p> -->
+                    </div>
                 </div>
 
                 <div class="user">

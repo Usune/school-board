@@ -52,7 +52,7 @@
 
           <a href="homeProfesores.php">
             <img src="../../img/lupa.svg" alt="lupa">
-            <p>Consultar Profesores</p>
+            <p>Consultar Docentes</p>
           </a>
         </div>
       </div>

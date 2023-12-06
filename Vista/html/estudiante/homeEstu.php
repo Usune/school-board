@@ -35,33 +35,6 @@
         </div>
         <div class="col-md-8 cont-card">
           <div class="row">
-            <!-- nombres -->
-            <div class="col-md-12 card-usu ">
-              <div class="row ">
-                <div class="col-md-4">
-                  <img src="../../Uploads/Usuario/userNicole.jpg" alt="">
-                </div>
-                <div class="col-md-8">
-                  <p>
-                    Nicole Dayana <br>
-                    Benavides Alfonso
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- curso , joranada -->
-            <div class="col-md-12 ">
-              <div class="row">
-                <div class="col-md-6 card-usu card-espacio ">
-                  <p>Curso Sexto</p>
-                  <img src="../../img/librosHome.svg" alt="">
-                </div>
-                <div class="col-md-6 card-usu">
-                  <p>Jornada Única</p>
-                  <img src="../../img/diaHome.svg" alt="">
-                </div>
-              </div>
-            </div>
 
             <!-- tareas -->
             <div class="col-md-12 card-usu ">

@@ -11,7 +11,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -32,16 +32,15 @@
 
             <!-- breadcrumb -->
             <nav class="nav-main">
-                <a href="homeDoc.php">Home</a>
-                <a href="docAcuConsu.php" id="actual" actual="#usuarios"> / Lista</a>
+                <a href="homeDoc.php">Home</a> 
+                <?php
+                    traerCurso();
+                ?>
+                <a href="" id="actual" actual="#usuarios"> / Lista</a>
             </nav>
 
             <section>
                 
-
-               
-                
-
                     <div class="tablas">
                         <table>
                             <thead>
@@ -66,7 +65,7 @@
                                         
                                         }else {
         
-                                            cargarUsuariosDoc();
+                                            cargarUsuariosDoc($_GET['idClase']);
         
                                         }
                                     ?>

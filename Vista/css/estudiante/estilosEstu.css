@@ -142,7 +142,7 @@ footer {
     position: absolute;
     top: 2px;
     left: 17px;
-    background-color: var(--beige);
+    background-color: var(--blanco);
     font-size: 15px;
 }
 
@@ -208,6 +208,20 @@ input[type="file"]::-webkit-file-upload-button {
     margin-top: 20px;
     cursor: pointer;
 }
+
+.btnPrincipalNo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    height: 45px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    background-color: var(--principal);
+    margin-top: 20px;
+}
+
 
 
 .btnPrincipal a {
@@ -694,7 +708,7 @@ p.rojo {
 }
 
 .fechasCont p.amarillo {
-    color: #ffea00;
+    color: #eecf00;
     background-color: #fefdf0;
     border: 1px solid #ffea00;
     border-radius: 20px;
@@ -1115,6 +1129,22 @@ aside ul li a {
 .infoCurso p{
     margin-top: -12px;
 }
+
+.rowFiltro{
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.rowFiltro .filtro-inputs .fieldset_view{
+    margin-top: -12px;
+}
+
+.rowFiltro .filtro-inputs button, 
+.rowFiltro .filtro-inputs a{
+    height: 38px;
+}
+
 
 
 

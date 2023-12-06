@@ -38,7 +38,7 @@
         <div class="row" id="observador">
 
           <!-- columna -card -->
-          <div class="col-md-12 col-xl-6">
+          <div class="row">
 
             <?php mostrarTodasObservaciones(); ?>
             

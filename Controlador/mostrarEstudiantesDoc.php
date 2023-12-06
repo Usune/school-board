@@ -3,10 +3,10 @@
     // SE RECIBEN TODAS LAS CONSULTAS PARA MOSTRAR USUARIOS
 
     // ESTA FUNCIÓN ES LA QUE SE LLAMA EN LA VISTA
-    function cargarUsuariosDoc(){
+    function cargarUsuariosDoc($idClase){
         
         $objConsultas = new Consultas();
-        $consultas = $objConsultas->mostrarEstudiantesDoc();
+        $consultas = $objConsultas->mostrarEstudiantesDoc($idClase);
 
         if (!isset($consultas)) {
             echo '<h3> No hay usuarios registrados </h3>';
@@ -25,7 +25,6 @@
 
                     <td class="ultimo"><a href="docAcudientes.php?idClase='.$_GET['idClase'].'&documento='.$f['documento'].'" alt="Modificar">Acudiente<img src="../../img/edit.svg" alt="Eliminar"></a></td>
 
-                   
                 </tr>
                 ';
 

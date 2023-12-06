@@ -35,7 +35,7 @@
             <img src="../../img/mancha.svg" alt="decoración">
         </div>
 
-        <div class="container-fluid registro"> 
+        <div class="container-fluid registro">
             <form class="row" action="../../../Controlador/actualizarPrimeraVezEst.php" method="post"
                 enctype="multipart/form-data" id="formularioGeneral">
 
@@ -85,7 +85,8 @@
                                     <fieldset>
                                         <legend id="celAcu">Número de celular</legend>
                                     </fieldset>
-                                    <input type="text" placeholder="Número de celular" required legend="#celAcu" name="celAcu">
+                                    <input type="text" placeholder="Número de celular" required legend="#celAcu"
+                                        name="celAcu">
                                 </div>
                             </div>
 
@@ -94,7 +95,8 @@
                                     <fieldset>
                                         <legend id="corAcu">Correo electrónico </legend>
                                     </fieldset>
-                                    <input type="email" placeholder="Correo electrónico " required legend="#corAcu" name="corAcu">
+                                    <input type="email" placeholder="Correo electrónico " required legend="#corAcu"
+                                        name="corAcu">
                                 </div>
                             </div>
 
@@ -178,7 +180,7 @@
                                         <legend id="fileLegen">Foto de perfil</legend>
                                     </fieldset>
                                     <input type="file" id="fileInput" class="fileInput" accept=".jpg, .jpeg, .png, .gif"
-                                        name="foto" onchange="checkFile()"  legend="#fileLegen" >
+                                        name="foto" onchange="checkFile()" legend="#fileLegen">
                                     <label for="fileInput" class="fileLabel">Foto de perfil</label>
                                 </div>
                             </div>
@@ -233,15 +235,21 @@
                     </div>
 
                     <div class="col-md-12">
+                        <div class="row ">
+                            <div class="col-md-2">
+                                <div class="submit">
+                                    <button type="button" class="btnAtras" onclick="btnToggle()"><img
+                                            src="../../img/volver.svg" alt="volver">Atrás</button>
+                                </div>
+                            </div>
 
-                        <div class="submit">
-                            <button type="button" class="btnAtras" onclick="btnToggle()"><img src="../../img/volver.svg"
-                                    alt="volver">Atrás</button>
-                            <button type="submit" class="btnPrincipal">Actualizar datos</button>
+                            <div class="col-md-8">
+                                <button type="submit" class="btnPrincipal">Actualizar datos</button>
+                            </div>
                         </div>
-
-
                     </div>
+
+
 
 
 

@@ -26,16 +26,15 @@
 
     if(strlen($telefono)>0 && strlen($direccion)>0 && strlen($correo)>0 && strlen($documento)>0 && strlen($rol)>0 && strlen($clave)>0 && strlen($nomAcu)>0 && strlen($apeAcu)>0 && strlen($docAcu)>0 && strlen($celAcu)>0 && strlen($corAcu)>0 ){
 
-        // var_dump($_POST);
 
         $claveMD = MD5($clave);
         $foto = $_FILES['foto']['name'];
+
+
         
         if(strlen($foto)>0) {
 
             $fotoM = '../../Uploads/Usuario/'.$_FILES['foto']['name'];
-            // MOVEMOS EL ARCHIVO A LA CARPETA UPLOADS CON LA FUNCIÓN DE PHP move_uploaded_file()
-            // tmp_name: NOMBRE TEMPORAL DEL ARCHIVO
             $mover = move_uploaded_file($_FILES['foto']['tmp_name'], '../Vista/Uploads/Usuario/'.$foto.'');
 
         }else {

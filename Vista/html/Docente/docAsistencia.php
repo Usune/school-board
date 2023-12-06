@@ -7,7 +7,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 require_once ('../../../Controlador/mostrarAsisDoc.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">

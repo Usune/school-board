@@ -118,19 +118,18 @@ function traerCursos() {
 }
 
 function traerCurso() {
-    $_GLOBALS['idClase'] = $_GET['idClase'];
+    $idClase = $_GET['idClase'];
 
     $objConsultas = new Consultas();
-    $consultas = $objConsultas->mostrarCurDoc($_GLOBALS['idClase']);
+    $consultas = $objConsultas->mostrarCurClase($idClase);
 
     foreach($consultas as $f){
         echo'
-        <a href="docCurso.php?idClase='.$_GLOBALS['idClase'].'"> / '.$f['jornada'].'-'.$f['nombre'].' </a>
+        <a href="docCurso.php?idClase='.$idClase.'"> / '.$f['nombre'].'-'.$f['jornada'].' </a>
              
         ';
     }
  
-
 }
 
 function menuIncludeDoc() {

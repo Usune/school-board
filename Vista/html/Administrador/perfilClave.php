@@ -26,7 +26,7 @@
             <!-- breadcrumb -->  
             <nav class="nav-main">
                 <a href="homeAdmin.php">Home</a>
-                <a href="adminPerfil.php"> / Perfil</a>
+                <a href="adminPerfil.php&idCurso=&idClase="> / Perfil</a>
             </nav>
         
             <section>

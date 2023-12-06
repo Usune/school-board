@@ -26,7 +26,7 @@
         }
 
         if($_SESSION['rol'] == 'Docente') {
-            echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+            echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'&idCurso=&idClase="</script>';
         }
 
         if($_SESSION['rol'] == 'Estudiante') {

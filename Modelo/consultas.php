@@ -1754,12 +1754,12 @@
             $conexion = $objConexion->get_conexion();
 
             $sql ="SELECT comunicado.*, u.*
-            FROM comunicado 
-            INNER JOIN curso ON curso.idCurso = comunicado.idCurso
-            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
-            INNER JOIN usuario e ON e.documento = estudiantecurso.idEstudiante
-            INNER JOIN usuario u ON u.documento = comunicado.idUsuario
-            WHERE e.documento = :idEstudiante";
+             FROM comunicado 
+            LEFT JOIN curso ON curso.idCurso = comunicado.idCurso
+            LEFT JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            LEFT JOIN usuario e ON e.documento = estudiantecurso.idEstudiante
+            LEFT JOIN usuario u ON u.documento = comunicado.idUsuario
+            WHERE e.documento = :idEstudiante OR curso.idCurso = 1";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);

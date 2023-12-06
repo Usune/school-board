@@ -1556,7 +1556,7 @@
                             <p class="card-text">
                                 ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
                             </p>
-                            <a href=""><button>Contactar</button></a>
+                            <a href="mailto:'.$f['correo'].'"><button>Contactar</button></a>
                         </div>
                     </div>
                 </div>
@@ -1601,7 +1601,7 @@
                             <p class="card-text">
                                 ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
                             </p>
-                            <a href=""><button>Contactar</button></a>
+                            <a href="mailto:'.$f['correo'].'"><button>Contactar</button></a>
                         </div>
                     </div>
                 </div>
@@ -1651,7 +1651,7 @@
                                 <p class="card-text">
                                     ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
                                 </p>
-                                <a href=""><button>Contactar</button></a>
+                                <a href="mailto:'.$f['correo'].'"><button>Contactar</button></a>
                             </div>
                         </div>
                     </div>
@@ -1705,7 +1705,7 @@
                                 <p class="card-text">
                                     ' . (isset($f['correo']) ? '<a href="">'.$f['correo'].'</a>' : 'Correo no disponible') .'
                                 </p>
-                                <a href=""><button>Contactar</button></a>
+                                <a href="mailto:'.$f['correo'].'"><button>Contactar</button></a>
                             </div>
                         </div>
                     </div>

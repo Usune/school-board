@@ -2854,10 +2854,10 @@
                             case "Estudiante":
                                 if($f['correo']){
                                     echo '<script>alert("Bienvenido rol Estudiante")</script>';
-                                    echo "<script>location.href='../Vista/html/Estudiante/homeEstu.php?id=".$f['documento']."'</script>";
+                                    echo "<script>location.href='../Vista/html/estudiante/homeEstu.php?id=".$f['documento']."'</script>";
                                 }else{
                                     echo '<script>alert("Bienvenido rol Estudiante, registro primera vez")</script>';
-                                    echo "<script>location.href='../Vista/html/Estudiante/registroPrimero.php?id=".$f['documento']."'</script>";
+                                    echo "<script>location.href='../Vista/html/estudiante/registroPrimero.php?id=".$f['documento']."'</script>";
                                 }
                                 
                             break;

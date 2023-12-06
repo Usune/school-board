@@ -47,7 +47,7 @@
                         </a>
                     </div>
                     <div class="fila-cont">
-                        <a href="adminAulas.php">                
+                        <a href="adminAula.php">                
                             <img src="../../img/aulas.svg" alt="logo">
                             <p>Aulas</p>
                         </a>

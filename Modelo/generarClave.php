@@ -252,7 +252,7 @@
                     echo "Meiler Error: {$mail->ErrorInfo}";
                 }
             } else{
-                echo '<script>alert("Se ha enviado el correo correctamente.")</script>';
+                echo '<script>alert("El usuario ingresado o correo no esta registrado en el sistema")</script>';
                 echo '<script>location.href="../Vista/html/Extras/olvido-clave.html"</script>';
             }
         }

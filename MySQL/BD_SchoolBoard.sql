@@ -259,7 +259,7 @@ CREATE TABLE calificacion(
     idEntrega INT ,
     fecha_calificacion  DATETIME DEFAULT NOW(),
     observacion VARCHAR(200),
-    nota FLOAT,
+    nota DECIMAL(3,1),
     PRIMARY KEY (idCalificacion),
     FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)
 );
@@ -289,3 +289,292 @@ INSERT INTO calificacion (idEntrega, nota) VALUES
 -- UPDATE calificacion
 -- SET nota = {nueva_nota}
 -- WHERE idEntrega = {id_entrega_a_calificar};
+
+---------------------------------------------------------------------------------------
+
+-- USE SchoolBoard;
+-- CREATE TABLE usuario (
+--     documento INT PRIMARY KEY,
+--     clave VARCHAR(100),
+--     rol VARCHAR(15) CHECK (rol IN ('Administrador','Docente','Estudiante','Master')),
+--     estado VARCHAR(15) CHECK (estado IN ('Activo', 'Pendiente', 'Inactivo')),
+--     tipoDoc VARCHAR(15) CHECK (tipoDoc IN('CC', 'TI', 'Pasaporte')), 
+--     nombres VARCHAR(100),
+--     apellidos VARCHAR(100),
+--     telefono VARCHAR(15),
+--     direccion VARCHAR(100),
+--     correo VARCHAR(100),
+--     foto VARCHAR(200),
+--     fechaCreacion DATETIME DEFAULT GETDATE()
+-- );
+
+-- CREATE TABLE asignatura (
+--     idAsignatura INT IDENTITY(1,1) PRIMARY KEY,
+--     nombre VARCHAR(100)
+-- );
+
+-- CREATE TABLE curso (
+--     idCurso INT IDENTITY(1,1) PRIMARY KEY,
+--     jornada VARCHAR(15) CHECK (jornada IN ('Única', 'Mañana', 'Tarde')),
+--     nombre VARCHAR(15)
+-- );
+
+-- CREATE TABLE aula (
+--     idAula INT IDENTITY(1,1) PRIMARY KEY,
+--     nombre VARCHAR(50),
+--     capacidad VARCHAR(3)
+-- );
+
+-- CREATE TABLE observador (
+--     idObservador INT IDENTITY(1,1) PRIMARY KEY,
+--     idEstudiante INT,
+--     idAutor INT,
+--     fecha DATETIME DEFAULT GETDATE(),
+--     observacion VARCHAR(400),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+--     FOREIGN KEY (idAutor) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE comunicado (
+--     idComunicado INT IDENTITY(1,1) PRIMARY KEY,
+--     idUsuario INT,
+--     idCurso INT,
+--     titulo VARCHAR(200),
+--     fecha DATETIME DEFAULT GETDATE(),
+--     descripcion VARCHAR(400),
+--     archivos VARCHAR(200),
+--     FOREIGN KEY (idUsuario) REFERENCES usuario(documento),
+--     FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
+-- );
+
+-- CREATE TABLE clase (
+--     idClase INT  IDENTITY(1,1) PRIMARY KEY,
+--     idCurso INT,
+--     idAsignatura INT,
+--     idDocente INT, 
+--     idAula INT,
+--     descripción VARCHAR(400),
+--     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
+--     FOREIGN KEY (idDocente) REFERENCES usuario(documento),
+--     FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura),
+--     FOREIGN KEY (idAula) REFERENCES aula(idAula)
+-- );
+
+-- CREATE TABLE acudiente (
+--     documento INT PRIMARY KEY,
+--     nombres VARCHAR(100),
+--     apellidos VARCHAR(100),
+--     telefono VARCHAR(15),
+--     correo VARCHAR(100)
+-- );
+
+-- CREATE TABLE estudianteAcudiente (
+--     idEstudianteAcudiente INT IDENTITY(1,1) PRIMARY KEY,
+--     idAcudiente INT,
+--     idEstudiante INT,
+--     FOREIGN KEY (idAcudiente) REFERENCES acudiente(documento),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE estudianteCurso (
+--     idestudianteCurso INT IDENTITY(1,1) PRIMARY KEY,
+--     idCurso INT,
+--     idEstudiante INT,
+--     fechaCreacion DATETIME DEFAULT GETDATE(),
+--     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE asistencia (
+--     idAsistencia INT IDENTITY(1,1) PRIMARY KEY,
+--     idClase INT,
+--     idEstudiante INT,
+--     fecha DATETIME DEFAULT GETDATE(),
+--     estado VARCHAR(20) CHECK (estado IN('Asiste', 'Falta', 'Falta Justificada', 'Retardo')),
+--     FOREIGN KEY (idClase) REFERENCES clase(idClase),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE tarea (
+--     idTarea INT IDENTITY(1,1) PRIMARY KEY,
+--     idClase INT,
+--     idDocente INT,
+--     titulo VARCHAR(200),
+--     descripcion VARCHAR(200),
+--     fecha_creacion	DATETIME DEFAULT GETDATE(),
+--     fecha_vencimiento DATETIME,
+--     archivos VARCHAR(400),
+--     FOREIGN KEY (idClase) REFERENCES clase(idClase),
+--     FOREIGN KEY (idDocente) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE entrega (
+--     idEntrega INT IDENTITY(1,1) PRIMARY KEY,
+--     idEstudiante INT,
+--     idTarea INT,
+--     fecha_entrega_est DATETIME DEFAULT GETDATE(),
+--     descripcion VARCHAR(200),
+--     archivos VARCHAR(400) DEFAULT NULL,
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+--     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
+-- );
+
+-- CREATE TABLE calificacion(
+--     idCalificacion INT IDENTITY(1,1) PRIMARY KEY,
+--     idEntrega INT ,
+--     fecha_calificacion  DATETIME DEFAULT GETDATE(),
+--     observacion VARCHAR(200),
+--     nota DECIMAL(3,1),
+--     FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)
+-- );
+
+---------------------------------------------------------------------------------------
+
+-- CREATE TABLE usuario (
+--     documento INT,
+--     clave VARCHAR(100),
+--     rol ENUM('Administrador','Docente','Estudiante','Master'),
+--     estado ENUM('Activo', 'Pendiente', 'Inactivo'),
+--     tipoDoc ENUM('CC', 'TI', 'Pasaporte'), 
+--     nombres VARCHAR(100),
+--     apellidos VARCHAR(100),
+--     telefono VARCHAR(15),
+--     direccion VARCHAR(100),
+--     correo VARCHAR(100),
+--     foto VARCHAR(200),
+--     fechaCreacion DATETIME DEFAULT NOW(),
+--     PRIMARY KEY (documento)
+-- );
+
+-- CREATE TABLE asignatura (
+--     idAsignatura INT AUTO_INCREMENT,
+--     nombre VARCHAR(100),
+--     PRIMARY KEY (idAsignatura)
+-- );
+
+-- CREATE TABLE curso (
+--     idCurso INT AUTO_INCREMENT,
+--     jornada ENUM('Única', 'Mañana', 'Tarde'),
+--     nombre VARCHAR(15),
+--     PRIMARY KEY (idCurso)
+-- );
+
+-- CREATE TABLE aula (
+--     idAula INT AUTO_INCREMENT,
+--     nombre VARCHAR(50),
+--     capacidad VARCHAR(3),
+--     PRIMARY KEY (idAula)
+-- );
+
+-- CREATE TABLE observador (
+--     idObservador INT AUTO_INCREMENT,
+--     idEstudiante INT,
+--     idAutor INT,
+--     fecha DATETIME DEFAULT NOW(),
+--     observacion VARCHAR(400),
+--     PRIMARY KEY (idObservador),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+--     FOREIGN KEY (idAutor) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE comunicado (
+--     idComunicado INT AUTO_INCREMENT,
+--     idUsuario INT,
+--     idCurso INT,
+--     titulo VARCHAR(200),
+--     fecha DATETIME DEFAULT NOW(),
+--     descripcion VARCHAR(400),
+--     archivos VARCHAR(200),
+--     PRIMARY KEY (idComunicado),
+--     FOREIGN KEY (idUsuario) REFERENCES usuario(documento),
+--     FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
+-- );
+
+-- CREATE TABLE clase (
+--     idClase INT AUTO_INCREMENT,
+--     idCurso INT,
+--     idAsignatura INT,
+--     idDocente INT, 
+--     idAula INT,
+--     descripción VARCHAR(400),
+--     PRIMARY KEY (idClase),
+--     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
+--     FOREIGN KEY (idDocente) REFERENCES usuario(documento),
+--     FOREIGN KEY (idAsignatura) REFERENCES asignatura(idAsignatura),
+--     FOREIGN KEY (idAula) REFERENCES aula(idAula)
+-- );
+
+-- CREATE TABLE acudiente (
+--     documento INT,
+--     nombres VARCHAR(100),
+--     apellidos VARCHAR(100),
+--     telefono VARCHAR(15),
+--     correo VARCHAR(100),
+--     PRIMARY KEY (documento)
+-- );
+
+-- CREATE TABLE estudianteAcudiente (
+--     idEstudianteAcudiente INT AUTO_INCREMENT,
+--     idAcudiente INT,
+--     idEstudiante INT,
+--     PRIMARY KEY (idEstudianteAcudiente),
+--     FOREIGN KEY (idAcudiente) REFERENCES acudiente(documento),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE estudianteCurso (
+--     idestudianteCurso INT AUTO_INCREMENT,
+--     idCurso INT,
+--     idEstudiante INT,
+--     fechaCreacion DATETIME DEFAULT NOW(),
+--     PRIMARY KEY (idestudianteCurso),
+--     FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE asistencia (
+--     idAsistencia INT AUTO_INCREMENT,
+--     idClase INT,
+--     idEstudiante INT,
+--     fecha DATETIME DEFAULT NOW(),
+--     estado ENUM('Asiste', 'Falta', 'Falta Justificada', 'Retardo'),
+--     PRIMARY KEY (idAsistencia),
+--     FOREIGN KEY (idClase) REFERENCES clase(idClase),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE tarea (
+--     idTarea INT AUTO_INCREMENT,
+--     idClase INT,
+--     idDocente INT,
+--     titulo VARCHAR(200),
+--     descripcion VARCHAR(200),
+--     fecha_creacion	DATETIME DEFAULT NOW(),
+--     fecha_vencimiento DATETIME,
+--     archivos VARCHAR(400),
+--     PRIMARY KEY(idTarea),
+--     FOREIGN KEY (idClase) REFERENCES clase(idClase),
+--     FOREIGN KEY (idDocente) REFERENCES usuario(documento)
+-- );
+
+-- CREATE TABLE entrega (
+--     idEntrega INT AUTO_INCREMENT,
+--     idEstudiante INT,
+--     idTarea INT,
+--     fecha_entrega_est DATETIME DEFAULT NOW(),
+--     descripcion VARCHAR(200),
+--     archivos VARCHAR(400) DEFAULT NULL,
+--     PRIMARY KEY (idEntrega),
+--     FOREIGN KEY (idEstudiante) REFERENCES usuario(documento),
+--     FOREIGN KEY (idTarea) REFERENCES tarea(idTarea)
+-- );
+
+-- CREATE TABLE calificacion(
+--     idCalificacion INT AUTO_INCREMENT,
+--     idEntrega INT ,
+--     fecha_calificacion  DATETIME DEFAULT NOW(),
+--     observacion VARCHAR(200),
+--     nota DECIMAL(3,1),
+--     PRIMARY KEY (idCalificacion),
+--     FOREIGN KEY (idEntrega) REFERENCES entrega(idEntrega)
+-- );

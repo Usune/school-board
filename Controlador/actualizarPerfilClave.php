@@ -23,7 +23,7 @@
             $clavedb = $f['clave'];
         }
         
-        if(strlen($clave) >= 8){
+        if(strlen($claveNueva) >= 8){
             if($clavedb == MD5($claveActual)) {
 
                 if($claveNueva == $claveNueva2){

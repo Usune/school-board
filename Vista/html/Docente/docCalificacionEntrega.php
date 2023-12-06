@@ -29,7 +29,7 @@
             <?php
                 traerCurso();
                 echo'
-                    <a href="tareasDoc.php?idClase='.$_GET['idClase'].'" id="actual" actual="#tareas"> / Tareas</a>
+                    <a href="tareasDoc.php?idClase='.$_GET['idClase'].'&tarea=" id="actual" actual="#tareas"> / Tareas</a>
                 ';
             ?>     
             <a href="" id="actual" actual="#tareas"> / Calificar</a>      

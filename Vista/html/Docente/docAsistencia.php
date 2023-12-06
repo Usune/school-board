@@ -48,7 +48,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                 <img src="../../img/agregar.svg" alt="Registrar"> Nuevo registro
             </button>
         </div>
-        <div class="opciones">
+        <!-- <div class="opciones">
             <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg" alt="filtro">Filtrar</button>
             <?php
                     if(isset($_GET['rol']) || isset($_GET['estado']) || isset($_GET['nombres']) || isset($_GET['apellidos']) || isset($_GET['documento'])){
@@ -58,9 +58,9 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                         echo'<a href="reportesAsis.php" target="_blank"><img src="../../img/curso.svg" alt="Reportes">Generar Reporte</a>';
                     }
                 ?>
-        </div>
+        </div> -->
 
-        <div id="filtro">
+        <!-- <div id="filtro">
             <div class="cont-filtro">
                 <form method="get">
                     <div class="fila-cont">
@@ -89,7 +89,7 @@ require_once ('../../../Controlador/mostrarAsisDoc.php');
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
         <div id="divAsistencia" class="tablas hidden">
             <form action="../../../Controlador/registrarAsistDoc.php" method="POST">
                 <div class="tablas">

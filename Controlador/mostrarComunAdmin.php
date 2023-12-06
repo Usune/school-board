@@ -51,10 +51,14 @@
                         if ($f['archivo'] != '../../Uploads/Comunicados/'){
                             echo'
                         <div class="boton">
-                            <a href="'.$f['archivo'].'" download="comunicado"><img src="../../img/descargar.svg">Descargar</a>
+                            <a href="'.$f['archivo'].'" download="comunicado" target="_blank"><img src="../../img/descargar.svg">Descargar</a>
+                            <a href="'.$f['archivo'].'"><img src="../../img/descargar.svg">Abrir en nueva pestaña</a>
                         </div>   
                             ';
                         }
+
+                      
+                        
                         
                         echo
                         '<div class="boton">

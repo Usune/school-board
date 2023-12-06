@@ -83,6 +83,11 @@
         $objConsultas = new ConsultasUsuario();
         $consulta = $objConsultas->buscarUsuario($id);
 
+        $idClase = "";
+        if (isset($_GET['idClase'])) {
+            $idClase = $_GET['idClase'];
+        }
+ 
         foreach($consulta as $f){
             echo '
 
@@ -92,7 +97,7 @@
                 </button>
                 <div id="op1">
                     <ul>
-                        <li><a href="perfil.php?id='.$f['documento'].'"><img src="../../img/user.svg" alt="perfil">Perfil</a></li>
+                        <li><a href="perfil.php?id='.$f['documento'].'&idClase='. $idClase .'"><img src="../../img/user.svg" alt="perfil">Perfil</a></li>
                         <li><a href="../../../Controlador/cerrarSesion.php"><img src="../../img/log-out.svg" alt="cerrar sesión">Cerrar sesión</a></li>
                     </ul>
                 </div>
@@ -122,9 +127,9 @@
 
                 <div class="perfilDerecha">
                     <div class="enlacesPerfil">
-                        <a href="perfil.php?id='.$f['documento'].'" class="activeP">Perfil</a>
-                        <a href="perfilFoto.php?id='.$f['documento'].'"">Cambiar Foto</a>
-                        <a href="perfilClave.php?id='.$f['documento'].'"">Cambiar Clave</a>
+                        <a href="perfil.php?id='.$f['documento'].'&idCurso=&idClase=" class="activeP">Perfil</a>
+                        <a href="perfilFoto.php?id='.$f['documento'].'&idCurso=&idClase="">Cambiar Foto</a>
+                        <a href="perfilClave.php?id='.$f['documento'].'&idCurso=&idClase="">Cambiar Clave</a>
                     </div>
                     <p style="color: var(--grisOscuro);">Nota.</p>
                     <p>Reescriba los campos que desea modificar.<br> Recuerde no dejar ningun campo vacio.</p>
@@ -235,9 +240,9 @@
 
                 <div class="perfilDerecha">
                     <div class="enlacesPerfil">
-                        <a href="perfil.php?id='.$f['documento'].'">Perfil</a>
-                        <a href="perfilFoto.php?id='.$f['documento'].'">Cambiar Foto</a>
-                        <a href="perfilClave.php?id='.$f['documento'].'" class="activeP">Cambiar Clave</a>
+                        <a href="perfil.php?id='.$f['documento'].'&idCurso=&idClase=">Perfil</a>
+                        <a href="perfilFoto.php?id='.$f['documento'].'&idCurso=&idClase=">Cambiar Foto</a>
+                        <a href="perfilClave.php?id='.$f['documento'].'&idCurso=&idClase=" class="activeP">Cambiar Clave</a>
                     </div>
                     <p style="color: var(--grisOscuro);">Nota.</p>
 

@@ -113,10 +113,10 @@
             
             $consultas = $objConsultas->mostrarObservadorDoc($documento, $clase);
     
-            if (!isset($consultas)) {
+            if (!isset($consultas)) {            
                 echo '
                 <div class="alert">
-                    <p>No se han subido entregas en esta tarea</p>
+                    <p>No hay registro de observaciones o el estudiante no pertenese a esta clase</p>
                 </div>
                 ';
             } else {

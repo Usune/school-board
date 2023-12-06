@@ -95,52 +95,26 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                 <div id="filtro">
 
                     <form method="get">
-                        <!-- <div class="cont-filtro">
-
+                        <div class="cont-filtro">                            
                             <div class="fila-cont">
-
-                                <div class="radio">
-                                    <p>Fecha</p>
-                                    <label for="fechaInicio">Fecha de creación:</label>
-                                    <input type="date" id="fechaInicio" name="fechaInicio">
-                                    <br>
-                                    <label for="fechaFin">Fecha de vencimiento:</label>
-                                    <input type="date" id="fechaFin" name="fechaFin">                  
-
-                                </div>
-
-                                <div class="radio">
-                                    <p>Estado</p>
-                                    <input type="radio" name="estado" value="nada" checked hidden>
-                                    <input type="radio" name="estado" id="activo" value="activo">
-                                    <label for="activo">Activo</label><br>
-                                    <input type="radio" name="estado" id="vencido" value="vencido">
-                                    <label for="inactivo">Vencido</label><br>
-                                </div>
-
-                            </div>
-
-                            <div class="fila-cont">
-
                                 <div class="fieldset"> 
                                     <fieldset>
                                         <legend id="tarea">Tarea</legend>
                                     </fieldset>
                                     <input type="text" placeholder="Tarea" legend="#tarea" name="tarea">
-                                </div>
-                                
-                            
+                                </div>                                                            
                                 <button type="submit" class="filtrar">Filtrar</button>
-                                <a href=".php" class="filtrar">Limpiar</a>
+                                <a href=".php" class="filtrar">Limpiar</a>      
+                                
+                                <?php                      
+                                    echo '<input id="idClase" name="idClase" style="display: none;" type="text" value="'.$_GET['idClase'].'">';
+                                ?>
+                            </div>
 
-                              
-
-                            </div> -->
-
-                            <div class="cont-filtro">
+                            <!-- <div class="cont-filtro">
     <form id="filtroForm" method="get" action="tu_script_php.php">
         <div class="fila-cont">
-            <!-- ... Otros campos de filtro ... -->
+            
         </div>
 
         <div class="fila-cont">
@@ -155,7 +129,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
             <a href="tu_script_php.php" class="filtrar">Limpiar</a>
         </div>
     </form>
-</div>
+</div> -->
                         </div>
 
                     </form>
@@ -163,7 +137,12 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
                 </div>
 
                 <?php
-                    cargarTareas();  
+
+                    if(isset($_GET['tarea']) || isset($_GET['idClase'])){                                        
+                        fitrarTareas($_GET['tarea'], $_GET['idClase']);
+                    }else {   
+                        cargarTareas();  
+                    }
                 ?>
                 
             </section>

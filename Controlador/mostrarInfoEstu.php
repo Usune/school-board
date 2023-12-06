@@ -18,6 +18,7 @@
             if($f['estado'] == "Asiste"){
                 echo '
                     <tr>
+                        <td>'.$f['asignatura'].'</td>
                         <td>'.$fechaFormateada.'</td>
                         <td>Asistio</td>
                         <td></td>
@@ -28,6 +29,7 @@
             }else  if($f['estado'] == "Falta"){
                 echo '
                     <tr>
+                        <td>'.$f['asignatura'].'</td>
                         <td>'.$fechaFormateada.'</td>
                         <td></td>
                         <td>Falta</td>
@@ -38,6 +40,7 @@
             }else  if($f['estado'] == "Falta Justificada"){
                 echo '
                     <tr>
+                        <td>'.$f['asignatura'].'</td>
                         <td>'.$fechaFormateada.'</td>
                         <td></td>
                         <td></td>
@@ -48,6 +51,103 @@
             }else  if($f['estado'] == "Retardo"){
                 echo '
                     <tr>
+                        <td>'.$f['asignatura'].'</td>
+                        <td>'.$fechaFormateada.'</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="ultimo">Retardo</td>
+                    </tr>
+                ';
+            };
+
+
+
+        }
+    }
+
+        // Mostrar asistencia del estudiante  
+    function mostrarAsistenciaFiltrada(){
+        $idEstudiante = $_SESSION['id'];
+        $asignatura = $_GET['asignatura'];
+        $objConsultas = new Consultas();
+
+        // Verifica si los parámetros son 'nada' o vacíos
+        if ($asignatura === '') {
+            echo '
+                <tr>
+                    <td>Por favor, limpie la selección y escriba la asignatura.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ultimo"></td>
+                </tr>
+            ';
+            return;
+        }
+
+        $filas = $objConsultas->cargarAsistenciaFiltrados($asignatura, $idEstudiante) ;
+
+        // Verificar si no hay tareas
+        if(empty($filas)){
+            echo '
+                <tr>
+                    <td>No hay registro de asistencia para la asignatura consultada.</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ultimo"></td>
+                </tr>
+            ';
+            return; // Detener la ejecución si no hay tareas
+        }
+
+        foreach ($filas as $f) {
+
+            $fechaFormateada = date('M j, Y', strtotime($f['fecha']));
+
+
+            if($f['estado'] == "Asiste"){
+                echo '
+                    <tr>
+                        <td>'.$f['asignatura'].'</td>
+                        <td>'.$fechaFormateada.'</td>
+                        <td>Asistio</td>
+                        <td></td>
+                        <td></td>
+                        <td class="ultimo"></td>
+                    </tr>
+                ';
+            }else  if($f['estado'] == "Falta"){
+                echo '
+                    <tr>
+                        <td>'.$f['asignatura'].'</td>
+                        <td>'.$fechaFormateada.'</td>
+                        <td></td>
+                        <td>Falta</td>
+                        <td></td>
+                        <td class="ultimo"></td>
+                    </tr>
+                ';
+            }else  if($f['estado'] == "Falta Justificada"){
+                echo '
+                    <tr>
+                        <td>'.$f['asignatura'].'</td>
+                        <td>'.$fechaFormateada.'</td>
+                        <td></td>
+                        <td></td>
+                        <td>Falta Justificada</td>
+                        <td class="ultimo"></td>
+                    </tr>
+                ';
+            }else  if($f['estado'] == "Retardo"){
+                echo '
+                    <tr>
+                        <td>'.$f['asignatura'].'</td>
                         <td>'.$fechaFormateada.'</td>
                         <td></td>
                         <td></td>
@@ -408,9 +508,11 @@
 
             // Capturar la fecha desde la DB 
             $fechaDB = $f['fecha_vencimiento'];
+            $fechaEntrega = $f['fecha_entrega_est'];
 
             // Formatear la fecha para aspecto visual - 15/10/2023
             $fechaFormateada = date('d/m/Y', strtotime($fechaDB));
+            $fechaEntregaFor = date('d/m/Y', strtotime($fechaEntrega));
 
             // Convertirla en el tipo de dato que se encuentra en la DB, ya que antes de este momento pasa como string (Verificar con  echo gettype($fechaDB); )
             $fechaDBDateTime = new DateTime($fechaDB);
@@ -428,14 +530,20 @@
             // El signo %r devuelve el signo (+ o -) de la diferencia y %a es el numero
             $fechaEstado = $fechaDiferencia->format('%r%a');
 
-            // Condicional para aplicar estilos en css
-            if ($fechaEstado < 1) {
-                $fechaEstado = "rojo"; // La tarea esta vencida o vence ese dia
-            } elseif ($fechaEstado >= 1 && $fechaEstado <=3) {
-                $fechaEstado = "amarillo"; // La tarea tiene un plazo entre 1 dia y 3 dias para ser entregada
+            $estado = null;
+
+            // Condicional para aplicar estilos en CSS
+            if ($fechaEstado == 0 || $fechaEstado < 0) {
+                $fechaEstado = "rojo"; // Es el día de la entrega o la tarea está vencida
+                $estado = "Urgente";
+            } elseif ($fechaEstado >= 1 && $fechaEstado <= 3) {
+                $fechaEstado = "amarillo"; // La tarea tiene un plazo entre 1 y 3 días para ser entregada
+                $estado = "Próxima";
             } else {
-                $fechaEstado = "verde"; // La tarea tiene un plazo de más de 4 dias para ser entregada
+                $fechaEstado = "verde"; // La tarea tiene un plazo de más de 3 días para ser entregada
+                $estado = "Con tiempo";
             }
+
 
 
             $notaEstado = $f['nota'];
@@ -457,155 +565,17 @@
 
             $estadoEntrega = $f['estadoTarea'];
 
-            
 
-            switch ($estadoEntrega) {
-                case 'entregada':
-                    echo '
-                        <!-- Card Tarea Sola -->
-                        <div class="row centrado">
-                            <div class="card mb-3 card-tareas">
-                                <div class="card-body">
-                                <div class="row contEtiquetas">
-                    
-                                    <div class="col-md-6">
-                                    <div class="row infoDoc">
-                                        <div class="col-md-2">
-                                        <img src="'.$f['foto'].'" alt="">
-                                        </div>
-                                        <div class="col-md-10">
-                                        <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                    
-                                    <div class="col-md-6 fechasCont">
-                                    <p class="'.$fechaEstado.'">'.$fechaFormateada.'</p>
-                                    </div>
-                    
-                                </div>
-                    
-                                <h5 class="card-title card-titulo">
-                                    '.$f['titulo'].'
-                                </h5>
-                    
-                    
-                                <p class="card-text card-texto">
-                                    '.$f['tareaDescripcion'].'
-                                </p>
-                    
-                                <div class="row">';
+            // Comparar las fechas de entrega
+            if ($estado == "Urgente") {
 
-                                if ((strlen(trim($archivos[0])) == 0) ) {
-                                    echo '
-                                    <div class="col-md-4">
-                                        <div class="cont-archivo-null">
-                                            <p>Sin archivos</p>
-                                        </div>
-                                    </div>
-                                    ';
-                                }else{
-                                
-                                
-                                    foreach ($archivos as $archivo) {
-                                        echo '
-                                        <div class="col-md-4">
-                                            <div class="cont-archivo">
-                                                <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">'.$archivo.'</a>
-                                            </div>
-                                        </div>
-                                        ';
-                                    };
-                                }
-
-                                    echo '
-                                    <div class="row">
-                                
-                                </div>
-                    
-                                </div>
-                            </div>
-                        </div>
-                    ';
-
-                    echo '
-                        <!-- Card Entrega -->
-                        <h2>Entrega</h2>
-                            <div class="card mb-3 card-tareas">
-                                <div class="card-body">
-                                <div class="row contEtiquetas">
-                    
-                                    <div class="col-md-6">
-                                    <div class="row infoDoc">
-                                        <div class="col-md-2">
-                                        <img src="'.$f['eFoto'].'" alt="">
-                                        </div>
-                                        <div class="col-md-10">
-                                        <p>Estudiante '.$f['eNombres'].' '.$f['eApellidos'].'</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                    
-                                    <div class="col-md-6 fechasCont">
-                                    <p class="'.($notaEstado !== null ? $notaEstado : ' ').'">'.($f['nota'] !== null ? $f['nota'] : "Sin calificación").'</p>
-                                    </div>
-                    
-                                </div>
-                    
-                                <p class="card-text card-texto">
-                                    '.$f['descripcion'].'
-                                </p>
-                    
-                                <div class="row">';
-
-                                
-                                if ((strlen(trim($archivosEntrega[0])) == 0) ) {
-                                        echo '
-                                        <div class="col-md-4">
-                                            <div class="cont-archivo-null">
-                                                <p>Sin archivos</p>
-                                            </div>
-                                        </div>
-                                        ';
-                                }else{
-
-                                    foreach ($archivosEntrega as $archivo) {
-
-
-                                        echo '
-                                        <div class="col-md-4">
-                                            <div class="cont-archivo">
-                                                <a href="../../Uploads/Entregas/'.$archivo.'" target="_blank">'.$archivo.'</a>
-                                            </div>
-                                        </div>
-                                        ';
-                                    }
-
-                               
-                                };
-                                
-
-
-                                    echo '
-                                    <div class="row">
-                                    <div class="col-md-12">
-                                    <button type="button" class="btn btnPrincipal" data-bs-toggle="modal" data-bs-target="#modalEntregaModificar">
-                                        Modificar
-                                    </button>
-                                    </div>
-                                </div>
-                    
-                                </div>
-                            </div>
-                    ';
-                break;
-
-                case 'pendiente':
-                    echo '
-                        <!-- Card Tarea Sola -->
-                        <div class="row centrado">
-                            <div class="card mb-3 card-tareas">
-                                <div class="card-body">
+                switch ($estadoEntrega) {
+                    case 'entregada':
+                        echo '
+                            <!-- Card Tarea Sola -->
+                            <div class="row centrado">
+                                <div class="card mb-3 card-tareas">
+                                    <div class="card-body">
                                     <div class="row contEtiquetas">
                         
                                         <div class="col-md-6">
@@ -615,25 +585,245 @@
                                             </div>
                                             <div class="col-md-10">
                                             <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
+                                            <p>Plazo máximo de entrega: '.$fechaFormateada.'</p>
                                             </div>
                                         </div>
                                         </div>
                         
                                         <div class="col-md-6 fechasCont">
-                                        <p class="'.$fechaEstado.'">'.$fechaFormateada.'</p>
+                                        <p class="'.$fechaEstado.'">Vencida</p>
                                         </div>
                         
                                     </div>
-                    
+                        
                                     <h5 class="card-title card-titulo">
                                         '.$f['titulo'].'
                                     </h5>
-                    
-                    
+                        
+                        
                                     <p class="card-text card-texto">
                                         '.$f['tareaDescripcion'].'
                                     </p>
-                    
+                        
+                                    <div class="row">';
+    
+                                    if ((strlen(trim($archivos[0])) == 0) ) {
+                                        echo '
+                                        <div class="col-md-4">
+                                            <div class="cont-archivo-null">
+                                                <p>Sin archivos</p>
+                                            </div>
+                                        </div>
+                                        ';
+                                    }else{
+                                    
+                                    
+                                        foreach ($archivos as $archivo) {
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo">
+                                                    <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                                </div>
+                                            </div>
+                                            ';
+                                        };
+                                    }
+    
+                                        echo '
+                                        <div class="row">
+                                    
+                                    </div>
+                        
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+    
+                        echo '
+                            <!-- Card Entrega -->
+                            <h2>Entrega</h2>
+                                <div class="card mb-3 card-tareas">
+                                    <div class="card-body">
+                                    <div class="row contEtiquetas">
+                        
+                                        <div class="col-md-6">
+                                        <div class="row infoDoc">
+                                            <div class="col-md-2">
+                                            <img src="'.$f['eFoto'].'" alt="">
+                                            </div>
+                                            <div class="col-md-10">
+                                            <p>Estudiante '.$f['eNombres'].' '.$f['eApellidos'].'</p>
+                                            <p>Fecha de entrega: '.$fechaEntregaFor.'</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                        
+                                        <div class="col-md-6 fechasCont">
+                                        <p class="'.($notaEstado !== null ? $notaEstado : ' ').'">'.($f['nota'] !== null ? $f['nota'] : "Sin calificación").'</p>
+                                        </div>
+                        
+                                    </div>
+                        
+                                    <p class="card-text card-texto">
+                                        '.$f['descripcion'].'
+                                    </p>
+                        
+                                    <div class="row">';
+    
+                                    
+                                    if ((strlen(trim($archivosEntrega[0])) == 0) ) {
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo-null">
+                                                    <p>Sin archivos</p>
+                                                </div>
+                                            </div>
+                                            ';
+                                    }else{
+    
+                                        foreach ($archivosEntrega as $archivo) {
+    
+    
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo">
+                                                    <a href="../../Uploads/Entregas/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                                </div>
+                                            </div>
+                                            ';
+                                        }
+    
+                                   
+                                    };
+                                    
+    
+    
+                                        echo '
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                        <button type="button" class=" btnPrincipalNo">
+                                            El plazo máximo para entregar la tarea ha vencido; por lo tanto, no es posible modificar la entrega realizada.
+                                        </button>
+                                        </div>
+                                    </div>
+                        
+                                    </div>
+                                </div>
+                        ';
+                    break;
+    
+                    case 'pendiente':
+                        echo '
+                            <!-- Card Tarea Sola -->
+                            <div class="row centrado">
+                                <div class="card mb-3 card-tareas">
+                                    <div class="card-body">
+                                        <div class="row contEtiquetas">
+                            
+                                            <div class="col-md-6">
+                                            <div class="row infoDoc">
+                                                <div class="col-md-2">
+                                                <img src="'.$f['foto'].'" alt="">
+                                                </div>
+                                                <div class="col-md-10">
+                                                <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
+                                                <p>Plazo máximo de entrega: '.$fechaFormateada.'</p>
+                                                </div>
+                                            </div>
+                                            </div>
+                            
+                                            <div class="col-md-6 fechasCont">
+                                              <p class="'.$fechaEstado.'">Vencida</p>
+                                            </div>
+                            
+                                        </div>
+                        
+                                        <h5 class="card-title card-titulo">
+                                            '.$f['titulo'].'
+                                        </h5>
+                        
+                        
+                                        <p class="card-text card-texto">
+                                            '.$f['tareaDescripcion'].'
+                                        </p>
+                        
+                                        <div class="row">';
+    
+                                        if ((strlen(trim($archivos[0])) == 0) ) {
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo-null">
+                                                    <p>Sin archivos</p>
+                                                </div>
+                                            </div>
+                                            ';
+                                        }else{
+    
+                                            foreach ($archivos as $archivo) {
+                                                echo '
+                                                <div class="col-md-4">
+                                                    <div class="cont-archivo">
+                                                        <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                                    </div>
+                                                </div>
+                                                ';
+                                            };
+                                        }
+    
+                                            echo '
+                                            <div class="row">
+                                                <button type="button" class=" btnPrincipalNo">
+                                                    El plazo máximo para realizar la entrega ha vencido.
+                                                </button>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    break;
+                }
+
+
+            }else{
+                
+                switch ($estadoEntrega) {
+                    case 'entregada':
+                        echo '
+                            <!-- Card Tarea Sola -->
+                            <div class="row centrado">
+                                <div class="card mb-3 card-tareas">
+                                    <div class="card-body">
+                                    <div class="row contEtiquetas">
+                        
+                                        <div class="col-md-6">
+                                        <div class="row infoDoc">
+                                            <div class="col-md-2">
+                                            <img src="'.$f['foto'].'" alt="">
+                                            </div>
+                                            <div class="col-md-10">
+                                            <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
+                                            <p>Plazo máximo de entrega: '.$fechaFormateada.'</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                        
+                                        <div class="col-md-6 fechasCont">
+                                        <p class="'.$fechaEstado.'">'.$estado.'</p>
+                                        </div>
+                        
+                                    </div>
+                        
+                                    <h5 class="card-title card-titulo">
+                                        '.$f['titulo'].'
+                                    </h5>
+                        
+                        
+                                    <p class="card-text card-texto">
+                                        '.$f['tareaDescripcion'].'
+                                    </p>
+                        
                                     <div class="row">';
 
                                     if ((strlen(trim($archivos[0])) == 0) ) {
@@ -645,7 +835,8 @@
                                         </div>
                                         ';
                                     }else{
-
+                                    
+                                    
                                         foreach ($archivos as $archivo) {
                                             echo '
                                             <div class="col-md-4">
@@ -659,18 +850,164 @@
 
                                         echo '
                                         <div class="row">
-                                            <button type="button" class="btn btnPrincipal" data-bs-toggle="modal" data-bs-target="#modalEntrega">
-                                                Entregar
-                                            </button>
-                                        </div>
+                                    
                                     </div>
-                    
+                        
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ';
-                break;
+                        ';
+
+                        echo '
+                            <!-- Card Entrega -->
+                            <h2>Entrega</h2>
+                                <div class="card mb-3 card-tareas">
+                                    <div class="card-body">
+                                    <div class="row contEtiquetas">
+                        
+                                        <div class="col-md-6">
+                                        <div class="row infoDoc">
+                                            <div class="col-md-2">
+                                            <img src="'.$f['eFoto'].'" alt="">
+                                            </div>
+                                            <div class="col-md-10">
+                                            <p>Estudiante '.$f['eNombres'].' '.$f['eApellidos'].'</p>
+                                            <p>Fecha de entrega: '.$fechaEntregaFor.'</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                        
+                                        <div class="col-md-6 fechasCont">
+                                        <p class="'.($notaEstado !== null ? $notaEstado : ' ').'">'.($f['nota'] !== null ? $f['nota'] : "Sin calificación").'</p>
+                                        </div>
+                        
+                                    </div>
+                        
+                                    <p class="card-text card-texto">
+                                        '.$f['descripcion'].'
+                                    </p>
+                        
+                                    <div class="row">';
+
+                                    
+                                    if ((strlen(trim($archivosEntrega[0])) == 0) ) {
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo-null">
+                                                    <p>Sin archivos</p>
+                                                </div>
+                                            </div>
+                                            ';
+                                    }else{
+
+                                        foreach ($archivosEntrega as $archivo) {
+
+
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo">
+                                                    <a href="../../Uploads/Entregas/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                                </div>
+                                            </div>
+                                            ';
+                                        }
+
+                                
+                                    };
+                                    
+
+
+                                        echo '
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                        <button type="button" class="btn btnPrincipal" data-bs-toggle="modal" data-bs-target="#modalEntregaModificar">
+                                            Modificar
+                                        </button>
+                                        </div>
+                                    </div>
+                        
+                                    </div>
+                                </div>
+                        ';
+                    break;
+
+                    case 'pendiente':
+                        echo '
+                            <!-- Card Tarea Sola -->
+                            <div class="row centrado">
+                                <div class="card mb-3 card-tareas">
+                                    <div class="card-body">
+                                        <div class="row contEtiquetas">
+                            
+                                            <div class="col-md-6">
+                                            <div class="row infoDoc">
+                                                <div class="col-md-2">
+                                                <img src="'.$f['foto'].'" alt="">
+                                                </div>
+                                                <div class="col-md-10">
+                                                <p>Docente '.$f['nombres'].' '.$f['apellidos'].'</p>
+                                                <p>Plazo máximo de entrega: '.$fechaFormateada.'</p>
+                                                </div>
+                                            </div>
+                                            </div>
+                            
+                                            <div class="col-md-6 fechasCont">
+                                            <p class="'.$fechaEstado.'">'.$estado.'</p>
+                                            </div>
+                            
+                                        </div>
+                        
+                                        <h5 class="card-title card-titulo">
+                                            '.$f['titulo'].'
+                                        </h5>
+                        
+                        
+                                        <p class="card-text card-texto">
+                                            '.$f['tareaDescripcion'].'
+                                        </p>
+                        
+                                        <div class="row">';
+
+                                        if ((strlen(trim($archivos[0])) == 0) ) {
+                                            echo '
+                                            <div class="col-md-4">
+                                                <div class="cont-archivo-null">
+                                                    <p>Sin archivos</p>
+                                                </div>
+                                            </div>
+                                            ';
+                                        }else{
+
+                                            foreach ($archivos as $archivo) {
+                                                echo '
+                                                <div class="col-md-4">
+                                                    <div class="cont-archivo">
+                                                        <a href="../../Uploads/Actividades/'.$archivo.'" target="_blank">'.$archivo.'</a>
+                                                    </div>
+                                                </div>
+                                                ';
+                                            };
+                                        }
+
+                                            echo '
+                                            <div class="row">
+                                                <button type="button" class="btn btnPrincipal" data-bs-toggle="modal" data-bs-target="#modalEntrega">
+                                                    Entregar
+                                                </button>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    break;
+                }
             }
+
+
+            
+
 
             echo '
             <!-- Modal Entregar-->

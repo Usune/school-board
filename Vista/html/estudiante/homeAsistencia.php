@@ -39,11 +39,56 @@
       <div class="container-fluid">
       <h2>Asistencia</h2>
 
+              <!-- Filtro funcional -->
+              <div class="row filtro">
+          <div class="col-md-12">
+            <form method="get">
+
+              <div class="row rowFiltro">
+
+
+                <!-- input - nombres -->
+                <div class="col-lg-4 col-md-6 col-sm-12 filtro-inputs">
+                  <div class="fieldset_view">
+                    <div class="fieldset">
+                      <fieldset>
+                        <legend id="nom">Nombre Asignatura</legend>
+                      </fieldset>
+                      <input type="text" placeholder="Nombre Asignatura" legend="#nom" name="asignatura">
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- botones -->
+                <div class="col-lg-4 col-md-12 col-sm-12 filtro-inputs">
+
+                  <div class="buscador col-6">
+                    <div class="col-6">
+                      <button type="submit" class="filtrar">Filtrar</button>
+                    </div>
+
+                    <div class="col-6">
+                      <a href="homeAsistencia.php" class="filtrar">Limpiar</a>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+
+      <!-- contenido -->
         <div class="container">
           <div class="tablas">
             <table>
               <thead>
                 <tr>
+                  <th>Asignatura</th>
                   <th>Dia</th>
                   <th>Asistio</th>
                   <th>Falta</th>
@@ -52,7 +97,21 @@
                 </tr>
               </thead>
               <tbody>
-                <?php mostrarAsistencia(); ?>
+
+                <?php
+
+                if(isset($_GET['asignatura'])){
+
+                  mostrarAsistenciaFiltrada($_GET['asignatura']);
+                          
+                }else {
+
+                  mostrarAsistencia();
+
+                }
+
+                ?>
+
                 <!-- <tr>
                   <td>Dia</td>
                   <td>Asistio</td>

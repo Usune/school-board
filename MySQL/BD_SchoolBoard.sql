@@ -34,6 +34,7 @@ INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos,
 (3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', 'nicole.benavides@misena.edu.co', '../../Uploads/Usuario/userNicole.jpg'),
 -- (3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Nicole Dayana', 'Benavides Alfonso', NULL, '../../Uploads/Usuario/userNicole.jpg'),
 (1023163095, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', NULL, '../../Uploads/Usuario/userFavian.jpg'),
+(31, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Favian Andres', 'Mancilla Angulo', NULL, '../../Uploads/Usuario/userFavian.jpg'),
 (1023163096, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Darwin', 'Urbina Lopez', 'darwin@gmail.com', '../../Uploads/Usuario/userDarwin.jpg'),
 
 (1023163097, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Camila Dayana', 'Benavides Alfonso', 'Camila@gmail.com', '../../Uploads/Usuario/userCamila.jpg'),
@@ -267,25 +268,3 @@ CREATE TABLE calificacion(
 
 INSERT INTO calificacion (idEntrega, nota) VALUES 
 (1, '4.5');
-
--- Consulta para mostrar todas las entregas de los estudiantes para una tarea específica:
--- SELECT e.idEntrega, e.idEstudiante, u.nombres, u.apellidos, e.fecha_entrega_est, e.descripcion, e.archivos, c.nota
--- FROM entrega e
--- JOIN usuario u ON e.idEstudiante = u.documento
--- LEFT JOIN calificacion c ON e.idEntrega = c.idEntrega
--- WHERE e.idTarea = {id_tarea_deseada};
-
-
--- Consulta para obtener todas las entregas y agregar un campo para indicar si está entregada o pendiente:
--- SELECT e.idEntrega, e.idEstudiante, u.nombres, u.apellidos, e.fecha_entrega_est, e.descripcion, e.archivos,
---        IF(c.idCalificacion IS NOT NULL, 'Entregada', 'Pendiente') AS estado_entrega, c.nota
--- FROM entrega e
--- JOIN usuario u ON e.idEstudiante = u.documento
--- LEFT JOIN calificacion c ON e.idEntrega = c.idEntrega
--- WHERE e.idTarea = {id_tarea_deseada};
-
-
--- Consulta para que el docente pueda calificar una entrega en específico:
--- UPDATE calificacion
--- SET nota = {nueva_nota}
--- WHERE idEntrega = {id_entrega_a_calificar};

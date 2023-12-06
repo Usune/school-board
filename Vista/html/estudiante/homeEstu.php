@@ -28,7 +28,7 @@
   </nav>
 
   <section id="home">
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="row">
         <div class="col-md-4 fotoPrincipal d-none d-md-block">
           <img src="../../img/imgHomeEstu.svg" alt="">
@@ -36,7 +36,6 @@
         <div class="col-md-8 cont-card">
           <div class="row">
 
-            <!-- tareas -->
             <div class="col-md-12 card-usu ">
               <div class="row ">
                 <div class="col-md-6">
@@ -60,7 +59,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
   </section>

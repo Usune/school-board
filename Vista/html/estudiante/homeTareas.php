@@ -48,10 +48,9 @@
           <div class="col-md-12">
             <form method="get">
 
-              <div class="row ">
+              <div class="row rowFiltro">
 
-
-                <!-- input - nombres -->
+              <!-- input - nombres -->
                 <div class="col-lg-4 col-md-6 col-sm-12 filtro-inputs">
                   <div class="fieldset_view">
                     <div class="fieldset">

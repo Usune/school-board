@@ -1277,17 +1277,24 @@
 
         // ESTUDIANTES ASISTENCIA
 
-        // Funcion para cargar info de las clases correspondientes al estudiante
+        // Funcion para cargar asistencia del estudiante
         public function cargarAsistencia($idEstudiante){
             $rows = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = "SELECT asistencia.* FROM asistencia
-            INNER JOIN usuario ON usuario.documento = asistencia.idEstudiante
-            WHERE usuario.documento = :idEstudiante
-            ORDER BY asistencia.fecha DESC";
+            $sql = "SELECT 
+            a.idAsistencia,
+            c.idClase,
+            a.fecha,
+            a.estado,
+            asig.nombre AS asignatura
+            FROM asistencia a
+            INNER JOIN clase c ON a.idClase = c.idClase
+            INNER JOIN asignatura asig ON c.idAsignatura = asig.idAsignatura
+            WHERE a.idEstudiante = :idEstudiante
+            ORDER BY a.idAsistencia DESC";
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
             $statement->execute();
@@ -1297,6 +1304,42 @@
             }
 
             return $rows;
+        }
+
+        //  Función para filtrar asistencia por asignatura 
+        public function cargarAsistenciaFiltrados($asignatura, $idEstudiante) {
+            $f = null;
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT 
+            a.idAsistencia,
+            c.idClase,
+            a.fecha,
+            a.estado,
+            asig.nombre AS asignatura
+            FROM asistencia a
+            INNER JOIN clase c ON a.idClase = c.idClase
+            INNER JOIN asignatura asig ON c.idAsignatura = asig.idAsignatura
+            WHERE a.idEstudiante = :idEstudiante AND asig.nombre LIKE :asignatura
+            ORDER BY a.idAsistencia DESC;";
+
+            $statement = $conexion->prepare($sql);
+
+            if (!empty($asignatura)) {
+                $asignatura = '%' . $asignatura . '%';
+                $statement->bindParam(':asignatura', $asignatura);
+            }
+
+            $statement->bindParam(':idEstudiante', $idEstudiante);
+            $statement->execute();
+        
+            while ($resultado = $statement->fetch()) {
+                $f[] = $resultado;
+            }
+        
+            return $f;
         }
 
 
@@ -2911,7 +2954,7 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'UPDATE usuario SET clave=:claveMD, telefono=:telefono, direccion=:direccion, correo=:correo, foto=:foto WHERE documento=:documento';
+            $sql = 'UPDATE usuario SET clave=:claveMD, telefono=:telefono, direccion=:direccion, correo=:correo, foto=:fotoM WHERE documento=:documento';
             $consulta = $conexion->prepare($sql);
             
             $consulta->bindParam(':claveMD', $claveMD);
@@ -2919,7 +2962,7 @@
             $consulta->bindParam(':telefono', $telefono);
             $consulta->bindParam(':direccion', $direccion);
             $consulta->bindParam(':correo', $correo);
-            $consulta->bindParam(':foto', $foto);
+            $consulta->bindParam(':fotoM', $fotoM);
 
             $consulta->execute();
 

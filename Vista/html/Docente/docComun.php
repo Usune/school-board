@@ -74,6 +74,12 @@
                                     <?php
                                         traerCursoID();
                                     ?>
+
+                                    <?php
+                                    echo '
+                                    <input type="text" id="curso"  value="'.$_GET['idClase'].'" hidden name="idClase">
+                                    ';
+                                    ?>
                 
                                     <p id="texto"></p>
                                 

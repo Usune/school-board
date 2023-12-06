@@ -598,7 +598,7 @@
             }
 
             if($_SESSION['rol'] == 'Docente') {
-                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'$idCurso=&idClase="</script>';
             }
 
             if($_SESSION['rol'] == 'Estudiante') {
@@ -628,7 +628,7 @@
             }
 
             if($_SESSION['rol'] == 'Docente') {
-                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'&idCurso=&idClase="</script>';
             }
 
             if($_SESSION['rol'] == 'Estudiante') {
@@ -658,7 +658,7 @@
             }
 
             if($_SESSION['rol'] == 'Docente') {
-                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'"</script>';
+                echo '<script>location.href="../Vista/html/Docente/Perfil.php?id='.$documento.'&idCurso=&idClase="</script>';
             }
 
             if($_SESSION['rol'] == 'Estudiante') {
@@ -1279,6 +1279,102 @@
 
         // CONSULTAS PARA ESTUDIANTES 
 
+        // ESTUDIANTES ASISTENCIA
+
+        // Funcion para cargar info de las clases correspondientes al estudiante
+        public function cargarAsistencia($idEstudiante){
+            $rows = null;
+
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT asistencia.* FROM asistencia
+            INNER JOIN usuario ON usuario.documento = asistencia.idEstudiante
+            WHERE usuario.documento = :idEstudiante
+            ORDER BY asistencia.fecha DESC";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+
+            while ($resultado = $statement->fetch()) {
+                $rows[] = $resultado;
+            }
+
+            return $rows;
+        }
+
+
+        // ESTUDIANTES CLASES
+
+        // Trae info sobre el curso
+        public function cargarCurso($idEstudiante) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT *,
+            curso.jornada,
+            curso.nombre AS cursoNombre
+            FROM curso
+            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            INNER JOIN usuario ON usuario.documento = estudiantecurso.idEstudiante
+            WHERE estudiantecurso.idEstudiante = :idEstudiante";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+        
+        // Trae todas las clases registradas
+        public function cargarClasesEstu($idEstudiante) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT
+            cl.idClase,
+            u.nombres AS nombreDocente,
+            u.apellidos AS apellidosDocente,
+            u.foto,
+            cl.descripción AS nombreClase,
+            a.nombre AS nombreAula,
+            asig.nombre AS nombreAsignatura,
+            curso.nombre AS nombreCurso
+            FROM clase cl
+            JOIN usuario u ON cl.idDocente = u.documento
+            JOIN aula a ON cl.idAula = a.idAula
+            JOIN asignatura asig ON cl.idAsignatura = asig.idAsignatura
+            JOIN curso ON cl.idCurso = curso.idCurso
+            LEFT JOIN estudianteCurso ec ON cl.idCurso = ec.idCurso
+            WHERE ec.idEstudiante = :idEstudiante
+            GROUP BY cl.idClase, u.nombres, u.foto, cl.descripción, a.nombre, asig.nombre, curso.nombre
+            ORDER BY cl.idClase DESC";
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idEstudiante' , $idEstudiante);
+            $statement->execute();
+            
+            while ($resultado = $statement->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
         // Funcion para cargar info de las clases correspondientes al estudiante
         public function cargarAsignaturas($idEstudiante){
             $rows = null;
@@ -1405,21 +1501,23 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = "SELECT *,
+            tarea.idTarea AS idTarea,
             asignatura.nombre as asignaturaNombre,
             usuario.foto as fotoDoc,
-                CASE 
-                    WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
-                    ELSE 'pendiente' 
-                END AS estadoTarea
-            FROM clase
-            INNER JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
-            INNER JOIN usuario ON usuario.documento = clase.idDocente
-            INNER JOIN curso ON curso.idCurso = clase.idCurso
-            INNER JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
-            INNER JOIN tarea ON tarea.idClase = clase.idClase
+            CASE 
+                WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+            FROM tarea
+            JOIN clase ON clase.idClase = tarea.idClase
+            JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+            JOIN curso ON curso.idCurso = clase.idCurso
+            JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            JOIN usuario ON usuario.documento = clase.idDocente
             LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
             LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
-            WHERE estudiantecurso.idEstudiante = :idEstudiante";
+            WHERE estudiantecurso.idEstudiante = :idEstudiante
+            GROUP BY tarea.idTarea";
 
             $statement = $conexion->prepare($sql);
             $statement->bindParam(':idEstudiante' , $idEstudiante);
@@ -1431,6 +1529,48 @@
 
             return $rows;
 
+        }
+
+        //  Función para filtrar tareas por asignatura 
+        public function cargarTareasFiltrados($asignatura) {
+            $f = null;
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT *,
+            tarea.idTarea AS idTarea,
+            asignatura.nombre as asignaturaNombre,
+            usuario.foto as fotoDoc,
+            CASE 
+                WHEN entrega.idEntrega IS NOT NULL THEN 'entregada'
+                ELSE 'pendiente' 
+            END AS estadoTarea
+            FROM tarea
+            JOIN clase ON clase.idClase = tarea.idClase
+            JOIN asignatura ON asignatura.idAsignatura = clase.idAsignatura
+            JOIN curso ON curso.idCurso = clase.idCurso
+            JOIN estudiantecurso ON estudiantecurso.idCurso = curso.idCurso
+            JOIN usuario ON usuario.documento = clase.idDocente
+            LEFT JOIN entrega ON entrega.idTarea = tarea.idTarea
+            LEFT JOIN calificacion ON calificacion.idEntrega = entrega.idEntrega
+            WHERE estudiantecurso.idEstudiante = 3 AND asignatura.nombre LIKE :asignatura
+            GROUP BY tarea.idTarea";
+
+            $statement = $conexion->prepare($sql);
+
+            if (!empty($asignatura)) {
+                $asignatura = '%' . $asignatura . '%';
+                $statement->bindParam(':asignatura', $asignatura);
+            }
+
+            $statement->execute();
+        
+            while ($resultado = $statement->fetch()) {
+                $f[] = $resultado;
+            }
+        
+            return $f;
         }
 
         // Funcion para mostrar info sobre la tarea 
@@ -1598,7 +1738,12 @@
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql ="SELECT acudiente.*
+            $sql ="SELECT usuario.*,
+            acudiente.documento AS acudienteDocumento,
+            acudiente.nombres AS acudienteNombres,
+            acudiente.apellidos AS acudienteApellidos,
+            acudiente.telefono AS acudienteTelefono,
+            acudiente.correo AS acudienteCorreo
             FROM acudiente
             INNER JOIN estudianteacudiente ON estudianteacudiente.idAcudiente = acudiente.documento
             INNER JOIN usuario ON usuario.documento = estudianteacudiente.idEstudiante
@@ -1651,7 +1796,7 @@
           
 
             echo '<script>alert("Actualización exitosa")</script>';
-            echo '<script>location.href="../Vista/html/Estudiante/homeAcudiente.php"</script>';
+            echo '<script>location.href="../Vista/html/Estudiante/perfilAcudiente.php"</script>';
 
 
     
@@ -2010,7 +2155,7 @@
             $consulta->execute();
 
             echo '<script>alert("Tarea registrada exitosamente")</script>';
-            echo '<script>location.href="../Vista/html/Docente/tareasDoc.php?idClase='.$idClase.'"</script>';
+            echo '<script>location.href="../Vista/html/Docente/tareasDoc.php?idClase='.$idClase.'&tarea="</script>';
             
         }
 
@@ -2033,7 +2178,7 @@
             echo '<script>location.href="../Vista/html/Docente/docComun.php?idClase='.$idClase.'"</script>'; 
         }
 
-        public function ActualizarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase) {
+        public function ActualizarTarDoc($titulo, $descripcion, $fecha_creacion, $fecha_vencimiento, $id, $idClase, $archivos, $nombreArchivo) {
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
@@ -2056,11 +2201,18 @@
             if($f){
 
                 echo '<script>alert("No se pudo realizar la actualización, debe actualizar al menos un campo")</script>';
-                echo '<script>location.href="../Vista/html/Docente/docTareaModificar.php?idClase='.$idClase.'"</script>';
+                echo '<script>location.href="../Vista/html/Docente/docTareaModificar.php?idClase='.$idClase.'&tarea="</script>';
                 
             }else {
                 
-                $sql = 'UPDATE tarea SET titulo=:titulo, descripcion=:descripcion, fecha_creacion=:fecha_C, fecha_vencimiento=:fecha_V WHERE idTarea=:id';
+                $sql = 'UPDATE tarea 
+                        SET titulo=:titulo, 
+                            descripcion=:descripcion, 
+                            fecha_creacion=:fecha_C, 
+                            fecha_vencimiento=:fecha_V'
+                            . ($nombreArchivo == "" ? '' : ', archivos = :archivos') .
+                            '                            
+                        WHERE idTarea=:id';
                 
                 $consulta = $conexion->prepare($sql);
                 
@@ -2069,10 +2221,14 @@
                 $consulta->bindParam(':fecha_C', $fecha_creacion);
                 $consulta->bindParam(':fecha_V', $fecha_vencimiento);
                 $consulta->bindParam(':id', $id);
+                
+                if ($nombreArchivo != "")
+                    $consulta->bindParam(':archivos', $archivos);
+
                 $consulta->execute();
     
                 echo '<script>alert("Tarea actualizado con exito</script>';
-                echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idClase='.$idClase.'"</script>';
+                echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idClase='.$idClase.'&tarea="</script>';
 
             }
             
@@ -2082,23 +2238,30 @@
         }
 
       
-        public function consultarTareasDoc($docente, $clase){
+        public function consultarTareasDoc($docente, $clase, $tarea = ""){
 
             $f = null;
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
-            $sql = 'SELECT tarea.idTarea as idTarea, tarea.titulo as titulo, tarea.descripcion as descripcion, tarea.fecha_creacion as fecha_C, tarea.fecha_vencimiento as fecha_V, tarea.archivos as archivos, usuario.nombres as nombreUsu, usuario.apellidos as apellidoUsu, usuario.foto as fotoUsu
-            
-            FROM tarea 
-
-            INNER JOIN usuario ON tarea.idDocente = usuario.documento
-            WHERE tarea.idClase = :idClase
-            ORDER BY fecha_C DESC';
+            $sql = 'SELECT tarea.idTarea as idTarea, tarea.titulo as titulo, tarea.descripcion as descripcion, tarea.fecha_creacion as fecha_C, 
+                        tarea.fecha_vencimiento as fecha_V, tarea.archivos as archivos, usuario.nombres as nombreUsu, usuario.apellidos as apellidoUsu, 
+                        usuario.foto as fotoUsu, entrega.idTarea AS ExisteEntrega
+                    FROM tarea INNER JOIN 
+                        usuario ON tarea.idDocente = usuario.documento LEFT JOIN 
+                        entrega on entrega.idTarea=tarea.idTarea 
+                    WHERE tarea.idClase = :idClase ' . ($tarea == '' ? '' : 'AND tarea.titulo LIKE :tarea ') .
+                    '                    
+                    GROUP BY tarea.idTarea, tarea.titulo, tarea.descripcion, tarea.fecha_creacion, tarea.fecha_vencimiento, tarea.archivos, 
+                            usuario.nombres, usuario.apellidos, usuario.foto, entrega.idTarea 
+                    ORDER BY fecha_C DESC';
 
             $consulta = $conexion->prepare($sql);          
             $consulta->bindParam(':idClase', $clase); 
+            if ($tarea != "") 
+                $consulta->bindParam(':tarea', $tarea); 
+
             $consulta->execute();
 
             while ($resultado = $consulta->fetch()) {
@@ -2178,26 +2341,25 @@
             
         }
 
-        public function eliminarTarDoc($idTarea,$idClase) {
+        public function eliminarTarDoc($idTarea, $idClase) {
 
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
-            
-         
-
-            $sql = 'DELETE FROM tarea WHERE idTarea = :idTarea';
+                     
+            $sql = 'DELETE FROM tarea WHERE idTarea = :idTarea AND idClase = :idClase';
         
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':idTarea', $idTarea);
+            $consulta->bindParam(':idClase', $idClase);
             $consulta->execute();
             
             echo '<script>alert("La tarea ha sido eliminado.")</script>';
-            echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idTarea='.$idTarea.'&idClase='.$idClase.'"</script>';
+            echo '<script>location.href="../Vista/html/docente/tareasDoc.php?idTarea='.$idTarea.'&idClase='.$idClase.'&tarea="</script>';
 
 
         }
-
-        public function mostrarObservadorDoc($documento) {
+       
+        public function mostrarObservadorDoc($documento, $clase) {
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -2205,20 +2367,13 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = 
-            "SELECT 
-            o.observacion AS Observacion, o.idObservador, idAutor,
-            CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor,
-            CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante,
-            CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante,
-            o.fecha AS FechaObservacion
-            FROM observador o
-            INNER JOIN usuario a ON o.idAutor = a.documento
-            INNER JOIN usuario e ON o.idEstudiante = e.documento
-            WHERE o.idEstudiante = :documento
+            "SELECT o.observacion AS Observacion, o.idObservador, idAutor, CONCAT(a.nombres, ' ', a.apellidos) AS NombreAutor, a.foto AS fotoAutor, CONCAT(e.nombres, ' ', e.apellidos) AS NombreEstudiante, CONCAT(e.tipoDoc, ' ', e.documento) AS documentoEstudiante, o.fecha AS FechaObservacion, c.idCurso as curso, e.documento AS idEstudiante FROM observador o INNER JOIN usuario a ON o.idAutor = a.documento INNER JOIN usuario e ON o.idEstudiante = e.documento INNER JOIN estudiantecurso ec ON ec.idEstudiante=o.idEstudiante INNER JOIN curso AS c on c.idCurso=ec.idCurso INNER JOIN clase on clase.idCurso=c.idCurso
+            WHERE o.idEstudiante = :documento AND clase.idClase = :clase 
             ORDER BY o.idObservador DESC";
 
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':documento', $documento);
+            $consulta->bindParam(':clase', $clase);
             $consulta->execute();
             
             while ($resultado = $consulta->fetch()) {
@@ -2228,6 +2383,58 @@
             }
 
             return $f;
+
+        }
+
+        public function mostrarObservacionDoc($idEstudiante, $idObservacion) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = 
+            "SELECT 
+            o.observacion AS observacion, o.idObservador,
+            CONCAT(a.nombres, ' ', a.apellidos) AS nombreAutor, a.foto AS fotoAutor, a.documento AS idAutor,
+            CONCAT(e.nombres, ' ', e.apellidos) AS nombreEstudiante,
+            e.tipoDoc, e.documento AS idEstudiante,
+            o.fecha AS FechaObservacion
+            FROM observador o
+            INNER JOIN usuario a ON o.idAutor = a.documento
+            INNER JOIN usuario e ON o.idEstudiante = e.documento
+            WHERE o.idEstudiante = :documento AND o.idObservador = :idObservacion";
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':documento', $idEstudiante);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
+        public function actualizarObserDoc($observacion, $idObservacion, $idEstudiante, $idClase){
+            
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+                
+            $sql = 'UPDATE observador SET observacion=:observacion WHERE idObservador=:idObservacion';
+            $consulta = $conexion->prepare($sql);
+            
+            $consulta->bindParam(':observacion', $observacion);
+            $consulta->bindParam(':idObservacion', $idObservacion);
+
+            $consulta->execute();
+
+            echo '<script>alert("Observación modificada con exito")</script>';
+            echo '<script>location.href="../Vista/html/Docente/docObser.php?documento='.$idEstudiante.'&idClase='.$idClase.'"</script>';
 
         }
 
@@ -2256,7 +2463,7 @@
             return $f;            
         }
 
-        public function mostrarComunicadosDoc() {
+        public function mostrarComunicadosDoc($idCurso) {
             $f = null;
 
             // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
@@ -2264,14 +2471,16 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = 
-            "SELECT usuario.nombres as nombre, usuario.apellidos as apellido, usuario.foto  as foto, 
-                    comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.fecha  as fecha, comunicado.descripcion  as descripcion,  comunicado.archivos  as archivo,
-                    curso.nombre as curso, curso.jornada as jornada            
-            FROM comunicado INNER JOIN 
-                usuario ON comunicado.idUsuario = usuario.documento INNER JOIN 
-                curso ON comunicado.idCurso = curso.idCurso
-            ORDER BY fecha  DESC";
+            "SELECT usuario.documento AS idUsuario, usuario.nombres as nombre, usuario.apellidos as apellido, usuario.foto  as foto, comunicado.idComunicado  as idComunicado, comunicado.titulo  as titulo, comunicado.fecha  as fecha, comunicado.descripcion  as descripcion,  comunicado.archivos  as archivo, curso.nombre as curso, curso.jornada as jornada            
+            FROM comunicado 
+            INNER JOIN usuario ON comunicado.idUsuario = usuario.documento 
+            INNER JOIN curso ON comunicado.idCurso = curso.idCurso
+            WHERE curso.idCurso = :idCurso
+            ORDER BY fecha  DESC
+            ";        
+        
             $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idCurso', $idCurso);
             $consulta->execute();
             
             while ($resultado = $consulta->fetch()) {
@@ -2339,13 +2548,15 @@
             $conexion = $objConexion->get_conexion();
 
             $sql = 
-            "SELECT entrega.idEntrega, CONCAT(usuario.nombres, ' ', usuario.apellidos) AS Estudiante, tarea.titulo, entrega.descripcion, 
-                    entrega.fecha_entrega_est, tarea.fecha_vencimiento, entrega.archivos, calificacion.nota, calificacion.observacion, calificacion.idCalificacion
-            FROM tarea INNER JOIN
-                entrega on entrega.idTarea=tarea.idTarea INNER JOIN
-                usuario on usuario.documento=entrega.idEstudiante LEFT JOIN
-                calificacion on calificacion.idEntrega=entrega.idEntrega
-            WHERE idClase = :idClase AND entrega.idTarea = :idTarea";
+            "SELECT en.idEntrega, en.fecha_entrega_est, en.archivos,  en.descripcion,
+            CONCAT(u.nombres, ' ', u.apellidos) AS Estudiante, 
+            tarea.titulo, tarea.fecha_vencimiento,
+            cal.nota, cal.observacion, cal.idCalificacion
+            FROM tarea 
+            INNER JOIN entrega en on en.idTarea = tarea.idTarea 
+            INNER JOIN usuario u on u.documento = en.idEstudiante 
+            LEFT JOIN calificacion cal on cal.idEntrega = en.idEntrega
+            WHERE idClase = :idClase AND en.idTarea = :idTarea";
 
             $consulta = $conexion->prepare($sql);
             $consulta->bindParam(':idClase', $idClase);
@@ -2436,6 +2647,112 @@
             echo '<script>alert("Entrega asistencia registrada")</script>';
             echo '<script>location.href="../Vista/html/Docente/docAsistencia.php?idClase='.$clase.'"</script>';
         }
+
+        public function cargarAsistenciaDoc($idClase) {
+            $rows = array();
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT
+                        u.nombres AS  nombres,
+                        a.fecha AS fecha_asistencia,
+                        CASE
+                            WHEN a.estado = 'Asiste' THEN 'Asistió'
+                            WHEN a.estado = 'Falta' THEN 'Falta'
+                            WHEN a.estado = 'Falta Justificada' THEN 'Falta justificada'
+                            WHEN a.estado = 'Retardo' THEN 'Retardo'
+                            ELSE 'No registrado'
+                        END AS estado_asistencia
+                    FROM asistencia a
+                    INNER JOIN usuario u ON a.idEstudiante = u.documento
+                    WHERE a.idClase = :idClase
+                    ORDER BY u.nombres, a.fecha";
+        
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idClase', $idClase);
+            $statement->execute();
+        
+            while ($resultado = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $rows[] = $resultado;
+            }
+        
+            return $rows;
+        }
+
+
+        public function cargarCalificacionesDoc($idClase) {
+            $rows = array();
+        
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+        
+            $sql = "SELECT usuario.nombres, tarea.titulo, calificacion.nota  FROM entrega INNER JOIN 
+                    usuario on usuario.documento=entrega.idEstudiante AND usuario.rol=3 INNER JOIN
+                    tarea on tarea.idTarea = entrega.idTarea INNER JOIN
+                    calificacion ON calificacion.idEntrega=entrega.idEntrega
+                    WHERE tarea.idClase = :idClase";
+        
+            $statement = $conexion->prepare($sql);
+            $statement->bindParam(':idClase', $idClase);
+            $statement->execute();
+        
+            while ($resultado = $statement->fetch(PDO::FETCH_ASSOC)) {
+                $rows[] = $resultado;
+            }
+        
+            return $rows;
+        }
+
+        public function mostrarEstudiantesDoc() {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT * FROM usuario WHERE rol = 'Estudiante' ORDER BY nombres DESC";
+            $consulta = $conexion->prepare($sql);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+
+        public function mostrarAcudientesDoc($idEstudiante) {
+            $f = null;
+
+            // SE CREA EL OBJETO DE LA CONEXION (Esto nunca puede faltar)
+            $objConexion = new Conexion();
+            $conexion = $objConexion->get_conexion();
+
+            $sql = "SELECT a.nombres, a.apellidos, a.telefono, a.correo 
+                    FROM estudianteacudiente ea INNER JOIN 
+                        acudiente a on a.documento = ea.idAcudiente
+                    WHERE  ea.idEstudiante = :idEstudiante";
+
+            $consulta = $conexion->prepare($sql);
+            $consulta->bindParam(':idEstudiante', $idEstudiante);
+            $consulta->execute();
+            
+            while ($resultado = $consulta->fetch()) {
+
+                $f[] = $resultado;
+
+            }
+
+            return $f;
+
+        }
+        
+        
+        
 
 
     }

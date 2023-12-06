@@ -8,7 +8,11 @@ function cargarTareas(){
     $consulta = $objConsulta->consultarTareasDoc($docente, $clase);
 
     if (!isset($consulta)){
-        echo'<h2>El docente no tiene tareas creadas.</h2>';
+        echo'
+        <div class="alert">
+            <p>No se han subido tareas a esta clase</p>
+        </div>
+        ';
 
     }else{
         foreach($consulta as $f){
@@ -43,11 +47,84 @@ function cargarTareas(){
                     <a href="docTareaModificar.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Modificar</a>
                 </div>
                 <div class="boton">
-                    <a href="../../../Controlador/eliminarTarDoc.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/eliminar.svg">Eliminar</a>
+                    <a href="docCalificacionEntrega.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Calificar</a>
+                </div>' .
+                (
+                    $f['ExisteEntrega'] != '' ?  
+                    '' :
+                    '<div class="boton">
+                        <a href="../../../Controlador/eliminarTarDoc.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/eliminar.svg">Eliminar</a>
+                    </div>'
+                )
+                .
+                '
+            </div>
+        </div>
+            ';
+        }
+    }
+   
+
+}
+
+function fitrarTareas($tarea, $idClase){
+    $docente = $_SESSION['id'];
+    $clase = $idClase;
+
+    $objConsulta = new Consultas();
+    $consulta = $objConsulta->consultarTareasDoc($docente, $clase, $tarea);
+
+    if (!isset($consulta)){
+        echo'
+        <div class="alert">
+            <p>No se han subido tareas a esta clase</p>
+        </div>
+        ';
+
+    }else{
+        foreach($consulta as $f){
+            echo'
+            <div class="card-tarea">
+            <div class="card-header">
+                <div class="info-user fila">
+                    <img src="'.$f['fotoUsu'].'" alt="foto perfil Docente">
+                    <p>
+                        '.$f['nombreUsu'].' <br>
+                        '.$f['apellidoUsu'].'
+                    </p>
+                </div>
+                <div class="fecha">
+                    <p>
+                        '.$f['fecha_C'].'
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card-header">
+                <div class="card-info">
+                    <img src="../../img/tareas.svg" alt="">
+                    <div class="info">
+                        <h3>'.$f['titulo'].'</h3>
+                        <p>
+                            '.$f['descripcion'].'
+                        </p>
+                    </div>
+                </div>
+                <div class="boton">
+                    <a href="docTareaModificar.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Modificar</a>
                 </div>
                 <div class="boton">
                     <a href="docCalificacionEntrega.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/edit.svg">Calificar</a>
-                </div>
+                </div>' .
+                (
+                    $f['ExisteEntrega'] != '' ?  
+                    '' :
+                    '<div class="boton">
+                        <a href="../../../Controlador/eliminarTarDoc.php?idTarea='.$f['idTarea'].'&idClase='.$clase.'"><img src="../../img/eliminar.svg">Eliminar</a>
+                    </div>'
+                )
+                .
+                '
             </div>
         </div>
             ';

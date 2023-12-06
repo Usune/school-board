@@ -13,7 +13,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesor</title>
+    <title>Docente</title>
     <link rel="shortcut icon" href="../../img/logo.png">
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
@@ -50,11 +50,7 @@ require_once ('../../../Controlador/mostrarCursosDoc.php');
 
     <hr>
     <footer>
-        <div class="info-footer">
-            <p>School Board</p>
-            <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-            <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-        </div>
+        
     </footer>
 </body>
 

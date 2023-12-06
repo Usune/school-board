@@ -32,17 +32,16 @@
         include("menu-include.php");
     ?>
 
-  <main>
 
     <!-- breadcrumb -->
     <nav class="nav-main">
       <a href="homeEstu.php">Home</a>
-      <a href="homeIntegrantes.php"> / Usuarios</a>
+      <a href="homeIntegrantes.php" id="actual" actual="#liIntegrantes"> / Usuarios</a>
     </nav>
 
     <section>
 
-      <h2>Administración de usuarios</h2>
+      <h2>Consulta de usuarios</h2>
 
       <div class="contenedor">
         <div class="fila-cont">
@@ -53,7 +52,7 @@
 
           <a href="homeProfesores.php">
             <img src="../../img/lupa.svg" alt="lupa">
-            <p>Consultar Profesores</p>
+            <p>Consultar Docentes</p>
           </a>
         </div>
       </div>
@@ -65,15 +64,6 @@
 
   </div>
 
-
-  <hr>
-  <footer>
-    <div class="info-footer">
-      <p>School Board</p>
-      <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-      <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-    </div>
-  </footer>
 
   <!-- link bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

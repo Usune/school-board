@@ -32,33 +32,92 @@
         include("menu-include.php");
     ?>
 
-  <main>
 
-    <!-- breadcrumb -->
-    <nav class="nav-main">
-      <a href="homeEstu.php">Home</a>
-      <a href="homeTareas.php"> / Tareas</a>
-    </nav>
+  <!-- breadcrumb -->
+  <nav class="nav-main">
+    <a href="homeEstu.php">Home</a>
+    <a href="homeTareas.php" id="actual" actual="#liTareas"> / Tareas</a>
+  </nav>
 
-    <section>
-      <div class="container-fluid">
+  <section>
+    <div class="container-fluid">
       <h2>Tareas</h2>
-        <div class="row">
-          <div class="table-responsive col-md-12 tablas">
-            <table class="table table-borderless table-hover ">
-              <thead>
-                <tr>
-                  <th scope="col">Asignatura</th>
-                  <th scope="col">Docente</th>
-                  <th scope="col">Titulo</th>
-                  <th scope="col">Fecha de Entrega</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col" class="ultimo">Detalles</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php mostrarTodasTareas(); ?>
-                <!-- <tr>
+
+        <!-- Filtro funcional -->
+        <div class="row filtro">
+          <div class="col-md-12">
+            <form method="get">
+
+              <div class="row ">
+
+
+                <!-- input - nombres -->
+                <div class="col-lg-4 col-md-6 col-sm-12 filtro-inputs">
+                  <div class="fieldset_view">
+                    <div class="fieldset">
+                      <fieldset>
+                        <legend id="nom">Nombre Asignatura</legend>
+                      </fieldset>
+                      <input type="text" placeholder="Nombre Asignatura" legend="#nom" name="asignatura">
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- botones -->
+                <div class="col-lg-4 col-md-12 col-sm-12 filtro-inputs">
+
+                  <div class="buscador col-6">
+                    <div class="col-6">
+                      <button type="submit" class="filtrar">Filtrar</button>
+                    </div>
+
+                    <div class="col-6">
+                      <a href="homeTareas.php" class="filtrar">Limpiar</a>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+
+      <!-- Contenido -->
+      <div class="row">
+        <div class="table-responsive col-md-12 tablas">
+          <table class="table table-borderless table-hover ">
+            <thead>
+              <tr>
+                <th scope="col">Asignatura</th>
+                <th scope="col">Docente</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de Entrega</th>
+                <th scope="col">Calificación</th>
+                <th scope="col" class="ultimo">Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <?php
+
+                if(isset($_GET['asignatura'])){
+
+                  mostrarTareasFiltrados($_GET['asignatura']);
+                          
+                }else {
+
+                  mostrarTodasCalificaciones();
+
+                }
+
+              ?>
+
+              <!-- <tr>
                   <td>Español</td>
                   <td>
                     <div class="row">
@@ -87,7 +146,7 @@
                     </a>
                   </td>
                 </tr> -->
-                <!-- <tr>
+              <!-- <tr>
                   <td>Español</td>
                   <td>
                     <div class="row">
@@ -145,12 +204,12 @@
                     </a>
                   </td>
                 </tr> -->
-              </tbody>
-            </table>
-          </div>
+            </tbody>
+          </table>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
   </main>
 
@@ -158,14 +217,6 @@
   </div>
 
 
-  <hr>
-  <footer>
-    <div class="info-footer">
-      <p>School Board</p>
-      <p>Copyright © - 2023. Todos los Derechos Reservados</p>
-      <p>Autor: Estefani Arenas, Erika Diaz, Nicole Benavides y Tatiana Arevalo.</p>
-    </div>
-  </footer>
 
   <!-- link bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

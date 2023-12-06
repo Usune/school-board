@@ -1,4 +1,5 @@
 <?php
+
     function mostrarEntregasCalificacion(){
         $idClase = $_GET['idClase'];
         $idTarea = $_GET['idTarea'];
@@ -7,9 +8,31 @@
         $consultas = $objConsultas->mostrarEntregasCalificacion($idClase, $idTarea);
 
         if (!isset($consultas)) {
-            echo '<h2> No hay comunucados registrados con el nombre ingresado</h2>';
+            echo '
+            <div class="alert">
+                <p>No se han subido entregas en esta tarea</p>
+            </div>
+            ';
         } else {
+            echo'
+            <div class="tablas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th style="display: none;">idEntrega</th>
+                            <th>Tarea</th>
+                            <th>Descripción Entrega</th>
+                            <th>Fecha de Entrega</th>
+                            <th>Fecha de Vencimiento</th>
+                            <th>Archivo</th>
+                            <th class="ultimo">Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            ';
             foreach($consultas as $f) {
+                $nota = number_format($f['nota'], 1);
                 echo 
                 '<tr>
                     <td>' . $f['Estudiante'] . '</td>
@@ -18,24 +41,32 @@
                     <td>' . $f['descripcion'] . '</td>
                     <td>' . $f['fecha_entrega_est'] . '</td>
                     <td>' . $f['fecha_vencimiento'] . '</td>
+
                     <td>'
                     . ($f['archivos'] == "" ? "No hay archivos" :
                     '<a href="' . $f['archivos'] . '" target="_blank">Ver Archivo</a>')
                     .                    
                     '</td>
+
                     <td class="ultimo">' 
                     .
-                    ($f['nota'] != "" ? '<label>' . $f['nota'] . '</label>' . '<label style="display:none">' . $f['observacion'] .  '</label>'
+                    ($f['nota'] != "" ? '<label style="font-weight: bold;">' . $f['nota'] . '</label>' . '<label style="display:none">' . $f['observacion'] .  '</label>'
                     . '<label style="display:none">' . $f['idCalificacion'] .  '</label> 
-                    <button onclick="cargaDatosCalificacion(this.parentNode.parentNode, this)"  type="button" class="btn btn-light" title="Editar" data-toggle="modal" data-target="#modalEditarCalificacion">
-                        <i class="fas fa-pencil-alt"></i>
-                    </button>':
-                    '<button onclick="cargaDatosEntrega(this.parentNode.parentNode)" type="button" class="btn btn-light" data-toggle="modal" data-target="#modalCalificación">Calificar</button>                    
+                    <button onclick="cargaDatosCalificacion(this.parentNode.parentNode, this)" type="button" modal="#modalEditarCalificacion" title="Editar" class="fa fa-lg desplegarModal" style="display: inline-block; font-weight: 100;">&#xf040;</button>
+                    ':
+
+                    '<button onclick="cargaDatosEntrega(this.parentNode.parentNode)" type="button" modal="#modalCalificacion" class="desplegarModal">Calificar</button>
+                                        
                     ')
                     .                                                            
                     '</td>
                 </tr>';
             }
+            echo'
+            </tbody>
+        </table>
+    </div>
+            ';
         }
     }
 ?>

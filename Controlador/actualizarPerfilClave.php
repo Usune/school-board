@@ -23,7 +23,7 @@
             $clavedb = $f['clave'];
         }
         
-        if(strlen($clave) >= 8){
+        if(strlen($claveNueva) >= 8){
             if($clavedb == MD5($claveActual)) {
 
                 if($claveNueva == $claveNueva2){
@@ -39,7 +39,7 @@
                     }
             
                     if($_SESSION['rol'] == 'Docente') {
-                        echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'"</script>';
+                        echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'&idCurso=&idClase="</script>';
                     }
             
                     if($_SESSION['rol'] == 'Estudiante') {
@@ -53,7 +53,7 @@
                 }
         
                 if($_SESSION['rol'] == 'Docente') {
-                    echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'"</script>';
+                    echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'&idCurso=&idClase="</script>';
                 }
         
                 if($_SESSION['rol'] == 'Estudiante') {
@@ -70,7 +70,7 @@
             }
     
             if($_SESSION['rol'] == 'Docente') {
-                echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'"</script>';
+                echo '<script>location.href="../Vista/html/Docente/perfilClave.php?id='.$documento.'&idCurso=&idClase="</script>';
             }
     
             if($_SESSION['rol'] == 'Estudiante') {
@@ -81,7 +81,7 @@
         
 
         
-    }
+    
 
 
 ?>

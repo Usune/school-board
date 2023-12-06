@@ -4,15 +4,14 @@ require_once ('../../../Modelo/consultas.php');
 require_once('../../../Modelo/seguridadDoc.php');
 require_once ('../../../Controlador/mostrarPerfil.php');
 require_once ('../../../Controlador/mostrarCursosDoc.php');
-require_once ('../../../Controlador/mostrarAsisDoc.php');
-require_once ('../../../Controlador/mostrarTareasDoc.php');
+require_once ('../../../Controlador/mostrarCalificacionesDoc.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesor</title>
+    <title>Docente</title>
     <link rel="stylesheet" type="text/css" href="../../css/Docente/estilosDoc.css">
     <link rel="stylesheet" type="text/css" href="../../css/estilosBase.css">
     <script src="../../js/controlGeneral.js"></script>
@@ -31,8 +30,11 @@ require_once ('../../../Controlador/mostrarTareasDoc.php');
         </nav>
 
         <section>   
-            
-
+            <div class="tablas">
+                <?php 
+                    cargarConsultaCalificaciones();
+                ?>
+            </div>
         
         </section>
     </main>

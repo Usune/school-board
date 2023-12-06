@@ -3,7 +3,7 @@
 const mostrar = (event) => {
     let el = document.querySelector(event.target.getAttribute('enlace'));
     if (el !== null) {
-        el.classList.toggle('show');
+        el.classList.toggle('show_modal');
     }
 }
 

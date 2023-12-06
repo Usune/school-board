@@ -139,11 +139,12 @@ function menuIncludeDoc() {
     // $tarea =$_GET['idTarea'];
     echo'
         <li><a href="homeDoc.php"><img src="../../img/curso.svg" alt="logo">Clases</a></li>
-        <li><a href="tareasDoc.php?idClase='.$clase.'" id="tareas"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
+        <li><a href="tareasDoc.php?idClase='.$clase.'&tarea=" id="tareas"><img src="../../img/tareas.svg" alt="logo">Tareas</a></li>
         <li><a href="docCalificaciones.php?idClase='.$clase.'" id="calificaciones"><img src="../../img/calificaciones.svg" alt="logo">Calificaciones</a></li>
         <li><a href="docObser.php?idClase='.$clase.'" id="observador"><img src="../../img/observador.svg" alt="logo">Observador</a></li>
         <li><a href="docComun.php?idClase='.$clase.'" id="comunicados"><img src="../../img/comunicados.svg" alt="logo">Comunicados</a></li>
         <li><a href="docAsistencia.php?idClase='.$clase.'" id="asistencia"><img src="../../img/asistencia.svg" alt="logo">Asistencia</a></li>
+        <li><a href="docAcuConsu.php?idClase='.$clase.'" id="Lista"><img src="../../img/user.svg" alt="logo">Lista</a></li>
 
     ';
  

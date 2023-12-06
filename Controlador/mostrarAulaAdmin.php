@@ -9,8 +9,25 @@
         $consultas = $objConsultas->mostrarAulasAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay aulas registradas con el nombre ingresado</h2>';
+            echo '
+            <div class="alert">
+                <p>No hay aulas registradas</p>
+            </div>
+            ';
         } else {
+            echo '
+            <div class="tablas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Aula</th>
+                                <th>Clases</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
+            ';
             $n = 0;
             foreach($consultas as $f) {
                 $n += 1;
@@ -26,6 +43,10 @@
                 ';
 
             }
+            echo '
+                </table>
+            </div>
+            ';
 
         }
 
@@ -37,10 +58,25 @@
         $consulta = $objConsultas->filtrarAulas($nombre);
 
         if(!isset($consulta)){
-
-            echo '<h3>NO HAY AULAS EN EL SISTEMA CON EL NOMBRE INGRESADO</h3>';
-
+            echo '
+            <div class="alert">
+                <p>No hay aulas registradas con el nombre ingresado</p>
+            </div>
+            ';
         }else {
+            echo '
+            <div class="tablas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Aula</th>
+                                <th>Clases</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
+            ';
             $n = 0;
             foreach($consulta as $f) {
                 $n += 1;
@@ -56,8 +92,10 @@
                 ';
 
             }
-
-
+            echo '
+                </table>
+            </div>
+            ';
         }
 
 

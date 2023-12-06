@@ -98,18 +98,6 @@
                     </div>
                 </div>
 
-                <div class="tablas">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Aula</th>
-                                <th>Clases</th>
-                                <th class="ultimo">Opciones</th>
-                                <!-- <th colspan="2">Opciones</th> -->
-                            </tr>
-                        </thead>
-
                         <?php
 
                             if(isset($_GET['nombre']) ){
@@ -123,11 +111,6 @@
                             }
                         ?>
 
-                    </table>
-                </div>
-
-                
-        
             </section>
         </main>
 

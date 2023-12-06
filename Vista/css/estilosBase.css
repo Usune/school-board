@@ -1063,7 +1063,7 @@ hr {
     }
 
     .formulario {
-        width: 400px;
+        width: 350px;
     }
 
 }
@@ -1145,6 +1145,12 @@ hr {
     width: 25px;
     height: 25px;
     margin: 0 32px 0 5px;
+}
+
+@media (max-width: 450px) {
+    .card-tarea .card-info img {
+        margin: 10px 5px 0 0px;
+    }
 }
 
 .card-info h3 {
@@ -1259,6 +1265,7 @@ hr#fechas {
     /* width: 30%;
     margin-top: 107px; */
     display: flex;
+    flex-direction: column;
     justify-content: end;
     align-items: flex-end;
 }
@@ -1275,6 +1282,7 @@ hr#fechas {
     align-items: center;
     font-weight: bold;
     font-size: 10px;
+    margin-bottom: 5px;
 }
 
 .card-tarea .boton button {
@@ -1311,7 +1319,8 @@ hr#fechas {
     left: 0;
     background-color: #111111bd;
     display: none;
-    /* z-index: 1; */
+    z-index: 100;
+    overflow-y: scroll;
 }
 
 .modal_container {
@@ -1344,6 +1353,17 @@ hr#fechas {
 
 .show_modal {
     display: flex !important;
+}
+
+@media (max-width: 450px) {
+
+    .modal_container {
+        width: 400px;
+    }
+    
+    .btn-cerrar {
+        margin-left: 300px;
+    }
 }
 
 /* Fin estilos MODAL */
@@ -1404,6 +1424,12 @@ hr#fechas {
     padding: 10px 15px;
     background-color: transparent;
     border: 1px solid transparent;
+}
+
+.tablas tbody tr td .foto{
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
 }
 
 /* Redondeo los ultimos bordes generales */
@@ -1650,4 +1676,10 @@ hr#fechas {
     font-size: 40px;
     color: var(--grisOscuro);
     font-weight: bold;
+}
+
+@media (max-width: 450px) {
+    .alert{
+        width: calc(100% - 50px);
+    }
 }

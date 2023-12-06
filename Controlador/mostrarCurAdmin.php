@@ -9,8 +9,25 @@
         $consultas = $objConsultas->mostrarCursosAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay cursos registrados </h2>';
+            echo '
+            <div class="alert">
+                <p>No hay cursos registrados</p>
+            </div>
+            ';
         } else {
+            echo '
+            <div class="tablas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Curso</th>
+                            <th>Jornada</th>
+                            <th>Estudiantes</th>
+                            <th class="ultimo">Opciones</th>
+                        </tr>
+                    </thead>
+            ';
             $n = 0;
             foreach($consultas as $f) {
                 $n += 1;
@@ -27,6 +44,10 @@
                 ';
 
             }
+            echo '
+                </table>
+            </div>
+            ';
 
         }
 
@@ -38,10 +59,25 @@
         $consulta = $objConsultas->filtrarCursos($jornada, $nombre);
 
         if(!isset($consulta)){
-
-            echo '<h3>NO HAY CURSOS REGISTRADOS CON LAS CARACTERISTICAS SELECCIONADAS</h3>';
-
+            echo '
+            <div class="alert">
+                <p>No hay cursos registrados con las características seleccionadas</p>
+            </div>
+            ';
         }else {
+            echo '
+            <div class="tablas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Curso</th>
+                            <th>Jornada</th>
+                            <th>Estudiantes</th>
+                            <th class="ultimo">Opciones</th>
+                        </tr>
+                    </thead>
+            ';
             $n = 0;
             foreach($consulta as $f) {
                 $n += 1;
@@ -58,6 +94,10 @@
                 ';
 
             }
+            echo '
+                </table>
+            </div>
+            ';
 
         }
 

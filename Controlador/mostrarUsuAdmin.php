@@ -16,10 +16,11 @@
 
                 echo '
                 <tr>
-                    <td>'.$f['tipoDoc'].'</td>
-                    <td>'.$f['documento'].'</td>
+                    <td><img src="'.$f['foto'].'" class="foto"></td>
                     <td>'.$f['apellidos'].'</td>
                     <td>'.$f['nombres'].'</td>
+                    <td>'.$f['tipoDoc'].'</td>
+                    <td>'.$f['documento'].'</td>
                     <td>'.$f['estado'].'</td>
                     <td>'.$f['rol'].'</td>
 
@@ -195,10 +196,11 @@
 
                 echo '
                 <tr>
-                    <td>'.$f['tipoDoc'].'</td>
-                    <td>'.$f['documento'].'</td>
+                    <td><img src="'.$f['foto'].'" class="foto"></td>
                     <td>'.$f['apellidos'].'</td>
                     <td>'.$f['nombres'].'</td>
+                    <td>'.$f['tipoDoc'].'</td>
+                    <td>'.$f['documento'].'</td>
                     <td>'.$f['estado'].'</td>
                     <td>'.$f['rol'].'</td>
 

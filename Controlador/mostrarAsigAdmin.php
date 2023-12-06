@@ -9,8 +9,25 @@
         $consultas = $objConsultas->mostrarAsignaturasAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay asignaturas registradas con el nombre ingresado</h2>';
+            echo '
+            <div class="alert">
+                <p>No hay asignaturas registradas</p>
+            </div>
+            ';
         } else {
+            echo '
+            <div class="tablas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Asignatura</th>
+                                <th>Cursos</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
+            ';
             $n = 0;
             foreach($consultas as $f) {
                 $n += 1;
@@ -26,6 +43,10 @@
                 ';
 
             }
+            echo '
+                </table>
+            </div>
+            ';
 
         }
 
@@ -37,10 +58,28 @@
         $consulta = $objConsultas->filtrarAsignaturas($nombre);
 
         if(!isset($consulta)){
+            echo '
+            <div class="alert">
+                <p>No hay asignaturas en el sistema con el nombre ingresado registradas</p>
+            </div>
+            ';
 
             echo '<h3>NO HAY ASIGNATURAS EN EL SISTEMA CON EL NOMBRE INGRESADO</h3>';
 
         }else {
+            echo '
+            <div class="tablas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Asignatura</th>
+                                <th>Cursos</th>
+                                <th class="ultimo">Opciones</th>
+                                <!-- <th colspan="2">Opciones</th> -->
+                            </tr>
+                        </thead>
+            ';
             $n = 0;
             foreach($consulta as $f) {
                 $n += 1;
@@ -56,7 +95,10 @@
                 ';
 
             }
-
+            echo '
+                </table>
+            </div>
+            ';
 
         }
 

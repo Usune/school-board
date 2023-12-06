@@ -9,8 +9,15 @@
         $consultas = $objConsultas->mostrarClasesAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay se han creado clases</h2>';
+            echo '
+            <div class="alert">
+                <p>No se han creado clases</p>
+            </div>
+            ';
         } else {
+            echo '
+            <div class="contClases">
+            ';
             $n=0;
             $m=0;
             foreach($consultas as $f) {
@@ -52,10 +59,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cardClasesOpciones">
-                                <a href="">Ver más</a>
-                                <a href="">Editar  <img src="../../img/edit.svg"></a>
-                            </div>
                         </div>
                     ';
                 }else{
@@ -95,10 +98,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cardClasesOpciones">
-                                <a href="">Ver más</a>
-                                <a href="">Editar  <img src="../../img/edit.svg"></a>
-                            </div>
                         </div>
                     ';
                 }
@@ -110,6 +109,9 @@
                 }
                 $n += 1; 
             }
+            echo '
+            </div>
+            ';
 
         }
 
@@ -184,5 +186,9 @@
         }
 
     }
-
+// Quitado de la línea 55 y 94
+//<div class="cardClasesOpciones">
+//     <a href="">Ver más</a>
+//     <a href="">Editar  <img src="../../img/edit.svg"></a>
+// </div>
 ?>

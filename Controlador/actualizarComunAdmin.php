@@ -2,6 +2,7 @@
  //  require_once() para enlazar las dependencias necesarias
  require_once("../Modelo/conexion.php");
  require_once("../Modelo/consultas.php");
+ require_once("../Modelo/correosAcudiente.php");
  require_once('../Modelo/seguridadAdmin.php');
 
  // session_start(); Se quita porque ya existe en el archivo se seguridad
@@ -33,8 +34,10 @@
     $zonaHoraria = new DateTimeZone('America/Bogota');
     $fecha = new DateTime('now', $zonaHoraria);
     $fecha = $fecha->format('Y-m-d H:i:s');
-
-    // echo $archivo;
+        
+    $tipoInfo = 'Comunicado Modificado';
+    $objCorreo = new CorreosAcudiente();
+    $enviarCorreo = $objCorreo->enviarCorreo($idCurso, $tipoInfo, $titulo, $descripcion, $archivo);
 
     $objConsultas = new Consultas();
     $result = $objConsultas->actualizarComunAdmin($titulo, $descripcion, $archivo, $idCurso, $idComunicado, $idAutor);

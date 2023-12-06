@@ -9,7 +9,11 @@
         $consultas = $objConsultas->mostrarComunicadosAdmin();
 
         if (!isset($consultas)) {
-            echo '<h2> No hay comunucados registrados con el nombre ingresado</h2>';
+            echo '
+            <div class="alert">
+                <p>No hay comunicados registrados</p>
+            </div>
+            ';
         } else {
 
             foreach($consultas as $f) {
@@ -51,19 +55,19 @@
                         if ($f['archivo'] != '../../Uploads/Comunicados/'){
                             echo'
                         <div class="boton">
-                            <a href="'.$f['archivo'].'" download="comunicado" target="_blank"><img src="../../img/descargar.svg">Descargar</a>
-                            <a href="'.$f['archivo'].'"><img src="../../img/descargar.svg">Abrir en nueva pestaña</a>
-                        </div>   
-                            ';
-                        }
-
-                      
-                        
-                        
-                        echo
-                        '<div class="boton">
+                            <a href="../../'.$f['archivo'].'" target="blank_"><img src="../../img/ojo.svg">Ver</a>
                             <a href="adminComunModificar.php?id='.$f['idComunicado'].'"><img src="../../img/edit.svg">Modificar</a>
                         </div>
+                            ';
+                        }else {
+                            echo
+                            '<div class="boton">
+                                <a href="adminComunModificar.php?id='.$f['idComunicado'].'"><img src="../../img/edit.svg">Modificar</a>
+                            </div>';
+                        }
+
+                        echo
+                        '
                     </div>
                 </div>
                 ';

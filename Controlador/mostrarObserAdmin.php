@@ -97,7 +97,11 @@
             $consultas = $objConsultas->mostrarObservadorAdmin($documento);
             
             if (!isset($consultas)) {
-                echo '<h3>El estudiante no tiene observaciones</h3>';
+                echo '
+                <div class="alert">
+                    <p>El estudiante no tiene observaciones</p>
+                </div>
+                ';
             } else {
                 $n = 0;
                 foreach($consultas as $f) {

@@ -187,8 +187,6 @@
         
         public function insertarComunAdmin($idUsuario, $idCurso, $titulo, $descripcion, $archivo) {
 
-            $tipoInfo = 'Comunicado';
-
             $objConexion = new Conexion();
             $conexion = $objConexion->get_conexion();
 
@@ -202,9 +200,6 @@
             $consulta->bindParam(':archivo',$archivo);
 
             $consulta->execute();
-
-            $objConexion = new CorreosAcudiente();
-            $conexion = $objConexion->enviarCorreo($idCurso, $tipoInfo, $titulo, $descripcion, $archivo);
 
             echo '<script>alert("Comunicado subido correctamente")</script>';
             echo "<script>location.href='../Vista/html/Administrador/adminComun.php'</script>";         

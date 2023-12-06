@@ -72,10 +72,10 @@
                     </div>
                 </div>
 
-                <div class="opciones">
+                <!-- <div class="opciones">
                     <button type="button" class="desplegar" enlace="#filtro"><img src="../../img/filtro.svg"
                             alt="filtro">Filtrar</button>
-                </div>
+                </div> -->
 
                 <!-- <div id="filtro">
                     <div class="cont-filtro">
@@ -101,17 +101,7 @@
                     </div>
                 </div> -->
 
-                <div class="tablas">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Asignatura</th>
-                                <th>Cursos</th>
-                                <th class="ultimo">Opciones</th>
-                                <!-- <th colspan="2">Opciones</th> -->
-                            </tr>
-                        </thead>
+                
 
                         <?php
     
@@ -126,8 +116,7 @@
                             }
                         ?>
 
-                    </table>
-                </div>
+                    
 
             </section>
         </main>

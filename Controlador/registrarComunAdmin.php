@@ -3,6 +3,7 @@
     //  require_once() para enlazar las dependencias necesarias
     require_once("../Modelo/conexion.php");
     require_once("../Modelo/consultas.php");
+    require_once("../Modelo/correosAcudiente.php");
     require_once ('../Modelo/seguridadAdmin.php');
 
     // session_start(); Se quita porque ya existe en el archivo se seguridad
@@ -26,6 +27,10 @@
         // MOVEMOS EL ARCHIVO A LA CARPETA UPLOADS CON LA FUNCIÓN DE PHP move_uploaded_file()
         // tmp_name: NOMBRE TEMPORAL DEL ARCHIVO
         $mover = move_uploaded_file($_FILES['archivo']['tmp_name'], $guardar);
+        
+        $tipoInfo = 'Nuevo Comunicado';
+        $objCorreo = new CorreosAcudiente();
+        $enviarCorreo = $objCorreo->enviarCorreo($idCurso, $tipoInfo, $titulo, $descripcion, $archivo);
 
         $objConsultas = new Consultas();
         $result = $objConsultas->insertarComunAdmin($idUsuario, $idCurso, $titulo, $descripcion, $archivo);

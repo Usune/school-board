@@ -148,36 +148,18 @@
                 </div>
             </div>
 
-            <div class="tablas">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Curso</th>
-                            <th>Jornada</th>
-                            <th>Estudiantes</th>
-                            <th class="ultimo">Opciones</th>
-                            <!-- <th colspan="2">Opciones</th> -->
-                        </tr>
-                    </thead>
-
-
                     <?php
 
-                                if(isset($_GET['jornada']) || isset($_GET['nombre']) ){
-                                        
-                                    filtrarCursos($_GET['jornada'], $_GET['nombre']);
-                                    
-                                }else {
+                        if(isset($_GET['jornada']) || isset($_GET['nombre']) ){
+                                
+                            filtrarCursos($_GET['jornada'], $_GET['nombre']);
+                            
+                        }else {
 
-                                    cargarCursos();
+                            cargarCursos();
 
-                                }
-                            ?>
-
-                </table>
-            </div>
-
+                        }
+                    ?>
         </section>
 
     </main>

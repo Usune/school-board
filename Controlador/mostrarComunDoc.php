@@ -6,7 +6,11 @@ function cargarComunicados() {
         $consultas = $objConsultas->mostrarComunicadosDoc($clase);
 
         if (!isset($consultas)) {
-            echo '<h2> No hay comunicados registrados con el nombre ingresado</h2>';
+            echo '
+            <div class="alert">
+                <p>No hay comunicados registrados</p>
+            </div>
+            ';
         } else {
 
             foreach($consultas as $f) {

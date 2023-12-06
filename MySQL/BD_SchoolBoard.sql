@@ -159,9 +159,9 @@ CREATE TABLE calificacion(
 );
 
 INSERT INTO usuario (documento, clave, rol, estado, tipoDoc, nombres, apellidos, correo, foto) VALUES 
-(1, MD5('administrador'), 'Administrador', 'activo', 'CC','Administrador', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
+(1, MD5('administrador'), 'Administrador', 'activo', 'CC','Estefani', 'Arenas', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (2, MD5('docente'), 'Docente', 'activo', 'CC','Felipe', 'Restrepo','lfrestrepo004@gmail.com', '../../Uploads/Usuario/userFelipe.jpg'),
-(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Estudiante', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
+(3, MD5('estudiante'), 'Estudiante', 'activo', 'TI','Carlos', 'Vallejo', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 
 (4, MD5('docente'), 'Docente', 'activo', 'CC','Docente', 'Prueba', 'yuraniester@gmail.com', '../../Uploads/Usuario/fotoUsuario.jpg'),
 (1023163093, MD5('docente'), 'Docente', 'activo', 'CC','Angelica Maria', 'Triana Guarnizo', 'angelica@gmail.com', '../../Uploads/Usuario/userAngelica.jpg'),
@@ -250,8 +250,7 @@ INSERT INTO entrega (descripcion, archivos, idEstudiante, idTarea) VALUES
 ('Entrega Erika', NULL, 1023163095, 1),
 ('Entrega Tatiana', NULL, 1023163096, 1);
 
-INSERT INTO calificacion (idEntrega, nota) VALUES 
-(1, '4.5');
+INSERT INTO calificacion (idEntrega, nota) VALUES(1,4.5);
 
 -- Consulta para mostrar todas las entregas de los estudiantes para una tarea específica:
 -- SELECT e.idEntrega, e.idEstudiante, u.nombres, u.apellidos, e.fecha_entrega_est, e.descripcion, e.archivos, c.nota

@@ -188,10 +188,11 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Tipo Documento</th>
-                                    <th>Documento</th>
+                                    <th>Foto</th>
                                     <th>Apellidos</th>
                                     <th>Nombres</th>
+                                    <th>Tipo Documento</th>
+                                    <th>Documento</th>
                                     <th>Estado</th>
                                     <th>Rol</th>
                                     <th class="ultimo">Opciones</th>
